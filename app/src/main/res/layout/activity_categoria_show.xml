@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="libelulati.tripctrl.Categoria.CategoriaShowActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_categoria_show" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_ca_editar"
+        android:layout_width="@dimen/fab_tamanho"
+        android:layout_height="@dimen/fab_tamanho"
+        android:layout_gravity="top|right"
+        android:layout_marginRight="@dimen/fab_margin_edit_lr"
+        android:layout_marginTop="@dimen/fab_margin_edit_top"
+        android:src="@drawable/ic_action_edit" />
+
+</android.support.design.widget.CoordinatorLayout>
