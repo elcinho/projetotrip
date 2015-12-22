@@ -277,7 +277,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         us_dtnasc.setText(new StringBuilder().append(dia).append("-").append(mes).append("-").append(ano));
     }
 
-    public void showDatePickerDialog(View view) {
+    public void showDatePickerDialog_new(View view) {
         DialogFragment dialogFragment = new DatePickerFragment();
         dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
@@ -292,7 +292,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int day) {
             ano = year;
-            mes = month;
+            mes = month + 1;
             dia = day;
 
             AtualizarData();

@@ -17,11 +17,10 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_us_editar"
-        android:layout_width="@dimen/fab_tamanho"
-        android:layout_height="@dimen/fab_tamanho"
-        android:layout_gravity="top|right"
-        android:layout_marginRight="@dimen/fab_margin_edit_lr"
-        android:layout_marginTop="@dimen/fab_margin_edit_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_action_edit" />
 
 </android.support.design.widget.CoordinatorLayout>

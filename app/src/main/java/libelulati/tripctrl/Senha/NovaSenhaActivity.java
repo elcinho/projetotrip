@@ -10,9 +10,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import libelulati.tripctrl.Funcoes.Validar;
+import libelulati.tripctrl.MainActivity;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.Usuario.Usuario;
 import libelulati.tripctrl.Usuario.UsuarioDAO;
+import libelulati.tripctrl.Usuario.UsuarioEditActivity;
 
 public class NovaSenhaActivity extends AppCompatActivity {
 
@@ -74,6 +76,14 @@ public class NovaSenhaActivity extends AppCompatActivity {
                     boolean sucesso = new UsuarioDAO(context).alterarsenha(usuario, idus);
                     if (sucesso) {
                         Toast.makeText(context, "Senha alterada com sucesso.", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA
+                        if(idus == 0){
+                            startActivity(new Intent(NovaSenhaActivity.this, MainActivity.class));
+                            finish();
+                        }
+                        else{
+                            startActivity(new Intent(NovaSenhaActivity.this, UsuarioEditActivity.class));
+                            finish();
+                        }
                     } else {
                         Toast.makeText(context, "A senha não foi alterada", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA
                     }

@@ -85,7 +85,7 @@
         android:layout_below="@+id/tx_use_dtnasc"
         android:ems="10"
         android:inputType="date"
-        android:onClick="showDatePickerDialog"
+        android:onClick="showDatePickerDialog_edt"
         android:text="@string/dtnasc"
         android:textColor="@color/colorAccent" />
 

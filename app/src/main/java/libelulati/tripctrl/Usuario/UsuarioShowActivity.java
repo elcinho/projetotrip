@@ -16,6 +16,8 @@ import libelulati.tripctrl.R;
 
 public class UsuarioShowActivity extends AppCompatActivity {
 
+    FloatingActionButton fab_editar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,24 @@ public class UsuarioShowActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final FloatingActionButton fab_editar = (FloatingActionButton) findViewById(R.id.fab_us_editar);
+        fab_editar = (FloatingActionButton) findViewById(R.id.fab_us_editar);
+
+        final TextView uss_nome = (TextView) findViewById(R.id.tx_uss_nome);
+        final TextView uss_dtnasc = (TextView) findViewById(R.id.tx_uss_dtnasc);
+        final TextView uss_email = (TextView) findViewById(R.id.tx_uss_email);
+        final TextView uss_telefone = (TextView) findViewById(R.id.tx_uss_telefone);
+        final TextView uss_localizacao = (TextView) findViewById(R.id.tx_uss_localizacao);
+        final TextView uss_cod = (TextView) findViewById(R.id.tx_uss_codusuario);
+
+        Intent it_uss_edusuario = getIntent();
+        Bundle bundle = it_uss_edusuario.getExtras();
+
+        uss_nome.setText(bundle.getString(StringsNomes.getUsNome()));
+        uss_dtnasc.setText(bundle.getString(StringsNomes.getUsDtnasc()));
+        uss_email.setText(bundle.getString(StringsNomes.getUsEmail()));
+        uss_telefone.setText(bundle.getString(StringsNomes.getUsTelefone()));
+        uss_localizacao.setText(bundle.getString(StringsNomes.getUsLongitude()));
+        uss_cod.setText(bundle.getString(StringsNomes.getUsCod()));
 
         fab_editar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,29 +68,6 @@ public class UsuarioShowActivity extends AppCompatActivity {
                 startActivityForResult(it_usedit, 1);
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-
-        final TextView uss_nome = (TextView) findViewById(R.id.tx_uss_nome);
-        final TextView uss_dtnasc = (TextView) findViewById(R.id.tx_uss_dtnasc);
-        final TextView uss_email = (TextView) findViewById(R.id.tx_uss_email);
-        final TextView uss_telefone = (TextView) findViewById(R.id.tx_uss_telefone);
-        final TextView uss_localizacao = (TextView) findViewById(R.id.tx_uss_localizacao);
-        final TextView uss_cod = (TextView) findViewById(R.id.tx_uss_codusuario);
-
-        Intent it_uss_edusuario = getIntent();
-        Bundle bundle = it_uss_edusuario.getExtras();
-
-        uss_nome.setText(bundle.getString(StringsNomes.getUsNome()));
-        uss_dtnasc.setText(bundle.getString(StringsNomes.getUsDtnasc()));
-        uss_email.setText(bundle.getString(StringsNomes.getUsEmail()));
-        uss_telefone.setText(bundle.getString(StringsNomes.getUsTelefone()));
-        uss_localizacao.setText(bundle.getString(StringsNomes.getUsLongitude()));
-        uss_cod.setText(bundle.getString(StringsNomes.getUsCod()));
-
-        super.onResume();
     }
 
     @Override

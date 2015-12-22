@@ -38,7 +38,7 @@
         android:layout_below="@+id/ed_nu_nome"
         android:ems="10"
         android:hint="@string/dtnasc"
-        android:onClick="showDatePickerDialog"
+        android:onClick="showDatePickerDialog_new"
         android:textColor="@color/colorAccent" />
 
     <EditText

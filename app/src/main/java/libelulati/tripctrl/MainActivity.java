@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 final Context context = v.getContext();
-                final int id;
+                final int idus;
 
                 UsuarioDAO usuarioDAO = new UsuarioDAO(context);
                 Usuario usuario = usuarioDAO.buscaEmail(main_email.getText().toString());
@@ -69,17 +69,18 @@ public class MainActivity extends AppCompatActivity {
                 if(usuario == null){
                     Toast.makeText(context, MensagensUsuario.getUSUARIO() + MensagensUsuario.getNao_encontrado(), Toast.LENGTH_LONG).show();                 }
                 else {
-                    id = usuario.getUs_id();
+                    idus = usuario.getUs_id();
                     boolean validar = Validar.ValidarUsuarioSenha(main_email.getText().toString(),main_senha.getText().toString(),usuario.getUs_email(),usuario.getUs_senha());
                     if(validar){
                         Intent it_main_entrar = new Intent(MainActivity.this, InicioActivity.class);
 
                         Bundle bundle = new Bundle();
-                        bundle.putInt(StringsNomes.getID(), id);
+                        bundle.putInt(StringsNomes.getID(), idus);
 
                         it_main_entrar.putExtras(bundle);
 
                         startActivityForResult(it_main_entrar, 1);
+                        finish();
                     }
                     else{
                         Toast.makeText(context, MensagensUsuario.getUSUARIO() + MensagensUsuario.getNao_encontrado(), Toast.LENGTH_LONG).show();

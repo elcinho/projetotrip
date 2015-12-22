@@ -137,11 +137,12 @@ public class UsuarioEditActivity extends AppCompatActivity {
 
                 if (sucesso) {
                     Toast.makeText(context, MensagensUsuario.getUSUARIO() + " " + usuario.getUs_nome() + " " + MensagensUsuario.getEditado_sucesso(), Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(UsuarioEditActivity.this, InicioActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(context, MensagensUsuario.getErro_editar() + MensagensUsuario.getUSUARIO() + " " + usuario.getUs_nome(), Toast.LENGTH_LONG).show();
+                    use_nome.requestFocus();
                 }
-
-                finish();
             }
         });
     }
@@ -178,7 +179,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         }
         if (!validar) {
             use_dtnasc.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), "Data inválida", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Data inválida", Toast.LENGTH_LONG).show(); //alterar para string do sistema
             valido = false;
         } else {
             use_dtnasc.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -209,7 +210,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         use_dtnasc.setText(new StringBuilder().append(dia).append("-").append(mes).append("-").append(ano));
     }
 
-    public void showDatePickerDialog(View view) {
+    public void showDatePickerDialog_edt(View view) {
         DialogFragment dialogFragment = new DatePickerFragment();
         dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
@@ -224,7 +225,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int day) {
             ano = year;
-            mes = month;
+            mes = month + 1;
             dia = day;
 
             AtualizarData();
