@@ -220,7 +220,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
     }
 
     public void verificarnascimento() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date data = sdf.parse(String.valueOf(us_dtnasc.getText().toString()));
             validar = Validar.ValidarDataNascimento(data);
@@ -283,7 +283,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
     }
 
     public void AtualizarData() {
-        us_dtnasc.setText(new StringBuilder().append(dia).append("-").append(mes).append("-").append(ano));
+        us_dtnasc.setText(new StringBuilder().append(dia).append("/").append(mes).append("/").append(ano));
     }
 
     public void showDatePickerDialog_new(View view) {
