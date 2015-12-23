@@ -32,11 +32,18 @@ public class CategoriaShowActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.mn_ac_voltar) {
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
+        switch (id){
+            case android.R.id.home:
+                if(getActionBar() == null){
+                    onBackPressed();
+                }
+                else{
+                    NavUtils.navigateUpFromSameTask(this);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
 }

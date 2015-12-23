@@ -1,5 +1,6 @@
 package libelulati.tripctrl.Usuario;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,14 +71,23 @@ public class UsuarioShowActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("NewApi")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.mn_ac_voltar) {
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
+        int teste = android.R.id.home;
+        switch (id){
+            case android.R.id.home:
+                if(getParentActivityIntent() == null){
+                    onBackPressed();
+                }
+                else{
+                    NavUtils.navigateUpFromSameTask(this);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
 }

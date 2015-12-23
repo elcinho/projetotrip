@@ -1,14 +1,17 @@
 package libelulati.tripctrl.Usuario;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -147,14 +150,22 @@ public class UsuarioEditActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.mn_ac_voltar) {
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
+        switch (id){
+            case android.R.id.home:
+                if(getActionBar() == null){
+                    onBackPressed();
+                }
+                else{
+                    NavUtils.navigateUpFromSameTask(this);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void verificarnome() {
@@ -215,6 +226,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
 
+    @SuppressLint("ValidFragment")
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
