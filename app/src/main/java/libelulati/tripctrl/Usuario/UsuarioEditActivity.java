@@ -140,7 +140,6 @@ public class UsuarioEditActivity extends AppCompatActivity {
 
                 if (sucesso) {
                     Toast.makeText(context, MensagensUsuario.getUSUARIO() + " " + usuario.getUs_nome() + " " + MensagensUsuario.getEditado_sucesso(), Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(UsuarioEditActivity.this, InicioActivity.class));
                     finish();
                 } else {
                     Toast.makeText(context, MensagensUsuario.getErro_editar() + MensagensUsuario.getUSUARIO() + " " + usuario.getUs_nome(), Toast.LENGTH_LONG).show();

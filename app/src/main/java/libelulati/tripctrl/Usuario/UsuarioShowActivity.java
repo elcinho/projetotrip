@@ -18,6 +18,9 @@ import libelulati.tripctrl.R;
 public class UsuarioShowActivity extends AppCompatActivity {
 
     FloatingActionButton fab_editar;
+    TextView uss_nome, uss_dtnasc, uss_email, uss_telefone, uss_localizacao, uss_cod;
+    Context contexto;
+    int usuaruioid = InicioActivity.getId_uslogado();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,29 +31,19 @@ public class UsuarioShowActivity extends AppCompatActivity {
 
         fab_editar = (FloatingActionButton) findViewById(R.id.fab_us_editar);
 
-        final TextView uss_nome = (TextView) findViewById(R.id.tx_uss_nome);
-        final TextView uss_dtnasc = (TextView) findViewById(R.id.tx_uss_dtnasc);
-        final TextView uss_email = (TextView) findViewById(R.id.tx_uss_email);
-        final TextView uss_telefone = (TextView) findViewById(R.id.tx_uss_telefone);
-        final TextView uss_localizacao = (TextView) findViewById(R.id.tx_uss_localizacao);
-        final TextView uss_cod = (TextView) findViewById(R.id.tx_uss_codusuario);
+        uss_nome = (TextView) findViewById(R.id.tx_uss_nome);
+        uss_dtnasc = (TextView) findViewById(R.id.tx_uss_dtnasc);
+        uss_email = (TextView) findViewById(R.id.tx_uss_email);
+        uss_telefone = (TextView) findViewById(R.id.tx_uss_telefone);
+        uss_localizacao = (TextView) findViewById(R.id.tx_uss_localizacao);
+        uss_cod = (TextView) findViewById(R.id.tx_uss_codusuario);
 
-        Intent it_uss_edusuario = getIntent();
-        Bundle bundle = it_uss_edusuario.getExtras();
-
-        uss_nome.setText(bundle.getString(StringsNomes.getUsNome()));
-        uss_dtnasc.setText(bundle.getString(StringsNomes.getUsDtnasc()));
-        uss_email.setText(bundle.getString(StringsNomes.getUsEmail()));
-        uss_telefone.setText(bundle.getString(StringsNomes.getUsTelefone()));
-        uss_localizacao.setText(bundle.getString(StringsNomes.getUsLongitude()));
-        uss_cod.setText(bundle.getString(StringsNomes.getUsCod()));
 
         fab_editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                int usuaruioid = InicioActivity.getId_uslogado();
-                Context contexto = view.getContext();
+                contexto = view.getContext();
 
                 UsuarioDAO usuarioDAO = new UsuarioDAO(contexto);
                 Usuario usuario = usuarioDAO.buscaId(usuaruioid);
@@ -71,14 +64,12 @@ public class UsuarioShowActivity extends AppCompatActivity {
         });
     }
 
-    @SuppressLint("NewApi")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        int teste = android.R.id.home;
         switch (id){
             case android.R.id.home:
-                if(getParentActivityIntent() == null){
+                if(getActionBar() == null){
                     onBackPressed();
                 }
                 else{
@@ -87,6 +78,38 @@ public class UsuarioShowActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onResume(){
+        AtualizarDados();
+        super.onResume();
+    }
+
+    public void AtualizarDados(){
+        contexto = getApplicationContext();
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO(contexto);
+        Usuario usuario = usuarioDAO.buscaId(usuaruioid);
+
+        if(usuario == null){
+            Intent it_uss_edusuario = getIntent();
+            Bundle bundle = it_uss_edusuario.getExtras();
+
+            uss_nome.setText(bundle.getString(StringsNomes.getUsNome()));
+            uss_dtnasc.setText(bundle.getString(StringsNomes.getUsDtnasc()));
+            uss_email.setText(bundle.getString(StringsNomes.getUsEmail()));
+            uss_telefone.setText(bundle.getString(StringsNomes.getUsTelefone()));
+            uss_localizacao.setText(bundle.getString(StringsNomes.getUsLongitude()));
+            uss_cod.setText(bundle.getString(StringsNomes.getUsCod()));
+        }
+        else{
+            uss_nome.setText(usuario.getUs_nome());
+            uss_email.setText(usuario.getUs_email());
+            uss_dtnasc.setText(usuario.getUs_dtnasc());
+            uss_telefone.setText(usuario.getUs_codarea() + " " + usuario.getUs_telefone());
+            uss_localizacao.setText(usuario.getUs_longitude());
         }
     }
 

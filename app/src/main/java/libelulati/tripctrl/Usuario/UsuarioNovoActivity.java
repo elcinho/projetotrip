@@ -291,6 +291,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
 
+    @SuppressLint("ValidFragment")
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -307,6 +308,4 @@ public class UsuarioNovoActivity extends AppCompatActivity {
             AtualizarData();
         }
     }
-
-
 }
