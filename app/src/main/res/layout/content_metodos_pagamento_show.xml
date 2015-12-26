@@ -12,4 +12,111 @@
     tools:context="libelulati.tripctrl.MetodosPagamento.MetodosPagamentoShowActivity"
     tools:showIn="@layout/activity_metodos_pagamento_show">
 
+    <Button
+        android:id="@+id/bt_mp_salvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/salvar"
+        android:textColor="@color/colorBranco"
+        android:textSize="@dimen/fontebotoes"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/ed_mp_vencimento"
+        android:layout_alignEnd="@+id/ed_mp_vencimento" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_mp_usuario"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dialog" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_mp_viagem"
+        android:spinnerMode="dialog"
+        android:layout_above="@+id/ed_mp_viagem"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_mp_tipopagamento"
+        android:spinnerMode="dialog"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/ed_mp_Valor"
+        android:text="Valor"
+        android:layout_above="@+id/ed_mp_vencimento"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_mp_detalhe"
+        android:text="Detalhe"
+        android:layout_above="@+id/ed_mp_Valor"
+        android:layout_alignRight="@+id/ed_mp_vencimento"
+        android:layout_alignEnd="@+id/ed_mp_vencimento"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_mp_vencimento"
+        android:text="Vencimento"
+        android:layout_above="@+id/bt_mp_salvar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_mp_tipopagamento"
+        android:text="tipo de pagamento"
+        android:layout_below="@+id/sp_mp_tipopagamento"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/sp_mp_tipopagamento"
+        android:layout_alignEnd="@+id/sp_mp_tipopagamento" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_mp_viagem"
+        android:text="viagem"
+        android:layout_above="@+id/sp_mp_tipopagamento"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/sp_mp_tipopagamento"
+        android:layout_alignEnd="@+id/sp_mp_tipopagamento" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_mp_usuario"
+        android:text="usuario"
+        android:layout_below="@+id/sp_mp_usuario"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/sp_mp_usuario"
+        android:layout_alignEnd="@+id/sp_mp_usuario" />
+
 </RelativeLayout>

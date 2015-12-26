@@ -1,5 +1,7 @@
 package libelulati.tripctrl.MetodosPagamento;
 
+import android.content.Context;
+
 public class MetodosPagamento {
 
     private int me_id;
@@ -7,19 +9,25 @@ public class MetodosPagamento {
     private int dv_id;
     private int tp_id;
     private float me_valor;
+    private String me_detalhes;
     private String me_vencimento;
 
     public MetodosPagamento() {
     }
 
-    public MetodosPagamento(int me_id, int us_id, int dv_id, int tp_id, float me_valor, String me_vencimento) {
+    public MetodosPagamento(int me_id, int us_id, int dv_id, String me_detalhes, String me_vencimento) {
         this.me_id = me_id;
         this.us_id = us_id;
         this.dv_id = dv_id;
         this.tp_id = tp_id;
         this.me_valor = me_valor;
+        this.me_detalhes = me_detalhes;
         this.me_vencimento = me_vencimento;
     }
+
+    public MetodosPagamento(Context context) {
+    }
+
 
     public int getMe_id() {
         return me_id;
@@ -68,4 +76,11 @@ public class MetodosPagamento {
     public void setMe_vencimento(String me_vencimento) {
         this.me_vencimento = me_vencimento;
     }
+
+    public String getMe_detalhes() { return me_detalhes; }
+
+    public void setMe_detalhes (String me_detalhe) {this.me_detalhes = me_detalhe;}
+
+
+
 }
