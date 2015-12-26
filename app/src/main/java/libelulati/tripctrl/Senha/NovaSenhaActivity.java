@@ -81,8 +81,7 @@ public class NovaSenhaActivity extends AppCompatActivity {
                             finish();
                         }
                         else{
-                            startActivity(new Intent(NovaSenhaActivity.this, UsuarioEditActivity.class));
-                            finish();
+                            onBackPressed();
                         }
                     } else {
                         Toast.makeText(context, "A senha não foi alterada", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA

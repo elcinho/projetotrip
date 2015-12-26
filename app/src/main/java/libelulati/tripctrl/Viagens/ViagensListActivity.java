@@ -3,6 +3,7 @@ package libelulati.tripctrl.Viagens;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
@@ -81,12 +82,19 @@ public class ViagensListActivity extends AppCompatActivity {
                 String vi_dtini = viag.getVi_dtini();
                 String vi_dtfim = viag.getVi_dtfim();
 
-                String visualizar = vi_nome + " - " + vi_dtini + " / " + vi_dtfim;
+                String datas = vi_dtini + " - " + vi_dtfim;
 
                 TextView tx_vi_item = new TextView(this);
                 tx_vi_item.setPadding(0, 10, 0, 10);
-                tx_vi_item.setText(visualizar);
+                tx_vi_item.setText(vi_nome);
                 tx_vi_item.setTag(Integer.toString(id));
+                tx_vi_item.setTypeface(tx_vi_item.getTypeface(), Typeface.BOLD);
+                tx_vi_item.setTextSize(20);
+                tx_vi_item.setTextColor(getResources().getColor(R.color.colorAccent));
+
+                TextView tx_vi_datas = new TextView(this);
+                tx_vi_datas.setPadding(0,0,0,0);
+                tx_vi_datas.setText(datas);
 
                 tx_vi_item.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
@@ -117,12 +125,13 @@ public class ViagensListActivity extends AppCompatActivity {
                 });
 
                 linearLayoutLista.addView(tx_vi_item);
+                linearLayoutLista.addView(tx_vi_datas);
             }
         } else {
 
             TextView criarnovo = new TextView(this);
             criarnovo.setPadding(8, 8, 8, 8);
-            criarnovo.setText("Não foi encontrado nenhum registro.");
+            criarnovo.setText("Não foi encontrado nenhum registro."); //Alterar para strings do sistema
 
             linearLayoutLista.addView(criarnovo);
         }
