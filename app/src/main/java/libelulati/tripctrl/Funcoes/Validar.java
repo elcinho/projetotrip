@@ -138,7 +138,7 @@ public class Validar {
 
     public static boolean ValidarDataNascimento(Date data) {
         Date atual = new Date();
-        long tempo = 0, ts = 0;
+        long tempo = 0;
         long limite = 471726000;
         int indicador = 0;
 
@@ -152,7 +152,36 @@ public class Validar {
                 indicador = 1;
             }
         }
-
         return indicador == 1;
+    }
+
+    public static boolean ValidarDataInicio(Date data){
+        Date atual = new Date();
+        if(atual.getTime() < data.getTime()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static boolean ValidarDataFim(Date inicio, Date fim){
+        if(inicio.getTime() < fim.getTime()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static boolean ValidarValor(double valor){
+        double vmin = 0.99;
+        double vmax = 999999.99;
+        if(valor < vmin || valor > vmax){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
