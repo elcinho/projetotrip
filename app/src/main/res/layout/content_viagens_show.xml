@@ -93,7 +93,8 @@
                 android:enabled="false"
                 android:hint="@string/dtinicio"
                 android:inputType="date"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:onClick="showDatePickerDialog_vis_dtini"/>
 
             <TextView
                 android:id="@+id/tx_vis_dtfimtitulo"
@@ -114,7 +115,8 @@
                 android:enabled="false"
                 android:hint="@string/dtfim"
                 android:inputType="date"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:onClick="showDatePickerDialog_vis_dtfim"/>
 
             <TextView
                 android:id="@+id/tx_vis_tipotranportetitulo"

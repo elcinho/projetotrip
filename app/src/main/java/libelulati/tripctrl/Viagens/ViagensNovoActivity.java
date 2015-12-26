@@ -228,22 +228,24 @@ public class ViagensNovoActivity extends AppCompatActivity {
 
     public void verificarvalor(){
         double valor = 0;
-        valor = Double.parseDouble(vi_valortotal.getText().toString());
-        if(valor == 0){
-            validar = Validar.ValidarValor(valor);
-            if(!validar){
-                vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                Toast.makeText(context, "Valor inválido", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
-                valido = false;
-            }
-            else{
-                vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                valido = true;
+        if(vi_valortotal.length()>0){
+            valor = Double.parseDouble(vi_valortotal.getText().toString());
+            if(valor != 0){
+                validar = Validar.ValidarValor(valor);
+                if(!validar){
+                    vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
+                    Toast.makeText(context, "Valor inválido", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
+                    valido = false;
+                }
+                else{
+                    vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                    valido = true;
+                }
             }
         }
         else{
             vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "Valor inválido", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, "Valor não pode ser vazio", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
         }
     }
 
