@@ -67,4 +67,9 @@
     <string name="hospedagem">Hospedagem</string>
     <string name="valortotal">Valor total</string>
     <string name="codigosenha">Código</string>
+    <string name="detalhe" />
+    <string name="detalhe1">detalhe</string>
+    <string name="valor">valor</string>
+    <string name="vencimento">vencimento</string>
+    <string name="tipopagamento">tipo pagamento</string>
 </resources>
