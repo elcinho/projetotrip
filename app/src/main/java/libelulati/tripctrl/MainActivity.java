@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                     }
                     else{
-                        Toast.makeText(context, MensagensUsuario.getUSUARIO() + MensagensUsuario.getNao_encontrado(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA.
                     }
                 }
             }
