@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -19,9 +18,6 @@ import java.util.List;
 
 import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
-import libelulati.tripctrl.Strings.StringsSistema;
-import libelulati.tripctrl.Viagens.ViagensShowActivity;
 
 public class MetodosPagamentoListActivity extends AppCompatActivity {
 
@@ -98,9 +94,9 @@ public class MetodosPagamentoListActivity extends AppCompatActivity {
                         context = v.getContext();
                         ME_id = v.getTag().toString();
 
-                        final CharSequence[] opcoes = {StringsSistema.getOPCAOVISUALIZAR(), StringsSistema.getOPCAODELETAR()};
+                        final CharSequence[] opcoes = {context.getResources().getString(R.string.opcao_visualizar), context.getResources().getString(R.string.opcao_deletar)};
 
-                        new AlertDialog.Builder(context).setTitle(StringsSistema.getOPCAOTITULO()).setItems(opcoes, new DialogInterface.OnClickListener() {
+                        new AlertDialog.Builder(context).setTitle(context.getResources().getString(R.string.opcao_titulo)).setItems(opcoes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int item) {
                                 switch (item) {
@@ -163,10 +159,10 @@ public class MetodosPagamentoListActivity extends AppCompatActivity {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(StringsSistema.getCONFIRMAR());
-        builder.setMessage(StringsSistema.getREGISTRO() + mp.getMe_id() + StringsSistema.getEXCLUSAO());
+        builder.setTitle(context.getResources().getString(R.string.opcao_confirmar));
+        builder.setMessage(context.getResources().getString(R.string.opcao_registro) + mp.getMe_id() + context.getResources().getString(R.string.opcao_excluir));
 
-        builder.setPositiveButton(StringsSistema.getOK(), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(context.getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 MetodosPagamentoDAO mpDAO = new MetodosPagamentoDAO(context);
@@ -174,15 +170,15 @@ public class MetodosPagamentoListActivity extends AppCompatActivity {
                 boolean sucesso = mpDAO.deletar(del_id);
 
                 if (sucesso) {
-                    Toast.makeText(context, MensagensUsuario.getMETODOPAGAMENTO() + " " + mp.getMe_id() + " " + MensagensUsuario.getDeletado_sucesso(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.metodopagameto) + " " + mp.getMe_id() + " " + context.getResources().getString(R.string.sucesso_deletado), Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, MensagensUsuario.getErro_deletar() + MensagensUsuario.getMETODOPAGAMENTO() + " " + mp.getMe_id(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.erro_deletar) + context.getResources().getString(R.string.metodopagameto) + " " + mp.getMe_id(), Toast.LENGTH_LONG).show();
                 }
                 dialog.dismiss();
             }
         });
 
-        builder.setNegativeButton(StringsSistema.getCANCELAR(), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(context.getResources().getString(R.string.opcao_cancelar), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 dialog.dismiss();

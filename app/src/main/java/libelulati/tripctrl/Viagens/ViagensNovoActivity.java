@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,7 +24,6 @@ import java.util.Date;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 
 public class ViagensNovoActivity extends AppCompatActivity {
 
@@ -160,15 +158,15 @@ public class ViagensNovoActivity extends AppCompatActivity {
             boolean sucesso = new ViagensDAO(context).criar(viagens);
 
             if (sucesso) {
-                Toast.makeText(context, MensagensUsuario.getVIAGEM() + MensagensUsuario.getCriado_sucesso(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.viagem)+ " " + context.getResources().getString(R.string.sucesso_criado) + ".", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, MensagensUsuario.getErro_criar() + MensagensUsuario.getVIAGEM(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.erro_criar) + " " + context.getResources().getString(R.string.viagem) + ".", Toast.LENGTH_LONG).show();
             }
 
             finish();
         }
         else{
-            Toast.makeText(context, "Há campos inválidos. O registro não será gravado;", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRING DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + " " + context.getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
         }
 
 
@@ -178,7 +176,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
         validar = Validar.ValidarNome(String.valueOf(vi_nome.getText().toString()));
         if(!validar){
             vi_nome.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "Nome da viagem inválido", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.nome) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -197,7 +195,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
         }
         if(!validar){
             vi_dtinicio.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "A data não pode ser anterior à atual", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.datainicio) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -217,7 +215,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
         }
         if(!validar){
             vi_dtfim.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(context, "O fim da viagem deve ser após o início", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.datafim) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -234,7 +232,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
                 validar = Validar.ValidarValor(valor);
                 if(!validar){
                     vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                    Toast.makeText(context, "Valor inválido", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
+                    Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
                     valido = false;
                 }
                 else{
@@ -245,7 +243,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
         }
         else{
             vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "Valor não pode ser vazio", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.nao_vazio) + ".", Toast.LENGTH_LONG).show();
         }
     }
 
