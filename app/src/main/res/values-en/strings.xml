@@ -1,0 +1,143 @@
+<resources>
+    <!-- NOME APP -->
+    <string name="app_name">"Trip Control"</string>
+
+
+    <!-- TITULOS ACTIVITYS -->
+    <string name="title_activity_categoria_edit">"Edit Category"</string>
+    <string name="title_activity_categoria_list">"Categories"</string>
+    <string name="title_activity_categoria_show">"Category"</string>
+    <string name="title_activity_esqueci_senha">"Forgot Password"</string>
+    <string name="title_activity_gasto_edit">"Edit Spent"</string>
+    <string name="title_activity_gasto_show">"Spent"</string>
+    <string name="title_activity_gastos_list">"Spending"</string>
+    <string name="title_activity_inicio">"Start"</string>
+    <string name="title_activity_main">"Welcome to trip control"</string>
+    <string name="title_activity_metodos_pagamento_edit">"Edit Payment Method"</string>
+    <string name="title_activity_metodos_pagamento_list">"Payment methods"</string>
+    <string name="title_activity_metodos_pagamento_show">"Payment method"</string>
+    <string name="title_activity_nova_senha">"Register new password"</string>
+    <string name="title_activity_novo_usuario">"User registration"</string>
+    <string name="title_activity_planejamento_edit">"Edit Planning"</string>
+    <string name="title_activity_planejamento_show">"Planning"</string>
+    <string name="title_activity_planejamentos_list">"Planning"</string>
+    <string name="title_activity_relatorios">"Reports"</string>
+    <string name="title_activity_usuario_edit">"Edit User"</string>
+    <string name="title_activity_usuario_show">"User"</string>
+    <string name="title_activity_viagens_edit">"Edit Travel"</string>
+    <string name="title_activity_viagens_list">"Travels"</string>
+    <string name="title_activity_viagens_novo">"Maiden Voyage"</string>
+    <string name="title_activity_viagens_show">"Travel"</string>
+
+
+    <!-- MENUS -->
+    <string name="atualizar">"To update"</string>
+    <string name="buscar">"Search"</string>
+    <string name="categorias">"Categories"</string>
+    <string name="configuracoes">"Settings"</string>
+    <string name="editarusuario">"Edit User"</string>
+    <string name="exportar">"Export"</string>
+    <string name="gastos">"Spending"</string>
+    <string name="metodospagamento">"Payment methods"</string>
+    <string name="planejamentos">"Planning"</string>
+    <string name="viagens">"Travels"</string>
+    <string name="voltar">"Come back"</string>
+
+
+    <!-- BOTÕES E LINKS -->
+    <string name="alterarsenha" translatable="false">"Change Password"</string>
+    <string name="entrar">"Get in"</string>
+    <string name="enviar">"Submit"</string>
+    <string name="enviaremail">"Send an email"</string>
+    <string name="enviarsms">"Send a SMS"</string>
+    <string name="esquecisenha">"I forgot my password"</string>
+    <string name="informenovasenha">"Enter your new password"</string>
+    <string name="logo">"Logo"</string>
+    <string name="novousuario">"new user"</string>
+    <string name="salvar">"To save"</string>
+    <string name="selecioneopcao">"Select an option below to reset your password:"</string>
+    <string name="usarcodusuario">"Use my User code"</string>
+
+
+    <!-- CAMPOS -->
+    <string name="codarea">"Cod. Area"</string>
+    <string name="codigosenha">"Code"</string>
+    <string name="codusuario">"User code"</string>
+    <string name="confirmesenha">"Confirm the Password"</string>
+    <string name="digiteseuemail">"Enter the e-mail used for the user account"</string>
+    <string name="dtfim">"End"</string>
+    <string name="dtinicio">"Start"</string>
+    <string name="dtnasc">"Birth date"</string>
+    <string name="email">"E-mail"</string>
+    <string name="hospedagem">"accommodation"</string>
+    <string name="localizacao">"Localization"</string>
+    <string name="nome">"Name"</string>
+    <string name="relatorios">"Reports"</string>
+    <string name="selecioneviagem">"Select a Trip"</string>
+    <string name="senha">"password"</string>
+    <string name="telefone">"telephone"</string>
+    <string name="tipohospedagem">"Type of Hosting"</string>
+    <string name="tipotransporte">"Type of transport"</string>
+    <string name="transporte">"Transport"</string>
+    <string name="valortotal">"Amount"</string>
+
+    <!-- TABELAS -->
+    <string name="categoria">"Category"</string>
+    <string name="gasto">"Spent"</string>
+    <string name="metodopagameto">"Payment methods"</string>
+    <string name="planejamento">"Planning"</string>
+    <string name="subcategoria">"Subcategory"</string>
+    <string name="tphospedagem">"Type of Accommodation"</string>
+    <string name="tppagamento">"Type of payment"</string>
+    <string name="tptransporte">"Transport Type"</string>
+    <string name="usuario">"User"</string>
+    <string name="viagem">"Travel"</string>
+
+
+    <!-- MENSAGENS DO SISTEMA-->
+    <string name="campos_invalidos">"Some fields have not been validated"</string>
+    <string name="codigo_confirmacao">"Confirmation code"</string>
+    <string name="codigo_confirme">"Enter the code received to change your password"</string>
+    <string name="codigo_espirado">"Code expired, order a new"</string>
+    <string name="datafim">"The end date may not be earlier than start date"</string>
+    <string name="datainicio">"The start date may not be earlier than the current"</string>
+    <string name="datanascimento">"Age can not be less than 15 years"</string>
+    <string name="erro_criar">"Error creating"</string>
+    <string name="erro_deletar">"Error deleting"</string>
+    <string name="erro_editar">"Error when editing"</string>
+    <string name="invalida">"Invalid"</string>
+    <string name="invalidas">"invalid"</string>
+    <string name="invalido">"invalid"</string>
+    <string name="invalidos">"disabled people"</string>
+    <string name="nao_alterar">"You can not change"</string>
+    <string name="nao_cadastrado">"not registered"</string>
+    <string name="nao_encontrado">"not found"</string>
+    <string name="nao_gerado">"It could not be generated"</string>
+    <string name="nao_vazio">"It can not be empty"</string>
+    <string name="novamente">"Try again"</string>
+    <string name="opcao_cancelar">"Cancel"</string>
+    <string name="opcao_confirmar">"Confirm the deletion of the record"</string>
+    <string name="opcao_deletar">"Delete"</string>
+    <string name="opcao_editar">"Edit"</string>
+    <string name="opcao_excluir">"is deleted"</string>
+    <string name="opcao_nao_desfazer">"This option can not be undone"</string>
+    <string name="opcao_ok">"OK"</string>
+    <string name="opcao_registro">"The register"</string>
+    <string name="opcao_titulo">"Choose an option"</string>
+    <string name="opcao_visualizar">"To view"</string>
+    <string name="registro_nao_encotrado">"No record found"</string>
+    <string name="registro_nao_salvo">"The record will not be saved"</string>
+    <string name="senhas_diferentes">"Passwords do not match"</string>
+    <string name="sucesso_criado">"successfully created"</string>
+    <string name="sucesso_deletado">"deleted successfully"</string>
+    <string name="sucesso_editado">"edited successfully"</string>
+    <string name="sucesso_gerado">"successfully generated"</string>
+
+
+    <!-- PALAVRAS E PREPOSIÇÕES -->
+    <string name="ou">"or"</string>
+    <string name="e">"and"</string>
+    <string name="a">"The"</string>
+
+
+</resources>

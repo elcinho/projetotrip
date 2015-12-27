@@ -5,13 +5,11 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -30,7 +28,6 @@ import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.Senha.NovaSenhaActivity;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 
 public class UsuarioEditActivity extends AppCompatActivity {
     int usuarioid = InicioActivity.getId_uslogado();
@@ -139,10 +136,10 @@ public class UsuarioEditActivity extends AppCompatActivity {
                 boolean sucesso = new UsuarioDAO(context).atualizar(usuario, usuarioid);
 
                 if (sucesso) {
-                    Toast.makeText(context, MensagensUsuario.getUSUARIO() + " " + usuario.getUs_nome() + " " + MensagensUsuario.getEditado_sucesso(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.usuario) + " " + usuario.getUs_nome() + " " + context.getResources().getString(R.string.sucesso_editado) + ".", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    Toast.makeText(context, MensagensUsuario.getErro_editar() + MensagensUsuario.getUSUARIO() + " " + usuario.getUs_nome(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.erro_editar) + " " + context.getResources().getString(R.string.usuario) + " " + usuario.getUs_nome() + ".", Toast.LENGTH_LONG).show();
                     use_nome.requestFocus();
                 }
             }
@@ -171,7 +168,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         validar = Validar.ValidarNome(String.valueOf(use_nome.getText().toString()));
         if (!validar) {
             use_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getNome_invalido(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.nome) + " " + this.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             use_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -189,7 +186,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         }
         if (!validar) {
             use_dtnasc.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), "Data inválida", Toast.LENGTH_LONG).show(); //alterar para string do sistema
+            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.datanascimento) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             use_dtnasc.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -201,7 +198,8 @@ public class UsuarioEditActivity extends AppCompatActivity {
         validar = Validar.ValidarTelefone(use_telefone.length(), String.valueOf(use_telefone.getText().toString()));
         if (!validar) {
             use_telefone.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getTelefone_invalido(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.telefone
+            ) + " " + this.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             use_telefone.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
