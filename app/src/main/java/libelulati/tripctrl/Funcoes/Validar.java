@@ -157,7 +157,7 @@ public class Validar {
 
     public static boolean ValidarDataInicio(Date data){
         Date atual = new Date();
-        if(atual.getTime() < data.getTime()){
+        if(atual.getTime() <= data.getTime()){
             return true;
         }
         else{

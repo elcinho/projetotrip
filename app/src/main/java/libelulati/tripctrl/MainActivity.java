@@ -14,7 +14,6 @@ import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Senha.EsqueciSenhaActivity;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 import libelulati.tripctrl.Usuario.Usuario;
 import libelulati.tripctrl.Usuario.UsuarioDAO;
 import libelulati.tripctrl.Usuario.UsuarioNovoActivity;
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 Usuario usuario = usuarioDAO.buscaEmail(main_email.getText().toString());
 
                 if(usuario == null){
-                    Toast.makeText(context, MensagensUsuario.getUSUARIO() + MensagensUsuario.getNao_encontrado(), Toast.LENGTH_LONG).show();                 }
+                    Toast.makeText(context, context.getResources().getString(R.string.usuario) + " " + context.getResources().getString(R.string.nao_encontrado) + ".", Toast.LENGTH_LONG).show();                 }
                 else {
                     idus = usuario.getUs_id();
                     boolean validar = Validar.ValidarUsuarioSenha(main_email.getText().toString(),main_senha.getText().toString(),usuario.getUs_email(),usuario.getUs_senha());
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                     }
                     else{
-                        Toast.makeText(context, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA.
+                        Toast.makeText(context, context.getResources().getString(R.string.usuario) + " " + context.getResources().getString(R.string.ou) + " " + context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.invalidos) + ".", Toast.LENGTH_LONG).show();
                     }
                 }
             }
