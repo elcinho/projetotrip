@@ -1,70 +1,143 @@
 <resources>
+    <!-- NOME APP -->
     <string name="app_name">Trip Control</string>
-    <string name="email">E-mail</string>
-    <string name="senha">Senha</string>
-    <string name="entrar">Entrar</string>
-    <string name="esquecisenha">Esqueci minha senha</string>
-    <string name="novousuario">Novo usuário</string>
-    <string name="logo">Logomarca</string>
-    <string name="nome">Nome</string>
-    <string name="dtnasc">Data de Nascimento</string>
-    <string name="telefone">Telefone</string>
-    <string name="localizacao">Localização</string>
-    <string name="confirmesenha">Confirme a senha</string>
-    <string name="salvar">Salvar</string>
-    <string name="selecioneopcao">Selecione uma opção abaixo para redefinir sua senha:</string>
-    <string name="enviarsms">Enviar um SMS</string>
-    <string name="enviaremail">Enviar um email</string>
-    <string name="usarcodusuario">Usar meu código de usuario</string>
-    <string name="codusuario">Código de usuário</string>
-    <string name="enviar">Enviar</string>
-    <string name="informenovasenha">Informe sua nova senha</string>
-    <string name="title_activity_main">Bem vindo ao trip control</string>
-    <string name="title_activity_novo_usuario">Cadastro de Usuário</string>
-    <string name="title_activity_esqueci_senha">Esqueci Senha</string>
-    <string name="title_activity_nova_senha">Cadastrar nova senha</string>
-    <string name="title_activity_inicio">Início</string>
-    <string name="codarea">Cod. Área</string>
-    <string name="selecioneviagem">Selecione uma Viagem</string>
-    <string name="buscar">Buscar</string>
-    <string name="atualizar">Atualizar</string>
-    <string name="exportar">Exportar</string>
-    <string name="editarusuario">Editar Usuário</string>
-    <string name="viagens">Viagens</string>
-    <string name="metodospagamento">Métodos de Pagamento</string>
-    <string name="planejamentos">Planejamentos</string>
-    <string name="gastos">Gastos</string>
-    <string name="configuracoes">Configurações</string>
-    <string name="categorias">Categorias</string>
+
+
+    <!-- TITULOS ACTIVITYS -->
+    <string name="title_activity_categoria_edit">Editar Categoria</string>
     <string name="title_activity_categoria_list">Categorias</string>
     <string name="title_activity_categoria_show">Categoria</string>
-    <string name="title_activity_categoria_edit">Editar Categoria</string>
+    <string name="title_activity_esqueci_senha">Esqueci Senha</string>
+    <string name="title_activity_gasto_edit">Editar Gasto</string>
+    <string name="title_activity_gasto_show">Gasto</string>
+    <string name="title_activity_gastos_list">Gastos</string>
+    <string name="title_activity_inicio">Início</string>
+    <string name="title_activity_main">Bem vindo ao trip control</string>
+    <string name="title_activity_metodos_pagamento_edit">Editar Método de Pagamento</string>
     <string name="title_activity_metodos_pagamento_list">Métodos de Pagamento</string>
     <string name="title_activity_metodos_pagamento_show">Método de Pagamento</string>
-    <string name="title_activity_metodos_pagamento_edit">Editar Método de Pagamento</string>
-    <string name="title_activity_viagens_list">Viagens</string>
-    <string name="title_activity_viagens_edit">Editar Viagens</string>
-    <string name="title_activity_viagens_show">Viagens</string>
-    <string name="title_activity_planejamentos_list">Planejamentos</string>
-    <string name="title_activity_planejamento_show">Planejamento</string>
+    <string name="title_activity_nova_senha">Cadastrar nova senha</string>
+    <string name="title_activity_novo_usuario">Cadastro de Usuário</string>
     <string name="title_activity_planejamento_edit">Editar Planejamento</string>
-    <string name="title_activity_gastos_list">Gastos</string>
-    <string name="title_activity_gasto_show">Gasto</string>
-    <string name="title_activity_gasto_edit">Editar Gasto</string>
-    <string name="digiteseuemail">Insira o e-mail utilizado no cadastro de usuário</string>
-    <string name="relatorios">Relatórios</string>
+    <string name="title_activity_planejamento_show">Planejamento</string>
+    <string name="title_activity_planejamentos_list">Planejamentos</string>
     <string name="title_activity_relatorios">Relatórios</string>
-    <string name="title_activity_usuario_show">Usuário</string>
     <string name="title_activity_usuario_edit">Editar Usuário</string>
-    <string name="alterarsenha">Alterar senha</string>
+    <string name="title_activity_usuario_show">Usuário</string>
+    <string name="title_activity_viagens_edit">Editar Viagem</string>
+    <string name="title_activity_viagens_list">Viagens</string>
+    <string name="title_activity_viagens_novo">Nova Viagem</string>
+    <string name="title_activity_viagens_show">Viagem</string>
+
+
+    <!-- MENUS -->
+    <string name="atualizar">Atualizar</string>
+    <string name="buscar">Buscar</string>
+    <string name="categorias">Categorias</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="editarusuario">Editar Usuário</string>
+    <string name="exportar">Exportar</string>
+    <string name="gastos">Gastos</string>
+    <string name="metodospagamento">Métodos de Pagamento</string>
+    <string name="planejamentos">Planejamentos</string>
+    <string name="viagens">Viagens</string>
     <string name="voltar">Voltar</string>
-    <string name="title_activity_viagens__novo_">Nova Viagem</string>
-    <string name="dtinicio">Início</string>
+
+
+    <!-- BOTÕES E LINKS -->
+    <string name="alterarsenha" translatable="false">Alterar senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="enviar">Enviar</string>
+    <string name="enviaremail">Enviar um email</string>
+    <string name="enviarsms">Enviar um SMS</string>
+    <string name="esquecisenha">Esqueci minha senha</string>
+    <string name="informenovasenha">Informe sua nova senha</string>
+    <string name="logo">Logomarca</string>
+    <string name="novousuario">Novo usuário</string>
+    <string name="salvar">Salvar</string>
+    <string name="selecioneopcao">Selecione uma opção abaixo para redefinir sua senha:</string>
+    <string name="usarcodusuario">Usar meu código de usuario</string>
+
+
+    <!-- CAMPOS -->
+    <string name="codarea">Cod. Área</string>
+    <string name="codigosenha">Código</string>
+    <string name="codusuario">Código de usuário</string>
+    <string name="confirmesenha">Confirme a senha</string>
+    <string name="digiteseuemail">Insira o e-mail utilizado no cadastro de usuário</string>
     <string name="dtfim">Fim</string>
+    <string name="dtinicio">Início</string>
+    <string name="dtnasc">Data de Nascimento</string>
+    <string name="email">E-mail</string>
+    <string name="hospedagem">Hospedagem</string>
+    <string name="localizacao">Localização</string>
+    <string name="nome">Nome</string>
+    <string name="relatorios">Relatórios</string>
+    <string name="selecioneviagem">Selecione uma Viagem</string>
+    <string name="senha">Senha</string>
+    <string name="telefone">Telefone</string>
+    <string name="tipohospedagem">Tipo de hospedagem</string>
     <string name="tipotransporte">Tipo de transporte</string>
     <string name="transporte">Transporte</string>
-    <string name="tipohospedagem">Tipo de hospedagem</string>
-    <string name="hospedagem">Hospedagem</string>
     <string name="valortotal">Valor total</string>
-    <string name="codigosenha">Código</string>
+
+    <!-- TABELAS -->
+    <string name="categoria">Categoria</string>
+    <string name="gasto">Gasto</string>
+    <string name="metodopagameto">Métodos de Pagamento</string>
+    <string name="planejamento">Planejamento</string>
+    <string name="subcategoria">Subcategoria</string>
+    <string name="tphospedagem">Tipo de Hospedagem</string>
+    <string name="tppagamento">Tipo de Pagamento</string>
+    <string name="tptransporte">Tipo de Transporte</string>
+    <string name="usuario">Usuário</string>
+    <string name="viagem">Viagem</string>
+
+
+    <!-- MENSAGENS DO SISTEMA-->
+    <string name="campos_invalidos">Alguns campos não foram validados</string>
+    <string name="codigo_confirmacao">Codigo de confirmação</string>
+    <string name="codigo_confirme">Informe o código recebido para alterar sua senha</string>
+    <string name="codigo_espirado">Código expirado, solicite um novo</string>
+    <string name="datafim">A data final não pode ser anterior à data de início</string>
+    <string name="datainicio">A data inicial não pode ser anterior à atual</string>
+    <string name="datanascimento">A idade não pode ser menor que 15 anos</string>
+    <string name="erro_criar">Erro ao criar</string>
+    <string name="erro_deletar">Erro ao deletar</string>
+    <string name="erro_editar">Erro ao editar</string>
+    <string name="invalida">inválida</string>
+    <string name="invalidas">inválidas</string>
+    <string name="invalido">inválido</string>
+    <string name="invalidos">inválidos</string>
+    <string name="nao_alterar">Não é possível alterar</string>
+    <string name="nao_cadastrado">não cadastrado</string>
+    <string name="nao_encontrado">não foi encontrado</string>
+    <string name="nao_gerado">não pôde ser gerado</string>
+    <string name="nao_vazio">não pode ser vazio</string>
+    <string name="novamente">Tente novamente</string>
+    <string name="opcao_cancelar">Cancelar</string>
+    <string name="opcao_confirmar">Confirme a exclusão do registro</string>
+    <string name="opcao_deletar">Deletar</string>
+    <string name="opcao_editar">Editar</string>
+    <string name="opcao_excluir">será excluído</string>
+    <string name="opcao_nao_desfazer">Esta opção não pode ser desfeita</string>
+    <string name="opcao_ok">OK</string>
+    <string name="opcao_registro">O registro</string>
+    <string name="opcao_titulo">Escolha uma opção</string>
+    <string name="opcao_visualizar">Visualizar</string>
+    <string name="registro_nao_encotrado">Não foi encontrado nenhum registro</string>
+    <string name="registro_nao_salvo">O registro não será salvo</string>
+    <string name="senhas_diferentes">As senhas não coincidem</string>
+    <string name="sucesso_criado">criado com sucesso</string>
+    <string name="sucesso_deletado">deletado com sucesso</string>
+    <string name="sucesso_editado">editado com sucesso</string>
+    <string name="sucesso_gerado">gerado com sucesso</string>
+
+
+    <!-- PALAVRAS E PREPOSIÇÕES -->
+    <string name="ou">ou</string>
+    <string name="e">e</string>
+    <string name="a">a</string>
+
+
 </resources>

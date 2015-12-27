@@ -18,7 +18,6 @@ import java.util.List;
 
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 
 
 public class MetodosPagamentoEditActivity extends AppCompatActivity {
@@ -142,9 +141,9 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
                 boolean sucesso = new MetodosPagamentoDAO(context).criar(mp);
 
             if (sucesso) {
-                Toast.makeText(context, MensagensUsuario.getMETODOPAGAMENTO() + MensagensUsuario.getCriado_sucesso(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.metodopagameto) + " " + context.getResources().getString(R.string.sucesso_criado) + ".", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, MensagensUsuario.getCriado_sucesso() + MensagensUsuario.getMETODOPAGAMENTO(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.erro_criar) + " " + context.getResources().getString(R.string.metodopagameto)+ ".", Toast.LENGTH_LONG).show();
             }
 
             finish();

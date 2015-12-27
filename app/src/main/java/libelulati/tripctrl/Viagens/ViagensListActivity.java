@@ -19,8 +19,6 @@ import java.util.List;
 
 import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
-import libelulati.tripctrl.Strings.StringsSistema;
 
 
 public class ViagensListActivity extends AppCompatActivity {
@@ -102,9 +100,9 @@ public class ViagensListActivity extends AppCompatActivity {
                         context = v.getContext();
                         id_viagem = v.getTag().toString();
 
-                        final CharSequence[] opcoes = {StringsSistema.getOPCAOVISUALIZAR(), StringsSistema.getOPCAODELETAR()};
+                        final CharSequence[] opcoes = {context.getResources().getString(R.string.opcao_visualizar),context.getResources().getString(R.string.opcao_deletar) };
 
-                        new AlertDialog.Builder(context).setTitle(StringsSistema.getOPCAOTITULO()).setItems(opcoes, new DialogInterface.OnClickListener() {
+                        new AlertDialog.Builder(context).setTitle(context.getResources().getString(R.string.opcao_titulo)).setItems(opcoes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int item) {
                                 switch (item) {
@@ -131,7 +129,7 @@ public class ViagensListActivity extends AppCompatActivity {
 
             TextView criarnovo = new TextView(this);
             criarnovo.setPadding(8, 8, 8, 8);
-            criarnovo.setText("Não foi encontrado nenhum registro."); //Alterar para strings do sistema
+            criarnovo.setText(context.getResources().getString(R.string.registro_nao_encotrado));
 
             linearLayoutLista.addView(criarnovo);
         }
@@ -169,25 +167,25 @@ public class ViagensListActivity extends AppCompatActivity {
         Viagens viagens = viagensDAO.buscarID(id);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(StringsSistema.getCONFIRMAR());
-        builder.setMessage(StringsSistema.getREGISTRO() + viagens.getVi_nome() + StringsSistema.getEXCLUSAO());
+        builder.setTitle(context.getResources().getString(R.string.opcao_confirmar));
+        builder.setMessage(context.getResources().getString(R.string.opcao_registro) + " " + viagens.getVi_nome() + " " + context.getResources().getString(R.string.opcao_excluir) + ". "+ context.getResources().getString(R.string.opcao_nao_desfazer) + ".");
 
-        builder.setPositiveButton(StringsSistema.getOK(), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(context.getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 ViagensDAO viagensDAO = new ViagensDAO(context);
                 Viagens viagens = viagensDAO.buscarID(del_id);
                 boolean sucesso = viagensDAO.deletar(del_id);
                 if (sucesso) {
-                    Toast.makeText(context, MensagensUsuario.getVIAGEM() + " " + viagens.getVi_nome() + " " + MensagensUsuario.getDeletado_sucesso(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.viagem)+ " " + viagens.getVi_nome() + " " + context.getResources().getString(R.string.sucesso_deletado)+ ".", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, MensagensUsuario.getErro_deletar() + MensagensUsuario.getVIAGEM() + " " + viagens.getVi_nome(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.erro_deletar) + " " + context.getResources().getString(R.string.viagem) + " " + viagens.getVi_nome() + ".", Toast.LENGTH_LONG).show();
                 }
                 dialog.dismiss();
             }
         });
 
-        builder.setNegativeButton(StringsSistema.getCANCELAR(), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(context.getResources().getString(R.string.opcao_cancelar), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 dialog.dismiss();
