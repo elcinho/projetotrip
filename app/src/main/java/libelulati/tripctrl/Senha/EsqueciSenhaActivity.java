@@ -22,7 +22,6 @@ import libelulati.tripctrl.Funcoes.Codigos;
 import libelulati.tripctrl.Funcoes.Funcao;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 import libelulati.tripctrl.Usuario.Usuario;
 import libelulati.tripctrl.Usuario.UsuarioDAO;
 
@@ -214,13 +213,13 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         validar = Validar.ValidarEmail(es_email.length(), String.valueOf(es_email.getText()));
         if (!validar) {
             es_email.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getEmail_invalido(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.email) + " " + getApplicationContext().getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
             Usuario usuario = usuarioDAO.buscaEmail(String.valueOf(es_email.getText().toString()));
             if (usuario == null) {
-                Toast.makeText(getApplicationContext(), MensagensUsuario.getEmail_nao_cadastrado(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.email) + " " + getApplicationContext().getResources().getString(R.string.nao_cadastrado) + ".", Toast.LENGTH_LONG).show();
                 es_email.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
                 valido = false;
             } else {
@@ -236,7 +235,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         validar = Validar.ValidarTelefone(es_telefone.length(), String.valueOf(es_telefone.getText()));
         if (!validar) {
             es_telefone.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getTelefone_invalido(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.telefone) + " " + getApplicationContext().getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             es_telefone.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -250,7 +249,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         validar = Validar.ValidarCodUsuario(String.valueOf(es_codusuario.getText()), usuario.getUs_cod());
         if (!validar) {
             es_codusuario.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getCodusuario_invalido(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.codusuario) + " " + getApplicationContext().getResources().getString(R.string.invalido) + ".", Toast.LENGTH_SHORT).show();
             valido = false;
         } else {
             es_codusuario.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -261,12 +260,12 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     public void caixadialogo() {
         AlertDialog codigoaltsenha;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Codigo de confirmação"); //ALTERAR PARA STRINGS DO SISTEMA
-        builder.setMessage("Informe o código recebido para alterar sua senha"); // ALTERAR PARA STRING DO SISTEMA
+        builder.setTitle(getApplicationContext().getResources().getString(R.string.codigo_confirmacao));
+        builder.setMessage(getApplicationContext().getResources().getString(R.string.codigo_confirme));
         LayoutInflater inflater = getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.dialog_edittext, null));
 
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() { // ALTERAR PARA STRING DO SISTEMA
+        builder.setPositiveButton(getApplicationContext().getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() { // ALTERAR PARA STRING DO SISTEMA
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 EditText codigo = (EditText) ((Dialog) dialog).findViewById(R.id.ed_dia_texto);
@@ -283,15 +282,15 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
 
                         startActivityForResult(itns, 1);
                     } else {
-                        Toast.makeText(getApplicationContext(), "Não é possível alterar a senha.", Toast.LENGTH_LONG).show(); // ALTERAR PARA STRING DO SISTEMA
+                        Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.nao_alterar) + " " + getApplicationContext().getResources().getString(R.string.a) + " " + getApplicationContext().getResources().getString(R.string.senha) + ".", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Código expirado, solicite um novo", Toast.LENGTH_LONG).show(); // ALTERAR PARA STRING DO SISTEMA
+                    Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.codigo_espirado), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() { // ALTERAR PARA STRING DO SISTEMA
+        builder.setNegativeButton(getApplicationContext().getResources().getString(R.string.opcao_cancelar), new DialogInterface.OnClickListener() { // ALTERAR PARA STRING DO SISTEMA
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -307,10 +306,10 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         codigogerado = codigos.AltSenha();
         datasolicitacao = Funcao.DataAtual();
         if (codigogerado.length() > 0) {
-            Toast.makeText(context, "Código gerado com sucesso: " + codigogerado, Toast.LENGTH_LONG).show(); // ALTERAR PARA STRING DO SISTEMA -- tirar o código da mensagem
+            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.sucesso_gerado) + ".", Toast.LENGTH_LONG).show();
             //IMPLEMENTAR CÓDIGOS DE ENVIO DE E-MAIL
         } else {
-            Toast.makeText(context, "O código não pôde ser gerado, tente novamente", Toast.LENGTH_LONG).show(); // ALTERAR PARA STRING DO SISTEMA
+            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.nao_gerado) + ", " + getApplicationContext().getResources().getString(R.string.novamente) + ".", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -320,10 +319,10 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         codigogerado = codigos.AltSenha();
         datasolicitacao = Funcao.DataAtual();
         if (codigogerado.length() > 0) {
-            Toast.makeText(context, "Código gerado com sucesso: " + codigogerado, Toast.LENGTH_LONG).show(); // ALTERAR PARA STRING DO SISTEMA -- tirar o código da mensagem
-            //IMPLEMENTAR CÓDIGOS DE ENVIO DE E-MAIL
+            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.sucesso_gerado) + ".", Toast.LENGTH_LONG).show();
+            //IMPLEMENTAR CÓDIGOS DE ENVIO DE SMS
         } else {
-            Toast.makeText(context, "O código não pôde ser gerado, tente novamente", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.nao_gerado) + ", " + getApplicationContext().getResources().getString(R.string.novamente) + ".", Toast.LENGTH_LONG).show();
         }
 
     }

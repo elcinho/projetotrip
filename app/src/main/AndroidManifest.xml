@@ -200,7 +200,7 @@
         </activity>
         <activity
             android:name=".Viagens.ViagensNovoActivity"
-            android:label="@string/title_activity_viagens__novo_"
+            android:label="@string/title_activity_viagens_novo"
             android:parentActivityName=".Viagens.ViagensListActivity"
             android:theme="@style/AppTheme">
             <meta-data

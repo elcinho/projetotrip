@@ -28,7 +28,6 @@ import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 
 public class ViagensShowActivity extends AppCompatActivity {
 
@@ -39,6 +38,7 @@ public class ViagensShowActivity extends AppCompatActivity {
     int vis_id, usuario_id, vis_menu, ano, dia, mes, dataclick;
     StringBuilder dataformatada;
     boolean validar, valido;
+    String titulo_show, titulo_edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,11 @@ public class ViagensShowActivity extends AppCompatActivity {
         vis_tipohosp.setText(bundle.getString(StringsNomes.getHoId()));
         vis_hospedagem.setText(bundle.getString(StringsNomes.getViHospedagem()));
         vis_valortotal.setText(bundle.getString(StringsNomes.getViValortotal()));
+
+        titulo_show = context.getResources().getString(R.string.title_activity_viagens_show) + " " + vis_nome.getText().toString();
+        titulo_edit = context.getResources().getString(R.string.title_activity_viagens_edit) + " " + vis_nome.getText().toString();
+
+        getSupportActionBar().setTitle(titulo_show);
 
         vis_dtinicio.setInputType(InputType.TYPE_NULL);
         vis_dtfim.setInputType(InputType.TYPE_NULL);
@@ -141,6 +146,8 @@ public class ViagensShowActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                getSupportActionBar().setTitle(titulo_edit);
+
                 vis_nome.setEnabled(true);
                 vis_localizacao.setEnabled(true);
                 vis_dtinicio.setEnabled(true);
@@ -178,10 +185,10 @@ public class ViagensShowActivity extends AppCompatActivity {
         boolean sucesso = new ViagensDAO(context).atualizar(viagens, vis_id);
 
         if (sucesso) {
-            Toast.makeText(context, MensagensUsuario.getVIAGEM() + " " + viagens.getVi_nome() + " " + MensagensUsuario.getEditado_sucesso(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.viagem) + " " + viagens.getVi_nome() + " " + context.getResources().getString(R.string.sucesso_editado) + ".", Toast.LENGTH_LONG).show();
             finish();
         } else {
-            Toast.makeText(context, MensagensUsuario.getErro_editar() + MensagensUsuario.getVIAGEM() + " " + viagens.getVi_nome(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.erro_editar) + " " + context.getResources().getString(R.string.viagem) + " " + viagens.getVi_nome(), Toast.LENGTH_LONG).show();
             finish();
         }
     }
@@ -225,7 +232,7 @@ public class ViagensShowActivity extends AppCompatActivity {
         validar = Validar.ValidarNome(String.valueOf(vis_nome.getText().toString()));
         if(!validar){
             vis_nome.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "Nome da viagem inválido", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.nome) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -244,7 +251,7 @@ public class ViagensShowActivity extends AppCompatActivity {
         }
         if(!validar){
             vis_dtinicio.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "A data não pode ser anterior à atual", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.datainicio) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -264,7 +271,7 @@ public class ViagensShowActivity extends AppCompatActivity {
         }
         if(!validar){
             vis_dtfim.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(context, "O fim da viagem deve ser após o início", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.datafim) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -281,7 +288,7 @@ public class ViagensShowActivity extends AppCompatActivity {
                 validar = Validar.ValidarValor(valor);
                 if(!validar){
                     vis_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                    Toast.makeText(context, "Valor inválido", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
+                    Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
                     valido = false;
                 }
                 else{
@@ -292,7 +299,7 @@ public class ViagensShowActivity extends AppCompatActivity {
         }
         else{
             vis_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "Valor não pode ser vazio", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.nao_vazio) + ".", Toast.LENGTH_LONG).show();
         }
     }
 
