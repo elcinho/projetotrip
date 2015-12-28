@@ -45,7 +45,7 @@ public class ViagensDAO extends BancoDados {
     public List<Viagens> listar() {
 
         List<Viagens> listaRegistros = new ArrayList<Viagens>();
-        String sql = DBSelects.getSelecionarListaViagens();
+        String sql = DBSelects.getSelecionarTodosViagens();
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);

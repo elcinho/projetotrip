@@ -48,7 +48,7 @@ public class MetodosPagamentoDAO extends BancoDados {
     public List<MetodosPagamento> listar() {
 
         List<MetodosPagamento> listaRegistros = new ArrayList<MetodosPagamento>();
-        String sql = DBSelects.getSelecionarListaMetodosPagamento();
+        String sql = DBSelects.getSelecionarTodosMetodosPagamento();
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
