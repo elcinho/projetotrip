@@ -28,7 +28,6 @@ public class ViagensDAO extends BancoDados {
         values.put(StringsNomes.getViLocal(), viagens.getVi_local());
         values.put(StringsNomes.getViDtini(), viagens.getVi_dtini());
         values.put(StringsNomes.getViDtfim(), viagens.getVi_dtfim());
-        values.put(StringsNomes.getTrId(), viagens.getTr_id());
         values.put(StringsNomes.getViTransporte(), viagens.getVi_transporte());
         values.put(StringsNomes.getHoId(), viagens.getHo_id());
         values.put(StringsNomes.getViHospedagem(), viagens.getVi_hospedagem());

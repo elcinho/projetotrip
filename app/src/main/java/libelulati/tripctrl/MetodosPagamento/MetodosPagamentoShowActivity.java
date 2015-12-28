@@ -45,8 +45,6 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
 
 
 
-
-
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_me_editar);
         final Spinner  sp_idViagem = (Spinner) findViewById(R.id.sp_mp_viagem);
         final Spinner  sp_tipopagamento = (Spinner) findViewById(R.id.sp_mp_tipopagamento);

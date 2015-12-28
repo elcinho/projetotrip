@@ -12,19 +12,6 @@
     tools:context="libelulati.tripctrl.MetodosPagamento.MetodosPagamentoEditActivity"
     tools:showIn="@layout/activity_metodos_pagamento_edit">
 
-    <Button
-        android:id="@+id/bt_mp_salvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="@string/salvar"
-        android:textColor="@color/colorBranco"
-        android:textSize="@dimen/fontebotoes"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_mp_vencimento"
-        android:layout_alignEnd="@+id/ed_mp_vencimento" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -50,37 +37,58 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/ed_mp_Valor"
-        android:text="@string/valor"
+        android:hint="@string/valor"
         android:layout_below="@+id/ed_mp_detalhe"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_mp_detalhe"
-        android:layout_alignEnd="@+id/ed_mp_detalhe" />
+        android:layout_alignRight="@+id/ed_mp_vencimento"
+        android:layout_alignEnd="@+id/ed_mp_vencimento" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ed_mp_detalhe"
-        android:text="@string/detalhe1"
-        android:layout_below="@+id/sp_mp_tipopagamento"
-        android:layout_alignParentLeft="true"
+        android:hint="@string/detalhe1"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/sp_mp_tipopagamento"
-        android:layout_alignEnd="@+id/sp_mp_tipopagamento"
         android:inputType="textAutoComplete|textCapWords"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:layout_below="@+id/ed_mp_tipoPagamento"
+        android:layout_alignRight="@+id/ed_mp_tipoPagamento"
+        android:layout_alignEnd="@+id/ed_mp_tipoPagamento" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_mp_vencimento"
+        android:hint="@string/vencimento"
+        android:inputType="date"
+        android:textColor="@color/colorAccent"
+        android:onClick="showDatePickerDialog_vin_dtini"
+        android:layout_below="@+id/ed_mp_Valor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ed_mp_vencimento"
-        android:text="@string/vencimento"
-        android:layout_centerVertical="true"
+        android:id="@+id/ed_mp_viagem"
+        android:inputType="textAutoComplete|textCapWords"
+        android:hint="@string/viagens"
+        android:layout_below="@+id/sp_mp_tipopagamento"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_mp_Valor"
-        android:layout_alignEnd="@+id/ed_mp_Valor"
+        android:layout_alignRight="@+id/sp_mp_tipopagamento"
+        android:layout_alignEnd="@+id/sp_mp_tipopagamento" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_mp_tipoPagamento"
+        android:layout_alignParentStart="true"
         android:inputType="textAutoComplete|textCapWords"
-        android:textColor="@color/colorAccent"/>
+        android:hint="@string/tipopagamento"
+        android:layout_below="@+id/ed_mp_viagem"
+        android:layout_alignRight="@+id/sp_mp_tipopagamento"
+        android:layout_alignEnd="@+id/sp_mp_tipopagamento" />
 
 </RelativeLayout>
