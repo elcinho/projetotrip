@@ -8,6 +8,7 @@ public class DBInsertTabelas {
         private static final String INSERT_TABELA_CATEGORIAS_LAZER =  "insert into categorias(ca_nome) values ('LAZER')";
         private static final String INSERT_TABELA_CATEGORIAS_COMPRAS = "insert into categorias(ca_nome) values ('COMPRAS')";
 
+        private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_HINT = "insert into tiposhospedagem(ho_nome) values ('Selecione um tipo de hospedagem')";
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_HOTEL = "insert into tiposhospedagem(ho_nome) values ('Hotel')";
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_HOSTEL = "insert into tiposhospedagem(ho_nome) values ('Hostel')";
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_POUSADA = "insert into tiposhospedagem(ho_nome) values ('Pousada')";
@@ -16,6 +17,7 @@ public class DBInsertTabelas {
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_PROPRIO =  "insert into tiposhospedagem(ho_nome) values ('Próprio')";
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_OUTRO = "insert into tiposhospedagem(ho_nome) values ('Outro')";
 
+        private static final String INSERT_TABELA_TIPOSPAGAMENTO_HINT = "insert into tiposhospedagem(ho_nome) values ('Selecione um tipo de pagamento')";
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_DINHEIRO = "insert into tipospagamento (tp_nome) values ('Dinheiro')";
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_CC = "insert into tipospagamento (tp_nome) values ('Cartão de Crédito')";
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_CD = "insert into tipospagamento (tp_nome) values ('Cartão de Débito')";
@@ -23,6 +25,7 @@ public class DBInsertTabelas {
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_TERCEIROS =  "insert into tipospagamento (tp_nome) values ('Terceiros')";
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_OUTRO =  "insert into tipospagamento (tp_nome) values ('Outro')";
 
+        private static final String INSERT_TABELA_TIPOSTRANSPORTE_HINT = "insert into tiposhospedagem(ho_nome) values ('Selecione um tipo de transporte')";
         private static final String INSERT_TABELA_TIPOSTRANSPORTE_AVIAO = "insert into tipostransporte(tr_nome) values ('Avião')";
         private static final String INSERT_TABELA_TIPOSTRANSPORTE_NAVIO =  "insert into tipostransporte(tr_nome) values ('Navio')";
         private static final String INSERT_TABELA_TIPOSTRANSPORTE_ONIBUS =  "insert into tipostransporte(tr_nome) values ('Ônibus')";
@@ -138,5 +141,17 @@ public class DBInsertTabelas {
 
         public static String getInsertTabelaUsuarioGeral() {
                 return INSERT_TABELA_USUARIO_GERAL;
+        }
+
+        public static String getInsertTabelaTiposhospedagemHint() {
+                return INSERT_TABELA_TIPOSHOSPEDAGEM_HINT;
+        }
+
+        public static String getInsertTabelaTipospagamentoHint() {
+                return INSERT_TABELA_TIPOSPAGAMENTO_HINT;
+        }
+
+        public static String getInsertTabelaTipostransporteHint() {
+                return INSERT_TABELA_TIPOSTRANSPORTE_HINT;
         }
 }

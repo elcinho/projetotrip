@@ -51,8 +51,6 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
         spinnerUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View view, int arg2, long arg3) {
-
-                Toast.makeText(arg0.getContext(), "selecionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
                 ed_mp_usuario.setText(arg0.getItemAtPosition(arg2).toString());
             }
 

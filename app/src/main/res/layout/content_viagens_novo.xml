@@ -17,7 +17,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -85,9 +85,19 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/ed_vin_fim"
                 android:layout_below="@+id/ed_vin_fim"
-                android:hint="@string/tipotransporte"
                 android:inputType="textAutoComplete|textCapWords"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:visibility="invisible"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sp_vin_tptransporte"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_vin_fim"
+                android:layout_below="@+id/ed_vin_fim"
+                android:prompt="@string/spinner" />
 
             <EditText
                 android:id="@+id/ed_vin_transporte"
@@ -113,7 +123,17 @@
                 android:layout_below="@+id/ed_vin_transporte"
                 android:hint="@string/tipohospedagem"
                 android:inputType="textAutoComplete|textCapWords"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:visibility="invisible"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sp_vin_tphospedagem"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_vin_transporte"
+                android:layout_below="@+id/ed_vin_transporte"/>
 
             <EditText
                 android:id="@+id/ed_vin_hospedagem"
@@ -140,7 +160,7 @@
                 android:hint="@string/valortotal"
                 android:inputType="numberDecimal"
                 android:textColor="@color/colorAccent" />
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

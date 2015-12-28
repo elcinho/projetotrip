@@ -9,6 +9,8 @@ public class DBSelects {
     private static final String SELECIONAR_TODOS_VIAGENS = "select * from " + StringsNomes.getTabelaViagens();
     private static final String SELECIONAR_TODOS_METODOS_PAGAMENTO = "select * from " + StringsNomes.getTabelaMetodospagamento();
     private static final String SELECIONAR_TODOS_TIPO_PAGAMENTO = "select * from " + StringsNomes.getTabelaTiposhospedagem();
+    private static final String SELECIONAR_TODOS_TIPOS_TRANSPORTE = "select * from " + StringsNomes.getTabelaTipostransporte();
+    private static final String SELECIONAR_TODOS_TIPOS_HOSPEDAGEM = "select * from " + StringsNomes.getTabelaTiposhospedagem();
 
 
     //DADOS
@@ -21,6 +23,8 @@ public class DBSelects {
     private static final String SELECIONAR_ID_VIAGENS = "select * from " + StringsNomes.getTabelaViagens() + " where _id = ";
     private static final String SELECIONAR_ID_METODOS_PAGAMENTO = "select * from " + StringsNomes.getTabelaMetodospagamento() + "where _id = ";
     private static final String SELECIONAR_ID_TIPO_PAGAMENTO = "select * from " + StringsNomes.getTabelaTipospagamento() + " where _id = ";
+    private static final String SELECIONAR_ID_TIPOS_TRANSPORTE = "select * from " + StringsNomes.getTabelaTipostransporte() + " where _id = ";
+    private static final String SELECIONAR_ID_TIPOS_HOSPEDAGEM = "select * from " + StringsNomes.getTabelaTiposhospedagem() + " where _id = ";
 
 
     //SPINNER
@@ -31,6 +35,7 @@ public class DBSelects {
 
     //CAMPO ISOLADO
     private static final String SELECIONAR_EMAIL_USUARIO = "select * from " + StringsNomes.getTabelaUsuarios() + " where " + StringsNomes.getUsEmail() + " = ";
+
 
 
 
@@ -52,6 +57,14 @@ public class DBSelects {
 
     public static String getSelecionarTodosTipoPagamento() {
         return SELECIONAR_TODOS_TIPO_PAGAMENTO;
+    }
+
+    public static String getSelecionarTodosTiposTransporte() {
+        return SELECIONAR_TODOS_TIPOS_TRANSPORTE;
+    }
+
+    public static String getSelecionarTodosTiposHospedagem() {
+        return SELECIONAR_TODOS_TIPOS_HOSPEDAGEM;
     }
 
     public static String getSelecionarDadosViagens() {
@@ -76,6 +89,14 @@ public class DBSelects {
 
     public static String getSelecionarIdTipoPagamento() {
         return SELECIONAR_ID_TIPO_PAGAMENTO;
+    }
+
+    public static String getSelecionarIdTiposTransporte() {
+        return SELECIONAR_ID_TIPOS_TRANSPORTE;
+    }
+
+    public static String getSelecionarIdTiposHospedagem() {
+        return SELECIONAR_ID_TIPOS_HOSPEDAGEM;
     }
 
     public static String getSelecionarSpinnerUsuario() {
