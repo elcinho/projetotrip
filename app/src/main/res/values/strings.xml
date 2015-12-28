@@ -80,6 +80,7 @@
     <string name="tipotransporte">Tipo de transporte</string>
     <string name="transporte">Transporte</string>
     <string name="valortotal">Valor total</string>
+    <string name="spinner">TESTANDO O QUE É ISSO</string>
 
     <!-- TABELAS -->
     <string name="categoria">Categoria</string>

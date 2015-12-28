@@ -33,6 +33,8 @@ public class ViagensListActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        context = ViagensListActivity.this;
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_vi_novo);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
