@@ -188,9 +188,9 @@ public class ViagensNovoActivity extends AppCompatActivity {
         viagens.setVi_local(vi_localizacao.getText().toString());
         viagens.setVi_dtini(vi_dtinicio.getText().toString());
         viagens.setVi_dtfim(vi_dtfim.getText().toString());
-        viagens.setTr_id(vi_tipotransporte.getText().toString());//mudar para o ID do SPINNER
+        viagens.setTr_id(vi_tipotransporte.getText().toString());
         viagens.setVi_transporte(vi_transporte.getText().toString());
-        viagens.setHo_id(vi_tipohospedagem.getText().toString());//mudar para o ID do SPINNER
+        viagens.setHo_id(vi_tipohospedagem.getText().toString());
         viagens.setVi_hospedagem(vi_hospedagem.getText().toString());
         viagens.setVi_valortotal(vi_valortotal.getText().toString());
 
@@ -354,7 +354,6 @@ public class ViagensNovoActivity extends AppCompatActivity {
         dataclick = 2;
     }
 
-
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -371,5 +370,4 @@ public class ViagensNovoActivity extends AppCompatActivity {
             AtualizarData();
         }
     }
-
 }
