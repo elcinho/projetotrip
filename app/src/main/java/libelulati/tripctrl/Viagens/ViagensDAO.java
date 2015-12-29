@@ -45,7 +45,7 @@ public class ViagensDAO extends BancoDados {
     public List<Viagens> listar() {
 
         List<Viagens> listaRegistros = new ArrayList<Viagens>();
-        String sql = DBSelects.getSelecionarListaViagens();
+        String sql = DBSelects.getSelecionarTodosViagens();
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
@@ -149,5 +149,46 @@ public class ViagensDAO extends BancoDados {
         db.close();
 
         return sucesso;
+    }
+
+    public List sp_tipostransporte(){
+        List<String> listartipostransporte = new ArrayList<>();
+        String sql = DBSelects.getSelecionarTodosTiposTransporte();
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor.moveToFirst()){
+            int indice = cursor.getColumnIndex(StringsNomes.getTrNome());
+
+            do{
+                listartipostransporte.add(cursor.getString(indice));
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return listartipostransporte;
+    }
+
+    public List sp_tiposhospedagem(){
+        List<String> listartipohospedagem = new ArrayList<>();
+        String sql = DBSelects.getSelecionarTodosTiposHospedagem();
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor.moveToFirst()){
+
+            int indice = cursor.getColumnIndex(StringsNomes.getHoNome());
+
+            do{
+                listartipohospedagem.add(cursor.getString(indice));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return listartipohospedagem;
     }
 }

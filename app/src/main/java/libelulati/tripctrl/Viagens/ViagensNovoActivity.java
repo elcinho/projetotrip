@@ -4,22 +4,28 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
@@ -33,6 +39,8 @@ public class ViagensNovoActivity extends AppCompatActivity {
     boolean validar, valido;
     Context context;
     EditText vi_nome, vi_localizacao, vi_dtinicio, vi_dtfim, vi_tipotransporte, vi_transporte, vi_tipohospedagem, vi_hospedagem, vi_valortotal;
+    Spinner vi_sp_tptransporte, vi_sp_tphospedagem;
+    List<String> listatipotransporte, listatipohospedagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +60,38 @@ public class ViagensNovoActivity extends AppCompatActivity {
         vi_tipohospedagem = (EditText) findViewById(R.id.ed_vin_tipohospedagem);
         vi_hospedagem = (EditText) findViewById(R.id.ed_vin_hospedagem);
         vi_valortotal = (EditText) findViewById(R.id.ed_vin_valortotal);
+        vi_sp_tptransporte = (Spinner) findViewById(R.id.sp_vin_tptransporte);
+        vi_sp_tphospedagem = (Spinner) findViewById(R.id.sp_vin_tphospedagem);
+
+        listatipotransporte = new ViagensDAO(context).sp_tipostransporte();
+        listatipohospedagem = new ViagensDAO(context).sp_tiposhospedagem();
 
         vi_dtinicio.setInputType(InputType.TYPE_NULL);
         vi_dtfim.setInputType(InputType.TYPE_NULL);
+        vi_tipotransporte.setInputType(InputType.TYPE_NULL);
+        vi_tipohospedagem.setInputType(InputType.TYPE_NULL);
+
+        preencherSpinner(listatipotransporte, vi_sp_tptransporte);
+        vi_tipotransporte.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    selecionartptransporte();
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_tipotransporte.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+            }
+        });
+
+        preencherSpinner(listatipohospedagem, vi_sp_tphospedagem);
+        vi_tipohospedagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    selecionartphospedagem();
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_tipohospedagem.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+            }
+        });
 
         vi_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -141,6 +178,9 @@ public class ViagensNovoActivity extends AppCompatActivity {
     }
 
     public void salvar(){
+
+        vi_valortotal.clearFocus();
+
         Viagens viagens = new Viagens();
 
         viagens.setUs_id(usuario);
@@ -166,10 +206,42 @@ public class ViagensNovoActivity extends AppCompatActivity {
             finish();
         }
         else{
-            Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + " " + context.getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
         }
+    }
 
+    public void preencherSpinner(List lista, Spinner spinner){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_custom, lista);
+        adapter.setDropDownViewResource(R.layout.spinner_drop_custom);
+        spinner.setAdapter(adapter);
+    }
 
+    public void selecionartptransporte(){
+        vi_sp_tptransporte.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vi_tipotransporte.setText(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void selecionartphospedagem(){
+        vi_sp_tphospedagem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vi_tipohospedagem.setText(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void verificarnome(){
