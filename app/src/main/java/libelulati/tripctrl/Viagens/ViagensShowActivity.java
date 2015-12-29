@@ -15,14 +15,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Funcoes.Validar;
@@ -31,14 +35,17 @@ import libelulati.tripctrl.R;
 
 public class ViagensShowActivity extends AppCompatActivity {
 
-    EditText vis_nome, vis_localizacao, vis_dtinicio, vis_dtfim, vis_tipotransp, vis_transporte, vis_tipohosp, vis_hospedagem, vis_valortotal;
-    FloatingActionButton fab_editar;
-    MenuItem vis_salvar;
-    Context context;
-    int vis_id, usuario_id, vis_menu, ano, dia, mes, dataclick;
+    int usuario = InicioActivity.getId_uslogado();
+    int ano, mes, dia, dataclick, vis_id, vis_menu;
+    String titulo_show, titulo_edit;
     StringBuilder dataformatada;
     boolean validar, valido;
-    String titulo_show, titulo_edit;
+    Context context;
+    MenuItem vis_salvar;
+    EditText vis_nome, vis_localizacao, vis_dtinicio, vis_dtfim, vis_tipotransporte, vis_transporte, vis_tipohospedagem, vis_hospedagem, vis_valortotal;
+    Spinner vis_sp_tptransporte, vis_sp_tphospedagem;
+    FloatingActionButton fab_editar;
+    List<String> listatipotransporte, listatipohospedagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +61,15 @@ public class ViagensShowActivity extends AppCompatActivity {
         fab_editar = (FloatingActionButton) findViewById(R.id.fab_vis_editar);
         vis_nome = (EditText) findViewById(R.id.ed_vis_nome);
         vis_localizacao = (EditText) findViewById(R.id.ed_vis_localizacao);
-        vis_dtinicio = (EditText) findViewById(R.id.ed_vis_dtinicio);
-        vis_dtfim = (EditText) findViewById(R.id.ed_vis_dtfim);
-        vis_tipotransp = (EditText) findViewById(R.id.ed_vis_tipotransporte);
+        vis_dtinicio = (EditText) findViewById(R.id.ed_vis_inicio);
+        vis_dtfim = (EditText) findViewById(R.id.ed_vis_fim);
+        vis_tipotransporte = (EditText) findViewById(R.id.ed_vis_tipotransporte);
         vis_transporte = (EditText) findViewById(R.id.ed_vis_transporte);
-        vis_tipohosp = (EditText) findViewById(R.id.ed_vis_tipohospedagem);
+        vis_tipohospedagem = (EditText) findViewById(R.id.ed_vis_tipohospedagem);
         vis_hospedagem = (EditText) findViewById(R.id.ed_vis_hospedagem);
         vis_valortotal = (EditText) findViewById(R.id.ed_vis_valortotal);
+        vis_sp_tptransporte = (Spinner) findViewById(R.id.sp_vis_tptransporte);
+        vis_sp_tphospedagem = (Spinner) findViewById(R.id.sp_vis_tphospedagem);
 
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(vis_nome.getWindowToken(), 0);
@@ -74,9 +83,9 @@ public class ViagensShowActivity extends AppCompatActivity {
         vis_localizacao.setText(bundle.getString(StringsNomes.getViLocal()));
         vis_dtinicio.setText(bundle.getString(StringsNomes.getViDtini()));
         vis_dtfim.setText(bundle.getString(StringsNomes.getViDtfim()));
-        vis_tipotransp.setText(bundle.getString(StringsNomes.getTrId()));
+        vis_tipotransporte.setText(bundle.getString(StringsNomes.getTrId()));
         vis_transporte.setText(bundle.getString(StringsNomes.getViTransporte()));
-        vis_tipohosp.setText(bundle.getString(StringsNomes.getHoId()));
+        vis_tipohospedagem.setText(bundle.getString(StringsNomes.getHoId()));
         vis_hospedagem.setText(bundle.getString(StringsNomes.getViHospedagem()));
         vis_valortotal.setText(bundle.getString(StringsNomes.getViValortotal()));
 
@@ -85,8 +94,13 @@ public class ViagensShowActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(titulo_show);
 
+        listatipotransporte = new ViagensDAO(context).sp_tipostransporte();
+        listatipohospedagem = new ViagensDAO(context).sp_tiposhospedagem();
+
         vis_dtinicio.setInputType(InputType.TYPE_NULL);
         vis_dtfim.setInputType(InputType.TYPE_NULL);
+        vis_tipotransporte.setInputType(InputType.TYPE_NULL);
+        vis_tipohospedagem.setInputType(InputType.TYPE_NULL);
 
         vis_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -152,11 +166,38 @@ public class ViagensShowActivity extends AppCompatActivity {
                 vis_localizacao.setEnabled(true);
                 vis_dtinicio.setEnabled(true);
                 vis_dtfim.setEnabled(true);
-                vis_tipotransp.setEnabled(true);
+                vis_tipotransporte.setEnabled(true);
                 vis_transporte.setEnabled(true);
-                vis_tipohosp.setEnabled(true);
+                vis_tipohospedagem.setEnabled(true);
                 vis_hospedagem.setEnabled(true);
                 vis_valortotal.setEnabled(true);
+                vis_sp_tptransporte.setVisibility(View.VISIBLE);
+                vis_sp_tphospedagem.setVisibility(View.VISIBLE);
+
+                vis_tipotransporte.setTextColor(getResources().getColor(R.color.colorBranco));
+                vis_tipohospedagem.setTextColor(getResources().getColor(R.color.colorBranco));
+
+                preencherSpinner(listatipotransporte, vis_sp_tptransporte);
+                vis_tipotransporte.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (hasFocus) {
+                            selecionartptransporte();
+                            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vis_tipotransporte.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                        }
+                    }
+                });
+
+                preencherSpinner(listatipohospedagem, vis_sp_tphospedagem);
+                vis_tipohospedagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (hasFocus) {
+                            selecionartphospedagem();
+                            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vis_tipohospedagem.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                        }
+                    }
+                });
 
                 vis_nome.requestFocus();
 
@@ -168,17 +209,17 @@ public class ViagensShowActivity extends AppCompatActivity {
     }
 
     public void salvar(){
-        usuario_id = InicioActivity.getId_uslogado();
+
         Viagens viagens = new Viagens();
 
-        viagens.setUs_id(usuario_id);
+        viagens.setUs_id(usuario);
         viagens.setVi_nome(vis_nome.getText().toString());
         viagens.setVi_local(vis_localizacao.getText().toString());
         viagens.setVi_dtini(vis_dtinicio.getText().toString());
         viagens.setVi_dtfim(vis_dtfim.getText().toString());
-        viagens.setTr_id(vis_tipotransp.getText().toString());
+        viagens.setTr_id(vis_tipotransporte.getText().toString());
         viagens.setVi_transporte(vis_transporte.getText().toString());
-        viagens.setHo_id(vis_tipohosp.getText().toString());
+        viagens.setHo_id(vis_tipohospedagem.getText().toString());
         viagens.setVi_hospedagem(vis_hospedagem.getText().toString());
         viagens.setVi_valortotal(vis_valortotal.getText().toString());
 
@@ -192,6 +233,41 @@ public class ViagensShowActivity extends AppCompatActivity {
             finish();
         }
     }
+
+    public void preencherSpinner(List lista, Spinner spinner){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_custom, lista);
+        adapter.setDropDownViewResource(R.layout.spinner_drop_custom);
+        spinner.setAdapter(adapter);
+    }
+
+    public void selecionartptransporte(){
+        vis_sp_tptransporte.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vis_tipotransporte.setText(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void selecionartphospedagem(){
+        vis_sp_tphospedagem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vis_tipohospedagem.setText(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -338,7 +414,6 @@ public class ViagensShowActivity extends AppCompatActivity {
         dataclick = 2;
     }
 
-
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -355,5 +430,4 @@ public class ViagensShowActivity extends AppCompatActivity {
             AtualizarData();
         }
     }
-
 }
