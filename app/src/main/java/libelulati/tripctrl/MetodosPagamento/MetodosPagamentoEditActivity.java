@@ -1,265 +1,170 @@
 package libelulati.tripctrl.MetodosPagamento;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
-import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
 
-
 public class MetodosPagamentoEditActivity extends AppCompatActivity {
 
-    private Spinner spinnerTipoPagamento, spinnerViagem;
-    private List<String>  listaTipoPagamento, listaViagem;
+    private Spinner spinnerUsuario , spinnerTipoPagamento , spinnerViagem;
+    private List<String> listaUsuario, listaTipoPagamento, listaViagem;
     MetodosPagamentoDAO data;
-    private EditText mp_viagem, mp_tipoPagamento;
-    int usuario = InicioActivity.getId_uslogado();
-    boolean validar, valido;
-    Context context;
-    EditText mp_detalhe, mp_valor, mp_vencimento;
-    int ano, mes, dia, dataclick;
-    StringBuilder dataformatada;
-
-
-
+    private EditText ed_mp_usuario, ed_mp_viagem, ed_mp_tipoPagamento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metodos_pagamento_edit);
 
-        context = MetodosPagamentoEditActivity.this;
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            spinnerViagem = (Spinner) findViewById(R.id.sp_mp_viagem);
-            spinnerTipoPagamento = (Spinner) findViewById(R.id.sp_mp_tipopagamento);
-            mp_viagem = (EditText) findViewById(R.id.ed_mp_viagem);
-            mp_tipoPagamento = (EditText) findViewById(R.id.ed_mp_tipoPagamento);
-            mp_detalhe = (EditText) findViewById(R.id.ed_mp_detalhe);
-            mp_valor = (EditText) findViewById(R.id.ed_mp_Valor);
-            mp_vencimento = (EditText) findViewById(R.id.ed_mp_vencimento);
-
-        mp_tipoPagamento.setInputType(InputType.TYPE_NULL);
+             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        mp_viagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+
+        this.ed_mp_usuario = (EditText) findViewById(R.id.ed_mp_usuario);
+        spinnerUsuario = (Spinner) findViewById(R.id.sp_mp_usuario);
+        listaUsuario = new ArrayList<String>();
+        data = new MetodosPagamentoDAO(this);
+        this.ed_mp_usuario.setText("");
+        listaUsuario = data.SpinerUsuario();
+
+        ArrayAdapter<String> adpterUsuario = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listaUsuario);
+        adpterUsuario.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUsuario.setAdapter(adpterUsuario);
+
+        spinnerUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    valido = false;
-                    mp_viagem.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                } else {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_viagem.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                    verificaViagem();
-                }
+            public void onItemSelected(AdapterView<?> arg0, View view, int arg2, long arg3) {
+                ed_mp_usuario.setText(arg0.getItemAtPosition(arg2).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
             }
         });
-        mp_vencimento.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+        this.ed_mp_viagem = (EditText) findViewById(R.id.ed_mp_viagem);
+        spinnerUsuario = (Spinner) findViewById(R.id.sp_mp_viagem);
+        listaUsuario = new ArrayList<String>();
+        data = new MetodosPagamentoDAO(this);
+        this.ed_mp_viagem.setText("");
+        listaViagem = data.SpinerViagem();
+
+        ArrayAdapter<String> adpterViagem = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listaUsuario);
+        adpterUsuario.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUsuario.setAdapter(adpterViagem);
+
+        spinnerUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                    valido = false;
-                    mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+            public void onItemSelected(AdapterView<?> arg0, View view, int arg2, long arg3) {
+
+                Toast.makeText(arg0.getContext(), "selecionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
+                ed_mp_usuario.setText(arg0.getItemAtPosition(arg2).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+
+
+        this.ed_mp_tipoPagamento = (EditText) findViewById(R.id.ed_mp_tipopagamento);
+        spinnerTipoPagamento = (Spinner) findViewById(R.id.sp_mp_tipopagamento);
+        listaTipoPagamento = new ArrayList<String>();
+        data = new MetodosPagamentoDAO(this);
+        this.ed_mp_usuario.setText("");
+        listaTipoPagamento = data.SpinerTipoPagamento();
+
+        ArrayAdapter<String> adpterTipoPagamento = new ArrayAdapter<String>(this, android.R.layout.activity_list_item, listaTipoPagamento);
+        adpterTipoPagamento.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerTipoPagamento.setAdapter(adpterTipoPagamento);
+        spinnerTipoPagamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View view, int arg2, long arg3) {
+
+                Toast.makeText(arg0.getContext(), "selecionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
+                ed_mp_tipoPagamento.setText(arg0.getItemAtPosition(arg2).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+
+
+
+
+
+        final int usuario = InicioActivity.getId_uslogado();
+    final Spinner sp_idViagem = (Spinner) findViewById(R.id.sp_mp_viagem);
+    final Spinner sp_tipopagamento = (Spinner) findViewById(R.id.sp_mp_tipopagamento);
+    final EditText mp_detalhe = (EditText) findViewById(R.id.ed_mp_detalhe);
+    final EditText mp_valor = (EditText) findViewById(R.id.ed_mp_Valor);
+    final EditText mp_vencimento = (EditText) findViewById(R.id.ed_mp_vencimento);
+    final Button mp_bt_salvar = (Button) findViewById(R.id.bt_mp_salvar);
+
+
+        mp_bt_salvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            final Context context = v.getContext();
+            MetodosPagamento mp = new MetodosPagamento();
+
+            mp.setUs_id(usuario);
+            mp.setDv_id(Integer.parseInt(sp_idViagem.getAdapter().toString()));
+            mp.setTp_id(Integer.parseInt(sp_tipopagamento.getAdapter().toString()));
+            mp.setMe_detalhes(mp_detalhe.getText().toString());
+            mp.setMe_valor(Integer.parseInt(mp_valor.getText().toString()));
+            mp.setMe_vencimento(mp_vencimento.getText().toString());
+
+                boolean sucesso = new MetodosPagamentoDAO(context).criar(mp);
+
+            if (sucesso) {
+                Toast.makeText(context, context.getResources().getString(R.string.metodopagameto) + " " + context.getResources().getString(R.string.sucesso_criado) + ".", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, context.getResources().getString(R.string.erro_criar) + " " + context.getResources().getString(R.string.metodopagameto)+ ".", Toast.LENGTH_LONG).show();
+            }
+
+            finish();
+        }
+
+    });
+}
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case android.R.id.home:
+                if(getActionBar() == null){
+                    onBackPressed();
                 }
                 else{
-                    verificardatavencimento();
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    NavUtils.navigateUpFromSameTask(this);
                 }
-            }
-        });
-
-
-            mp_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (hasFocus) {
-                        valido = false;
-                        mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                    } else {
-                        ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_valor.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                        verificarvalor();
-                    }
-                }
-            });
-        }
-
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            super.onCreateOptionsMenu(menu);
-            getMenuInflater().inflate(R.menu.menu_global, menu);
-            return (true);
-        }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            int id = item.getItemId();
-            switch (id){
-                case R.id.mn_gb_salvar:
-                    salvar();
-                case android.R.id.home:
-                    if(getActionBar() == null){
-                        onBackPressed();
-                    }
-                    else{
-                        NavUtils.navigateUpFromSameTask(this);
-                    }
-                    return true;
-                default:
-                    return super.onOptionsItemSelected(item);
-            }
-        }
-
-        public void salvar(){
-            MetodosPagamento metodosPagamento = new MetodosPagamento();
-
-            metodosPagamento.setUs_id(usuario);
-            metodosPagamento.setDv_id(Integer.parseInt(mp_viagem.getText().toString()));
-            metodosPagamento.setTp_id(Integer.parseInt(mp_tipoPagamento.getText().toString()));
-            metodosPagamento.setMe_detalhes(mp_detalhe.getText().toString());
-            metodosPagamento.setMe_valor(Integer.parseInt(mp_valor.getText().toString()));
-            metodosPagamento.setMe_vencimento(mp_vencimento.getText().toString());
-
-            if(valido){
-                boolean sucesso = new MetodosPagamentoDAO(context).criar(metodosPagamento);
-
-                if (sucesso) {
-                    Toast.makeText(context, context.getResources().getString(R.string.metodospagamento) + " " + context.getResources().getString(R.string.sucesso_criado) + ".", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(context, context.getResources().getString(R.string.erro_criar) + " " + context.getResources().getString(R.string.metodospagamento) + ".", Toast.LENGTH_LONG).show();
-                }
-
-                finish();
-            }
-            else{
-                Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + " " + context.getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
-
-            }
-        }
-
-    public void verificaViagem(){
-        //validar viagem
-            validar = Validar.ValidarNome(String.valueOf(mp_viagem.getText().toString()));
-            if(!validar){
-                mp_viagem.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                Toast.makeText(context, "Nome da viagem inv�lido", Toast.LENGTH_SHORT).show();
-                valido = false;
-            }
-            else{
-                mp_viagem.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                valido = true;
-            }
-        }
-
-
-        public void verificarvalor(){
-            double valor = 0;
-            if(mp_valor.length()>0) {
-                valor = Double.parseDouble(mp_valor.getText().toString());
-                if (valor == 0) {
-                    validar = Validar.ValidarValor(valor);
-                    if (!validar) {
-                        mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-                        Toast.makeText(context, "" + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
-                        valido = false;
-                    } else {
-                        mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        valido = true;
-                    }
-                }
-            }
-        }
-
-    public void verificardatavencimento(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date data = sdf.parse(String.valueOf(mp_vencimento.getText().toString()));
-            validar = Validar.ValidarDataInicio(data);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        if(!validar){
-            mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "" + ".", Toast.LENGTH_LONG).show();
-            valido = false;
-        }
-        else{
-            mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-            valido = true;
-        }
-    }
-
-
-
-    public void calendario() {
-        final Calendar calendar = Calendar.getInstance();
-        ano = calendar.get(Calendar.YEAR);
-        mes = calendar.get(Calendar.MONTH);
-        dia = calendar.get(Calendar.DAY_OF_MONTH);
-    }
-
-
-    public void AtualizarData() {
-        dataformatada = (new StringBuilder().append(dia).append("/").append(mes).append("/").append(ano));
-
-        switch (dataclick){
-            case 1:
-                mp_vencimento.setText(dataformatada);
-                break;
+                return true;
             default:
-                dataclick = 0;
-                break;
-        }
-    }
-
-
-
-    public void showDatePickerDialog_mp_dataVencimento(View view) {
-        DialogFragment dialogFragment = new DatePickerFragment();
-        dialogFragment.show(getSupportFragmentManager(), "datepicker");
-        dataclick = 1;
-    }
-
-    public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            calendario();
-            return new DatePickerDialog(getActivity(), this, ano, mes, dia);
-        }
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            ano = year;
-            mes = month + 1;
-            dia = day;
-
-            AtualizarData();
+                return super.onOptionsItemSelected(item);
         }
     }
 }
