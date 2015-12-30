@@ -29,7 +29,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
 
     final int[] usuarioid = {0};
     RadioButton es_enviarsms, es_enviaremail, es_enviarcodusuario;
-    EditText es_telefone, es_email, es_codusuario;
+    EditText es_telefone, es_email, es_codusuario, ns_senha, ns_consenha;
     int envio = 0, usid = 0;
     Context context;
     String codigogerado, datasolicitacao;
@@ -287,7 +287,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton(getApplicationContext().getResources().getString(R.string.opcao_cancelar), new DialogInterface.OnClickListener() { // ALTERAR PARA STRING DO SISTEMA
+        builder.setNegativeButton(getApplicationContext().getResources().getString(R.string.opcao_cancelar), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -310,14 +310,23 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         builder.setPositiveButton(context.getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                EditText senha = (EditText) ((Dialog) dialog).findViewById(R.id.ed_ns_senha);
-                EditText consenha = (EditText) ((Dialog) dialog).findViewById(R.id.ed_ns_confirmesenha);
+                ns_senha = (EditText) ((Dialog) dialog).findViewById(R.id.ed_ns_senha);
+                ns_consenha = (EditText) ((Dialog) dialog).findViewById(R.id.ed_ns_confirmesenha);
 
-                salvarSenha(senha.getText().toString(), usid);
-
+                salvarSenha(ns_senha.getText().toString(), ns_consenha.getText().toString());
+                finish();
             }
         });
 
+        builder.setNegativeButton(context.getResources().getString(R.string.opcao_cancelar), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        novasenha = builder.create();
+        novasenha.show();
     }
 
     public void enviarcodigoemail() {
@@ -325,7 +334,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         codigogerado = codigos.AltSenha();
         datasolicitacao = Funcao.DataAtual();
         if (codigogerado.length() > 0) {
-            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.sucesso_gerado) + ".", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.sucesso_gerado) + ": " + codigogerado, Toast.LENGTH_LONG).show(); //TIRAR VISUALIZAÇÃO DO CODIGO
             //IMPLEMENTAR CÓDIGOS DE ENVIO DE E-MAIL
         } else {
             Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.nao_gerado) + ", " + getApplicationContext().getResources().getString(R.string.novamente) + ".", Toast.LENGTH_LONG).show();
@@ -338,7 +347,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         codigogerado = codigos.AltSenha();
         datasolicitacao = Funcao.DataAtual();
         if (codigogerado.length() > 0) {
-            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.sucesso_gerado) + ".", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.sucesso_gerado) + ": " + codigogerado, Toast.LENGTH_LONG).show(); //TIRAR VISUALIZAÇÃO DO CODIGO
             //IMPLEMENTAR CÓDIGOS DE ENVIO DE SMS
         } else {
             Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.nao_gerado) + ", " + getApplicationContext().getResources().getString(R.string.novamente) + ".", Toast.LENGTH_LONG).show();
@@ -346,15 +355,16 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
 
     }
 
-     public void salvarSenha(String senha, int idus){
-        verificarsenha();
-        verificarconfirmesenha();
+     public void salvarSenha(String senha, String confsenha){
+        verificarsenha(senha);
+        verificarconfirmesenha(senha, confsenha);
         if (valido) {
-            Usuario usuario = new Usuario();
+            Usuario usuario = new UsuarioDAO(context).buscaEmail(es_email.getText().toString());
 
             usuario.setUs_senha(senha);
+            usuario.setUs_confirmesenha(confsenha);
 
-            boolean sucesso = new UsuarioDAO(context).alterarsenha(usuario, idus);
+            boolean sucesso = new UsuarioDAO(context).alterarsenha(usuario, usuario.getUs_id());
             if (sucesso) {
                 Toast.makeText(context, context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.sucesso_alterada) + ".", Toast.LENGTH_LONG).show();
             } else {
@@ -367,26 +377,29 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
 
 
 
-    public void verificarsenha() {
-        /*validar = Validar.ValidarSenha(String.valueOf(ns_senha.getText()));
+    public void verificarsenha(String senha) {
+        validar = Validar.ValidarSenha(String.valueOf(senha));
         if (!validar) {
             Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.senha) + " " + this.getResources().getString(R.string.invalida) + ".", Toast.LENGTH_LONG).show();
             ns_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
             valido = false;
         } else {
+            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
             valido = true;
-        } */
+        }
     }
 
-    public void verificarconfirmesenha() {
-       /* validar = Validar.ValidarConfirmeSenha(String.valueOf(ns_senha.getText()), String.valueOf(ns_confirmesenha.getText()));
+    public void verificarconfirmesenha(String senha, String confsenha) {
+       validar = Validar.ValidarConfirmeSenha(senha, confsenha);
         if (!validar) {
             Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.senhas_diferentes) + ".", Toast.LENGTH_LONG).show();
             ns_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            ns_confirmesenha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
+            ns_consenha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
             valido = false;
         } else {
+            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+            ns_consenha.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
             valido = true;
-        }*/
+        }
     }
 }
