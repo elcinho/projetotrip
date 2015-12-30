@@ -10,6 +10,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -30,7 +31,6 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
 
     final int[] usuarioid = {0};
     RadioButton es_enviarsms, es_enviaremail, es_enviarcodusuario;
-    Button es_enviar;
     EditText es_telefone, es_email, es_codusuario;
     int envio = 0, usid = 0;
     Context context;
@@ -47,8 +47,6 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         es_enviarsms = (RadioButton) findViewById(R.id.rb_es_enviarsms);
         es_enviaremail = (RadioButton) findViewById(R.id.rb_es_enviaremail);
         es_enviarcodusuario = (RadioButton) findViewById(R.id.rb_es_codusuario);
-
-        es_enviar = (Button) findViewById(R.id.bt_es_enviar);
 
         es_telefone = (EditText) findViewById(R.id.ed_es_telefone);
         es_email = (EditText) findViewById(R.id.ed_es_email);
@@ -88,51 +86,21 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
-        es_enviar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context = v.getContext();
-
-                switch (envio) {
-                    case 1:
-                        verificaremail();
-                        if (valido) {
-                            enviarcodigoemail();
-                            caixadialogo();
-                        }
-                        break;
-                    case 2:
-                        verificartelefone();
-                        if (valido) {
-                            enviarcodigosms();
-                            caixadialogo();
-                        }
-                        break;
-                    case 3:
-                        verificarcodigousuario();
-                        if (valido) {
-                            Intent itns = new Intent(EsqueciSenhaActivity.this, NovaSenhaActivity.class);
-                            Bundle bundle = new Bundle();
-
-                            bundle.putInt("usid", usid);
-
-                            itns.putExtras(bundle);
-
-                            startActivityForResult(itns, 1);
-                        }
-                        break;
-                }
-
-
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_enviar, menu);
+        return (true);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id){
+            case R.id.mn_gb_enviar:
+                enviar();
             case android.R.id.home:
                 if(getActionBar() == null){
                     onBackPressed();
@@ -143,6 +111,40 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void enviar(){
+        context = EsqueciSenhaActivity.this;
+
+        switch (envio) {
+            case 1:
+                verificaremail();
+                if (valido) {
+                    enviarcodigoemail();
+                    caixadialogo();
+                }
+                break;
+            case 2:
+                verificartelefone();
+                if (valido) {
+                    enviarcodigosms();
+                    caixadialogo();
+                }
+                break;
+            case 3:
+                verificarcodigousuario();
+                if (valido) {
+                    Intent itns = new Intent(EsqueciSenhaActivity.this, NovaSenhaActivity.class);
+                    Bundle bundle = new Bundle();
+
+                    bundle.putInt("usid", usid);
+
+                    itns.putExtras(bundle);
+
+                    startActivityForResult(itns, 1);
+                }
+                break;
         }
     }
 
