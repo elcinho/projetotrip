@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 
 import libelulati.tripctrl.BancoDados.StringsNomes;
+import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
@@ -46,6 +47,7 @@ public class ViagensShowActivity extends AppCompatActivity {
     Spinner vis_sp_tptransporte, vis_sp_tphospedagem;
     FloatingActionButton fab_editar;
     List<String> listatipotransporte, listatipohospedagem;
+    MeuSpinner meuSpinner = new MeuSpinner();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,13 +179,13 @@ public class ViagensShowActivity extends AppCompatActivity {
                 vis_tipotransporte.setTextColor(getResources().getColor(R.color.colorBranco));
                 vis_tipohospedagem.setTextColor(getResources().getColor(R.color.colorBranco));
 
-                preencherSpinner(listatipotransporte, vis_sp_tptransporte);
-                posicaoSelecionada(vis_sp_tptransporte, vis_tipotransporte.getText().toString());
-                selecionartptransporte(vis_sp_tptransporte);
+                meuSpinner.preencherSpinner(context, listatipotransporte, vis_sp_tptransporte);
+                meuSpinner.posicaoSelecionada(vis_sp_tptransporte, vis_tipotransporte.getText().toString());
+                meuSpinner.selecionarItem(vis_sp_tptransporte, vis_tipotransporte);
 
-                preencherSpinner(listatipohospedagem, vis_sp_tphospedagem);
-                posicaoSelecionada(vis_sp_tphospedagem, vis_tipohospedagem.getText().toString());
-                selecionartphospedagem(vis_sp_tphospedagem);
+                meuSpinner.preencherSpinner(context, listatipohospedagem, vis_sp_tphospedagem);
+                meuSpinner.posicaoSelecionada(vis_sp_tphospedagem, vis_tipohospedagem.getText().toString());
+                meuSpinner.selecionarItem(vis_sp_tphospedagem, vis_tipohospedagem);
 
                 vis_nome.requestFocus();
 
@@ -219,49 +221,6 @@ public class ViagensShowActivity extends AppCompatActivity {
             finish();
         }
     }
-
-    public void preencherSpinner(List lista, Spinner spinner){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_custom, lista);
-        adapter.setDropDownViewResource(R.layout.spinner_drop_custom);
-        spinner.setAdapter(adapter);
-    }
-
-    public void posicaoSelecionada(Spinner spinner, String item){
-        for(int i = 0; i < spinner.getCount(); i++) {
-            if (spinner.getItemAtPosition(i).toString().equals(item)) {
-                spinner.setSelection(i);
-            }
-        }
-    }
-
-    public void selecionartptransporte(Spinner spinner){
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                vis_tipotransporte.setText(parent.getItemAtPosition(position).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-
-    public void selecionartphospedagem(Spinner spinner){
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                vis_tipohospedagem.setText(parent.getItemAtPosition(position).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
