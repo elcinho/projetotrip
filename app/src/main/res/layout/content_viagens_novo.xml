@@ -17,10 +17,16 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nome"
+                android:id="@+id/tx_vin_nome" />
 
             <EditText
                 android:id="@+id/ed_vin_nome"
@@ -28,39 +34,72 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tx_vin_nome"
                 android:hint="@string/nome"
                 android:inputType="textAutoComplete|textCapWords"
                 android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/localizacao"
+                android:id="@+id/tx_vin_localizacao"
+                android:layout_alignEnd="@+id/ed_vin_nome"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_vin_nome"
+                android:layout_below="@+id/ed_vin_nome"/>
 
             <EditText
                 android:id="@+id/ed_vin_localizacao"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/ed_vin_nome"
+                android:layout_alignEnd="@+id/tx_vin_localizacao"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_vin_nome"
-                android:layout_below="@+id/ed_vin_nome"
+                android:layout_alignRight="@+id/tx_vin_localizacao"
+                android:layout_below="@+id/tx_vin_localizacao"
                 android:hint="@string/localizacao"
                 android:inputType="textAutoComplete|textCapWords"
                 android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dtinicio"
+                android:id="@+id/tx_vin_dtini"
+                android:layout_alignEnd="@+id/ed_vin_localizacao"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_vin_localizacao"
+                android:layout_below="@+id/ed_vin_localizacao"/>
 
             <EditText
                 android:id="@+id/ed_vin_inicio"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/ed_vin_localizacao"
+                android:layout_alignEnd="@+id/tx_vin_dtini"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_vin_localizacao"
-                android:layout_below="@+id/ed_vin_localizacao"
+                android:layout_alignRight="@+id/tx_vin_dtini"
+                android:layout_below="@+id/tx_vin_dtini"
                 android:hint="@string/dtinicio"
                 android:inputType="date"
                 android:textColor="@color/colorAccent"
                 android:onClick="showDatePickerDialog_vin_dtini"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dtfim"
+                android:id="@+id/tx_vin_dtfim"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ed_vin_inicio"/>
 
             <EditText
                 android:id="@+id/ed_vin_fim"
@@ -70,50 +109,113 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/ed_vin_inicio"
+                android:layout_below="@+id/tx_vin_dtfim"
                 android:hint="@string/dtfim"
                 android:inputType="date"
                 android:textColor="@color/colorAccent"
                 android:onClick="showDatePickerDialog_vin_dtfim"/>
 
-            <EditText
-                android:id="@+id/ed_vin_tipotransporte"
-                android:layout_width="fill_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/tipotransporte"
+                android:id="@+id/tx_vin_tptransporte"
                 android:layout_alignEnd="@+id/ed_vin_fim"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/ed_vin_fim"
-                android:layout_below="@+id/ed_vin_fim"
-                android:hint="@string/tipotransporte"
+                android:layout_below="@+id/ed_vin_fim"/>
+
+            <EditText
+                android:id="@+id/ed_vin_tipotransporte"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/tx_vin_tptransporte"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/tx_vin_tptransporte"
+                android:layout_below="@+id/tx_vin_tptransporte"
                 android:inputType="textAutoComplete|textCapWords"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorBranco"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sp_vin_tptransporte"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/tx_vin_tptransporte"
+                android:layout_below="@+id/tx_vin_tptransporte"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/transporte"
+                android:id="@+id/tx_vin_transporte"
+                android:layout_alignEnd="@+id/ed_vin_tipotransporte"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_vin_tipotransporte"
+                android:layout_below="@+id/ed_vin_tipotransporte"/>
 
             <EditText
                 android:id="@+id/ed_vin_transporte"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/ed_vin_tipotransporte"
+                android:layout_alignEnd="@+id/tx_vin_transporte"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_vin_tipotransporte"
-                android:layout_below="@+id/ed_vin_tipotransporte"
+                android:layout_alignRight="@+id/tx_vin_transporte"
+                android:layout_below="@+id/tx_vin_transporte"
                 android:hint="@string/transporte"
                 android:inputType="textAutoComplete|textCapWords"
                 android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tipohospedagem"
+                android:id="@+id/tx_vin_tphospedagem"
+                android:layout_alignEnd="@+id/ed_vin_transporte"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_vin_transporte"
+                android:layout_below="@+id/ed_vin_transporte"/>
 
             <EditText
                 android:id="@+id/ed_vin_tipohospedagem"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/ed_vin_transporte"
+                android:layout_alignEnd="@+id/tx_vin_tphospedagem"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_vin_transporte"
-                android:layout_below="@+id/ed_vin_transporte"
-                android:hint="@string/tipohospedagem"
+                android:layout_alignRight="@+id/tx_vin_tphospedagem"
+                android:layout_below="@+id/tx_vin_tphospedagem"
                 android:inputType="textAutoComplete|textCapWords"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorBranco"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sp_vin_tphospedagem"
+                android:layout_alignEnd="@+id/tx_vin_tphospedagem"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/tx_vin_tphospedagem"
+                android:layout_below="@+id/tx_vin_tphospedagem"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hospedagem"
+                android:id="@+id/tx_vin_hospedagem"
+                android:layout_alignEnd="@+id/ed_vin_tipohospedagem"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_vin_tipohospedagem"
+                android:layout_below="@+id/ed_vin_tipohospedagem"/>
 
             <EditText
                 android:id="@+id/ed_vin_hospedagem"
@@ -122,25 +224,36 @@
                 android:layout_alignEnd="@+id/ed_vin_tipohospedagem"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_vin_tipohospedagem"
-                android:layout_below="@+id/ed_vin_tipohospedagem"
+                android:layout_alignRight="@+id/tx_vin_hospedagem"
+                android:layout_below="@+id/tx_vin_hospedagem"
                 android:hint="@string/hospedagem"
                 android:inputType="textAutoComplete|textCapWords"
                 android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valortotal"
+                android:id="@+id/tx_vin_valortotal"
+                android:layout_alignEnd="@+id/ed_vin_hospedagem"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_vin_hospedagem"
+                android:layout_below="@+id/ed_vin_hospedagem"/>
 
             <EditText
                 android:id="@+id/ed_vin_valortotal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/ed_vin_hospedagem"
+                android:layout_alignEnd="@+id/tx_vin_valortotal"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_vin_hospedagem"
-                android:layout_below="@+id/ed_vin_hospedagem"
+                android:layout_alignRight="@+id/tx_vin_valortotal"
+                android:layout_below="@+id/tx_vin_valortotal"
                 android:hint="@string/valortotal"
                 android:inputType="numberDecimal"
                 android:textColor="@color/colorAccent" />
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

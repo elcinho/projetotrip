@@ -21,7 +21,7 @@ import libelulati.tripctrl.Viagens.ViagensListActivity;
 
 public class InicioActivity extends AppCompatActivity {
 
-    private static int id_uslogado = 1;  //mudar para receber o id do usuario logado.
+    private static int id_uslogado = 0;
 
     public static int getId_uslogado() {
         return id_uslogado;

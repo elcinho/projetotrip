@@ -28,11 +28,14 @@ public class BancoDados extends SQLiteOpenHelper{
         db.execSQL(DBCreateDrop.getCreateTableGastos());
 
         //insere dados nas tabelas fixas
+
+        //CATEGORIAS
         db.execSQL(DBInsertTabelas.getInsertTabelaCategoriasAlimentacao());
         db.execSQL(DBInsertTabelas.getInsertTabelaCategoriasTransporte());
         db.execSQL(DBInsertTabelas.getInsertTabelaCategoriasLazer());
         db.execSQL(DBInsertTabelas.getInsertTabelaCategoriasHospedagem());
         db.execSQL(DBInsertTabelas.getInsertTabelaCategoriasCompras());
+        //TIPO HOSPEDAGEM
         db.execSQL(DBInsertTabelas.getInsertTabelaTiposhospedagemHotel());
         db.execSQL(DBInsertTabelas.getInsertTabelaTiposhospedagemHostel());
         db.execSQL(DBInsertTabelas.getInsertTabelaTiposhospedagemPousada());
@@ -40,12 +43,14 @@ public class BancoDados extends SQLiteOpenHelper{
         db.execSQL(DBInsertTabelas.getInsertTabelaTiposhospedagemAcampamento());
         db.execSQL(DBInsertTabelas.getInsertTabelaTiposhospedagemAlugado());
         db.execSQL(DBInsertTabelas.getInsertTabelaTiposhospedagemOutro());
+        //TIPO PAGAMENTO
         db.execSQL(DBInsertTabelas.getInsertTabelaTipospagamentoDinheiro());
         db.execSQL(DBInsertTabelas.getInsertTabelaTipospagamentoCc());
         db.execSQL(DBInsertTabelas.getInsertTabelaTipospagamentoCd());
         db.execSQL(DBInsertTabelas.getInsertTabelaTipospagamentoVp());
         db.execSQL(DBInsertTabelas.getInsertTabelaTipospagamentoTerceiros());
         db.execSQL(DBInsertTabelas.getInsertTabelaTipospagamentoOutro());
+        //TIPO TRANSPORTE
         db.execSQL(DBInsertTabelas.getInsertTabelaTipostransporteAviao());
         db.execSQL(DBInsertTabelas.getInsertTabelaTipostransporteNavio());
         db.execSQL(DBInsertTabelas.getInsertTabelaTipostransporteOnibus());

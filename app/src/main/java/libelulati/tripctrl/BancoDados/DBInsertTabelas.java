@@ -139,4 +139,5 @@ public class DBInsertTabelas {
         public static String getInsertTabelaUsuarioGeral() {
                 return INSERT_TABELA_USUARIO_GERAL;
         }
+
 }

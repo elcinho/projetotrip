@@ -25,7 +25,6 @@ import java.util.Date;
 import libelulati.tripctrl.Funcoes.Codigos;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 
 public class UsuarioNovoActivity extends AppCompatActivity {
 
@@ -162,15 +161,15 @@ public class UsuarioNovoActivity extends AppCompatActivity {
                 boolean sucesso = new UsuarioDAO(context).criar(usuario);
 
                 if (sucesso) {
-                    Toast.makeText(context, MensagensUsuario.getUSUARIO() + MensagensUsuario.getCriado_sucesso(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.usuario) + " " + context.getResources().getString(R.string.sucesso_criado) + ".", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    Toast.makeText(context, MensagensUsuario.getErro_criar() + MensagensUsuario.getUSUARIO(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.erro_criar) + " " + context.getResources().getString(R.string.usuario) + ".", Toast.LENGTH_LONG).show();
                     finish();
                 }
             }
                 else{
-                    Toast.makeText(getApplicationContext(), MensagensUsuario.getCampos_invalidos(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.campos_invalidos) + ". " + getApplicationContext().getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
                     us_nome.requestFocus();
                 }
                 }
@@ -199,7 +198,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         validar = Validar.ValidarNome(String.valueOf(us_nome.getText().toString()));
         if (!validar) {
             us_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getNome_invalido(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.nome) + " " + getApplicationContext().getResources().getString(R.string.invalido) + "." , Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             us_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -211,7 +210,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         validar = Validar.ValidarEmail(us_email.length(), String.valueOf(us_email.getText().toString()));
         if (!validar) {
             us_email.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getEmail_invalido(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.email) + " " + getApplicationContext().getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             us_email.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -229,7 +228,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
         if (!validar) {
             us_dtnasc.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), "Data inválida", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.datanascimento) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             us_dtnasc.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -241,7 +240,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         validar = Validar.ValidarTelefone(us_telefone.length(), String.valueOf(us_telefone.getText().toString()));
         if (!validar) {
             us_telefone.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getTelefone_invalido(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.telefone) + " " + getApplicationContext().getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             us_telefone.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -253,7 +252,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         validar = Validar.ValidarSenha(String.valueOf(us_senha.getText().toString()));
         if (!validar) {
             us_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getSenha_invalida(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.senha) + " " + getApplicationContext().getResources().getString(R.string.invalida) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             us_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -266,7 +265,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         if (!validar) {
             us_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
             us_confirmesenha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), MensagensUsuario.getSenhas_diferentes(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.senhas_diferentes) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         } else {
             us_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);

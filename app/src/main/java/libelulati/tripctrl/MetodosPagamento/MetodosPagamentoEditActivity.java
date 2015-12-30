@@ -29,7 +29,6 @@ import java.util.List;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 
 
 
@@ -89,6 +88,10 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
                     valido = false;
                     mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 }
+                else{
+                    verificardatavencimento();
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
             }
         });
 
@@ -147,25 +150,25 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
                 boolean sucesso = new MetodosPagamentoDAO(context).criar(metodosPagamento);
 
                 if (sucesso) {
-                    Toast.makeText(context, MensagensUsuario.getMETODOPAGAMENTO() + MensagensUsuario.getCriado_sucesso(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.metodospagamento) + " " + context.getResources().getString(R.string.sucesso_criado) + ".", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, MensagensUsuario.getErro_criar() + MensagensUsuario.getMETODOPAGAMENTO(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.erro_criar) + " " + context.getResources().getString(R.string.metodospagamento) + ".", Toast.LENGTH_LONG).show();
                 }
 
                 finish();
             }
             else{
-                Toast.makeText(context, "Há campos inválidos. O registro não será gravado;", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + " " + context.getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
+
             }
-
-
         }
 
     public void verificaViagem(){
+        //validar viagem
             validar = Validar.ValidarNome(String.valueOf(mp_viagem.getText().toString()));
             if(!validar){
                 mp_viagem.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                Toast.makeText(context, "Nome da viagem inválido", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Nome da viagem invï¿½lido", Toast.LENGTH_SHORT).show();
                 valido = false;
             }
             else{
@@ -177,22 +180,19 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
 
         public void verificarvalor(){
             double valor = 0;
-            valor = Double.parseDouble(mp_valor.getText().toString());
-            if(valor == 0){
-                validar = Validar.ValidarValor(valor);
-                if(!validar){
-                    mp_valor.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                    Toast.makeText(context, "Valor inválido", Toast.LENGTH_SHORT).show();
-                    valido = false;
+            if(mp_valor.length()>0) {
+                valor = Double.parseDouble(mp_valor.getText().toString());
+                if (valor == 0) {
+                    validar = Validar.ValidarValor(valor);
+                    if (!validar) {
+                        mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
+                        Toast.makeText(context, "" + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
+                        valido = false;
+                    } else {
+                        mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        valido = true;
+                    }
                 }
-                else{
-                    mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                    valido = true;
-                }
-            }
-            else{
-                mp_valor.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                Toast.makeText(context, "Valor inválido", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -205,8 +205,8 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         if(!validar){
-            mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(context, "A data não pode ser anterior à atual", Toast.LENGTH_SHORT).show();
+            mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
+            Toast.makeText(context, "" + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -224,14 +224,12 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
         dia = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
+
     public void AtualizarData() {
         dataformatada = (new StringBuilder().append(dia).append("/").append(mes).append("/").append(ano));
 
         switch (dataclick){
             case 1:
-                mp_vencimento.setText(dataformatada);
-                break;
-            case 2:
                 mp_vencimento.setText(dataformatada);
                 break;
             default:
@@ -240,7 +238,9 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
         }
     }
 
-    public void showDatePickerDialog_vin_dtini(View view) {
+
+
+    public void showDatePickerDialog_mp_dataVencimento(View view) {
         DialogFragment dialogFragment = new DatePickerFragment();
         dialogFragment.show(getSupportFragmentManager(), "datepicker");
         dataclick = 1;

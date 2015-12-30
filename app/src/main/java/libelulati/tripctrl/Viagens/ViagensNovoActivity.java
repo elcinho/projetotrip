@@ -12,20 +12,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 
 public class ViagensNovoActivity extends AppCompatActivity {
 
@@ -35,6 +38,9 @@ public class ViagensNovoActivity extends AppCompatActivity {
     boolean validar, valido;
     Context context;
     EditText vi_nome, vi_localizacao, vi_dtinicio, vi_dtfim, vi_tipotransporte, vi_transporte, vi_tipohospedagem, vi_hospedagem, vi_valortotal;
+    Spinner vi_sp_tptransporte, vi_sp_tphospedagem;
+    List<String> listatipotransporte, listatipohospedagem;
+    MeuSpinner meuSpinner = new MeuSpinner();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +60,38 @@ public class ViagensNovoActivity extends AppCompatActivity {
         vi_tipohospedagem = (EditText) findViewById(R.id.ed_vin_tipohospedagem);
         vi_hospedagem = (EditText) findViewById(R.id.ed_vin_hospedagem);
         vi_valortotal = (EditText) findViewById(R.id.ed_vin_valortotal);
+        vi_sp_tptransporte = (Spinner) findViewById(R.id.sp_vin_tptransporte);
+        vi_sp_tphospedagem = (Spinner) findViewById(R.id.sp_vin_tphospedagem);
+
+        listatipotransporte = new ViagensDAO(context).sp_tipostransporte();
+        listatipohospedagem = new ViagensDAO(context).sp_tiposhospedagem();
 
         vi_dtinicio.setInputType(InputType.TYPE_NULL);
         vi_dtfim.setInputType(InputType.TYPE_NULL);
+        vi_tipotransporte.setInputType(InputType.TYPE_NULL);
+        vi_tipohospedagem.setInputType(InputType.TYPE_NULL);
+
+        meuSpinner.preencherSpinner(context, listatipotransporte, vi_sp_tptransporte);
+        meuSpinner.selecionarItem(vi_sp_tptransporte, vi_tipotransporte);
+        vi_tipotransporte.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_tipotransporte.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+            }
+        });
+
+        meuSpinner.preencherSpinner(context, listatipohospedagem, vi_sp_tphospedagem);
+        meuSpinner.selecionarItem(vi_sp_tphospedagem, vi_tipohospedagem);
+        vi_tipohospedagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_tipohospedagem.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+            }
+        });
 
         vi_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -119,7 +154,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.menu_global, menu);
+        getMenuInflater().inflate(R.menu.menu_salvar, menu);
         return (true);
     }
 
@@ -143,6 +178,9 @@ public class ViagensNovoActivity extends AppCompatActivity {
     }
 
     public void salvar(){
+
+        vi_valortotal.clearFocus();
+
         Viagens viagens = new Viagens();
 
         viagens.setUs_id(usuario);
@@ -150,9 +188,9 @@ public class ViagensNovoActivity extends AppCompatActivity {
         viagens.setVi_local(vi_localizacao.getText().toString());
         viagens.setVi_dtini(vi_dtinicio.getText().toString());
         viagens.setVi_dtfim(vi_dtfim.getText().toString());
-        viagens.setTr_id(vi_tipotransporte.getText().toString());//mudar para o ID do SPINNER
+        viagens.setTr_id(vi_tipotransporte.getText().toString());
         viagens.setVi_transporte(vi_transporte.getText().toString());
-        viagens.setHo_id(vi_tipohospedagem.getText().toString());//mudar para o ID do SPINNER
+        viagens.setHo_id(vi_tipohospedagem.getText().toString());
         viagens.setVi_hospedagem(vi_hospedagem.getText().toString());
         viagens.setVi_valortotal(vi_valortotal.getText().toString());
 
@@ -160,25 +198,23 @@ public class ViagensNovoActivity extends AppCompatActivity {
             boolean sucesso = new ViagensDAO(context).criar(viagens);
 
             if (sucesso) {
-                Toast.makeText(context, MensagensUsuario.getVIAGEM() + MensagensUsuario.getCriado_sucesso(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.viagem)+ " " + context.getResources().getString(R.string.sucesso_criado) + ".", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, MensagensUsuario.getErro_criar() + MensagensUsuario.getVIAGEM(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.erro_criar) + " " + context.getResources().getString(R.string.viagem) + ".", Toast.LENGTH_LONG).show();
             }
 
             finish();
         }
         else{
-            Toast.makeText(context, "Há campos inválidos. O registro não será gravado;", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRING DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
         }
-
-
     }
 
     public void verificarnome(){
         validar = Validar.ValidarNome(String.valueOf(vi_nome.getText().toString()));
         if(!validar){
             vi_nome.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "Nome da viagem inválido", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.nome) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -197,7 +233,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
         }
         if(!validar){
             vi_dtinicio.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "A data não pode ser anterior à atual", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.datainicio) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -217,7 +253,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
         }
         if(!validar){
             vi_dtfim.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(context, "O fim da viagem deve ser após o início", Toast.LENGTH_SHORT).show(); //ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.datafim) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
@@ -228,22 +264,24 @@ public class ViagensNovoActivity extends AppCompatActivity {
 
     public void verificarvalor(){
         double valor = 0;
-        valor = Double.parseDouble(vi_valortotal.getText().toString());
-        if(valor == 0){
-            validar = Validar.ValidarValor(valor);
-            if(!validar){
-                vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                Toast.makeText(context, "Valor inválido", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
-                valido = false;
-            }
-            else{
-                vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                valido = true;
+        if(vi_valortotal.length()>0){
+            valor = Double.parseDouble(vi_valortotal.getText().toString());
+            if(valor != 0){
+                validar = Validar.ValidarValor(valor);
+                if(!validar){
+                    vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
+                    Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
+                    valido = false;
+                }
+                else{
+                    vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                    valido = true;
+                }
             }
         }
         else{
             vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, "Valor inválido", Toast.LENGTH_SHORT).show();//ALTERAR PARA STRINGS DO SISTEMA
+            Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.nao_vazio) + ".", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -282,7 +320,6 @@ public class ViagensNovoActivity extends AppCompatActivity {
         dataclick = 2;
     }
 
-
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -299,5 +336,4 @@ public class ViagensNovoActivity extends AppCompatActivity {
             AtualizarData();
         }
     }
-
 }

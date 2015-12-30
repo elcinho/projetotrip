@@ -23,7 +23,6 @@ import java.util.List;
 import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Strings.MensagensUsuario;
 
 public class MetodosPagamentoShowActivity extends AppCompatActivity {
 
@@ -100,9 +99,9 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
                 boolean sucesso = new MetodosPagamentoDAO(context).atualizar(metodosPagamento, id);
 
                 if (sucesso) {
-                    Toast.makeText(context, MensagensUsuario.getMETODOPAGAMENTO() + " " + metodosPagamento.getMe_id() + " " + MensagensUsuario.getEditado_sucesso(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.metodopagameto) + " " + metodosPagamento.getMe_id() + " " + context.getResources().getString(R.string.sucesso_editado), Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, MensagensUsuario.getErro_editar() + MensagensUsuario.getVIAGEM() + " " + metodosPagamento.getMe_id(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.erro_editar) + context.getResources().getString(R.string.metodopagameto) + " " + metodosPagamento.getMe_id(), Toast.LENGTH_LONG).show();
                 }
 
                 finish();
