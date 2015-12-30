@@ -65,6 +65,7 @@ public class UsuarioDAO extends BancoDados {
         ContentValues values = new ContentValues();
 
         values.put(StringsNomes.getUsSenha(), usuario.getUs_senha());
+        values.put(StringsNomes.getUsConfirmesenha(), usuario.getUs_confirmesenha());
 
         String where = DBSelects.getAtualizarWhere();
         String[] whereArgs = {Integer.toString(id)};

@@ -75,7 +75,7 @@ public class NovaSenhaActivity extends AppCompatActivity {
 
                     boolean sucesso = new UsuarioDAO(context).alterarsenha(usuario, idus);
                     if (sucesso) {
-                        Toast.makeText(context, "Senha alterada com sucesso.", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA
+                        Toast.makeText(context, context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.sucesso_alterada) + ".", Toast.LENGTH_LONG).show();
                         if(idus == 0){
                             startActivity(new Intent(NovaSenhaActivity.this, MainActivity.class));
                             finish();
@@ -84,10 +84,10 @@ public class NovaSenhaActivity extends AppCompatActivity {
                             onBackPressed();
                         }
                     } else {
-                        Toast.makeText(context, "A senha não foi alterada", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA
+                        Toast.makeText(context, context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.nao_alterada) + ".", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(context, "Campos inválidos, não é possível alterar a senha.", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA
+                    Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.nao_alterada) + ".", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -97,7 +97,7 @@ public class NovaSenhaActivity extends AppCompatActivity {
     public void verificarsenha() {
         validar = Validar.ValidarSenha(String.valueOf(ns_senha.getText()));
         if (!validar) {
-            Toast.makeText(getApplicationContext(), "Senha inválida", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA
+            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.senha) + " " + this.getResources().getString(R.string.invalida) + ".", Toast.LENGTH_LONG).show();
             ns_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
             valido = false;
         } else {
@@ -108,7 +108,7 @@ public class NovaSenhaActivity extends AppCompatActivity {
     public void verificarconfirmesenha() {
         validar = Validar.ValidarConfirmeSenha(String.valueOf(ns_senha.getText()), String.valueOf(ns_confirmesenha.getText()));
         if (!validar) {
-            Toast.makeText(getApplicationContext(), "As senhas não coincidem", Toast.LENGTH_LONG).show(); //ALTERAR PARA STRING DO SISTEMA
+            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.senhas_diferentes) + ".", Toast.LENGTH_LONG).show();
             ns_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
             ns_confirmesenha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
             valido = false;
