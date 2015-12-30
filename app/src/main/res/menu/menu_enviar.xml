@@ -5,6 +5,6 @@
     <item android:id="@+id/mn_gb_enviar"
         android:icon="@drawable/ic_action_send"
         android:orderInCategory="1"
-        android:title="@string/salvar"
+        android:title="@string/enviar"
         app:showAsAction="always"/>
 </menu>
