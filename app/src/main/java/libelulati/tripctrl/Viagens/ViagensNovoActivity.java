@@ -25,6 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
@@ -39,6 +40,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
     EditText vi_nome, vi_localizacao, vi_dtinicio, vi_dtfim, vi_tipotransporte, vi_transporte, vi_tipohospedagem, vi_hospedagem, vi_valortotal;
     Spinner vi_sp_tptransporte, vi_sp_tphospedagem;
     List<String> listatipotransporte, listatipohospedagem;
+    MeuSpinner meuSpinner = new MeuSpinner();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,23 +71,23 @@ public class ViagensNovoActivity extends AppCompatActivity {
         vi_tipotransporte.setInputType(InputType.TYPE_NULL);
         vi_tipohospedagem.setInputType(InputType.TYPE_NULL);
 
-        preencherSpinner(listatipotransporte, vi_sp_tptransporte);
+        meuSpinner.preencherSpinner(context, listatipotransporte, vi_sp_tptransporte);
+        meuSpinner.selecionarItem(vi_sp_tptransporte, vi_tipotransporte);
         vi_tipotransporte.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    selecionartptransporte();
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_tipotransporte.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
         });
 
-        preencherSpinner(listatipohospedagem, vi_sp_tphospedagem);
+        meuSpinner.preencherSpinner(context, listatipohospedagem, vi_sp_tphospedagem);
+        meuSpinner.selecionarItem(vi_sp_tphospedagem, vi_tipohospedagem);
         vi_tipohospedagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    selecionartphospedagem();
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_tipohospedagem.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
@@ -206,40 +208,6 @@ public class ViagensNovoActivity extends AppCompatActivity {
         else{
             Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
         }
-    }
-
-    public void preencherSpinner(List lista, Spinner spinner){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_custom, lista);
-        adapter.setDropDownViewResource(R.layout.spinner_drop_custom);
-        spinner.setAdapter(adapter);
-    }
-
-    public void selecionartptransporte(){
-        vi_sp_tptransporte.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                vi_tipotransporte.setText(parent.getItemAtPosition(position).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-
-    public void selecionartphospedagem(){
-        vi_sp_tphospedagem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                vi_tipohospedagem.setText(parent.getItemAtPosition(position).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     public void verificarnome(){

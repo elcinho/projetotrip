@@ -180,6 +180,7 @@ public class ViagensListActivity extends AppCompatActivity {
                 boolean sucesso = viagensDAO.deletar(del_id);
                 if (sucesso) {
                     Toast.makeText(context, context.getResources().getString(R.string.viagem)+ " " + viagens.getVi_nome() + " " + context.getResources().getString(R.string.sucesso_deletado)+ ".", Toast.LENGTH_LONG).show();
+                    listarViagens();
                 } else {
                     Toast.makeText(context, context.getResources().getString(R.string.erro_deletar) + " " + context.getResources().getString(R.string.viagem) + " " + viagens.getVi_nome() + ".", Toast.LENGTH_LONG).show();
                 }
