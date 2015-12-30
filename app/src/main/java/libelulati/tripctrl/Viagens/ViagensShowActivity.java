@@ -178,26 +178,12 @@ public class ViagensShowActivity extends AppCompatActivity {
                 vis_tipohospedagem.setTextColor(getResources().getColor(R.color.colorBranco));
 
                 preencherSpinner(listatipotransporte, vis_sp_tptransporte);
-                vis_tipotransporte.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                    @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
-                        if (hasFocus) {
-                            selecionartptransporte();
-                            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vis_tipotransporte.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                        }
-                    }
-                });
+                posicaoSelecionada(vis_sp_tptransporte, vis_tipotransporte.getText().toString());
+                selecionartptransporte(vis_sp_tptransporte);
 
                 preencherSpinner(listatipohospedagem, vis_sp_tphospedagem);
-                vis_tipohospedagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                    @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
-                        if (hasFocus) {
-                            selecionartphospedagem();
-                            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vis_tipohospedagem.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                        }
-                    }
-                });
+                posicaoSelecionada(vis_sp_tphospedagem, vis_tipohospedagem.getText().toString());
+                selecionartphospedagem(vis_sp_tphospedagem);
 
                 vis_nome.requestFocus();
 
@@ -240,8 +226,16 @@ public class ViagensShowActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
-    public void selecionartptransporte(){
-        vis_sp_tptransporte.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    public void posicaoSelecionada(Spinner spinner, String item){
+        for(int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equals(item)) {
+                spinner.setSelection(i);
+            }
+        }
+    }
+
+    public void selecionartptransporte(Spinner spinner){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 vis_tipotransporte.setText(parent.getItemAtPosition(position).toString());
@@ -254,8 +248,8 @@ public class ViagensShowActivity extends AppCompatActivity {
         });
     }
 
-    public void selecionartphospedagem(){
-        vis_sp_tphospedagem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    public void selecionartphospedagem(Spinner spinner){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 vis_tipohospedagem.setText(parent.getItemAtPosition(position).toString());
@@ -272,7 +266,7 @@ public class ViagensShowActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.menu_global, menu);
+        getMenuInflater().inflate(R.menu.menu_salvar, menu);
         vis_salvar = menu.findItem(R.id.mn_gb_salvar);
             switch (vis_menu){
                 case 1:
