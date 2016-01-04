@@ -95,7 +95,6 @@
 
 
     <!-- MENSAGENS DO SISTEMA-->
-    <string name="campos_invalidos">Alguns campos não foram validados</string>
     <string name="codigo_confirmacao">Codigo de confirmação</string>
     <string name="codigo_confirme">Informe o código recebido para alterar sua senha</string>
     <string name="codigo_espirado">Código expirado, solicite um novo</string>
@@ -105,10 +104,6 @@
     <string name="erro_criar">Erro ao criar</string>
     <string name="erro_deletar">Erro ao deletar</string>
     <string name="erro_editar">Erro ao editar</string>
-    <string name="invalida">inválida</string>
-    <string name="invalidas">inválidas</string>
-    <string name="invalido">inválido</string>
-    <string name="invalidos">inválidos</string>
     <string name="nao_alterada">não foi alterada</string>
     <string name="nao_alterar">Não é possível alterar</string>
     <string name="nao_cadastrado">não cadastrado</string>
@@ -135,6 +130,14 @@
     <string name="sucesso_gerado">gerado com sucesso</string>
     <string name="sucesso_alterada">alterada com sucesso</string>
 
+    <!-- VALIDAÇÃO DE CAMPOS -->
+    <string name="campos_invalidos">Alguns campos não foram validados</string>
+    <string name="invalida">inválida</string>
+    <string name="invalidas">inválidas</string>
+    <string name="invalido">inválido</string>
+    <string name="invalidos">inválidos</string>
+    <string name="validar_senha">A senha precisa ter entre 6 e 10 caracteres. Pelo menos um número, um caracter maíusculo e um caracter minúsculo</string>
+    <string name="validar_nome">O nome precisa ter o mínimo de 5 caracteres não numéricos</string>
 
     <!-- PALAVRAS E PREPOSIÇÕES -->
     <string name="ou">ou</string>
