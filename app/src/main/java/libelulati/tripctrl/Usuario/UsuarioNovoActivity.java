@@ -57,7 +57,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     validar = false;
-                    us_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                    //us_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 } else {
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(us_dtnasc.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     verificarnome();
@@ -197,11 +197,12 @@ public class UsuarioNovoActivity extends AppCompatActivity {
     public void verificarnome() {
         validar = Validar.ValidarNome(String.valueOf(us_nome.getText().toString()));
         if (!validar) {
-            us_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.nome) + " " + getApplicationContext().getResources().getString(R.string.invalido) + "." , Toast.LENGTH_LONG).show();
+            us_nome.setError(getApplicationContext().getResources().getString(R.string.nome) + " " + getApplicationContext().getResources().getString(R.string.invalido) + ".");
+            //us_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
+            //Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.nome) + " " + getApplicationContext().getResources().getString(R.string.invalido) + "." , Toast.LENGTH_LONG).show();
             valido = false;
         } else {
-            us_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+            //us_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
             valido = true;
         }
     }

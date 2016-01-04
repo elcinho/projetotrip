@@ -113,7 +113,14 @@ public class Validar {
     }
 
     public static boolean ValidarConfirmeSenha(String senha, String confirmesenha) {
-        return senha.equals(confirmesenha);
+        boolean valido = ValidarSenha(confirmesenha);
+        if(valido){
+            return senha.equals(confirmesenha);
+        }
+        else{
+            return false;
+        }
+
     }
 
     public static boolean ValidarTempoCodigo(String data) {

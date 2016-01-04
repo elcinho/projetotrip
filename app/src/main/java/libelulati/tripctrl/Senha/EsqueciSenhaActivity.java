@@ -301,20 +301,30 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     public void dialogosenha(){
         AlertDialog novasenha;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final Dialog dialog = new Dialog(context);
 
         builder.setTitle(context.getResources().getString(R.string.informenovasenha));
         LayoutInflater inflater = getLayoutInflater();
-
         builder.setView(inflater.inflate(R.layout.dialog_alterarsenha, null));
+
+
+        ns_senha = (EditText) (dialog).findViewById(R.id.ed_ns_senha);
+        ns_consenha = (EditText) (dialog).findViewById(R.id.ed_ns_confirmesenha);
 
         builder.setPositiveButton(context.getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ns_senha = (EditText) ((Dialog) dialog).findViewById(R.id.ed_ns_senha);
-                ns_consenha = (EditText) ((Dialog) dialog).findViewById(R.id.ed_ns_confirmesenha);
 
-                salvarSenha(ns_senha.getText().toString(), ns_consenha.getText().toString());
-                finish();
+                verificarsenha(String.valueOf(ns_senha.getText()));
+                verificarconfirmesenha(String.valueOf(ns_senha.getText()), String.valueOf(ns_consenha.getText()));
+
+                if(valido){
+                    salvarSenha(ns_senha.getText().toString(), ns_consenha.getText().toString());
+                    finish();
+                }
+                else{
+                    Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.nao_alterada) + ".", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -356,8 +366,6 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     }
 
      public void salvarSenha(String senha, String confsenha){
-        verificarsenha(senha);
-        verificarconfirmesenha(senha, confsenha);
         if (valido) {
             Usuario usuario = new UsuarioDAO(context).buscaEmail(es_email.getText().toString());
 
@@ -375,16 +383,11 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         }
     }
 
-
-
     public void verificarsenha(String senha) {
         validar = Validar.ValidarSenha(String.valueOf(senha));
         if (!validar) {
-            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.senha) + " " + this.getResources().getString(R.string.invalida) + ".", Toast.LENGTH_LONG).show();
-            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
             valido = false;
         } else {
-            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
             valido = true;
         }
     }
@@ -392,13 +395,8 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     public void verificarconfirmesenha(String senha, String confsenha) {
        validar = Validar.ValidarConfirmeSenha(senha, confsenha);
         if (!validar) {
-            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.senhas_diferentes) + ".", Toast.LENGTH_LONG).show();
-            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            ns_consenha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
             valido = false;
         } else {
-            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-            ns_consenha.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
             valido = true;
         }
     }
