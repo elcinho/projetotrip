@@ -140,6 +140,9 @@
     <string name="ou">ou</string>
     <string name="e">e</string>
     <string name="a">a</string>
+    <string name="Tipo_Pagamento">Tipo Pagamento</string>
+    <string name="Detalhe">Detalhe</string>
+    <string name="Vencimento">Vencimento</string>
 
 
 </resources>

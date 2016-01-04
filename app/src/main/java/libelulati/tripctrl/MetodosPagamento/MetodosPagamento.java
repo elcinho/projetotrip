@@ -3,8 +3,6 @@ package libelulati.tripctrl.MetodosPagamento;
 import android.content.Context;
 
 public class MetodosPagamento {
-    
-    // teste merge elcio
 
     private int me_id;
     private int us_id;
@@ -14,10 +12,7 @@ public class MetodosPagamento {
     private String me_detalhes;
     private String me_vencimento;
 
-    public MetodosPagamento() {
-    }
-
-    public MetodosPagamento(int me_id, int us_id, int dv_id, String me_detalhes, String me_vencimento) {
+    public MetodosPagamento(int me_id, int us_id, float me_valor, String me_detalhes) {
         this.me_id = me_id;
         this.us_id = us_id;
         this.dv_id = dv_id;
@@ -27,7 +22,11 @@ public class MetodosPagamento {
         this.me_vencimento = me_vencimento;
     }
 
+    public MetodosPagamento() {
+    }
+
     public MetodosPagamento(Context context) {
+
     }
 
 
