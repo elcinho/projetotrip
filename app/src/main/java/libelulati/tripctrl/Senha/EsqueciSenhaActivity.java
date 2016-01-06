@@ -2,6 +2,7 @@ package libelulati.tripctrl.Senha;
 
 
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -261,6 +262,11 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         }
     }
 
+    public void exibirAlterarSenha(){
+        DialogFragment alterarsenha = new AlterarSenha(usid);
+        alterarsenha.show(getFragmentManager(), "alterarsenha");
+    }
+
     public void dialogoCodigo() {
         AlertDialog codigoaltsenha;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -277,7 +283,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                 if (validar) {
                     boolean validarcod = Validar.ValidarCodigoAltSenha(String.valueOf(codigo.getText()), codigogerado);
                     if (validarcod) {
-                        dialogosenha();
+                        exibirAlterarSenha();
                     } else {
                         Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.nao_alterar) + " " + getApplicationContext().getResources().getString(R.string.a) + " " + getApplicationContext().getResources().getString(R.string.senha) + ".", Toast.LENGTH_LONG).show();
                     }
@@ -296,47 +302,6 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
 
         codigoaltsenha = builder.create();
         codigoaltsenha.show();
-    }
-
-    public void dialogosenha(){
-        AlertDialog novasenha;
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        final Dialog dialog = new Dialog(context);
-
-        builder.setTitle(context.getResources().getString(R.string.informenovasenha));
-        LayoutInflater inflater = getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialog_alterarsenha, null));
-
-
-        ns_senha = (EditText) (dialog).findViewById(R.id.ed_ns_senha);
-        ns_consenha = (EditText) (dialog).findViewById(R.id.ed_ns_confirmesenha);
-
-        builder.setPositiveButton(context.getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                verificarsenha(String.valueOf(ns_senha.getText()));
-                verificarconfirmesenha(String.valueOf(ns_senha.getText()), String.valueOf(ns_consenha.getText()));
-
-                if(valido){
-                    salvarSenha(ns_senha.getText().toString(), ns_consenha.getText().toString());
-                    finish();
-                }
-                else{
-                    Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.nao_alterada) + ".", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-        builder.setNegativeButton(context.getResources().getString(R.string.opcao_cancelar), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        novasenha = builder.create();
-        novasenha.show();
     }
 
     public void enviarcodigoemail() {
@@ -363,41 +328,5 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
             Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.nao_gerado) + ", " + getApplicationContext().getResources().getString(R.string.novamente) + ".", Toast.LENGTH_LONG).show();
         }
 
-    }
-
-     public void salvarSenha(String senha, String confsenha){
-        if (valido) {
-            Usuario usuario = new UsuarioDAO(context).buscaEmail(es_email.getText().toString());
-
-            usuario.setUs_senha(senha);
-            usuario.setUs_confirmesenha(confsenha);
-
-            boolean sucesso = new UsuarioDAO(context).alterarsenha(usuario, usuario.getUs_id());
-            if (sucesso) {
-                Toast.makeText(context, context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.sucesso_alterada) + ".", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(context, context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.nao_alterada) + ".", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.nao_alterada) + ".", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void verificarsenha(String senha) {
-        validar = Validar.ValidarSenha(String.valueOf(senha));
-        if (!validar) {
-            valido = false;
-        } else {
-            valido = true;
-        }
-    }
-
-    public void verificarconfirmesenha(String senha, String confsenha) {
-       validar = Validar.ValidarConfirmeSenha(senha, confsenha);
-        if (!validar) {
-            valido = false;
-        } else {
-            valido = true;
-        }
     }
 }
