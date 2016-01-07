@@ -50,7 +50,6 @@ public class Login extends DialogFragment{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 entrar();
-                getActivity().finish();
             }
         });
 
