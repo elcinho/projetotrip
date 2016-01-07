@@ -46,7 +46,7 @@ public class AlterarSenha extends DialogFragment{
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     verificarSenha(ns_senha.getText().toString());
-                    if(v_senha){
+                    if(v_senha && v_consenha){
                         positivo.setEnabled(true);
                     }
                 }
@@ -76,6 +76,7 @@ public class AlterarSenha extends DialogFragment{
         builder.setNegativeButton(getActivity().getResources().getString(R.string.opcao_cancelar), new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.erro_alterar_senha), Toast.LENGTH_LONG).show();
                 dismiss();
             }
         });
@@ -96,11 +97,16 @@ public class AlterarSenha extends DialogFragment{
         UsuarioDAO usuarioDAO = new UsuarioDAO(getActivity());
         Usuario usuario = usuarioDAO.buscaId(id_usuario);
 
+        usuario.setUs_senha(ns_senha.getText().toString());
+        usuario.setUs_confirmesenha(ns_confirmesenha.getText().toString());
+
         boolean sucesso = usuarioDAO.alterarsenha(usuario, id_usuario);
         if(sucesso){
-            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.alterarsenha), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.sucesso_alterar_senha), Toast.LENGTH_LONG).show();
         }
-
+        else{
+            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.erro_alterar_senha), Toast.LENGTH_LONG).show();
+        }
     }
 
     public void verificarSenha(String senha){
@@ -120,7 +126,7 @@ public class AlterarSenha extends DialogFragment{
             v_consenha = true;
         } else {
             v_consenha = false;
-            ns_confirmesenha.setError(getActivity().getResources().getString(R.string.senhas_diferentes));
+            ns_confirmesenha.setError(getActivity().getResources().getString(R.string.validar_confirmesenha));
         }
     }
 }

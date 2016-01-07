@@ -46,7 +46,7 @@
     <string name="salvar">Salvar</string>
 
 
-    <!-- BOTÕES E LINKS -->
+    <!-- BOTÕES, LINKS E TÍTULOS -->
     <string name="alterarsenha" translatable="false">Alterar senha</string>
     <string name="entrar">Entrar</string>
     <string name="enviaremail">Enviar um email</string>
@@ -57,6 +57,8 @@
     <string name="novousuario">Novo usuário</string>
     <string name="selecioneopcao">Selecione uma opção abaixo para redefinir sua senha:</string>
     <string name="usarcodusuario">Usar meu código de usuario</string>
+    <string name="login">Login</string>
+    <string name="cadastrar">Cadastrar</string>
 
 
     <!-- CAMPOS -->
@@ -80,6 +82,9 @@
     <string name="tipotransporte">Tipo de transporte</string>
     <string name="transporte">Transporte</string>
     <string name="valortotal">Valor total</string>
+    <string name="tipo_pagamento">Tipo Pagamento</string>
+    <string name="detalhe">Detalhe</string>
+    <string name="dt_venc">Vencimento</string>
 
     <!-- TABELAS -->
     <string name="categoria">Categoria</string>
@@ -93,7 +98,7 @@
     <string name="usuario">Usuário</string>
     <string name="viagem">Viagem</string>
 
-
+<!-- ********************************************************************************************************************************************** -->
     <!-- MENSAGENS DO SISTEMA-->
     <string name="codigo_confirmacao">Codigo de confirmação</string>
     <string name="codigo_confirme">Informe o código recebido para alterar sua senha</string>
@@ -111,16 +116,7 @@
     <string name="nao_gerado">não pôde ser gerado</string>
     <string name="nao_vazio">não pode ser vazio</string>
     <string name="novamente">Tente novamente</string>
-    <string name="opcao_cancelar">Cancelar</string>
-    <string name="opcao_confirmar">Confirme a exclusão do registro</string>
-    <string name="opcao_deletar">Deletar</string>
-    <string name="opcao_editar">Editar</string>
-    <string name="opcao_excluir">será excluído</string>
-    <string name="opcao_nao_desfazer">Esta opção não pode ser desfeita</string>
-    <string name="opcao_ok">OK</string>
     <string name="opcao_registro">O registro</string>
-    <string name="opcao_titulo">Escolha uma opção</string>
-    <string name="opcao_visualizar">Visualizar</string>
     <string name="registro_nao_encotrado">Não foi encontrado nenhum registro</string>
     <string name="registro_nao_salvo">O registro não será salvo</string>
     <string name="senhas_diferentes">As senhas não coincidem</string>
@@ -129,23 +125,49 @@
     <string name="sucesso_editado">editado com sucesso</string>
     <string name="sucesso_gerado">gerado com sucesso</string>
     <string name="sucesso_alterada">alterada com sucesso</string>
-
-    <!-- VALIDAÇÃO DE CAMPOS -->
     <string name="campos_invalidos">Alguns campos não foram validados</string>
     <string name="invalida">inválida</string>
     <string name="invalidas">inválidas</string>
     <string name="invalido">inválido</string>
     <string name="invalidos">inválidos</string>
-    <string name="validar_senha">A senha precisa ter entre 6 e 10 caracteres. Pelo menos um número, um caracter maíusculo e um caracter minúsculo</string>
-    <string name="validar_nome">O nome precisa ter o mínimo de 5 caracteres não numéricos</string>
-
-    <!-- PALAVRAS E PREPOSIÇÕES -->
+    <string name="opcao_nao_desfazer">Esta opção não pode ser desfeita.</string>
     <string name="ou">ou</string>
     <string name="e">e</string>
     <string name="a">a</string>
-    <string name="Tipo_Pagamento">Tipo Pagamento</string>
-    <string name="Detalhe">Detalhe</string>
-    <string name="Vencimento">Vencimento</string>
+<!-- ********************************************************************************************************************************************** -->
 
+    <!-- OPÇÕES -->
+    <string name="opcao_cancelar">Cancelar</string>
+    <string name="opcao_confirmar">Confirme a exclusão do registro</string>
+    <string name="opcao_deletar">Deletar</string>
+    <string name="opcao_editar">Editar</string>
+    <string name="opcao_excluir">será excluído</string>
+    <string name="opcao_ok">OK</string>
+    <string name="opcao_titulo">Escolha uma opção</string>
+    <string name="opcao_visualizar">Visualizar</string>
+
+    <!-- VALIDAÇÃO DE CAMPOS -->
+    <string name="validar_senha">A senha precisa ter entre 6 e 10 caracteres. Pelo menos um número, um caracter maíusculo e um caracter minúsculo.</string>
+    <string name="validar_nome">O nome precisa ter o mínimo de 5 caracteres não numéricos.</string>
+    <string name="validar_confirmesenha">As senhas digitadas não são iguais.</string>
+    <string name="validar_email">O e-mail digitado não é válido.</string>
+    <string name="validar_telefone">O telefone digitado não é válido.</string>
+    <string name="validar_codigoUsuario">O código de usuário digitado não é válido.</string>
+    <string name="nulo_email">O e-mail não pode ser nulo.</string>
+    <string name="validar_codigoSenha">O código digitado não corresponde ao enviado. Tente novamente.</string>
+
+    <!-- NEGAÇÕES -->
+    <string name="encontrado_usuario">Nenhum usuário encontrado.</string>
+    <string name="expirado_codigo">O código enviado expirou. Solicite um novo para prosseguir.</string>
+
+    <!-- CONFIRMAÇÕES -->
+    <string name="sucesso_alterar_senha">A senha foi alterada com sucesso.</string>
+    <string name="sucesso_enviar_codigoSenha">Código de confirmação enviado com sucesso.</string>
+
+
+    <!-- MENSAGENS DE ERRO -->
+    <string name="erro_alterar_senha">A senha não foi alterada. Tente novamente.</string>
+    <string name="erro_gerar_codigo">Erro ao gerar o código de confirmação. A senha não será alterada.</string>
+    <string name="erro_autenticar">Usuário ou senha inválidos. Tente novamente.</string>
 
 </resources>

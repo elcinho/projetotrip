@@ -4,22 +4,22 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/ed_ns_senha"
+        android:id="@+id/ed_lo_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorAccent" />
+
+    <EditText
+        android:id="@+id/ed_lo_senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/senha"
-        android:inputType="textPassword"
-        android:textColor="@color/colorAccent" />
-
-    <EditText
-        android:id="@+id/ed_ns_confirmesenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="@string/confirmesenha"
         android:inputType="textPassword"
         android:textColor="@color/colorAccent" />
 </LinearLayout>
