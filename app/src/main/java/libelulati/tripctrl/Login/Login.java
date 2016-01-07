@@ -6,6 +6,8 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,10 +44,43 @@ public class Login extends DialogFragment{
         lo_email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    camposVazios();
+                if(!hasFocus){
                     verificarEmail();
                 }
+            }
+        });
+
+        lo_email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                camposVazios();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        lo_senha.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                camposVazios();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -98,7 +133,7 @@ public class Login extends DialogFragment{
         Usuario usuario = usuarioDAO.buscaEmail(email);
 
         if(usuario == null){
-            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.encontrado_usuario), Toast.LENGTH_LONG).show();
+            valido = false;
         }
         else{
             id_usuario = usuario.getUs_id();
@@ -124,8 +159,10 @@ public class Login extends DialogFragment{
     }
 
     public void camposVazios(){
-        if(lo_email.length() < 1 || lo_senha.length() < 1){
-            positivo.setEnabled(false);
+        if(lo_email.length() < 8 || lo_senha.length() < 6){
+            if(!v_email){
+                positivo.setEnabled(false);
+            }
         }
         else {
             positivo.setEnabled(true);
