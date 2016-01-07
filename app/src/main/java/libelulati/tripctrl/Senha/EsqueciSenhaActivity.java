@@ -34,7 +34,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     int envio = 0, usid = 0;
     Context context;
     String codigogerado, datasolicitacao;
-    boolean valido, validar = false;
+    boolean v_email, v_telefone, v_codigo, validar = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,21 +118,21 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         switch (envio) {
             case 1:
                 verificaremail();
-                if (valido) {
+                if (v_email) {
                     enviarcodigoemail();
                     dialogoCodigo();
                 }
                 break;
             case 2:
                 verificartelefone();
-                if (valido) {
+                if (v_email && v_telefone) {
                     enviarcodigosms();
                     dialogoCodigo();
                 }
                 break;
             case 3:
                 verificarcodigousuario();
-                if (valido) {
+                if (v_email && v_codigo) {
                     exibirAlterarSenha();
                 }
                 break;
@@ -156,7 +156,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                         es_email.requestFocus();
                     } else {
                         verificaremail();
-                        if (!valido) {
+                        if (!v_email) {
                             es_email.requestFocus();
                         }
                     }
@@ -174,7 +174,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                         es_telefone.requestFocus();
                     } else {
                         verificartelefone();
-                        if (!valido) {
+                        if (!v_telefone) {
                             es_telefone.requestFocus();
                         }
                     }
@@ -193,7 +193,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                         es_codusuario.requestFocus();
                     } else {
                         verificarcodigousuario();
-                        if (!valido) {
+                        if (!v_codigo) {
                             es_codusuario.requestFocus();
                         }
                     }
@@ -206,15 +206,15 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         validar = Validar.ValidarEmail(es_email.length(), String.valueOf(es_email.getText()));
         if (!validar) {
             es_email.setError(getApplicationContext().getResources().getString(R.string.validar_email));
-            valido = false;
+            v_email = false;
         } else {
             UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
             Usuario usuario = usuarioDAO.buscaEmail(String.valueOf(es_email.getText().toString()));
             if (usuario == null) {
                 es_email.setError(getApplicationContext().getResources().getString(R.string.encontrado_usuario));
-                valido = false;
+                v_email = false;
             } else {
-                valido = true;
+                v_email = true;
                 usuarioid[0] = usuario.getUs_id();
                 usid = usuarioid[0];
             }
@@ -225,9 +225,9 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         validar = Validar.ValidarTelefone(es_telefone.length(), String.valueOf(es_telefone.getText()));
         if (!validar) {
             es_telefone.setError(getApplicationContext().getResources().getString(R.string.validar_telefone));
-            valido = false;
+            v_telefone = false;
         } else {
-            valido = true;
+            v_telefone = true;
         }
     }
 
@@ -237,9 +237,9 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         validar = Validar.ValidarCodUsuario(String.valueOf(es_codusuario.getText()), usuario.getUs_cod());
         if (!validar) {
             es_codusuario.setError(getApplicationContext().getResources().getString(R.string.validar_codigoUsuario));
-            valido = false;
+            v_codigo = false;
         } else {
-            valido = true;
+            v_codigo = true;
         }
     }
 
@@ -289,7 +289,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         Codigos codigos = new Codigos();
         codigogerado = codigos.AltSenha();
         datasolicitacao = Funcao.DataAtual();
-        if(valido){
+        if(v_email){
             if (codigogerado.length() > 0) {
 
                 //IMPLEMENTAR CÓDIGOS DE ENVIO DE E-MAIL
@@ -306,7 +306,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         Codigos codigos = new Codigos();
         codigogerado = codigos.AltSenha();
         datasolicitacao = Funcao.DataAtual();
-        if(valido){
+        if(v_email && v_telefone){
             if (codigogerado.length() > 0) {
 
                 //IMPLEMENTAR CÓDIGOS DE ENVIO DE SMS

@@ -6,10 +6,12 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import libelulati.tripctrl.BancoDados.StringsNomes;
@@ -41,15 +43,23 @@ public class Login extends DialogFragment{
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
+                    camposVazios();
                     verificarEmail();
                 }
             }
         });
 
+
         builder.setPositiveButton(getActivity().getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                entrar();
+                verificarUsuarioSenha(lo_email.getText().toString());
+                if(valido){
+                    entrar();
+                }
+                else{
+                    Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.erro_autenticar), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -65,7 +75,7 @@ public class Login extends DialogFragment{
             @Override
             public void onShow(DialogInterface dialog) {
                 positivo = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
-                positivo.setEnabled(true);
+                positivo.setEnabled(false);
             }
         });
 
@@ -86,12 +96,12 @@ public class Login extends DialogFragment{
     public void verificarUsuarioSenha(String email){
         UsuarioDAO usuarioDAO = new UsuarioDAO(getActivity());
         Usuario usuario = usuarioDAO.buscaEmail(email);
-        id_usuario = usuario.getUs_id();
 
         if(usuario == null){
             Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.encontrado_usuario), Toast.LENGTH_LONG).show();
         }
         else{
+            id_usuario = usuario.getUs_id();
             validar = Validar.ValidarUsuarioSenha(lo_email.getText().toString(), lo_senha.getText().toString(), usuario.getUs_email(), usuario.getUs_senha());
             if(validar){
                 valido = true;
@@ -103,8 +113,6 @@ public class Login extends DialogFragment{
     }
 
     public void entrar(){
-        verificarUsuarioSenha(lo_email.getText().toString());
-        if(valido){
             Intent it_main_entrar = new Intent(getActivity(), InicioActivity.class);
 
             Bundle bundle = new Bundle();
@@ -113,9 +121,14 @@ public class Login extends DialogFragment{
             it_main_entrar.putExtras(bundle);
 
             startActivityForResult(it_main_entrar, 1);
+    }
+
+    public void camposVazios(){
+        if(lo_email.length() < 1 || lo_senha.length() < 1){
+            positivo.setEnabled(false);
         }
         else {
-            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.erro_autenticar), Toast.LENGTH_LONG).show();
+            positivo.setEnabled(true);
         }
     }
 
