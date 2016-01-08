@@ -35,7 +35,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
     int usuario = InicioActivity.getId_uslogado();
     int ano, mes, dia, dataclick;
     StringBuilder dataformatada;
-    boolean validar, valido;
+    boolean validar, valido, v_nome, v_dtinicio, v_dtfim, v_transporte, v_hospedagem, v_valor;
     Context context;
     EditText vi_nome, vi_localizacao, vi_dtinicio, vi_dtfim, vi_tipotransporte, vi_transporte, vi_tipohospedagem, vi_hospedagem, vi_valortotal;
     Spinner vi_sp_tptransporte, vi_sp_tphospedagem;
@@ -213,13 +213,11 @@ public class ViagensNovoActivity extends AppCompatActivity {
     public void verificarnome(){
         validar = Validar.ValidarNome(String.valueOf(vi_nome.getText().toString()));
         if(!validar){
-            vi_nome.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, context.getResources().getString(R.string.nome) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
-            valido = false;
+            vi_nome.setError(context.getResources().getString(R.string.validar_nome));
+            v_nome = false;
         }
         else{
-            vi_nome.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-            valido = true;
+            v_nome = true;
         }
     }
 
@@ -231,14 +229,12 @@ public class ViagensNovoActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if(!validar){
-            vi_dtinicio.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, context.getResources().getString(R.string.datainicio) + ".", Toast.LENGTH_LONG).show();
-            valido = false;
+        if(!validar) {
+            vi_dtinicio.setError(context.getResources().getString(R.string.validar_dtinicio));
+            v_dtinicio = false;
         }
         else{
-            vi_dtinicio.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-            valido = true;
+            v_dtinicio = true;
         }
     }
 

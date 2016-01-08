@@ -131,7 +131,7 @@ public class ViagensListActivity extends AppCompatActivity {
 
             TextView criarnovo = new TextView(this);
             criarnovo.setPadding(8, 8, 8, 8);
-            criarnovo.setText(context.getResources().getString(R.string.registro_nao_encotrado));
+            criarnovo.setText(context.getResources().getString(R.string.encontrado_registro));
 
             linearLayoutLista.addView(criarnovo);
         }
@@ -166,23 +166,21 @@ public class ViagensListActivity extends AppCompatActivity {
 
         AlertDialog confirme;
         ViagensDAO viagensDAO = new ViagensDAO(context);
-        Viagens viagens = viagensDAO.buscarID(id);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(context.getResources().getString(R.string.opcao_confirmar));
-        builder.setMessage(context.getResources().getString(R.string.opcao_registro) + " " + viagens.getVi_nome() + " " + context.getResources().getString(R.string.opcao_excluir) + ". "+ context.getResources().getString(R.string.opcao_nao_desfazer) + ".");
+        builder.setMessage(context.getResources().getString(R.string.excluir_registro));
 
         builder.setPositiveButton(context.getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 ViagensDAO viagensDAO = new ViagensDAO(context);
-                Viagens viagens = viagensDAO.buscarID(del_id);
                 boolean sucesso = viagensDAO.deletar(del_id);
                 if (sucesso) {
-                    Toast.makeText(context, context.getResources().getString(R.string.viagem)+ " " + viagens.getVi_nome() + " " + context.getResources().getString(R.string.sucesso_deletado)+ ".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.sucesso_excluir_viagem), Toast.LENGTH_LONG).show();
                     listarViagens();
                 } else {
-                    Toast.makeText(context, context.getResources().getString(R.string.erro_deletar) + " " + context.getResources().getString(R.string.viagem) + " " + viagens.getVi_nome() + ".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.erro_excluir_viagem), Toast.LENGTH_LONG).show();
                 }
                 dialog.dismiss();
             }

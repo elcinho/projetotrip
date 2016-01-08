@@ -47,7 +47,7 @@
 
 
     <!-- BOTÕES, LINKS E TÍTULOS -->
-    <string name="alterarsenha" translatable="false">Alterar senha</string>
+    <string name="alterarsenha">Alterar senha</string>
     <string name="entrar">Entrar</string>
     <string name="enviaremail">Enviar um email</string>
     <string name="enviarsms">Enviar um SMS</string>
@@ -59,6 +59,7 @@
     <string name="usarcodusuario">Usar meu código de usuario</string>
     <string name="login">Login</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="excluir_registro">O registro selecionado será excluído. Esta opção não pode ser desfeita.</string>
 
 
     <!-- CAMPOS -->
@@ -157,16 +158,20 @@
     <string name="validar_codigoSenha">O código digitado não corresponde ao enviado. Tente novamente.</string>
     <string name="validar_dtnasc">A idade não pode ser menor que 15 anos.</string>
     <string name="validar_codarea">O código de área deve possuir mais de 2 caracteres numéricos.</string>
+    <string name="validar_dtinicio">A data inicial não pode ser anterior à data atual.</string>
+    <string name="validar_dtfim">A data final não pode ser anterior à data inicial.</string>
 
     <!-- NEGAÇÕES -->
     <string name="encontrado_usuario">Nenhum usuário encontrado.</string>
     <string name="expirado_codigo">O código enviado expirou. Solicite um novo para prosseguir.</string>
+    <string name="encontrado_registro">Nenhum registro encontrado.</string>
 
     <!-- CONFIRMAÇÕES -->
     <string name="sucesso_alterar_senha">A senha foi alterada com sucesso.</string>
     <string name="sucesso_enviar_codigoSenha">Código de confirmação enviado com sucesso.</string>
     <string name="sucesso_alterar_usuario">O usuário foi alterado com sucesso.</string>
     <string name="sucesso_criar_usuario">Usuário criado com sucesso.</string>
+    <string name="sucesso_excluir_viagem">Viagem deletada com sucesso.</string>
 
 
     <!-- MENSAGENS DE ERRO -->
@@ -176,6 +181,7 @@
     <string name="erro_autenticar">Usuário ou senha inválidos. Tente novamente.</string>
     <string name="erro_alterar_usuario">Os dados do usuário não foram alterado.</string>
     <string name="erro_criar_usuario">Ocorreu um erro ao criar usuário.</string>
+    <string name="erro_excluir_viagem">A viagem não pôde ser deletada.</string>
 
 
 </resources>
