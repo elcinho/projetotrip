@@ -75,7 +75,6 @@ public class UsuarioShowActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(titulo_show);
 
-
         uss_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -118,7 +117,6 @@ public class UsuarioShowActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         fab_editar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,25 +220,39 @@ public class UsuarioShowActivity extends AppCompatActivity {
     }
 
     public void salvar(){
+        if(IsValido()){
+            Usuario usuario = new Usuario();
 
-        Usuario usuario = new Usuario();
+            usuario.setUs_id(usuaruioid);
+            usuario.setUs_nome(uss_nome.getText().toString());
+            usuario.setUs_dtnasc(uss_dtnasc.getText().toString());
+            usuario.setUs_email(uss_email.getText().toString());
+            usuario.setUs_codarea(uss_codarea.getText().toString());
+            usuario.setUs_telefone(uss_telefone.getText().toString());
+            usuario.setUs_latitude(uss_localizacao.getText().toString());
+            usuario.setUs_longitude(uss_localizacao.getText().toString());
+            usuario.setUs_cod(uss_cod.getText().toString());
 
-        usuario.setUs_id(usuaruioid);
-        usuario.setUs_nome(uss_nome.getText().toString());
-        usuario.setUs_dtnasc(uss_dtnasc.getText().toString());
-        usuario.setUs_email(uss_email.getText().toString());
-        usuario.setUs_codarea(uss_codarea.getText().toString());
-        usuario.setUs_telefone(uss_telefone.getText().toString());
-        usuario.setUs_latitude(uss_localizacao.getText().toString());
-        usuario.setUs_longitude(uss_localizacao.getText().toString());
-        usuario.setUs_cod(uss_cod.getText().toString());
-
-        boolean sucesso = new UsuarioDAO(contexto).atualizar(usuario, usuaruioid);
-        if(sucesso){
-            Toast.makeText(contexto, contexto.getResources().getString(R.string.sucesso_alterar_usuario), Toast.LENGTH_LONG).show();
+            boolean sucesso = new UsuarioDAO(contexto).atualizar(usuario, usuaruioid);
+            if(sucesso){
+                Toast.makeText(contexto, contexto.getResources().getString(R.string.sucesso_alterar_usuario), Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(contexto, contexto.getResources().getString(R.string.erro_alterar_usuario), Toast.LENGTH_LONG).show();
+            }
         }
         else{
-            Toast.makeText(contexto, contexto.getResources().getString(R.string.erro_alterar_usuario), Toast.LENGTH_LONG).show();
+            Toast.makeText(contexto, contexto.getResources().getString(R.string.erro_validar_campos), Toast.LENGTH_LONG).show();
+            uss_nome.requestFocus();
+        }
+    }
+
+    public boolean IsValido(){
+        if(v_nome && v_dtnasc && v_codarea && v_telefone){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
@@ -327,5 +339,4 @@ public class UsuarioShowActivity extends AppCompatActivity {
             AtualizarData();
         }
     }
-
 }

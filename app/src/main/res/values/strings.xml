@@ -166,13 +166,16 @@
     <string name="sucesso_alterar_senha">A senha foi alterada com sucesso.</string>
     <string name="sucesso_enviar_codigoSenha">Código de confirmação enviado com sucesso.</string>
     <string name="sucesso_alterar_usuario">O usuário foi alterado com sucesso.</string>
+    <string name="sucesso_criar_usuario">Usuário criado com sucesso.</string>
 
 
     <!-- MENSAGENS DE ERRO -->
+    <string name="erro_validar_campos">Existem campos que não foram validados. Verifique os dados e tente novamente.</string>
     <string name="erro_alterar_senha">A senha não foi alterada. Tente novamente.</string>
     <string name="erro_gerar_codigo">Erro ao gerar o código de confirmação. A senha não será alterada.</string>
     <string name="erro_autenticar">Usuário ou senha inválidos. Tente novamente.</string>
-    <string name="erro_alterar_usuario">Os dados do usuário não foi alterado.</string>
+    <string name="erro_alterar_usuario">Os dados do usuário não foram alterado.</string>
+    <string name="erro_criar_usuario">Ocorreu um erro ao criar usuário.</string>
 
 
 </resources>
