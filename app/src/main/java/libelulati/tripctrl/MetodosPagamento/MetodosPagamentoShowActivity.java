@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -15,11 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -34,8 +31,6 @@ import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Viagens.Viagens;
-import libelulati.tripctrl.Viagens.ViagensDAO;
 
 public class MetodosPagamentoShowActivity extends AppCompatActivity {
 
@@ -70,19 +65,19 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
 
         fab_editar = (FloatingActionButton) findViewById(R.id.fab_me_editar);
         mp_detalhe = (EditText) findViewById(R.id.ed_mp_detalhe);
-        mp_valor = (EditText) findViewById(R.id.ed_mp_Valor);
-        mp_tipopagamento = (EditText) findViewById(R.id.ed_mp_tipoPagamento);
+        mp_tipopagamento = (EditText) findViewById(R.id.ed_mp_tipopagamento);
         mp_viagem = (EditText) findViewById(R.id.ed_mp_viagem);
+        mp_valor = (EditText) findViewById(R.id.ed_mp_valor);
         mp_vencimento = (EditText) findViewById(R.id.ed_mp_vencimento);
         spinnerViagem = (Spinner) findViewById(R.id.sp_mp_viagem);
         spinnerTipoPagamento = (Spinner) findViewById(R.id.sp_mp_tipopagamento);
 
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mp_viagem.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(mp_detalhe.getWindowToken(), 0);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        Intent it_vis_show = getIntent();
-        Bundle bundle = it_vis_show.getExtras();
+        Intent it_mp_show = getIntent();
+        Bundle bundle = it_mp_show.getExtras();
 
         mp_id = bundle.getInt(StringsNomes.getMeId());
         mp_viagem.setText(bundle.getString(StringsNomes.getViId()));
@@ -91,8 +86,8 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
         mp_valor.setText(bundle.getString(StringsNomes.getMeValor()));
         mp_vencimento.setText(bundle.getString(StringsNomes.getMeVencimento()));
 
-        titulo_show = context.getResources().getString(R.string.title_activity_metodos_pagamento_show) + " " + mp_viagem.getText().toString();
-        titulo_edit = context.getResources().getString(R.string.title_activity_metodos_pagamento_edit) + " " + mp_viagem.getText().toString();
+        titulo_show = context.getResources().getString(R.string.title_activity_metodos_pagamento_show) + " " + mp_detalhe.getText().toString();
+        titulo_edit = context.getResources().getString(R.string.title_activity_metodos_pagamento_edit) + " " + mp_detalhe.getText().toString();
 
         getSupportActionBar().setTitle(titulo_show);
 
@@ -111,7 +106,7 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
                   valido = false;
                   mp_viagem.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
               } else {
-                  ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_viagem.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                  ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_detalhe.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                   verificarnome();
               }
           }
@@ -125,7 +120,7 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
                     valido = false;
                     mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 } else {
-                    verificardtini();
+                    verificavencimento();
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
@@ -170,7 +165,8 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
                 meuSpinner.posicaoSelecionada(spinnerViagem, mp_vencimento.getText().toString());
                 meuSpinner.selecionarItem(spinnerViagem, mp_viagem);
 
-                mp_viagem.requestFocus();
+                mp_detalhe.requestFocus();
+
 
                 fab_editar.setVisibility(View.INVISIBLE);
                 mp_menu = 2;
@@ -181,17 +177,14 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
 
     public void salvar(){
 
-
-
-
         MetodosPagamento metodosPagamento = new MetodosPagamento();
 
         metodosPagamento.setUs_id(usuario);
         metodosPagamento.setMe_detalhes(mp_detalhe.getText().toString());
         metodosPagamento.setMe_vencimento(mp_vencimento.getText().toString());
-        metodosPagamento.setTp_id(Integer.parseInt(mp_tipopagamento.getText().toString()));
-        metodosPagamento.setDv_id(Integer.parseInt(mp_viagem.getText().toString()));
-        metodosPagamento.setMe_valor(Integer.parseInt(mp_valor.getText().toString()));
+        metodosPagamento.setTp_id((mp_tipopagamento.getText().toString()));
+        metodosPagamento.setDv_id((mp_viagem.getText().toString()));
+        metodosPagamento.setMe_valor((mp_valor.getText().toString()));
 
 
         boolean sucesso = new MetodosPagamentoDAO(context).atualizar(metodosPagamento, mp_id);
@@ -200,7 +193,7 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
             Toast.makeText(context, context.getResources().getString(R.string.metodospagamento) + " " + metodosPagamento.getMe_id() + " " + context.getResources().getString(R.string.sucesso_editado) + ".", Toast.LENGTH_LONG).show();
             finish();
         } else {
-            Toast.makeText(context, context.getResources().getString(R.string.erro_editar) + " " + context.getResources().getString(R.string.metodospagamento) + " " + metodosPagamento.getMe_id(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.erro_editar) + " " + context.getResources().getString(R.string.metodospagamento) + " " + metodosPagamento.getMe_detalhes(), Toast.LENGTH_LONG).show();
             finish();
         }
     }
@@ -253,7 +246,7 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
         }
     }
 
-    public void verificardtini(){
+    public void verificavencimento(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date data = sdf.parse(String.valueOf(mp_vencimento.getText().toString()));

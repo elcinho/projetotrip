@@ -6,25 +6,19 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.net.ParseException;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +29,7 @@ import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
 
-public class MetodosPagamentoEditActivity extends AppCompatActivity {
+public class MetodosPagamentoNovoActivity extends AppCompatActivity {
 
     int usuario = InicioActivity.getId_uslogado();
     int ano, mes, dia, dataclick;
@@ -51,17 +45,17 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_metodos_pagamento_edit);
+        setContentView(R.layout.activity_metodos_pagamento_novo);
 
-        context = MetodosPagamentoEditActivity.this;
+        context = MetodosPagamentoNovoActivity.this;
 
-             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mp_valor = (EditText) findViewById(R.id.ed_mp_Valor);
+        mp_valor = (EditText) findViewById(R.id.ed_mp_valor);
         mp_vencimento = (EditText) findViewById(R.id.ed_mp_vencimento);
         mp_viagem = (EditText) findViewById(R.id.ed_mp_viagem);
         mp_detalhe = (EditText) findViewById(R.id.ed_mp_detalhe);
-        mp_tipopagamento = (EditText) findViewById(R.id.ed_mp_tipoPagamento);
+        mp_tipopagamento = (EditText) findViewById(R.id.ed_mp_tipopagamento);
         spinnerTipoPagamento = (Spinner) findViewById(R.id.sp_mp_tipopagamento);
         spinnerViagem = (Spinner) findViewById(R.id.sp_mp_viagem);
 
@@ -156,15 +150,15 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
 
     public void salvar(){
 
-        mp_valor.clearFocus();
+        mp_vencimento.clearFocus();
 
         MetodosPagamento metodosPagamento = new MetodosPagamento();
 
         metodosPagamento.setUs_id(usuario);
-        metodosPagamento.setDv_id(Integer.parseInt(mp_viagem.getText().toString()));
-        metodosPagamento.setTp_id(Integer.parseInt(mp_tipopagamento.getText().toString()));
+        metodosPagamento.setDv_id((mp_viagem.getText().toString()));
+        metodosPagamento.setTp_id((mp_tipopagamento.getText().toString()));
         metodosPagamento.setMe_detalhes(mp_detalhe.getText().toString());
-        metodosPagamento.setMe_valor(Integer.parseInt(mp_valor.getText().toString()));
+        metodosPagamento.setMe_valor((mp_valor.getText().toString()));
         metodosPagamento.setMe_vencimento(mp_vencimento.getText().toString());
 
         if(valido){
@@ -185,7 +179,7 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
 
 
 
-    public void verificardtini(){
+    public void verificardtini(){ //muda para data vencimento
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date data = null;
@@ -200,7 +194,7 @@ public class MetodosPagamentoEditActivity extends AppCompatActivity {
         }
         if(!validar){
             mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, context.getResources().getString(R.string.datainicio) + ".", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.datafim) + ".", Toast.LENGTH_LONG).show();
             valido = false;
         }
         else{
