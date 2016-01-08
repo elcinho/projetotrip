@@ -62,7 +62,7 @@
 
 
     <!-- CAMPOS -->
-    <string name="codarea">Cod. Área</string>
+    <string name="codarea">Código de área / DDD</string>
     <string name="codigosenha">Código</string>
     <string name="codusuario">Código de usuário</string>
     <string name="confirmesenha">Confirme a senha</string>
@@ -155,6 +155,8 @@
     <string name="validar_codigoUsuario">O código de usuário digitado não é válido.</string>
     <string name="nulo_email">O e-mail não pode ser nulo.</string>
     <string name="validar_codigoSenha">O código digitado não corresponde ao enviado. Tente novamente.</string>
+    <string name="validar_dtnasc">A idade não pode ser menor que 15 anos.</string>
+    <string name="validar_codarea">O código de área deve possuir mais de 2 caracteres numéricos.</string>
 
     <!-- NEGAÇÕES -->
     <string name="encontrado_usuario">Nenhum usuário encontrado.</string>
@@ -163,11 +165,14 @@
     <!-- CONFIRMAÇÕES -->
     <string name="sucesso_alterar_senha">A senha foi alterada com sucesso.</string>
     <string name="sucesso_enviar_codigoSenha">Código de confirmação enviado com sucesso.</string>
+    <string name="sucesso_alterar_usuario">O usuário foi alterado com sucesso.</string>
 
 
     <!-- MENSAGENS DE ERRO -->
     <string name="erro_alterar_senha">A senha não foi alterada. Tente novamente.</string>
     <string name="erro_gerar_codigo">Erro ao gerar o código de confirmação. A senha não será alterada.</string>
     <string name="erro_autenticar">Usuário ou senha inválidos. Tente novamente.</string>
+    <string name="erro_alterar_usuario">Os dados do usuário não foi alterado.</string>
+
 
 </resources>

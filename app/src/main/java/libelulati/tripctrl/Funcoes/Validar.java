@@ -184,4 +184,22 @@ public class Validar {
             return true;
         }
     }
+
+    public static boolean ValidarCodArea(String codarea){
+        if(codarea.length() < 2){
+            return false;
+        }
+        else {
+            String numeros = "0123456789";
+            int cont = 0;
+            for(int i = 0; i < codarea.length(); i++){
+                for(int j = 0; j < numeros.length(); j++){
+                    if(codarea.charAt(i) != numeros.charAt(j)){
+                        cont++;
+                    }
+                }
+            }
+            return cont != 0;
+        }
+    }
 }

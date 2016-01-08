@@ -12,137 +12,130 @@
     tools:context="libelulati.tripctrl.Usuario.UsuarioShowActivity"
     tools:showIn="@layout/activity_usuario_show">
 
-    <TextView
-        android:id="@+id/tx_uss_nometitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/nome" />
+    <ScrollView
+        android:id="@+id/sroll_uss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tx_uss_nome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_uss_nometitulo"
-        android:text="@string/nome"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/colorAccent" />
+        <LinearLayout
+            android:id="@+id/llv_uss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tx_uss_dtnasctitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_uss_nome"
-        android:layout_marginTop="35dp"
-        android:text="@string/dtnasc" />
+            <TextView
+                android:id="@+id/tx_uss_nometitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nome" />
 
-    <TextView
-        android:id="@+id/tx_uss_dtnasc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tx_uss_nome"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/tx_uss_nome"
-        android:layout_below="@+id/tx_uss_dtnasctitulo"
-        android:text="@string/dtnasc"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/colorAccent" />
+            <EditText
+                android:id="@+id/ed_uss_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nome"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorAccent"
+                android:enabled="false"/>
 
-    <TextView
-        android:id="@+id/tx_uss_emailtitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_uss_dtnasc"
-        android:layout_marginTop="35dp"
-        android:text="@string/email" />
+            <TextView
+                android:id="@+id/tx_uss_dtnasctitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/dtnasc" />
 
-    <TextView
-        android:id="@+id/tx_uss_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tx_uss_dtnasc"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/tx_uss_dtnasc"
-        android:layout_below="@+id/tx_uss_emailtitulo"
-        android:text="@string/email"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/colorAccent" />
+            <EditText
+                android:id="@+id/ed_uss_dtnasc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/dtnasc"
+                android:inputType="date"
+                android:textColor="@color/colorAccent"
+                android:enabled="false"
+                android:onClick="showDatePickerDialog_uss_dtnasc"/>
 
-    <TextView
-        android:id="@+id/tx_uss_telefonetitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_uss_email"
-        android:layout_marginTop="35dp"
-        android:text="@string/telefone" />
+            <TextView
+                android:id="@+id/tx_uss_emailtitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/email" />
 
-    <TextView
-        android:id="@+id/tx_uss_telefone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tx_uss_email"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/tx_uss_email"
-        android:layout_below="@+id/tx_uss_telefonetitulo"
-        android:text="@string/telefone"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/colorAccent" />
+            <EditText
+                android:id="@+id/ed_uss_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorAccent"
+                android:enabled="false"/>
 
-    <TextView
-        android:id="@+id/tx_uss_codusuariotitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_uss_localizacao"
-        android:layout_marginTop="35dp"
-        android:text="@string/codusuario" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/codarea"
+                android:id="@+id/tx_uss_codarea"
+                android:layout_marginTop="15dp"/>
 
-    <TextView
-        android:id="@+id/tx_uss_codusuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_uss_codusuariotitulo"
-        android:text="@string/codusuario"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/colorAccent" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ed_uss_codarea"
+                android:hint="@string/codarea"
+                android:textColor="@color/colorAccent"
+                android:enabled="false"/>
 
-    <TextView
-        android:id="@+id/tx_uss_localizacaotitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_uss_telefone"
-        android:layout_marginTop="35dp"
-        android:text="@string/localizacao" />
+            <TextView
+                android:id="@+id/tx_uss_telefonetitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/telefone" />
 
-    <TextView
-        android:id="@+id/tx_uss_localizacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tx_uss_localizacaotitulo"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/colorAccent" />
+            <EditText
+                android:id="@+id/ed_uss_telefone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/telefone"
+                android:inputType="phone"
+                android:textColor="@color/colorAccent"
+                android:enabled="false"/>
+
+            <TextView
+                android:id="@+id/tx_uss_localizacaotitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/localizacao" />
+
+            <EditText
+                android:id="@+id/ed_uss_localizacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/localizacao"
+                android:textColor="@color/colorAccent"
+                android:enabled="false"/>
+
+            <TextView
+                android:id="@+id/tx_uss_codusuariotitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/codusuario" />
+
+            <EditText
+                android:id="@+id/ed_uss_codusuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/codusuario"
+                android:textColor="@color/colorAccent"
+                android:enabled="false"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
 
 </RelativeLayout>

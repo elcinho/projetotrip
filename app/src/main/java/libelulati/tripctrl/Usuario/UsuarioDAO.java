@@ -78,16 +78,6 @@ public class UsuarioDAO extends BancoDados {
         return sucesso;
     }
 
-    public int contar() {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = DBSelects.getSelecionarTodosUsuarios();
-        int contador = db.rawQuery(sql, null).getCount();
-        db.close();
-
-        return contador;
-    }
-
     public Usuario buscaId(int id) {
 
         Usuario usuario = null;

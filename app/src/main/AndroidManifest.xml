@@ -37,11 +37,6 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".Senha.NovaSenhaActivity"
-            android:label="@string/title_activity_nova_senha"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
             android:name=".Inicio.InicioActivity"
             android:label="@string/title_activity_inicio"
             android:theme="@style/AppTheme" />
@@ -188,15 +183,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
-        </activity>
-        <activity
-            android:name=".Usuario.UsuarioEditActivity"
-            android:label="@string/title_activity_usuario_edit"
-            android:parentActivityName=".Usuario.UsuarioShowActivity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Usuario.UsuarioShowActivity" />
         </activity>
         <activity
             android:name=".Viagens.ViagensNovoActivity"
