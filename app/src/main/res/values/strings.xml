@@ -13,7 +13,7 @@
     <string name="title_activity_gastos_list">Gastos</string>
     <string name="title_activity_inicio">Início</string>
     <string name="title_activity_main">Bem vindo ao trip control</string>
-    <string name="title_activity_metodos_pagamento_edit">Editar Método de Pagamento</string>
+    <string name="title_activity_metodos_pagamento_edit">Novo Método de Pagamento</string>
     <string name="title_activity_metodos_pagamento_list">Métodos de Pagamento</string>
     <string name="title_activity_metodos_pagamento_show">Método de Pagamento</string>
     <string name="title_activity_nova_senha">Cadastrar nova senha</string>

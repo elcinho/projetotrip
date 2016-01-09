@@ -192,7 +192,7 @@ public class ViagensListActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 dialog.dismiss();
-            }
+       }
         });
 
         confirme = builder.create();
