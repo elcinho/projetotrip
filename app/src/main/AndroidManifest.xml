@@ -86,7 +86,7 @@
                 android:value=".MetodosPagamento.MetodosPagamentoListActivity" />
         </activity>
         <activity
-            android:name=".MetodosPagamento.MetodosPagamentoEditActivity"
+            android:name=".MetodosPagamento.MetodosPagamentoNovoActivity"
             android:label="@string/title_activity_metodos_pagamento_edit"
             android:parentActivityName=".MetodosPagamento.MetodosPagamentoShowActivity"
             android:theme="@style/AppTheme">

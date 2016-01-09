@@ -14,15 +14,11 @@ import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
 
 
-/**
- * Created by elcinho on 10/12/2015.
- */
 public class MetodosPagamentoDAO extends BancoDados {
 
     public MetodosPagamentoDAO(Context context) {
         super(context);
     }
-
 
     public boolean criar(MetodosPagamento metodospagamento) {
 
@@ -55,13 +51,13 @@ public class MetodosPagamentoDAO extends BancoDados {
         if (cursor.moveToFirst()) {
             do {
 
-                int dv_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getViId())));
-                int tp_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getTpId())));
-                float me_valor = Integer.parseInt(cursor.getString((cursor.getColumnIndex(StringsNomes.getMeValor()))));
+                int me_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getMeId())));
+                String me_detalhe = (cursor.getString(cursor.getColumnIndex(StringsNomes.getMeDetalhe())));
+                String me_valor = (cursor.getString((cursor.getColumnIndex(StringsNomes.getMeValor()))));
                 String me_vencimento = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeVencimento()));
 
 
-                MetodosPagamento metodospagamento = new MetodosPagamento(dv_id, tp_id, me_valor, me_vencimento);
+                MetodosPagamento metodospagamento = new MetodosPagamento(me_id, me_detalhe, me_valor, me_vencimento);
 
                 listaRegistros.add(metodospagamento);
             } while (cursor.moveToNext());
@@ -87,14 +83,13 @@ public class MetodosPagamentoDAO extends BancoDados {
         if (cursor.moveToFirst()) {
 
             int me_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getID())));
-            int dv_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getMeId())));
-            int tp_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getTpId())));
+            String dv_id = (cursor.getString(cursor.getColumnIndex(StringsNomes.getMeId())));
+            String tp_id = (cursor.getString(cursor.getColumnIndex(StringsNomes.getTpId())));
             String me_detalhe = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeDetalhe()));
-            float me_valor = Integer.parseInt(cursor.getString((cursor.getColumnIndex(StringsNomes.getMeValor()))));
+            String me_valor = (cursor.getString((cursor.getColumnIndex(StringsNomes.getMeValor()))));
             String me_vencimento = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeVencimento()));
 
-            metodosPagamento = new MetodosPagamento();
-
+            metodosPagamento = new MetodosPagamento(me_id, me_detalhe, me_valor, me_vencimento);
             metodosPagamento.setMe_id(me_id);
             metodosPagamento.setDv_id(dv_id);//destrangeira viagem
             metodosPagamento.setTp_id(tp_id);// estragneira tipo de pagamento
@@ -146,14 +141,14 @@ public class MetodosPagamentoDAO extends BancoDados {
     }
 
     public List SpinerTipoPagamento() {
-        List<String> listaTipoPagamento = new ArrayList<String>();
+        List<String> listaTipoPagamento = new ArrayList<>();
         String sql = DBSelects.getSelecionarTodosTipoPagamento();
         SQLiteDatabase db = getWritableDatabase();
 
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToNext()) {
 
-            int indice = cursor.getColumnIndex(StringsNomes.getID());
+            int indice = cursor.getColumnIndex(StringsNomes.getTpId());
             do {
                 listaTipoPagamento.add(cursor.getString(indice));
             } while (cursor.moveToNext());
@@ -164,7 +159,7 @@ public class MetodosPagamentoDAO extends BancoDados {
     }
 
     public List SpinerViagem() {
-        List<String> listaViagem = new ArrayList<String>();
+        List<String> listaViagem = new ArrayList<>();
         String sql = DBSelects.getSelecionarTodosViagens();
         SQLiteDatabase db = getWritableDatabase();
 
@@ -172,7 +167,7 @@ public class MetodosPagamentoDAO extends BancoDados {
 
         if (cursor.moveToNext()) {
 
-            int indice = cursor.getColumnIndex(StringsNomes.getID());
+            int indice = cursor.getColumnIndex(StringsNomes.getViId());
             do {
                 listaViagem.add(cursor.getString(indice));
 
