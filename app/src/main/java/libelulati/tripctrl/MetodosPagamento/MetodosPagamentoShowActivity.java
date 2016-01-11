@@ -6,8 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +28,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-
 import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Funcoes.Validar;
@@ -33,108 +35,92 @@ import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
 public class MetodosPagamentoShowActivity extends AppCompatActivity {
-
     int usuario = InicioActivity.getId_uslogado();
-    int ano, mes, dia, dataclick , mp_id , mp_menu;
-    StringBuilder dataformatada;
-    boolean validar, valido;
-    Context context;
-    MenuItem mp_salvar;
-    Spinner spinnerTipoPagamento , spinnerViagem;
-    private List<String> listaTipoPagamento, listaViagem;
-    private EditText mp_valor , mp_detalhe, mp_viagem, mp_vencimento , mp_tipopagamento;
-    MeuSpinner meuSpinner = new MeuSpinner();
-    FloatingActionButton fab_editar;
+    int ano, mes, dia, mps_id, mps_menu;
     String titulo_show, titulo_edit;
-
-
-
+    StringBuilder dataformatada;
+    boolean validar, v_detalhe, v_dtvenc, v_valor;
+    Context context;
+    MenuItem mps_salvar;
+    EditText mps_detalhe, mps_viagem, mps_tipopagamento, mps_dtvenc, mps_valor;
+    Spinner mps_sp_tppagamento, mps_sp_viagem;
+    FloatingActionButton fab_editar;
+    List<String> listatipopagamento, listaviagem;
+    MeuSpinner meuSpinner = new MeuSpinner();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_metodos_pagamento_show);
+        setContentView(R.layout.activity_metodospagamento_show);
 
-
+        context = MetodosPagamentoShowActivity.this;
+        mps_menu = 1;
+        invalidateOptionsMenu();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        context = MetodosPagamentoShowActivity.this;
-        mp_menu = 1;
-        invalidateOptionsMenu();
-
-        fab_editar = (FloatingActionButton) findViewById(R.id.fab_me_editar);
-        mp_detalhe = (EditText) findViewById(R.id.ed_mp_detalhe);
-        mp_tipopagamento = (EditText) findViewById(R.id.ed_mp_tipopagamento);
-        mp_viagem = (EditText) findViewById(R.id.ed_mp_viagem);
-        mp_valor = (EditText) findViewById(R.id.ed_mp_valor);
-        mp_vencimento = (EditText) findViewById(R.id.ed_mp_vencimento);
-        spinnerViagem = (Spinner) findViewById(R.id.sp_mp_viagem);
-        spinnerTipoPagamento = (Spinner) findViewById(R.id.sp_mp_tipopagamento);
+        fab_editar = (FloatingActionButton) findViewById(R.id.fab_mp_edit);
+        mps_detalhe = (EditText)findViewById(R.id.ed_mps_detalhe);
+        mps_viagem = (EditText)findViewById(R.id.ed_mps_viagem);
+        mps_tipopagamento = (EditText)findViewById(R.id.ed_mps_tipopagamento);
+        mps_dtvenc = (EditText)findViewById(R.id.ed_mps_dtvenc);
+        mps_valor = (EditText)findViewById(R.id.ed_mps_valortotal);
+        mps_sp_tppagamento = (Spinner)findViewById(R.id.sp_mps_tipopagamento);
+        mps_sp_viagem = (Spinner)findViewById(R.id.sp_mps_viagem);
 
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mp_detalhe.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(mps_detalhe.getWindowToken(), 0);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        Intent it_mp_show = getIntent();
-        Bundle bundle = it_mp_show.getExtras();
+        Intent it_mps_show = getIntent();
+        Bundle bundle = it_mps_show.getExtras();
 
-        mp_id = bundle.getInt(StringsNomes.getMeId());
-        mp_viagem.setText(bundle.getString(StringsNomes.getViId()));
-        mp_tipopagamento.setText(bundle.getString(StringsNomes.getTpId()));
-        mp_detalhe.setText(bundle.getString(StringsNomes.getMeDetalhe()));
-        mp_valor.setText(bundle.getString(StringsNomes.getMeValor()));
-        mp_vencimento.setText(bundle.getString(StringsNomes.getMeVencimento()));
+        mps_id = bundle.getInt(StringsNomes.getID());
+        mps_detalhe.setText(bundle.getString(StringsNomes.getMeDetalhe()));
+        mps_dtvenc.setText(bundle.getString(StringsNomes.getMeVencimento()));
+        mps_tipopagamento.setText(bundle.getString(StringsNomes.getTpId()));
+        mps_viagem.setText(bundle.getString(StringsNomes.getViId()));
+        mps_valor.setText(bundle.getString(StringsNomes.getMeValor()));
 
-        titulo_show = context.getResources().getString(R.string.title_activity_metodos_pagamento_show) + " " + mp_detalhe.getText().toString();
-        titulo_edit = context.getResources().getString(R.string.title_activity_metodos_pagamento_edit) + " " + mp_detalhe.getText().toString();
+        titulo_show = context.getResources().getString(R.string.title_activity_metodos_pagamento_show) + " " + mps_detalhe.getText().toString();
+        titulo_edit = context.getResources().getString(R.string.title_activity_metodos_pagamento_edit) + " " + mps_detalhe.getText().toString();
 
         getSupportActionBar().setTitle(titulo_show);
 
-        listaViagem = new MetodosPagamentoDAO(context).SpinerViagem();
-        listaTipoPagamento = new MetodosPagamentoDAO(context).SpinerTipoPagamento();
+        listatipopagamento = new MetodosPagamentoDAO(context).sp_tipospagamento();
+        listaviagem = new MetodosPagamentoDAO(context).sp_viagens();
 
+        mps_viagem.setInputType(InputType.TYPE_NULL);
+        mps_tipopagamento.setInputType(InputType.TYPE_NULL);
+        mps_dtvenc.setInputType(InputType.TYPE_NULL);
 
-        mp_vencimento.setInputType(InputType.TYPE_NULL);
-        mp_viagem.setInputType(InputType.TYPE_NULL);
-        mp_tipopagamento.setInputType(InputType.TYPE_NULL);
-
-      mp_viagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-          @Override
-          public void onFocusChange(View v, boolean hasFocus) {
-              if (hasFocus) {
-                  valido = false;
-                  mp_viagem.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-              } else {
-                  ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_detalhe.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                  verificarnome();
-              }
-          }
-      });
-
-        mp_vencimento.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        mps_detalhe.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                    valido = false;
-                    mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                } else {
-                    verificavencimento();
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                if (!hasFocus) {
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mps_detalhe.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    verificardetalhe();
                 }
             }
         });
 
-
-        mp_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        mps_dtvenc.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    valido = false;
-                    mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mps_dtvenc.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 } else {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_valor.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mps_dtvenc.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    verificardtvenc();
+                }
+            }
+        });
+
+        mps_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mps_valor.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     verificarvalor();
                 }
             }
@@ -142,34 +128,33 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
 
         fab_editar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
 
                 getSupportActionBar().setTitle(titulo_edit);
 
-                mp_valor.setEnabled(true);
-                mp_vencimento.setEnabled(true);
-                mp_detalhe.setEnabled(true);
-                mp_tipopagamento.setEnabled(true);
-                mp_viagem.setEnabled(true);
-                spinnerTipoPagamento.setVisibility(View.VISIBLE);
-                spinnerViagem.setVisibility(View.VISIBLE);
+                mps_detalhe.setEnabled(true);
+                mps_dtvenc.setEnabled(true);
+                mps_valor.setEnabled(true);
+                mps_tipopagamento.setEnabled(true);
+                mps_viagem.setEnabled(true);
+                mps_sp_tppagamento.setVisibility(View.VISIBLE);
+                mps_sp_viagem.setVisibility(View.VISIBLE);
 
-                mp_tipopagamento.setTextColor(getResources().getColor(R.color.colorBranco));
-                mp_viagem.setTextColor(getResources().getColor(R.color.colorBranco));
+                mps_viagem.setTextColor(getResources().getColor(R.color.colorBranco));
+                mps_tipopagamento.setTextColor(getResources().getColor(R.color.colorBranco));
 
-                meuSpinner.preencherSpinner(context, listaTipoPagamento, spinnerTipoPagamento);
-                meuSpinner.posicaoSelecionada(spinnerTipoPagamento, mp_tipopagamento.getText().toString());
-                meuSpinner.selecionarItem(spinnerTipoPagamento, mp_tipopagamento);
+                meuSpinner.preencherSpinner(context, listatipopagamento, mps_sp_tppagamento);
+                meuSpinner.posicaoSelecionada(mps_sp_tppagamento, mps_tipopagamento.getText().toString());
+                meuSpinner.selecionarItem(mps_sp_tppagamento, mps_tipopagamento);
 
-                meuSpinner.preencherSpinner(context, listaViagem,spinnerViagem);
-                meuSpinner.posicaoSelecionada(spinnerViagem, mp_vencimento.getText().toString());
-                meuSpinner.selecionarItem(spinnerViagem, mp_viagem);
+                meuSpinner.preencherSpinner(context, listaviagem, mps_sp_viagem);
+                meuSpinner.posicaoSelecionada(mps_sp_viagem, mps_viagem.getText().toString());
+                meuSpinner.selecionarItem(mps_sp_viagem, mps_viagem);
 
-                mp_detalhe.requestFocus();
-
+                mps_detalhe.requestFocus();
 
                 fab_editar.setVisibility(View.INVISIBLE);
-                mp_menu = 2;
+                mps_menu = 2;
                 invalidateOptionsMenu();
             }
         });
@@ -177,24 +162,29 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
 
     public void salvar(){
 
+        mps_valor.clearFocus();
+
         MetodosPagamento metodosPagamento = new MetodosPagamento();
 
         metodosPagamento.setUs_id(usuario);
-        metodosPagamento.setMe_detalhes(mp_detalhe.getText().toString());
-        metodosPagamento.setMe_vencimento(mp_vencimento.getText().toString());
-        metodosPagamento.setTp_id((mp_tipopagamento.getText().toString()));
-        metodosPagamento.setDv_id((mp_viagem.getText().toString()));
-        metodosPagamento.setMe_valor((mp_valor.getText().toString()));
+        metodosPagamento.setMp_detalhe(mps_detalhe.getText().toString());
+        metodosPagamento.setVi_id(mps_viagem.getText().toString());
+        metodosPagamento.setTp_id(mps_tipopagamento.getText().toString());
+        metodosPagamento.setMp_dtvenc(mps_dtvenc.getText().toString());
+        metodosPagamento.setMp_valor(mps_valor.getText().toString());
 
+        if(IsValido()){
+            boolean sucesso = new MetodosPagamentoDAO(context).atualizar(metodosPagamento, mps_id);
 
-        boolean sucesso = new MetodosPagamentoDAO(context).atualizar(metodosPagamento, mp_id);
-
-        if (sucesso) {
-            Toast.makeText(context, context.getResources().getString(R.string.metodospagamento) + " " + metodosPagamento.getMe_id() + " " + context.getResources().getString(R.string.sucesso_editado) + ".", Toast.LENGTH_LONG).show();
+            if (sucesso) {
+                Toast.makeText(context, context.getResources().getString(R.string.sucesso_alterar_metodopagamento), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, context.getResources().getString(R.string.erro_alterar_metodopagamento), Toast.LENGTH_LONG).show();
+            }
             finish();
-        } else {
-            Toast.makeText(context, context.getResources().getString(R.string.erro_editar) + " " + context.getResources().getString(R.string.metodospagamento) + " " + metodosPagamento.getMe_detalhes(), Toast.LENGTH_LONG).show();
-            finish();
+        }
+        else{
+            Toast.makeText(context, context.getResources().getString(R.string.erro_validar_campos), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -202,13 +192,13 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu_salvar, menu);
-        mp_salvar = menu.findItem(R.id.mn_gb_salvar);
-        switch (mp_menu){
+        mps_salvar = menu.findItem(R.id.mn_gb_salvar);
+        switch (mps_menu){
             case 1:
-                mp_salvar.setVisible(false);
+                mps_salvar.setVisible(false);
                 break;
             case 2:
-                mp_salvar.setVisible(true);
+                mps_salvar.setVisible(true);
                 break;
         }
         return (true);
@@ -233,59 +223,61 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
         }
     }
 
-    public void verificarnome(){
-        validar = Validar.ValidarNome(String.valueOf(mp_viagem.getText().toString()));
+    public void verificardetalhe(){
+        validar = Validar.ValidarNome(String.valueOf(mps_detalhe.getText().toString()));
         if(!validar){
-            mp_viagem.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, context.getResources().getString(R.string.viagem) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
-            valido = false;
+            mps_detalhe.setError(context.getResources().getString(R.string.validar_detalhe));
+            v_detalhe = false;
         }
         else{
-            mp_viagem.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-            valido = true;
+            v_detalhe = true;
         }
     }
 
-    public void verificavencimento(){
+    public void verificardtvenc(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            Date data = sdf.parse(String.valueOf(mp_vencimento.getText().toString()));
+            Date data = sdf.parse(String.valueOf(mps_dtvenc.getText().toString()));
             validar = Validar.ValidarDataInicio(data);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if(!validar){
-            mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, context.getResources().getString(R.string.datainicio) + ".", Toast.LENGTH_LONG).show();
-            valido = false;
+        if(!validar) {
+            mps_dtvenc.setError(context.getResources().getString(R.string.validar_dtinicio));
+            v_dtvenc = false;
         }
         else{
-            mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-            valido = true;
+            v_dtvenc = true;
         }
     }
 
-
     public void verificarvalor(){
         double valor = 0;
-        if(mp_valor.length() > 1){
-            valor = Double.parseDouble(mp_valor.getText().toString());
+        if(mps_valor.length()>0){
+            valor = Double.parseDouble(mps_valor.getText().toString());
             if(valor != 0){
                 validar = Validar.ValidarValor(valor);
                 if(!validar){
-                    mp_valor.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                    Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
-                    valido = false;
+                    mps_valor.setError(context.getResources().getString(R.string.validar_valor));
+                    v_valor = false;
                 }
                 else{
-                    mp_valor.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                    valido = true;
+                    v_valor = true;
                 }
             }
         }
         else{
-            mp_valor.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.nao_vazio) + ".", Toast.LENGTH_LONG).show();
+            mps_valor.setError(context.getResources().getString(R.string.validar_valor));
+            v_valor = false;
+        }
+    }
+
+    public boolean IsValido(){
+        if(v_detalhe && v_dtvenc && v_valor){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
@@ -298,24 +290,15 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
 
     public void AtualizarData() {
         dataformatada = (new StringBuilder().append(dia).append("/").append(mes).append("/").append(ano));
-
-        switch (dataclick){
-            case 1:
-                mp_valor.setText(dataformatada);
-                break;
-            default:
-                dataclick = 0;
-                break;
-        }
+        mps_dtvenc.setText(dataformatada);
     }
 
-    public void showDatePickerDialog_mp_dataVencimento(View view) {
-        android.app.DialogFragment dialogFragment = new DatePickerFragment();
-        dialogFragment.show(getFragmentManager(), "datepicker");
-        dataclick = 1;
+    public void showDatePickerDialog_mps_dtvenc(View view) {
+        DialogFragment dialogFragment = new DatePickerFragment();
+        dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
 
-    public class DatePickerFragment extends android.app.DialogFragment implements DatePickerDialog.OnDateSetListener {
+    public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             calendario();

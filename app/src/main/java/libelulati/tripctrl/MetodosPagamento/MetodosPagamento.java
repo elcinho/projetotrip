@@ -1,31 +1,30 @@
 package libelulati.tripctrl.MetodosPagamento;
 
 public class MetodosPagamento {
-
-    private int me_id;
-    private int us_id;
-    private String dv_id;
-    private String tp_id;
-    private String me_valor;
-    private String me_detalhes;
-    private String me_vencimento;
+    int mp_id;
+    int us_id;
+    String vi_id;
+    String tp_id;
+    String mp_detalhe;
+    String mp_dtvenc;
+    String mp_valor;
 
     public MetodosPagamento() {
-
     }
 
-    public MetodosPagamento(int me_id, String me_detalhe, String me_valor, String me_vencimento) {
-        this.me_id = me_id;
-        this.me_valor = me_valor;
-        this.me_detalhes = me_detalhe;
-        this.me_vencimento = me_vencimento;
+    public MetodosPagamento(int mp_id, String mp_detalhe, String mp_dtvenc, String mp_valor) {
+        this.mp_id = mp_id;
+        this.mp_detalhe = mp_detalhe;
+        this.mp_dtvenc = mp_dtvenc;
+        this.mp_valor = mp_valor;
     }
 
+    public int getMp_id() {
+        return mp_id;
+    }
 
-    public int getMe_id () {return me_id;}
-
-    public void setMe_id(int me_id) {
-        this.me_id = me_id;
+    public void setMp_id(int mp_id) {
+        this.mp_id = mp_id;
     }
 
     public int getUs_id() {
@@ -36,12 +35,12 @@ public class MetodosPagamento {
         this.us_id = us_id;
     }
 
-    public String getDv_id() {
-        return dv_id;
+    public String getVi_id() {
+        return vi_id;
     }
 
-    public void setDv_id(String dv_id) {
-        this.dv_id = dv_id;
+    public void setVi_id(String vi_id) {
+        this.vi_id = vi_id;
     }
 
     public String getTp_id() {
@@ -52,24 +51,27 @@ public class MetodosPagamento {
         this.tp_id = tp_id;
     }
 
-    public String getMe_valor() {
-        return me_valor;
+    public String getMp_detalhe() {
+        return mp_detalhe;
     }
 
-    public void setMe_valor(String me_valor) {
-        this.me_valor = me_valor;
+    public void setMp_detalhe(String mp_detalhe) {
+        this.mp_detalhe = mp_detalhe;
     }
 
-    public String getMe_vencimento() {
-        return me_vencimento;
+    public String getMp_dtvenc() {
+        return mp_dtvenc;
     }
 
-    public void setMe_vencimento(String me_vencimento) {
-        this.me_vencimento = me_vencimento;
+    public void setMp_dtvenc(String mp_dtvenc) {
+        this.mp_dtvenc = mp_dtvenc;
     }
 
-    public String getMe_detalhes() { return me_detalhes; }
+    public String getMp_valor() {
+        return mp_valor;
+    }
 
-    public void setMe_detalhes (String me_detalhe) {this.me_detalhes = me_detalhe;}
-
+    public void setMp_valor(String mp_valor) {
+        this.mp_valor = mp_valor;
+    }
 }

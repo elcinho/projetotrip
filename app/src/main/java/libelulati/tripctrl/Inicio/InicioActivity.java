@@ -91,7 +91,8 @@ public class InicioActivity extends AppCompatActivity {
                 bundle.putString(StringsNomes.getUsNome(), usuario.getUs_nome());
                 bundle.putString(StringsNomes.getUsDtnasc(), usuario.getUs_dtnasc());
                 bundle.putString(StringsNomes.getUsEmail(), usuario.getUs_email());
-                bundle.putString(StringsNomes.getUsTelefone(), usuario.getUs_codarea() + " " + usuario.getUs_telefone());
+                bundle.putString(StringsNomes.getUsCodarea(),usuario.getUs_codarea());
+                bundle.putString(StringsNomes.getUsTelefone(),usuario.getUs_telefone());
                 bundle.putString(StringsNomes.getUsLongitude(), usuario.getUs_longitude());
                 bundle.putString(StringsNomes.getUsCod(), usuario.getUs_cod());
 

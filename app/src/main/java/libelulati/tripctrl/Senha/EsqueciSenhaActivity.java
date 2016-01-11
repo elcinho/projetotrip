@@ -2,6 +2,7 @@ package libelulati.tripctrl.Senha;
 
 
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,7 +34,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     int envio = 0, usid = 0;
     Context context;
     String codigogerado, datasolicitacao;
-    boolean valido, validar = false;
+    boolean v_email, v_telefone, v_codigo, validar = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,41 +111,29 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     public void enviar(){
         context = EsqueciSenhaActivity.this;
 
+        es_email.clearFocus();
+        es_telefone.clearFocus();
+        es_codusuario.clearFocus();
+
         switch (envio) {
             case 1:
                 verificaremail();
-                if (valido) {
+                if (v_email) {
                     enviarcodigoemail();
                     dialogoCodigo();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.nao_alterar) + " " + getApplicationContext().getResources().getString(R.string.a) + " " + getApplicationContext().getResources().getString(R.string.senha) + ".", Toast.LENGTH_LONG).show();
                 }
                 break;
             case 2:
                 verificartelefone();
-                if (valido) {
+                if (v_email && v_telefone) {
                     enviarcodigosms();
                     dialogoCodigo();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.nao_alterar) + " " + getApplicationContext().getResources().getString(R.string.a) + " " + getApplicationContext().getResources().getString(R.string.senha) + ".", Toast.LENGTH_LONG).show();
                 }
                 break;
             case 3:
                 verificarcodigousuario();
-                if (valido) {
-                    Intent itns = new Intent(EsqueciSenhaActivity.this, NovaSenhaActivity.class);
-                    Bundle bundle = new Bundle();
-
-                    bundle.putInt("usid", usid);
-
-                    itns.putExtras(bundle);
-
-                    startActivityForResult(itns, 1);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.nao_alterar) + " " + getApplicationContext().getResources().getString(R.string.a) + " " + getApplicationContext().getResources().getString(R.string.senha) + ".", Toast.LENGTH_LONG).show();
+                if (v_email && v_codigo) {
+                    exibirAlterarSenha();
                 }
                 break;
         }
@@ -167,7 +156,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                         es_email.requestFocus();
                     } else {
                         verificaremail();
-                        if (!valido) {
+                        if (!v_email) {
                             es_email.requestFocus();
                         }
                     }
@@ -185,7 +174,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                         es_telefone.requestFocus();
                     } else {
                         verificartelefone();
-                        if (!valido) {
+                        if (!v_telefone) {
                             es_telefone.requestFocus();
                         }
                     }
@@ -204,7 +193,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                         es_codusuario.requestFocus();
                     } else {
                         verificarcodigousuario();
-                        if (!valido) {
+                        if (!v_codigo) {
                             es_codusuario.requestFocus();
                         }
                     }
@@ -216,19 +205,16 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     public void verificaremail() {
         validar = Validar.ValidarEmail(es_email.length(), String.valueOf(es_email.getText()));
         if (!validar) {
-            es_email.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.email) + " " + getApplicationContext().getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
-            valido = false;
+            es_email.setError(getApplicationContext().getResources().getString(R.string.validar_email));
+            v_email = false;
         } else {
             UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
             Usuario usuario = usuarioDAO.buscaEmail(String.valueOf(es_email.getText().toString()));
             if (usuario == null) {
-                Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.email) + " " + getApplicationContext().getResources().getString(R.string.nao_cadastrado) + ".", Toast.LENGTH_LONG).show();
-                es_email.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-                valido = false;
+                es_email.setError(getApplicationContext().getResources().getString(R.string.encontrado_usuario));
+                v_email = false;
             } else {
-                es_email.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                valido = true;
+                v_email = true;
                 usuarioid[0] = usuario.getUs_id();
                 usid = usuarioid[0];
             }
@@ -238,12 +224,10 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     public void verificartelefone() {
         validar = Validar.ValidarTelefone(es_telefone.length(), String.valueOf(es_telefone.getText()));
         if (!validar) {
-            es_telefone.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.telefone) + " " + getApplicationContext().getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
-            valido = false;
+            es_telefone.setError(getApplicationContext().getResources().getString(R.string.validar_telefone));
+            v_telefone = false;
         } else {
-            es_telefone.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-            valido = true;
+            v_telefone = true;
         }
     }
 
@@ -252,13 +236,16 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         Usuario usuario = usuarioDAO.buscaEmail(String.valueOf(es_email.getText().toString()));
         validar = Validar.ValidarCodUsuario(String.valueOf(es_codusuario.getText()), usuario.getUs_cod());
         if (!validar) {
-            es_codusuario.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.codusuario) + " " + getApplicationContext().getResources().getString(R.string.invalido) + ".", Toast.LENGTH_SHORT).show();
-            valido = false;
+            es_codusuario.setError(getApplicationContext().getResources().getString(R.string.validar_codigoUsuario));
+            v_codigo = false;
         } else {
-            es_codusuario.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-            valido = true;
+            v_codigo = true;
         }
+    }
+
+    public void exibirAlterarSenha(){
+        DialogFragment alterarsenha = new AlterarSenha(usid);
+        alterarsenha.show(getFragmentManager(), "alterarsenha");
     }
 
     public void dialogoCodigo() {
@@ -277,12 +264,12 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                 if (validar) {
                     boolean validarcod = Validar.ValidarCodigoAltSenha(String.valueOf(codigo.getText()), codigogerado);
                     if (validarcod) {
-                        dialogosenha();
+                        exibirAlterarSenha();
                     } else {
-                        Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.nao_alterar) + " " + getApplicationContext().getResources().getString(R.string.a) + " " + getApplicationContext().getResources().getString(R.string.senha) + ".", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.validar_codigoSenha), Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.codigo_espirado), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.expirado_codigo), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -298,108 +285,37 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
         codigoaltsenha.show();
     }
 
-    public void dialogosenha(){
-        AlertDialog novasenha;
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        builder.setTitle(context.getResources().getString(R.string.informenovasenha));
-        LayoutInflater inflater = getLayoutInflater();
-
-        builder.setView(inflater.inflate(R.layout.dialog_alterarsenha, null));
-
-        builder.setPositiveButton(context.getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                ns_senha = (EditText) ((Dialog) dialog).findViewById(R.id.ed_ns_senha);
-                ns_consenha = (EditText) ((Dialog) dialog).findViewById(R.id.ed_ns_confirmesenha);
-
-                salvarSenha(ns_senha.getText().toString(), ns_consenha.getText().toString());
-                finish();
-            }
-        });
-
-        builder.setNegativeButton(context.getResources().getString(R.string.opcao_cancelar), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        novasenha = builder.create();
-        novasenha.show();
-    }
-
     public void enviarcodigoemail() {
         Codigos codigos = new Codigos();
         codigogerado = codigos.AltSenha();
         datasolicitacao = Funcao.DataAtual();
-        if (codigogerado.length() > 0) {
-            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.sucesso_gerado) + ": " + codigogerado, Toast.LENGTH_LONG).show(); //TIRAR VISUALIZAÇÃO DO CODIGO
-            //IMPLEMENTAR CÓDIGOS DE ENVIO DE E-MAIL
-        } else {
-            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.nao_gerado) + ", " + getApplicationContext().getResources().getString(R.string.novamente) + ".", Toast.LENGTH_LONG).show();
-        }
+        if(v_email){
+            if (codigogerado.length() > 0) {
 
+                //IMPLEMENTAR CÓDIGOS DE ENVIO DE E-MAIL
+
+                Toast.makeText(context, getApplicationContext().getResources().getString(R.string.sucesso_enviar_codigoSenha) + ": " + codigogerado, Toast.LENGTH_LONG).show(); //TIRAR VISUALIZAÇÃO DO CODIGO
+
+            } else {
+                Toast.makeText(context, getApplicationContext().getResources().getString(R.string.erro_gerar_codigo), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void enviarcodigosms() {
         Codigos codigos = new Codigos();
         codigogerado = codigos.AltSenha();
         datasolicitacao = Funcao.DataAtual();
-        if (codigogerado.length() > 0) {
-            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.sucesso_gerado) + ": " + codigogerado, Toast.LENGTH_LONG).show(); //TIRAR VISUALIZAÇÃO DO CODIGO
-            //IMPLEMENTAR CÓDIGOS DE ENVIO DE SMS
-        } else {
-            Toast.makeText(context, getApplicationContext().getResources().getString(R.string.codigosenha) + " " + getApplicationContext().getResources().getString(R.string.nao_gerado) + ", " + getApplicationContext().getResources().getString(R.string.novamente) + ".", Toast.LENGTH_LONG).show();
-        }
+        if(v_email && v_telefone){
+            if (codigogerado.length() > 0) {
 
-    }
+                //IMPLEMENTAR CÓDIGOS DE ENVIO DE SMS
 
-     public void salvarSenha(String senha, String confsenha){
-        verificarsenha(senha);
-        verificarconfirmesenha(senha, confsenha);
-        if (valido) {
-            Usuario usuario = new UsuarioDAO(context).buscaEmail(es_email.getText().toString());
+                Toast.makeText(context, getApplicationContext().getResources().getString(R.string.sucesso_enviar_codigoSenha) + ": " + codigogerado, Toast.LENGTH_LONG).show(); //TIRAR VISUALIZAÇÃO DO CODIGO
 
-            usuario.setUs_senha(senha);
-            usuario.setUs_confirmesenha(confsenha);
-
-            boolean sucesso = new UsuarioDAO(context).alterarsenha(usuario, usuario.getUs_id());
-            if (sucesso) {
-                Toast.makeText(context, context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.sucesso_alterada) + ".", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.nao_alterada) + ".", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, getApplicationContext().getResources().getString(R.string.erro_gerar_codigo), Toast.LENGTH_LONG).show();
             }
-        } else {
-            Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.senha) + " " + context.getResources().getString(R.string.nao_alterada) + ".", Toast.LENGTH_LONG).show();
-        }
-    }
-
-
-
-    public void verificarsenha(String senha) {
-        validar = Validar.ValidarSenha(String.valueOf(senha));
-        if (!validar) {
-            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.senha) + " " + this.getResources().getString(R.string.invalida) + ".", Toast.LENGTH_LONG).show();
-            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            valido = false;
-        } else {
-            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-            valido = true;
-        }
-    }
-
-    public void verificarconfirmesenha(String senha, String confsenha) {
-       validar = Validar.ValidarConfirmeSenha(senha, confsenha);
-        if (!validar) {
-            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.senhas_diferentes) + ".", Toast.LENGTH_LONG).show();
-            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            ns_consenha.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            valido = false;
-        } else {
-            ns_senha.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-            ns_consenha.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-            valido = true;
         }
     }
 }

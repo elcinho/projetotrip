@@ -16,77 +16,49 @@
         android:id="@+id/iv_main_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/trip"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:src="@drawable/trip" />
-
-    <EditText
-        android:id="@+id/ed_main_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/iv_main_logo"
-        android:layout_marginTop="70dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/colorAccent"
-        android:textColorHint="@color/colorAccent" />
-
-    <EditText
-        android:id="@+id/ed_main_senha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ed_main_email"
-        android:layout_marginTop="45dp"
-        android:ems="10"
-        android:hint="@string/senha"
-        android:inputType="textPassword"
-        android:textColor="@color/colorAccent"
-        android:textColorHint="@color/colorAccent" />
+        android:layout_marginTop="87dp" />
 
     <Button
         android:id="@+id/bt_main_entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ed_main_senha"
-        android:layout_marginTop="50dp"
         android:background="@color/colorPrimary"
         android:text="@string/entrar"
         android:textColor="@color/colorBranco"
-        android:textSize="@dimen/fontebotoes"/>
+        android:textSize="@dimen/fontebotoes"
+        android:layout_marginTop="310dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/cadastrar"
+        android:textColor="@color/colorBranco"
+        android:textSize="@dimen/fontebotoes"
+        android:id="@+id/bt_main_cadastrar"
+        android:layout_below="@+id/bt_main_entrar"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/tx_main_esquecisenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:text="@string/esquecisenha"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/colorPrimary" />
-
-    <TextView
-        android:id="@+id/tx_main_novousuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="@string/novousuario"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/colorPrimary" />
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

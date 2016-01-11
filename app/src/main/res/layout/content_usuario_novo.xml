@@ -12,126 +12,141 @@
     tools:context="libelulati.tripctrl.Usuario.UsuarioNovoActivity"
     tools:showIn="@layout/activity_novo_usuario">
 
-    <EditText
-        android:id="@+id/ed_nu_nome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="39dp"
-        android:ems="10"
-        android:hint="@string/nome"
-        android:inputType="textCapWords|textAutoComplete"
-        android:textColor="@color/colorAccent" />
+    <ScrollView
+        android:id="@+id/sv_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/ed_nu_dtnasc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/ed_nu_nome"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_nu_nome"
-        android:layout_below="@+id/ed_nu_nome"
-        android:ems="10"
-        android:hint="@string/dtnasc"
-        android:onClick="showDatePickerDialog_new"
-        android:textColor="@color/colorAccent" />
+        <LinearLayout
+            android:id="@+id/llv_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/ed_nu_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/ed_nu_dtnasc"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_nu_dtnasc"
-        android:layout_below="@+id/ed_nu_dtnasc"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress|textAutoComplete"
-        android:textColor="@color/colorAccent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nome"
+                android:id="@+id/tx_us_nome" />
 
-    <EditText
-        android:id="@+id/ed_nu_codarea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ed_nu_localizacao"
-        android:hint="@string/codarea"
-        android:textColor="@color/colorAccent" />
+            <EditText
+                android:id="@+id/ed_nu_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/nome"
+                android:inputType="textCapWords|textAutoComplete"
+                android:textColor="@color/colorAccent" />
 
-    <EditText
-        android:id="@+id/ed_nu_telefone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/ed_nu_localizacao"
-        android:layout_alignRight="@+id/ed_nu_localizacao"
-        android:layout_below="@+id/ed_nu_localizacao"
-        android:ems="10"
-        android:hint="@string/telefone"
-        android:inputType="phone"
-        android:textColor="@color/colorAccent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dtnasc"
+                android:id="@+id/tx_us_dtnasc"
+                android:layout_marginTop="15dp"/>
 
-    <EditText
-        android:id="@+id/ed_nu_localizacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/ed_nu_email"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_nu_email"
-        android:layout_below="@+id/ed_nu_email"
-        android:ems="10"
-        android:hint="@string/localizacao"
-        android:inputType="textPostalAddress"
-        android:textColor="@color/colorAccent" />
+            <EditText
+                android:id="@+id/ed_nu_dtnasc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/dtnasc"
+                android:onClick="showDatePickerDialog_new"
+                android:textColor="@color/colorAccent" />
 
-    <EditText
-        android:id="@+id/ed_nu_senha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/ed_nu_telefone"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_nu_telefone"
-        android:layout_below="@+id/ed_nu_codarea"
-        android:layout_marginTop="31dp"
-        android:ems="10"
-        android:hint="@string/senha"
-        android:inputType="textPassword"
-        android:textColor="@color/colorAccent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:id="@+id/tx_us_email"
+                android:layout_marginTop="15dp"/>
 
-    <EditText
-        android:id="@+id/ed_nu_confirmesenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/ed_nu_senha"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_nu_senha"
-        android:layout_below="@+id/ed_nu_senha"
-        android:ems="10"
-        android:hint="@string/confirmesenha"
-        android:inputType="textPassword"
-        android:textColor="@color/colorAccent" />
+            <EditText
+                android:id="@+id/ed_nu_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress|textAutoComplete"
+                android:textColor="@color/colorAccent" />
 
-    <Button
-        android:id="@+id/bt_nu_salvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/ed_nu_confirmesenha"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_nu_confirmesenha"
-        android:background="@color/colorPrimary"
-        android:text="@string/salvar"
-        android:textColor="@color/colorBranco"
-        android:textSize="@dimen/fontebotoes" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/codarea"
+                android:id="@+id/tx_us_codarea"
+                android:layout_marginTop="15dp"/>
+
+            <EditText
+                android:id="@+id/ed_nu_codarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/codarea"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/telefone"
+                android:id="@+id/tx_us_telefone"
+                android:layout_marginTop="15dp"/>
+
+            <EditText
+                android:id="@+id/ed_nu_telefone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/telefone"
+                android:inputType="phone"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/localizacao"
+                android:id="@+id/tx_us_local"
+                android:layout_marginTop="15dp"/>
+
+            <EditText
+                android:id="@+id/ed_nu_localizacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/localizacao"
+                android:inputType="textPostalAddress"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/senha"
+                android:id="@+id/tx_us_senha"
+                android:layout_marginTop="15dp"/>
+
+            <EditText
+                android:id="@+id/ed_nu_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/senha"
+                android:inputType="textPassword"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirmesenha"
+                android:id="@+id/tx_us_confirmesenha"
+                android:layout_marginTop="15dp"/>
+
+            <EditText
+                android:id="@+id/ed_nu_confirmesenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/confirmesenha"
+                android:inputType="textPassword"
+                android:textColor="@color/colorAccent" />
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

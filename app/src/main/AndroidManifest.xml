@@ -22,7 +22,7 @@
             android:name=".Usuario.UsuarioNovoActivity"
             android:label="@string/title_activity_novo_usuario"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -31,15 +31,10 @@
             android:name=".Senha.EsqueciSenhaActivity"
             android:label="@string/title_activity_esqueci_senha"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-        </activity>
-        <activity
-            android:name=".Senha.NovaSenhaActivity"
-            android:label="@string/title_activity_nova_senha"
-            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".Inicio.InicioActivity"
@@ -49,7 +44,7 @@
             android:name=".Categoria.CategoriaListActivity"
             android:label="@string/title_activity_categoria_list"
             android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
@@ -58,7 +53,7 @@
             android:name=".Categoria.CategoriaShowActivity"
             android:label="@string/title_activity_categoria_show"
             android:parentActivityName=".Categoria.CategoriaListActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Categoria.CategoriaListActivity" />
@@ -67,7 +62,7 @@
             android:name=".Categoria.CategoriaEditActivity"
             android:label="@string/title_activity_categoria_edit"
             android:parentActivityName=".Categoria.CategoriaShowActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Categoria.CategoriaShowActivity" />
@@ -76,7 +71,7 @@
             android:name=".MetodosPagamento.MetodosPagamentoListActivity"
             android:label="@string/title_activity_metodos_pagamento_list"
             android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
@@ -85,16 +80,16 @@
             android:name=".MetodosPagamento.MetodosPagamentoShowActivity"
             android:label="@string/title_activity_metodos_pagamento_show"
             android:parentActivityName=".MetodosPagamento.MetodosPagamentoListActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MetodosPagamento.MetodosPagamentoListActivity" />
         </activity>
         <activity
             android:name=".MetodosPagamento.MetodosPagamentoNovoActivity"
-            android:label="@string/title_activity_metodos_pagamento_edit"
+            android:label="@string/title_activity_metodos_pagamento_novo"
             android:parentActivityName=".MetodosPagamento.MetodosPagamentoShowActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MetodosPagamento.MetodosPagamentoShowActivity" />
@@ -103,7 +98,7 @@
             android:name=".Viagens.ViagensListActivity"
             android:label="@string/title_activity_viagens_list"
             android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
@@ -112,7 +107,7 @@
             android:name=".Viagens.ViagensShowActivity"
             android:label="@string/title_activity_viagens_show"
             android:parentActivityName=".Viagens.ViagensListActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Viagens.ViagensListActivity" />
@@ -121,7 +116,7 @@
             android:name=".Planejamentos.PlanejamentosListActivity"
             android:label="@string/title_activity_planejamentos_list"
             android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
@@ -130,7 +125,7 @@
             android:name=".Planejamentos.PlanejamentoShowActivity"
             android:label="@string/title_activity_planejamento_show"
             android:parentActivityName=".Planejamentos.PlanejamentosListActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Planejamentos.PlanejamentosListActivity" />
@@ -139,7 +134,7 @@
             android:name=".Planejamentos.PlanejamentoEditActivity"
             android:label="@string/title_activity_planejamento_edit"
             android:parentActivityName=".Planejamentos.PlanejamentoShowActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Planejamentos.PlanejamentoShowActivity" />
@@ -148,7 +143,7 @@
             android:name=".Gastos.GastosListActivity"
             android:label="@string/title_activity_gastos_list"
             android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
@@ -157,7 +152,7 @@
             android:name=".Gastos.GastoShowActivity"
             android:label="@string/title_activity_gasto_show"
             android:parentActivityName=".Gastos.GastosListActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Gastos.GastosListActivity" />
@@ -166,7 +161,7 @@
             android:name=".Gastos.GastoEditActivity"
             android:label="@string/title_activity_gasto_edit"
             android:parentActivityName=".Gastos.GastoShowActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Gastos.GastoShowActivity" />
@@ -175,7 +170,7 @@
             android:name=".Relatorios.RelatoriosActivity"
             android:label="@string/title_activity_relatorios"
             android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
@@ -184,25 +179,16 @@
             android:name=".Usuario.UsuarioShowActivity"
             android:label="@string/title_activity_usuario_show"
             android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
-            android:name=".Usuario.UsuarioEditActivity"
-            android:label="@string/title_activity_usuario_edit"
-            android:parentActivityName=".Usuario.UsuarioShowActivity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Usuario.UsuarioShowActivity" />
-        </activity>
-        <activity
             android:name=".Viagens.ViagensNovoActivity"
             android:label="@string/title_activity_viagens_novo"
             android:parentActivityName=".Viagens.ViagensListActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Usuario.UsuarioShowActivity" />

@@ -99,9 +99,9 @@ public class ViagensDAO extends BancoDados {
             viagens.setVi_local(vi_local);
             viagens.setVi_dtini(vi_dtinicio);
             viagens.setVi_dtfim(vi_dtfim);
-            viagens.setTr_id(tr_tipotransporte); // mudar para pegar o ID do SPINNER
+            viagens.setTr_id(tr_tipotransporte);
             viagens.setVi_transporte(vi_transporte);
-            viagens.setHo_id(ho_tipohospedagem); // mudar para pegar o ID do SPINNER
+            viagens.setHo_id(ho_tipohospedagem);
             viagens.setVi_hospedagem(vi_hospedagem);
             viagens.setVi_valortotal(vi_valortotal);
         }

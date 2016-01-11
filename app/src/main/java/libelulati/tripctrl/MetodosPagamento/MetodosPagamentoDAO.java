@@ -12,25 +12,27 @@ import libelulati.tripctrl.BancoDados.BancoDados;
 import libelulati.tripctrl.BancoDados.DBSelects;
 import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
-
+import libelulati.tripctrl.R;
+import libelulati.tripctrl.Viagens.Viagens;
 
 public class MetodosPagamentoDAO extends BancoDados {
+    Context context;
 
     public MetodosPagamentoDAO(Context context) {
         super(context);
+        this.context = context;
     }
 
-    public boolean criar(MetodosPagamento metodospagamento) {
+    public boolean criar(MetodosPagamento metodosPagamento){
 
         ContentValues values = new ContentValues();
 
         values.put(StringsNomes.getUsId(), InicioActivity.getId_uslogado());
-        values.put(StringsNomes.getViId(), metodospagamento.getDv_id());
-        values.put(StringsNomes.getTpId(), metodospagamento.getTp_id());
-        values.put(StringsNomes.getMeDetalhe(), metodospagamento.getMe_detalhes());
-        values.put(StringsNomes.getMeValor(), metodospagamento.getMe_valor());
-        values.put(StringsNomes.getMeVencimento(), metodospagamento.getMe_vencimento());
-
+        values.put(StringsNomes.getViId(), metodosPagamento.getVi_id());
+        values.put(StringsNomes.getTpId(), metodosPagamento.getTp_id());
+        values.put(StringsNomes.getMeDetalhe(), metodosPagamento.getMp_detalhe());
+        values.put(StringsNomes.getMeVencimento(), metodosPagamento.getMp_dtvenc());
+        values.put(StringsNomes.getMeValor(), metodosPagamento.getMp_valor());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -40,7 +42,7 @@ public class MetodosPagamentoDAO extends BancoDados {
         return sucesso;
     }
 
-    public List<MetodosPagamento> listar() {
+    public List<MetodosPagamento> listar(){
 
         List<MetodosPagamento> listaRegistros = new ArrayList<MetodosPagamento>();
         String sql = DBSelects.getSelecionarTodosMetodosPagamento();
@@ -50,16 +52,14 @@ public class MetodosPagamentoDAO extends BancoDados {
 
         if (cursor.moveToFirst()) {
             do {
+                int mp_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getID())));
+                String mp_detalhe = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeDetalhe()));
+                String mp_dtvenc = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeVencimento()));
+                String mp_valor = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeValor()));
 
-                int me_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getMeId())));
-                String me_detalhe = (cursor.getString(cursor.getColumnIndex(StringsNomes.getMeDetalhe())));
-                String me_valor = (cursor.getString((cursor.getColumnIndex(StringsNomes.getMeValor()))));
-                String me_vencimento = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeVencimento()));
+                MetodosPagamento metodosPagamento = new MetodosPagamento(mp_id, mp_detalhe, mp_dtvenc, mp_valor);
 
-
-                MetodosPagamento metodospagamento = new MetodosPagamento(me_id, me_detalhe, me_valor, me_vencimento);
-
-                listaRegistros.add(metodospagamento);
+                listaRegistros.add(metodosPagamento);
             } while (cursor.moveToNext());
         }
 
@@ -68,7 +68,6 @@ public class MetodosPagamentoDAO extends BancoDados {
 
         return listaRegistros;
     }
-
 
     public MetodosPagamento buscarID(int id) {
 
@@ -81,22 +80,22 @@ public class MetodosPagamentoDAO extends BancoDados {
         Cursor cursor = db.rawQuery(sql, null);
 
         if (cursor.moveToFirst()) {
+            int mp_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getID())));
+            int us_id = InicioActivity.getId_uslogado();
+            String mp_detalhe = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeDetalhe()));
+            String vi_id = cursor.getString(cursor.getColumnIndex(StringsNomes.getViId()));
+            String tp_id = cursor.getString(cursor.getColumnIndex(StringsNomes.getTpId()));
+            String mp_dtvenc = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeVencimento()));
+            String mp_valor = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeValor()));
 
-            int me_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(StringsNomes.getID())));
-            String dv_id = (cursor.getString(cursor.getColumnIndex(StringsNomes.getMeId())));
-            String tp_id = (cursor.getString(cursor.getColumnIndex(StringsNomes.getTpId())));
-            String me_detalhe = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeDetalhe()));
-            String me_valor = (cursor.getString((cursor.getColumnIndex(StringsNomes.getMeValor()))));
-            String me_vencimento = cursor.getString(cursor.getColumnIndex(StringsNomes.getMeVencimento()));
-
-            metodosPagamento = new MetodosPagamento(me_id, me_detalhe, me_valor, me_vencimento);
-            metodosPagamento.setMe_id(me_id);
-            metodosPagamento.setDv_id(dv_id);//destrangeira viagem
-            metodosPagamento.setTp_id(tp_id);// estragneira tipo de pagamento
-            metodosPagamento.setMe_detalhes(me_detalhe);
-            metodosPagamento.setMe_valor(me_valor);
-            metodosPagamento.setMe_vencimento(me_vencimento);
-
+            metodosPagamento = new MetodosPagamento();
+            metodosPagamento.setMp_id(mp_id);
+            metodosPagamento.setUs_id(us_id);
+            metodosPagamento.setMp_detalhe(mp_detalhe);
+            metodosPagamento.setVi_id(vi_id);
+            metodosPagamento.setTp_id(tp_id);
+            metodosPagamento.setMp_dtvenc(mp_dtvenc);
+            metodosPagamento.setMp_valor(mp_valor);
         }
 
         cursor.close();
@@ -110,11 +109,11 @@ public class MetodosPagamentoDAO extends BancoDados {
         ContentValues values = new ContentValues();
 
         values.put(StringsNomes.getUsId(), InicioActivity.getId_uslogado());
-        values.put(StringsNomes.getViId(), metodosPagamento.getDv_id());
+        values.put(StringsNomes.getMeDetalhe(), metodosPagamento.getMp_detalhe());
+        values.put(StringsNomes.getViId(), metodosPagamento.getVi_id());
         values.put(StringsNomes.getTpId(), metodosPagamento.getTp_id());
-        values.put(StringsNomes.getMeDetalhe(), metodosPagamento.getMe_detalhes());
-        values.put(StringsNomes.getMeValor(), metodosPagamento.getMe_valor());
-        values.put(StringsNomes.getMeVencimento(), metodosPagamento.getMe_vencimento());
+        values.put(StringsNomes.getMeVencimento(), metodosPagamento.getMp_dtvenc());
+        values.put(StringsNomes.getMeValor(), metodosPagamento.getMp_valor());
 
         String where = DBSelects.getAtualizarWhere();
         String[] whereArgs = {Integer.toString(id)};
@@ -125,7 +124,6 @@ public class MetodosPagamentoDAO extends BancoDados {
         db.close();
 
         return sucesso;
-
     }
 
     public boolean deletar(int id) {
@@ -140,44 +138,46 @@ public class MetodosPagamentoDAO extends BancoDados {
         return sucesso;
     }
 
-    public List SpinerTipoPagamento() {
-        List<String> listaTipoPagamento = new ArrayList<>();
+    public List sp_viagens(){
+        List<String> listarviagens = new ArrayList<>();
+        String sql = DBSelects.getSelecionarNomeViagens();
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor.moveToFirst()){
+            int indice = cursor.getColumnIndex(StringsNomes.getViNome());
+            do{
+                listarviagens.add(cursor.getString(indice));
+            }while(cursor.moveToNext());
+        }
+        else{
+            listarviagens.add(context.getResources().getString(R.string.encontrado_viagem));
+        }
+
+        cursor.close();
+        db.close();
+
+        return listarviagens;
+    }
+
+    public List sp_tipospagamento(){
+        List<String> listartipopagamento = new ArrayList<>();
         String sql = DBSelects.getSelecionarTodosTipoPagamento();
         SQLiteDatabase db = getWritableDatabase();
 
         Cursor cursor = db.rawQuery(sql, null);
-        if (cursor.moveToNext()) {
+        if(cursor.moveToFirst()){
 
-            int indice = cursor.getColumnIndex(StringsNomes.getTpId());
-            do {
-                listaTipoPagamento.add(cursor.getString(indice));
-            } while (cursor.moveToNext());
+            int indice = cursor.getColumnIndex(StringsNomes.getTpNome());
+
+            do{
+                listartipopagamento.add(cursor.getString(indice));
+            }while (cursor.moveToNext());
         }
+
         cursor.close();
         db.close();
-        return listaTipoPagamento;
+
+        return listartipopagamento;
     }
-
-    public List SpinerViagem() {
-        List<String> listaViagem = new ArrayList<>();
-        String sql = DBSelects.getSelecionarTodosViagens();
-        SQLiteDatabase db = getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(sql, null);
-
-        if (cursor.moveToNext()) {
-
-            int indice = cursor.getColumnIndex(StringsNomes.getViId());
-            do {
-                listaViagem.add(cursor.getString(indice));
-
-            } while (cursor.moveToNext());
-        }
-
-            cursor.close();
-            db.close();
-            return listaViagem;
-        }
-    }
-
-
+}

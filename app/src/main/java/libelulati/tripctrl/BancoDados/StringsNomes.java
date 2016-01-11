@@ -13,7 +13,7 @@ public class StringsNomes {
     private static final String TABELA_TIPOSHOSPEDAGEM = "tiposhospedagem";
     private static final String TABELA_VIAGENS = "viagens";
     private static final String TABELA_PLANEJAMENTOS = "planejamentos";
-    private static final String TABELA_METODOSPAGAMENTO = "metodospagameto";
+    private static final String TABELA_METODOSPAGAMENTO = "metodospagamento";
     private static final String TABELA_GASTOS = "gastos";
 
     private static final String VIEW_CATEGORIAS = "v_categorias";
@@ -24,7 +24,7 @@ public class StringsNomes {
     private static final String VIEW_TIPOSHOSPEDAGEM = "v_tiposhospedagem";
     private static final String VIEW_VIAGENS = "v_viagens";
     private static final String VIEW_PLANEJAMENTOS = "v_planejamentos";
-    private static final String VIEW_METODOSPAGAMENTO = "v_metodospagameto";
+    private static final String VIEW_METODOSPAGAMENTO = "v_metodospagamento";
     private static final String VIEW_GASTOS = "v_gastos";
 
     private static final String ID = "_id";
