@@ -42,10 +42,10 @@ public class ViagensDAO extends BancoDados {
         return sucesso;
     }
 
-    public List<Viagens> listar() {
+    public List<Viagens> listar(int usuario) {
 
         List<Viagens> listaRegistros = new ArrayList<Viagens>();
-        String sql = DBSelects.getSelecionarTodosViagens();
+        String sql = DBSelects.getSelecionarViagens() + usuario;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
