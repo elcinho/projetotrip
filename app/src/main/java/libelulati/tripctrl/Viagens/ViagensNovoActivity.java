@@ -12,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -35,7 +33,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
     int usuario = InicioActivity.getId_uslogado();
     int ano, mes, dia, dataclick;
     StringBuilder dataformatada;
-    boolean validar, valido, v_nome, v_dtinicio, v_dtfim, v_transporte, v_hospedagem, v_valor;
+    boolean validar, v_nome, v_dtinicio, v_dtfim, v_transporte, v_hospedagem, v_valor;
     Context context;
     EditText vi_nome, vi_localizacao, vi_dtinicio, vi_dtfim, vi_tipotransporte, vi_transporte, vi_tipohospedagem, vi_hospedagem, vi_valortotal;
     Spinner vi_sp_tptransporte, vi_sp_tphospedagem;
@@ -96,10 +94,7 @@ public class ViagensNovoActivity extends AppCompatActivity {
         vi_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    valido = false;
-                    vi_nome.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                } else {
+                if (!hasFocus) {
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_nome.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     verificarnome();
                 }
@@ -111,8 +106,6 @@ public class ViagensNovoActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_dtinicio.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                    valido = false;
-                    vi_dtinicio.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
                 }
                 else{
                     verificardtini();
@@ -126,8 +119,6 @@ public class ViagensNovoActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_dtfim.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                    valido = false;
-                    vi_dtfim.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
                 }
                 else{
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_dtfim.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -139,13 +130,29 @@ public class ViagensNovoActivity extends AppCompatActivity {
         vi_valortotal.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    valido = false;
-                    vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                }
-                else{
+                if(!hasFocus){
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_valortotal.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     verificarvalor();
+                }
+            }
+        });
+
+        vi_transporte.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_transporte.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    verificartransporte(vi_transporte.getText().toString());
+                }
+            }
+        });
+
+        vi_hospedagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(vi_hospedagem.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    verificarhospedagem(vi_hospedagem.getText().toString());
                 }
             }
         });
@@ -194,19 +201,19 @@ public class ViagensNovoActivity extends AppCompatActivity {
         viagens.setVi_hospedagem(vi_hospedagem.getText().toString());
         viagens.setVi_valortotal(vi_valortotal.getText().toString());
 
-        if(valido){
+        if(IsValido()){
             boolean sucesso = new ViagensDAO(context).criar(viagens);
 
             if (sucesso) {
-                Toast.makeText(context, context.getResources().getString(R.string.viagem)+ " " + context.getResources().getString(R.string.sucesso_criado) + ".", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.sucesso_criar_viagem), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, context.getResources().getString(R.string.erro_criar) + " " + context.getResources().getString(R.string.viagem) + ".", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.erro_criar_viagem), Toast.LENGTH_LONG).show();
             }
 
             finish();
         }
         else{
-            Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.erro_validar_campos), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -248,13 +255,11 @@ public class ViagensNovoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         if(!validar){
-            vi_dtfim.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(context, context.getResources().getString(R.string.datafim) + ".", Toast.LENGTH_LONG).show();
-            valido = false;
+            vi_dtfim.setError(context.getResources().getString(R.string.validar_dtfim));
+            v_dtfim = false;
         }
         else{
-            vi_dtfim.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-            valido = true;
+            v_dtfim = true;
         }
     }
 
@@ -265,19 +270,46 @@ public class ViagensNovoActivity extends AppCompatActivity {
             if(valor != 0){
                 validar = Validar.ValidarValor(valor);
                 if(!validar){
-                    vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-                    Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
-                    valido = false;
+                    vi_valortotal.setError(context.getResources().getString(R.string.validar_valor));
+                    v_valor = false;
                 }
                 else{
-                    vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                    valido = true;
+                    v_valor = true;
                 }
             }
         }
         else{
-            vi_valortotal.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.nao_vazio) + ".", Toast.LENGTH_LONG).show();
+            vi_valortotal.setError(context.getResources().getString(R.string.validar_valor));
+            v_valor = false;
+        }
+    }
+
+    public void verificartransporte(String transporte){
+        if(transporte.length() < 1){
+            vi_transporte.setError(context.getResources().getString(R.string.validar_campo_vazio));
+            v_transporte = false;
+        }
+        else {
+            v_transporte = true;
+        }
+    }
+
+    public void verificarhospedagem(String hospedagem){
+        if(hospedagem.length() < 1){
+            vi_hospedagem.setError(context.getResources().getString(R.string.validar_campo_vazio));
+            v_hospedagem = false;
+        }
+        else {
+            v_hospedagem = true;
+        }
+    }
+
+    public boolean IsValido(){
+        if(v_nome && v_dtinicio && v_dtfim && v_transporte && v_hospedagem && v_valor){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 

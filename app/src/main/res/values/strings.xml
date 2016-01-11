@@ -13,9 +13,6 @@
     <string name="title_activity_gastos_list">Gastos</string>
     <string name="title_activity_inicio">Início</string>
     <string name="title_activity_main">Bem vindo ao trip control</string>
-    <string name="title_activity_metodos_pagamento_edit">Editar Método de Pagamento</string>
-    <string name="title_activity_metodos_pagamento_list">Métodos de Pagamento</string>
-    <string name="title_activity_metodos_pagamento_show">Método de Pagamento</string>
     <string name="title_activity_nova_senha">Cadastrar nova senha</string>
     <string name="title_activity_novo_usuario">Cadastro de Usuário</string>
     <string name="title_activity_planejamento_edit">Editar Planejamento</string>
@@ -28,6 +25,11 @@
     <string name="title_activity_viagens_list">Viagens</string>
     <string name="title_activity_viagens_novo">Nova Viagem</string>
     <string name="title_activity_viagens_show">Viagem</string>
+    <string name="title_activity_metodos_pagamento_list">Métodos de Pagamento</string>
+    <string name="title_activity_metodos_pagamento_novo">Novo método de pagamento
+    </string>
+    <string name="title_activity_metodos_pagamento_show">Método de Pagamento</string>
+    <string name="title_activity_metodos_pagamento_edit">Editar Método de Pagamento</string>
 
 
     <!-- MENUS -->
@@ -46,8 +48,8 @@
     <string name="salvar">Salvar</string>
 
 
-    <!-- BOTÕES E LINKS -->
-    <string name="alterarsenha" translatable="false">Alterar senha</string>
+    <!-- BOTÕES, LINKS E TÍTULOS -->
+    <string name="alterarsenha">Alterar senha</string>
     <string name="entrar">Entrar</string>
     <string name="enviaremail">Enviar um email</string>
     <string name="enviarsms">Enviar um SMS</string>
@@ -57,10 +59,14 @@
     <string name="novousuario">Novo usuário</string>
     <string name="selecioneopcao">Selecione uma opção abaixo para redefinir sua senha:</string>
     <string name="usarcodusuario">Usar meu código de usuario</string>
+    <string name="login">Login</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="excluir_registro">O registro selecionado será excluído. Esta opção não pode ser desfeita.</string>
+    <string name="moeda">R$</string>
 
 
     <!-- CAMPOS -->
-    <string name="codarea">Cod. Área</string>
+    <string name="codarea">Código de área / DDD</string>
     <string name="codigosenha">Código</string>
     <string name="codusuario">Código de usuário</string>
     <string name="confirmesenha">Confirme a senha</string>
@@ -80,6 +86,9 @@
     <string name="tipotransporte">Tipo de transporte</string>
     <string name="transporte">Transporte</string>
     <string name="valortotal">Valor total</string>
+    <string name="tipo_pagamento">Tipo Pagamento</string>
+    <string name="detalhe">Detalhe</string>
+    <string name="dt_venc">Vencimento</string>
 
     <!-- TABELAS -->
     <string name="categoria">Categoria</string>
@@ -93,9 +102,8 @@
     <string name="usuario">Usuário</string>
     <string name="viagem">Viagem</string>
 
-
+    <!-- ********************************************************************************************************************************************** -->
     <!-- MENSAGENS DO SISTEMA-->
-    <string name="campos_invalidos">Alguns campos não foram validados</string>
     <string name="codigo_confirmacao">Codigo de confirmação</string>
     <string name="codigo_confirme">Informe o código recebido para alterar sua senha</string>
     <string name="codigo_espirado">Código expirado, solicite um novo</string>
@@ -105,10 +113,6 @@
     <string name="erro_criar">Erro ao criar</string>
     <string name="erro_deletar">Erro ao deletar</string>
     <string name="erro_editar">Erro ao editar</string>
-    <string name="invalida">inválida</string>
-    <string name="invalidas">inválidas</string>
-    <string name="invalido">inválido</string>
-    <string name="invalidos">inválidos</string>
     <string name="nao_alterada">não foi alterada</string>
     <string name="nao_alterar">Não é possível alterar</string>
     <string name="nao_cadastrado">não cadastrado</string>
@@ -116,16 +120,7 @@
     <string name="nao_gerado">não pôde ser gerado</string>
     <string name="nao_vazio">não pode ser vazio</string>
     <string name="novamente">Tente novamente</string>
-    <string name="opcao_cancelar">Cancelar</string>
-    <string name="opcao_confirmar">Confirme a exclusão do registro</string>
-    <string name="opcao_deletar">Deletar</string>
-    <string name="opcao_editar">Editar</string>
-    <string name="opcao_excluir">será excluído</string>
-    <string name="opcao_nao_desfazer">Esta opção não pode ser desfeita</string>
-    <string name="opcao_ok">OK</string>
     <string name="opcao_registro">O registro</string>
-    <string name="opcao_titulo">Escolha uma opção</string>
-    <string name="opcao_visualizar">Visualizar</string>
     <string name="registro_nao_encotrado">Não foi encontrado nenhum registro</string>
     <string name="registro_nao_salvo">O registro não será salvo</string>
     <string name="senhas_diferentes">As senhas não coincidem</string>
@@ -134,12 +129,76 @@
     <string name="sucesso_editado">editado com sucesso</string>
     <string name="sucesso_gerado">gerado com sucesso</string>
     <string name="sucesso_alterada">alterada com sucesso</string>
-
-
-    <!-- PALAVRAS E PREPOSIÇÕES -->
+    <string name="campos_invalidos">Alguns campos não foram validados</string>
+    <string name="invalida">inválida</string>
+    <string name="invalidas">inválidas</string>
+    <string name="invalido">inválido</string>
+    <string name="invalidos">inválidos</string>
+    <string name="opcao_nao_desfazer">Esta opção não pode ser desfeita.</string>
     <string name="ou">ou</string>
     <string name="e">e</string>
     <string name="a">a</string>
+    <!-- ********************************************************************************************************************************************** -->
 
+    <!-- OPÇÕES -->
+    <string name="opcao_cancelar">Cancelar</string>
+    <string name="opcao_confirmar">Confirme a exclusão do registro</string>
+    <string name="opcao_deletar">Deletar</string>
+    <string name="opcao_editar">Editar</string>
+    <string name="opcao_excluir">será excluído</string>
+    <string name="opcao_ok">OK</string>
+    <string name="opcao_titulo">Escolha uma opção</string>
+    <string name="opcao_visualizar">Visualizar</string>
+
+    <!-- VALIDAÇÃO DE CAMPOS -->
+    <string name="validar_senha">A senha precisa ter entre 6 e 10 caracteres. Pelo menos um número, um caracter maíusculo e um caracter minúsculo.</string>
+    <string name="validar_nome">O nome precisa ter o mínimo de 5 caracteres não numéricos.</string>
+    <string name="validar_confirmesenha">As senhas digitadas não são iguais.</string>
+    <string name="validar_email">O e-mail digitado não é válido.</string>
+    <string name="validar_telefone">O telefone digitado não é válido.</string>
+    <string name="validar_codigoUsuario">O código de usuário digitado não é válido.</string>
+    <string name="nulo_email">O e-mail não pode ser nulo.</string>
+    <string name="validar_codigoSenha">O código digitado não corresponde ao enviado. Tente novamente.</string>
+    <string name="validar_dtnasc">A idade não pode ser menor que 15 anos.</string>
+    <string name="validar_codarea">O código de área deve possuir mais de 2 caracteres numéricos.</string>
+    <string name="validar_dtinicio">A data inicial não pode ser anterior à data atual.</string>
+    <string name="validar_dtfim">A data final não pode ser anterior à data inicial.</string>
+    <string name="validar_valor">O Valor deve ser maior que 0.99.</string>
+    <string name="validar_campo_vazio">O campo não pode ser vazio.</string>
+    <string name="validar_detalhe">O campo precisa ter o mínimo de 5 caracteres não numéricos.</string>
+    <string name="validar_dtvenc">A data de vencimento não pode ser anterior à data atual.</string>
+
+    <!-- NEGAÇÕES -->
+    <string name="encontrado_usuario">Nenhum usuário encontrado.</string>
+    <string name="expirado_codigo">O código enviado expirou. Solicite um novo para prosseguir.</string>
+    <string name="encontrado_registro">Nenhum registro encontrado.</string>
+    <string name="encontrado_viagem">Nenhuma viagem encontrada.</string>
+
+    <!-- CONFIRMAÇÕES -->
+    <string name="sucesso_alterar_senha">A senha foi alterada com sucesso.</string>
+    <string name="sucesso_enviar_codigoSenha">Código de confirmação enviado com sucesso.</string>
+    <string name="sucesso_alterar_usuario">O usuário foi alterado com sucesso.</string>
+    <string name="sucesso_criar_usuario">Usuário criado com sucesso.</string>
+    <string name="sucesso_excluir_viagem">Viagem deletada com sucesso.</string>
+    <string name="sucesso_excluir_metodopagamento">Método de pagamento deletado com sucesso.</string>
+    <string name="sucesso_criar_viagem">Viagem criada com sucesso.</string>
+    <string name="sucesso_criar_metodopagamento">Método de pagamento criado com sucesso.</string>
+    <string name="sucesso_alterar_viagem">A viagem foi alterada com sucesso.</string>
+    <string name="sucesso_alterar_metodopagamento">O método de pagamento foi alterado com sucesso.</string>
+
+
+    <!-- MENSAGENS DE ERRO -->
+    <string name="erro_validar_campos">Existem campos que não foram validados. Verifique os dados e tente novamente.</string>
+    <string name="erro_alterar_senha">A senha não foi alterada. Tente novamente.</string>
+    <string name="erro_gerar_codigo">Erro ao gerar o código de confirmação. A senha não será alterada.</string>
+    <string name="erro_autenticar">Usuário ou senha inválidos. Tente novamente.</string>
+    <string name="erro_alterar_usuario">Os dados do usuário não foram alterados.</string>
+    <string name="erro_criar_usuario">Ocorreu um erro ao criar usuário.</string>
+    <string name="erro_excluir_viagem">A viagem não pôde ser deletada.</string>
+    <string name="erro_excluir_metodopagamento">O método de pagamento não pôde ser deletado.</string>
+    <string name="erro_criar_viagem">Ocorreu um erro ao criar a viagem.</string>
+    <string name="erro_criar_metodopagamento">Ocorreu um erro ao criar o método de pagamento.</string>
+    <string name="erro_alterar_viagem">Os dados da viagem não foram alterados.</string>
+    <string name="erro_alterar_metodopagamento">Os dados do método de pagamento não foram alterados.</string>
 
 </resources>

@@ -7,11 +7,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_metodospagamento_show"
-    tools:context="libelulati.tripctrl.MetodosPagamento.MetodosPagamentoShowActivity">
+    tools:showIn="@layout/activity_metodosdepagamento_novo_activity"
+    tools:context="libelulati.tripctrl.MetodosPagamento.MetodosPagamentoNovoActivity">
 
     <ScrollView
-        android:id="@+id/sv_mps_scroll"
+        android:id="@+id/sv_mpn_scroll"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
@@ -24,147 +24,140 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/detalhe"
-                android:id="@+id/tx_mps_detalhe" />
+                android:id="@+id/tx_mpn_detalhe" />
 
             <EditText
-                android:id="@+id/ed_mps_detalhe"
+                android:id="@+id/ed_mpn_detalhe"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/tx_mps_detalhe"
+                android:layout_below="@+id/tx_mpn_detalhe"
                 android:hint="@string/detalhe"
                 android:inputType="textAutoComplete|textCapWords"
-                android:textColor="@color/colorAccent"
-                android:enabled="false"/>
+                android:textColor="@color/colorAccent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/viagem"
-                android:id="@+id/tx_mps_viagem"
+                android:id="@+id/tx_mpn_viagem"
                 android:layout_marginTop="15dp"
-                android:layout_alignEnd="@+id/ed_mps_detalhe"
+                android:layout_alignEnd="@+id/ed_mpn_detalhe"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_mps_detalhe"
-                android:layout_below="@+id/ed_mps_detalhe" />
+                android:layout_alignRight="@+id/ed_mpn_detalhe"
+                android:layout_below="@+id/ed_mpn_detalhe"/>
 
             <EditText
-                android:id="@+id/ed_mps_viagem"
+                android:id="@+id/ed_mpn_viagem"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/tx_mps_viagem"
+                android:layout_alignEnd="@+id/tx_mpn_viagem"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/tx_mps_viagem"
-                android:layout_below="@+id/tx_mps_viagem"
+                android:layout_alignRight="@+id/tx_mpn_viagem"
+                android:layout_below="@+id/tx_mpn_viagem"
                 android:inputType="textAutoComplete|textCapWords"
-                android:textColor="@color/colorAccent"
-                android:enabled="false"/>
+                android:textColor="@color/colorBranco"/>
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/sp_mps_viagem"
+                android:id="@+id/sp_mpn_viagem"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/tx_mps_viagem"
-                android:layout_below="@+id/tx_mps_viagem"
-                android:layout_marginTop="6dp"
-                android:visibility="invisible"/>
+                android:layout_alignRight="@+id/tx_mpn_viagem"
+                android:layout_below="@+id/tx_mpn_viagem"
+                android:layout_marginTop="6dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tipo_pagamento"
-                android:id="@+id/tx_mps_tipopagamento"
+                android:id="@+id/tx_mpn_tipopagamento"
                 android:layout_marginTop="15dp"
-                android:layout_alignEnd="@+id/ed_mps_viagem"
+                android:layout_alignEnd="@+id/ed_mpn_viagem"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_mps_viagem"
-                android:layout_below="@+id/ed_mps_viagem"/>
+                android:layout_alignRight="@+id/ed_mpn_viagem"
+                android:layout_below="@+id/ed_mpn_viagem"/>
 
             <EditText
-                android:id="@+id/ed_mps_tipopagamento"
+                android:id="@+id/ed_mpn_tipopagamento"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/tx_mps_tipopagamento"
+                android:layout_alignEnd="@+id/tx_mpn_tipopagamento"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/tx_mps_tipopagamento"
-                android:layout_below="@+id/tx_mps_tipopagamento"
+                android:layout_alignRight="@+id/tx_mpn_tipopagamento"
+                android:layout_below="@+id/tx_mpn_tipopagamento"
                 android:inputType="textAutoComplete|textCapWords"
-                android:textColor="@color/colorAccent"
-                android:enabled="false"/>
+                android:textColor="@color/colorBranco"/>
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/sp_mps_tipopagamento"
-                android:layout_alignEnd="@+id/tx_mps_tipopagamento"
+                android:id="@+id/sp_mpn_tipopagamento"
+                android:layout_alignEnd="@+id/tx_mpn_tipopagamento"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/tx_mps_tipopagamento"
-                android:layout_below="@+id/tx_mps_tipopagamento"
-                android:layout_marginTop="6dp"
-                android:visibility="invisible"/>
+                android:layout_alignRight="@+id/tx_mpn_tipopagamento"
+                android:layout_below="@+id/tx_mpn_tipopagamento"
+                android:layout_marginTop="6dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dt_venc"
-                android:id="@+id/tx_mps_dtvenc"
+                android:id="@+id/tx_mpn_dtvenc"
                 android:layout_marginTop="15dp"
-                android:layout_alignEnd="@+id/ed_mps_tipopagamento"
+                android:layout_alignEnd="@+id/ed_mpn_tipopagamento"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_mps_tipopagamento"
-                android:layout_below="@+id/ed_mps_tipopagamento"/>
+                android:layout_alignRight="@+id/ed_mpn_tipopagamento"
+                android:layout_below="@+id/ed_mpn_tipopagamento"/>
 
             <EditText
-                android:id="@+id/ed_mps_dtvenc"
+                android:id="@+id/ed_mpn_dtvenc"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/ed_mps_tipopagamento"
+                android:layout_alignEnd="@+id/ed_mpn_tipopagamento"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/tx_mps_dtvenc"
-                android:layout_below="@+id/tx_mps_dtvenc"
+                android:layout_alignRight="@+id/tx_mpn_dtvenc"
+                android:layout_below="@+id/tx_mpn_dtvenc"
                 android:hint="@string/dt_venc"
                 android:inputType="textAutoComplete|textCapWords"
                 android:textColor="@color/colorAccent"
-                android:onClick="showDatePickerDialog_mps_dtvenc"
-                android:enabled="false"/>
+                android:onClick="showDatePickerDialog_mpn_dtvenc"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/valortotal"
-                android:id="@+id/tx_mps_valortotal"
+                android:id="@+id/tx_mpn_valortotal"
                 android:layout_marginTop="15dp"
-                android:layout_alignEnd="@+id/ed_mps_dtvenc"
+                android:layout_alignEnd="@+id/ed_mpn_dtvenc"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/ed_mps_dtvenc"
-                android:layout_below="@+id/ed_mps_dtvenc"/>
+                android:layout_alignRight="@+id/ed_mpn_dtvenc"
+                android:layout_below="@+id/ed_mpn_dtvenc"/>
 
             <EditText
-                android:id="@+id/ed_mps_valortotal"
+                android:id="@+id/ed_mpn_valortotal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/tx_mps_valortotal"
+                android:layout_alignEnd="@+id/tx_mpn_valortotal"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/tx_mps_valortotal"
-                android:layout_below="@+id/tx_mps_valortotal"
+                android:layout_alignRight="@+id/tx_mpn_valortotal"
+                android:layout_below="@+id/tx_mpn_valortotal"
                 android:hint="@string/valortotal"
                 android:inputType="numberDecimal"
-                android:textColor="@color/colorAccent"
-                android:enabled="false"/>
+                android:textColor="@color/colorAccent" />
         </RelativeLayout>
     </ScrollView>
 

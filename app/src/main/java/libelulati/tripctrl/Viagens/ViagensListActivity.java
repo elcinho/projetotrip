@@ -165,7 +165,6 @@ public class ViagensListActivity extends AppCompatActivity {
         final int del_id = id;
 
         AlertDialog confirme;
-        ViagensDAO viagensDAO = new ViagensDAO(context);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(context.getResources().getString(R.string.opcao_confirmar));

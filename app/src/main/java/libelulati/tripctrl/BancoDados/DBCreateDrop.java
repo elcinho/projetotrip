@@ -97,8 +97,8 @@ public class DBCreateDrop {
     private static final String CREATE_TABLE_METODOSPAGAMENTO = getCreateTable() + StringsNomes.getTabelaMetodospagamento() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getUsId() + getINTEIRO() + getVIRGULA() +
-            StringsNomes.getViId() + getINTEIRO() + getVIRGULA() +
-            StringsNomes.getTpId() + getINTEIRO() + getVIRGULA() +
+            StringsNomes.getViId() + getTEXTO() + getVIRGULA() +
+            StringsNomes.getTpId() + getTEXTO() + getVIRGULA() +
             StringsNomes.getMeDetalhe() + getTEXTO() + getVIRGULA() +
             StringsNomes.getMeValor() + getDECIMAL() + getVIRGULA() +
             StringsNomes.getMeVencimento() + getTEXTO() + getVIRGULA() +

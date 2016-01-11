@@ -2,12 +2,14 @@ package libelulati.tripctrl.MetodosPagamento;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
-import android.net.ParseException;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,61 +31,45 @@ import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
-
 public class MetodosPagamentoNovoActivity extends AppCompatActivity {
 
     int usuario = InicioActivity.getId_uslogado();
-    int ano, mes, dia, dataclick;
+    int ano, mes, dia, idviagem;
     StringBuilder dataformatada;
-    boolean validar, valido;
+    boolean validar, v_detalhe, v_dtvenc, v_valor;
     Context context;
-    Spinner spinnerTipoPagamento , spinnerViagem;
-    List<String> listaTipoPagamento, listaViagem;
-    EditText mp_valor , mp_detalhe, mp_viagem, mp_vencimento , mp_tipopagamento;
+    EditText mp_detalhe, mp_viagem, mp_tipopagamento, mp_dtvenc, mp_valor;
+    Spinner mp_sp_tppagamento, mp_sp_viagem;
+    List<String> listatipopagamento, listaviagem;
     MeuSpinner meuSpinner = new MeuSpinner();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_metodos_pagamento_novo);
+        setContentView(R.layout.activity_metodosdepagamento_novo);
 
         context = MetodosPagamentoNovoActivity.this;
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mp_valor = (EditText) findViewById(R.id.ed_mp_valor);
-        mp_vencimento = (EditText) findViewById(R.id.ed_mp_vencimento);
-        mp_viagem = (EditText) findViewById(R.id.ed_mp_viagem);
-        mp_detalhe = (EditText) findViewById(R.id.ed_mp_detalhe);
-        mp_tipopagamento = (EditText) findViewById(R.id.ed_mp_tipopagamento);
-        spinnerTipoPagamento = (Spinner) findViewById(R.id.sp_mp_tipopagamento);
-        spinnerViagem = (Spinner) findViewById(R.id.sp_mp_viagem);
+        mp_detalhe = (EditText)findViewById(R.id.ed_mpn_detalhe);
+        mp_viagem = (EditText)findViewById(R.id.ed_mpn_viagem);
+        mp_tipopagamento = (EditText)findViewById(R.id.ed_mpn_tipopagamento);
+        mp_dtvenc = (EditText)findViewById(R.id.ed_mpn_dtvenc);
+        mp_valor = (EditText)findViewById(R.id.ed_mpn_valortotal);
+        mp_sp_tppagamento = (Spinner)findViewById(R.id.sp_mpn_tipopagamento);
+        mp_sp_viagem = (Spinner)findViewById(R.id.sp_mpn_viagem);
 
-        listaViagem = new MetodosPagamentoDAO(context).SpinerViagem();
-        listaTipoPagamento = new MetodosPagamentoDAO(context).SpinerTipoPagamento();
+        listatipopagamento = new MetodosPagamentoDAO(context).sp_tipospagamento();
+        listaviagem = new MetodosPagamentoDAO(context).sp_viagens();
 
-        mp_vencimento.setInputType(InputType.TYPE_NULL);
         mp_viagem.setInputType(InputType.TYPE_NULL);
         mp_tipopagamento.setInputType(InputType.TYPE_NULL);
+        mp_dtvenc.setInputType(InputType.TYPE_NULL);
 
-        meuSpinner.preencherSpinner(context, listaTipoPagamento, spinnerTipoPagamento);
-        meuSpinner.selecionarItem(spinnerTipoPagamento, mp_tipopagamento);
-        mp_tipopagamento.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_tipopagamento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                }
-
-            }
-        });
-
-        meuSpinner.preencherSpinner(context, listaViagem, spinnerViagem);
-        meuSpinner.selecionarItem(spinnerViagem, mp_viagem);
+        meuSpinner.preencherSpinner(context, listaviagem, mp_sp_viagem);
+        meuSpinner.selecionarItem(mp_sp_viagem, mp_viagem);
         mp_viagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
@@ -91,30 +78,44 @@ public class MetodosPagamentoNovoActivity extends AppCompatActivity {
             }
         });
 
-
-        mp_vencimento.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        meuSpinner.preencherSpinner(context, listatipopagamento, mp_sp_tppagamento);
+        meuSpinner.selecionarItem(mp_sp_tppagamento, mp_tipopagamento);
+        mp_tipopagamento.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                    valido = false;
-                    mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                }
-                else{
-                    verificardtini();
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                if (hasFocus) {
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_tipopagamento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
         });
 
+        mp_detalhe.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_detalhe.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    verificardetalhe();
+                }
+            }
+        });
+
+        mp_dtvenc.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_dtvenc.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+                else{
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_dtvenc.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    verificardtvenc();
+                }
+            }
+        });
 
         mp_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    valido = false;
-                    mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                } else {
+                if(!hasFocus){
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mp_valor.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     verificarvalor();
                 }
@@ -150,59 +151,59 @@ public class MetodosPagamentoNovoActivity extends AppCompatActivity {
 
     public void salvar(){
 
-        mp_vencimento.clearFocus();
+        mp_valor.clearFocus();
 
         MetodosPagamento metodosPagamento = new MetodosPagamento();
 
         metodosPagamento.setUs_id(usuario);
-        metodosPagamento.setDv_id((mp_viagem.getText().toString()));
-        metodosPagamento.setTp_id((mp_tipopagamento.getText().toString()));
-        metodosPagamento.setMe_detalhes(mp_detalhe.getText().toString());
-        metodosPagamento.setMe_valor((mp_valor.getText().toString()));
-        metodosPagamento.setMe_vencimento(mp_vencimento.getText().toString());
+        metodosPagamento.setMp_detalhe(mp_detalhe.getText().toString());
+        metodosPagamento.setVi_id(mp_viagem.getText().toString());
+        metodosPagamento.setTp_id(mp_tipopagamento.getText().toString());
+        metodosPagamento.setMp_dtvenc(mp_dtvenc.getText().toString());
+        metodosPagamento.setMp_valor(mp_valor.getText().toString());
 
-        if(valido){
+        if(IsValido()){
             boolean sucesso = new MetodosPagamentoDAO(context).criar(metodosPagamento);
 
             if (sucesso) {
-                Toast.makeText(context, context.getResources().getString(R.string.metodopagameto)+ " " + context.getResources().getString(R.string.sucesso_criado) + ".", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.sucesso_criar_metodopagamento), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, context.getResources().getString(R.string.erro_criar) + " " + context.getResources().getString(R.string.metodopagameto) + ".", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.erro_criar_metodopagamento), Toast.LENGTH_LONG).show();
             }
-
             finish();
         }
         else{
-            Toast.makeText(context, context.getResources().getString(R.string.campos_invalidos) + ". " + context.getResources().getString(R.string.registro_nao_salvo) + ".", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.erro_validar_campos), Toast.LENGTH_LONG).show();
         }
     }
 
+    public void verificardetalhe(){
+        validar = Validar.ValidarNome(String.valueOf(mp_detalhe.getText().toString()));
+        if(!validar){
+            mp_detalhe.setError(context.getResources().getString(R.string.validar_detalhe));
+            v_detalhe = false;
+        }
+        else{
+            v_detalhe = true;
+        }
+    }
 
-
-    public void verificardtini(){ //muda para data vencimento
+    public void verificardtvenc(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            Date data = null;
-            try {
-                data = sdf.parse(String.valueOf(mp_vencimento.getText().toString()));
-            } catch (java.text.ParseException e) {
-                e.printStackTrace();
-            }
+            Date data = sdf.parse(String.valueOf(mp_dtvenc.getText().toString()));
             validar = Validar.ValidarDataInicio(data);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if(!validar){
-            mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.alert_icon,0);
-            Toast.makeText(context, context.getResources().getString(R.string.datafim) + ".", Toast.LENGTH_LONG).show();
-            valido = false;
+        if(!validar) {
+            mp_dtvenc.setError(context.getResources().getString(R.string.validar_dtinicio));
+            v_dtvenc = false;
         }
         else{
-            mp_vencimento.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-            valido = true;
+            v_dtvenc = true;
         }
     }
-
 
     public void verificarvalor(){
         double valor = 0;
@@ -211,19 +212,26 @@ public class MetodosPagamentoNovoActivity extends AppCompatActivity {
             if(valor != 0){
                 validar = Validar.ValidarValor(valor);
                 if(!validar){
-                    mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-                    Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.invalido) + ".", Toast.LENGTH_LONG).show();
-                    valido = false;
+                    mp_valor.setError(context.getResources().getString(R.string.validar_valor));
+                    v_valor = false;
                 }
                 else{
-                    mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                    valido = true;
+                    v_valor = true;
                 }
             }
         }
         else{
-            mp_valor.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.alert_icon, 0);
-            Toast.makeText(context, context.getResources().getString(R.string.valortotal) + " " + context.getResources().getString(R.string.nao_vazio) + ".", Toast.LENGTH_LONG).show();
+            mp_valor.setError(context.getResources().getString(R.string.validar_valor));
+            v_valor = false;
+        }
+    }
+
+    public boolean IsValido(){
+        if(v_detalhe && v_dtvenc && v_valor){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
@@ -236,21 +244,12 @@ public class MetodosPagamentoNovoActivity extends AppCompatActivity {
 
     public void AtualizarData() {
         dataformatada = (new StringBuilder().append(dia).append("/").append(mes).append("/").append(ano));
-
-        switch (dataclick){
-            case 1:
-                mp_vencimento.setText(dataformatada);
-                break;
-            default:
-                dataclick = 0;
-                break;
-        }
+        mp_dtvenc.setText(dataformatada);
     }
 
-    public void showDatePickerDialog_mp_dataVencimento(View view) {
+    public void showDatePickerDialog_mpn_dtvenc(View view) {
         DialogFragment dialogFragment = new DatePickerFragment();
-        dialogFragment.show(getFragmentManager(), "datepicker");
-        dataclick = 1;
+        dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
 
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
@@ -269,6 +268,7 @@ public class MetodosPagamentoNovoActivity extends AppCompatActivity {
             AtualizarData();
         }
     }
+
 
 
 }
