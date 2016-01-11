@@ -46,6 +46,9 @@
     <string name="voltar">Voltar</string>
     <string name="enviar">Enviar</string>
     <string name="salvar">Salvar</string>
+    <string name="inserir_metodopagamento">Inserir Método de Pagamento</string>
+    <string name="inserir_gastos">Inserir Gastos</string>
+    <string name="inserir_planejamento">Inserir Planejamento</string>
 
 
     <!-- BOTÕES, LINKS E TÍTULOS -->
