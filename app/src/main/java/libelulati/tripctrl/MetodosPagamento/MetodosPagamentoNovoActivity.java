@@ -3,6 +3,7 @@ package libelulati.tripctrl.MetodosPagamento;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,6 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
@@ -34,7 +36,7 @@ import libelulati.tripctrl.R;
 public class MetodosPagamentoNovoActivity extends AppCompatActivity {
 
     int usuario = InicioActivity.getId_uslogado();
-    int ano, mes, dia, idviagem;
+    int ano, mes, dia, idviagem = 0;
     StringBuilder dataformatada;
     boolean validar, v_detalhe, v_dtvenc, v_valor;
     Context context;
@@ -60,15 +62,31 @@ public class MetodosPagamentoNovoActivity extends AppCompatActivity {
         mp_sp_tppagamento = (Spinner)findViewById(R.id.sp_mpn_tipopagamento);
         mp_sp_viagem = (Spinner)findViewById(R.id.sp_mpn_viagem);
 
+        Intent viagem = getIntent();
+        Bundle bundle = viagem.getExtras();
+        if(bundle == null){
+            idviagem = 0;
+        }
+        else{
+            idviagem = bundle.getInt(StringsNomes.getID());
+        }
+
         listatipopagamento = new MetodosPagamentoDAO(context).sp_tipospagamento();
-        listaviagem = new MetodosPagamentoDAO(context).sp_viagens();
+        listaviagem = new MetodosPagamentoDAO(context).sp_viagens(usuario);
 
         mp_viagem.setInputType(InputType.TYPE_NULL);
         mp_tipopagamento.setInputType(InputType.TYPE_NULL);
         mp_dtvenc.setInputType(InputType.TYPE_NULL);
 
-        meuSpinner.preencherSpinner(context, listaviagem, mp_sp_viagem);
-        meuSpinner.selecionarItem(mp_sp_viagem, mp_viagem);
+        if(idviagem == 0){
+            meuSpinner.preencherSpinner(context, listaviagem, mp_sp_viagem);
+            meuSpinner.selecionarItem(mp_sp_viagem, mp_viagem);
+        }
+        else{
+            relacionarViagem();
+        }
+
+
         mp_viagem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -177,6 +195,14 @@ public class MetodosPagamentoNovoActivity extends AppCompatActivity {
         }
     }
 
+    public void relacionarViagem(){
+        String viagemrelacionada = new MetodosPagamentoDAO(context).relacionarViagem(idviagem);
+        mp_sp_viagem.setVisibility(View.INVISIBLE);
+        mp_viagem.setText(viagemrelacionada);
+        mp_viagem.setEnabled(false);
+        mp_viagem.setTextColor(context.getResources().getColor(R.color.cinza));
+    }
+
     public void verificardetalhe(){
         validar = Validar.ValidarNome(String.valueOf(mp_detalhe.getText().toString()));
         if(!validar){
@@ -268,7 +294,4 @@ public class MetodosPagamentoNovoActivity extends AppCompatActivity {
             AtualizarData();
         }
     }
-
-
-
 }

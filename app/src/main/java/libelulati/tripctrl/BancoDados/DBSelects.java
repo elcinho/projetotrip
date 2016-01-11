@@ -13,10 +13,15 @@ public class DBSelects {
     private static final String SELECIONAR_TODOS_TIPOS_HOSPEDAGEM = "select * from " + StringsNomes.getTabelaTiposhospedagem();
 
 
+    //TODOS POR USUÁRIO
+    private static final String SELECIONAR_VIAGENS = "select * from " + StringsNomes.getTabelaViagens() + " where " + StringsNomes.getUsId() + " = ";
+    private static final String SELECIONAR_METODOSPAGAMENTO = "select * from " + StringsNomes.getTabelaMetodospagamento() + " where " + StringsNomes.getUsId() + " = ";
+
+
     //DADOS
     private static final String SELECIONAR_DADOS_VIAGENS = "select v._id, v.vi_nome, v.vi_local, v.vi_dtini, v.vi_dtfim, t.tr_nome, v.vi_transporte, h.ho_nome, v.vi_hospedagem, v.vi_valortotal from viagens v inner join tipostransporte t on t._id = v.tr_id inner join tiposhospedagem h on h._id = v.ho_id";
     private static final String SELECIONAR_DADOS_METODOS_PAGAMENTO = "select mp._id, v.dv_id, t.tp_id, mp.me_detalhe, mp.me_valor, mp.me_vencimento from metodospagamento mp inner join tipopagamento t on t._id = mp.tp_id inner join viagens v on v._id = mp.dv_id ";
-    private static final String SELECIONAR_NOME_VIAGENS = "select " + StringsNomes.getID() + ", " + StringsNomes.getViNome() + " from " + StringsNomes.getTabelaViagens();
+    private static final String SELECIONAR_NOME_VIAGENS = "select " + StringsNomes.getID() + ", " + StringsNomes.getViNome() + " from " + StringsNomes.getTabelaViagens() + " where " + StringsNomes.getUsId() + " = ";
 
 
     //ID
@@ -100,5 +105,13 @@ public class DBSelects {
 
     public static String getSelecionarEmailUsuario() {
         return SELECIONAR_EMAIL_USUARIO;
+    }
+
+    public static String getSelecionarViagens() {
+        return SELECIONAR_VIAGENS;
+    }
+
+    public static String getSelecionarMetodospagamento() {
+        return SELECIONAR_METODOSPAGAMENTO;
     }
 }

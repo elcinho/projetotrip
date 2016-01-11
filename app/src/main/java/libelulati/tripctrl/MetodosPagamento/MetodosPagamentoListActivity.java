@@ -18,10 +18,12 @@ import android.widget.Toast;
 import java.util.List;
 
 import libelulati.tripctrl.BancoDados.StringsNomes;
+import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
 public class MetodosPagamentoListActivity extends AppCompatActivity {
 
+    int usuario = InicioActivity.getId_uslogado();
     Context context;
     String id_metodopagamento;
 
@@ -71,7 +73,7 @@ public class MetodosPagamentoListActivity extends AppCompatActivity {
         LinearLayout linearLayoutLista = (LinearLayout) findViewById(R.id.lv_item_metodopagamento);
         linearLayoutLista.removeAllViews();
 
-        List<MetodosPagamento> metodosPagamentos = new MetodosPagamentoDAO(this).listar();
+        List<MetodosPagamento> metodosPagamentos = new MetodosPagamentoDAO(this).listar(usuario);
 
         if (metodosPagamentos.size() > 0) {
             for (MetodosPagamento pagamento : metodosPagamentos) {

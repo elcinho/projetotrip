@@ -42,10 +42,10 @@ public class MetodosPagamentoDAO extends BancoDados {
         return sucesso;
     }
 
-    public List<MetodosPagamento> listar(){
+    public List<MetodosPagamento> listar(int usuario){
 
         List<MetodosPagamento> listaRegistros = new ArrayList<MetodosPagamento>();
-        String sql = DBSelects.getSelecionarTodosMetodosPagamento();
+        String sql = DBSelects.getSelecionarMetodospagamento() + usuario;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
@@ -138,9 +138,9 @@ public class MetodosPagamentoDAO extends BancoDados {
         return sucesso;
     }
 
-    public List sp_viagens(){
+    public List sp_viagens(int usuario){
         List<String> listarviagens = new ArrayList<>();
-        String sql = DBSelects.getSelecionarNomeViagens();
+        String sql = DBSelects.getSelecionarNomeViagens() + usuario;
         SQLiteDatabase db = getWritableDatabase();
 
         Cursor cursor = db.rawQuery(sql, null);
@@ -179,5 +179,23 @@ public class MetodosPagamentoDAO extends BancoDados {
         db.close();
 
         return listartipopagamento;
+    }
+
+    public String relacionarViagem(int viagem){
+        String nomeviagem = "";
+        String sql = DBSelects.getSelecionarIdViagens() + viagem;
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor.moveToNext()){
+            int indice = cursor.getColumnIndex(StringsNomes.getViNome());
+            nomeviagem = cursor.getString(indice);
+        }
+
+        cursor.close();
+        db.close();
+
+        return nomeviagem;
     }
 }
