@@ -43,6 +43,7 @@ public class StringsNomes {
     private static final String US_SENHA = "us_senha";
     private static final String US_CONFIRMESENHA = "us_confirmesenha";
     private static final String US_ID = "us_id";
+    private static final String US_USO = "us_uso";
 
     private static final String SC_NOME = "sc_nome";
     private static final String SC_ID = "sc_id";
@@ -327,4 +328,7 @@ public class StringsNomes {
         return VIEW_GASTOS;
     }
 
+    public static String getUsUso() {
+        return US_USO;
+    }
 }

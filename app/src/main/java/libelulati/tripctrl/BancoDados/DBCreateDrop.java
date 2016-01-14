@@ -33,6 +33,7 @@ public class DBCreateDrop {
             StringsNomes.getUsLongitude() + getTEXTO() + getVIRGULA() +
             StringsNomes.getUsCodarea() + getTEXTO() + getVIRGULA() +
             StringsNomes.getUsTelefone() + getTEXTO() + getVIRGULA() +
+            StringsNomes.getUsUso() + getINTEIRO() + getVIRGULA() +
             StringsNomes.getUsSenha() + getTEXTO() + getVIRGULA() +
             StringsNomes.getUsConfirmesenha() + getTEXTO() +
             getFECHAPARENTESES();
