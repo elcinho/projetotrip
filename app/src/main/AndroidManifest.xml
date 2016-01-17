@@ -59,8 +59,8 @@
                 android:value=".Categoria.CategoriaListActivity" />
         </activity>
         <activity
-            android:name=".Categoria.CategoriaEditActivity"
-            android:label="@string/title_activity_categoria_edit"
+            android:name=".Categoria.CategoriaNovoActivity"
+            android:label="@string/title_activity_categoria_novo"
             android:parentActivityName=".Categoria.CategoriaShowActivity"
             android:theme="@style/AppTheme" >
             <meta-data

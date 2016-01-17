@@ -76,7 +76,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tipo_pagamento"
+                android:text="@string/tipopagamento"
                 android:id="@+id/tx_mpn_tipopagamento"
                 android:layout_marginTop="15dp"
                 android:layout_alignEnd="@+id/ed_mpn_viagem"
@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dt_venc"
+                android:text="@string/dtvenc"
                 android:id="@+id/tx_mpn_dtvenc"
                 android:layout_marginTop="15dp"
                 android:layout_alignEnd="@+id/ed_mpn_tipopagamento"
@@ -129,7 +129,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/tx_mpn_dtvenc"
                 android:layout_below="@+id/tx_mpn_dtvenc"
-                android:hint="@string/dt_venc"
+                android:hint="@string/dtvenc"
                 android:inputType="textAutoComplete|textCapWords"
                 android:textColor="@color/colorAccent"
                 android:onClick="showDatePickerDialog_mpn_dtvenc"/>

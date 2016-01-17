@@ -18,7 +18,6 @@ public class BancoDados extends SQLiteOpenHelper{
 
         db.execSQL(DBCreateDrop.getCreateTableCategorias());
         db.execSQL(DBCreateDrop.getCreateTableUsuarios());
-        db.execSQL(DBCreateDrop.getCreateTableSubcategorias());
         db.execSQL(DBCreateDrop.getCreateTableTipostransporte());
         db.execSQL(DBCreateDrop.getCreateTableTiposhospedagem());
         db.execSQL(DBCreateDrop.getCreateTableTipospagamento());
@@ -63,6 +62,7 @@ public class BancoDados extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // apaga as tabelas para recriar
         db.execSQL(DBCreateDrop.getDropTableGastos());
         db.execSQL(DBCreateDrop.getDropTableMetodospagamento());
         db.execSQL(DBCreateDrop.getDropTablePlanejamentos());
@@ -70,10 +70,10 @@ public class BancoDados extends SQLiteOpenHelper{
         db.execSQL(DBCreateDrop.getDropTableTipostransporte());
         db.execSQL(DBCreateDrop.getDropTableTiposhospedagem());
         db.execSQL(DBCreateDrop.getDropTableTipospagamento());
-        db.execSQL(DBCreateDrop.getDropTableSubcategorias());
         db.execSQL(DBCreateDrop.getDropTableUsuarios());
         db.execSQL(DBCreateDrop.getDropTableCategorias());
 
+        // recria as tabelas
         onCreate(db);
     }
 }

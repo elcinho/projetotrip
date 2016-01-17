@@ -2,9 +2,11 @@ package libelulati.tripctrl.BancoDados;
 
 public class StringsNomes {
 
+    // NOME E VERSÃO DO BANCO DE DADOS
     private static final String NOME_BANCO = "tripctrl";
     private static final int VERSAO = 1;
 
+    // NOMES DAS TABELAS
     private static final String TABELA_CATEGORIAS = "categorias";
     private static final String TABELA_USUARIOS = "usuarios";
     private static final String TABELA_SUBCATEGORIAS = "subcategorias";
@@ -16,22 +18,14 @@ public class StringsNomes {
     private static final String TABELA_METODOSPAGAMENTO = "metodospagamento";
     private static final String TABELA_GASTOS = "gastos";
 
-    private static final String VIEW_CATEGORIAS = "v_categorias";
-    private static final String VIEW_USUARIOS = "v_usuarios";
-    private static final String VIEW_SUBCATEGORIAS = "v_subcategorias";
-    private static final String VIEW_TIPOSTRANSPORTE = "v_tipostransporte";
-    private static final String VIEW_TIPOSPAGAMENTO = "v_tipospagamento";
-    private static final String VIEW_TIPOSHOSPEDAGEM = "v_tiposhospedagem";
-    private static final String VIEW_VIAGENS = "v_viagens";
-    private static final String VIEW_PLANEJAMENTOS = "v_planejamentos";
-    private static final String VIEW_METODOSPAGAMENTO = "v_metodospagamento";
-    private static final String VIEW_GASTOS = "v_gastos";
-
+    // CAMPO ID : CHAVE PRIMÁRIA DE TODAS AS TABELAS
     private static final String ID = "_id";
 
+    //CAMPOS DE CATEGORIAS
     private static final String CA_NOME = "ca_nome";
-    private static final String CA_ID = "ca_id";
+    private static final String CA_ID = "ca_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
 
+    //CAMPOS DE USUÁRIO
     private static final String US_COD = "us_cod";
     private static final String US_NOME = "us_nome";
     private static final String US_DTNASC = "us_dtnasc";
@@ -42,21 +36,22 @@ public class StringsNomes {
     private static final String US_TELEFONE = "us_telefone";
     private static final String US_SENHA = "us_senha";
     private static final String US_CONFIRMESENHA = "us_confirmesenha";
-    private static final String US_ID = "us_id";
+    private static final String US_ID = "us_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
     private static final String US_USO = "us_uso";
 
-    private static final String SC_NOME = "sc_nome";
-    private static final String SC_ID = "sc_id";
-
+    //CAMPOS DE TIPO DE TRANSPORTE
     private static final String TR_NOME = "tr_nome";
-    private static final String TR_ID = "tr_id";
+    private static final String TR_ID = "tr_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
 
+    //CAMPOS DE TIPOS DE PAGAMENTO
     private static final String TP_NOME = "tp_nome";
-    private static final String TP_ID = "tp_id";
+    private static final String TP_ID = "tp_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
 
+    //CAMPOS DE TIPOS DE HOSPEDAGEM
     private static final String HO_NOME = "ho_nome";
-    private static final String HO_ID = "ho_id";
+    private static final String HO_ID = "ho_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
 
+    //CAMPOS DE VIAGENS
     private static final String VI_NOME = "vi_nome";
     private static final String VI_LOCAL = "vi_local";
     private static final String VI_DTINI = "vi_dtini";
@@ -64,22 +59,26 @@ public class StringsNomes {
     private static final String VI_TRANSPORTE = "vi_transporte";
     private static final String VI_HOSPEDAGEM = "vi_hospedagem";
     private static final String VI_VALORTOTAL = "vi_valortotal";
-    private static final String VI_ID = "vi_id";
+    private static final String VI_ID = "vi_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
 
+    //CAMPOS DE PLANEJAMENTO
     private static final String PL_VALORCAT = "pl_valorcat";
     private static final String PL_VALORTOT = "pl_valortot";
-    private static final String PL_ID = "pl_id";
+    private static final String PL_ID = "pl_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
 
+    //CAMPOS DE MÉTODOS DE PAGAMENTO
     private static final String ME_DETALHE = "me_detalhe";
     private static final String ME_VALOR = "me_valor";
     private static final String ME_VENCIMENTO = "me_vencimento";
-    private static final String ME_ID = "me_id";
+    private static final String ME_ID = "me_id";//CHAVE ESTRANGEIRA PARA ESTA TABELA
 
+    //CAMPOS DE GASTOS
     private static final String GA_VALORCAT = "ga_valorcat";
     private static final String GA_VALORTOT = "ga_valortot";
-    private static final String GA_ID = "ga_id";
+    private static final String GA_ID = "ga_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
 
 
+    // getters
     public static String getNomeBanco() {
         return NOME_BANCO;
     }
@@ -184,14 +183,6 @@ public class StringsNomes {
         return US_ID;
     }
 
-    public static String getScNome() {
-        return SC_NOME;
-    }
-
-    public static String getScId() {
-        return SC_ID;
-    }
-
     public static String getTrNome() {
         return TR_NOME;
     }
@@ -286,46 +277,6 @@ public class StringsNomes {
 
     public static String getGaId() {
         return GA_ID;
-    }
-
-    public static String getViewCategorias() {
-        return VIEW_CATEGORIAS;
-    }
-
-    public static String getViewUsuarios() {
-        return VIEW_USUARIOS;
-    }
-
-    public static String getViewSubcategorias() {
-        return VIEW_SUBCATEGORIAS;
-    }
-
-    public static String getViewTipostransporte() {
-        return VIEW_TIPOSTRANSPORTE;
-    }
-
-    public static String getViewTipospagamento() {
-        return VIEW_TIPOSPAGAMENTO;
-    }
-
-    public static String getViewTiposhospedagem() {
-        return VIEW_TIPOSHOSPEDAGEM;
-    }
-
-    public static String getViewViagens() {
-        return VIEW_VIAGENS;
-    }
-
-    public static String getViewPlanejamentos() {
-        return VIEW_PLANEJAMENTOS;
-    }
-
-    public static String getViewMetodospagamento() {
-        return VIEW_METODOSPAGAMENTO;
-    }
-
-    public static String getViewGastos() {
-        return VIEW_GASTOS;
     }
 
     public static String getUsUso() {

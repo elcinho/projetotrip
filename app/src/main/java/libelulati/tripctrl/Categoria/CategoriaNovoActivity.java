@@ -7,12 +7,12 @@ import android.view.MenuItem;
 
 import libelulati.tripctrl.R;
 
-public class CategoriaEditActivity extends AppCompatActivity {
+public class CategoriaNovoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categoria_edit);
+        setContentView(R.layout.activity_categoria_novo);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

@@ -13,16 +13,16 @@ public class DBCreateDrop {
     private static final String VIRGULA = ", ";
     private static final String FOREINGKEY = " FOREIGN KEY";
     private static final String REFERENCES = " REFERENCES ";
-    private static final String CREATE_VIEWS = "CREATE VIEW IF NOT EXISTS ";
-
-    //Criar Views
-    public static final String CREATE_VIEW_VIAGENS = getCreateViews() + StringsNomes.getViewViagens() + " AS " + DBSelects.getSelecionarDadosViagens();
 
     // Criar tabelas
+
+    //CATEGORIAS
     private static final String CREATE_TABLE_CATEGORIAS = getCreateTable() + StringsNomes.getTabelaCategorias() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getCaNome() + getTEXTO() +
             getFECHAPARENTESES();
+
+    //USUÁRIOS
     private static final String CREATE_TABLE_USUARIOS = getCreateTable() + StringsNomes.getTabelaUsuarios() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getUsCod() + getTEXTO() + getVIRGULA() +
@@ -37,26 +37,26 @@ public class DBCreateDrop {
             StringsNomes.getUsSenha() + getTEXTO() + getVIRGULA() +
             StringsNomes.getUsConfirmesenha() + getTEXTO() +
             getFECHAPARENTESES();
-    private static final String CREATE_TABLE_SUBCATEGORIAS = getCreateTable() + StringsNomes.getTabelaSubcategorias() + getABREPARENTESES() +
-            StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
-            StringsNomes.getUsId() + getINTEIRO() + getVIRGULA() +
-            StringsNomes.getCaId() + getINTEIRO() + getVIRGULA() +
-            StringsNomes.getScNome() + getTEXTO() + getVIRGULA() +
-            getFOREINGKEY() + getABREPARENTESES() + StringsNomes.getCaId() + getFECHAPARENTESES() + getREFERENCES() + StringsNomes.getTabelaCategorias() + getABREPARENTESES() + StringsNomes.getID() + getFECHAPARENTESES() +
-            getFOREINGKEY() + getABREPARENTESES() + StringsNomes.getUsId() + getFECHAPARENTESES() + getREFERENCES() + StringsNomes.getTabelaUsuarios() + getABREPARENTESES() + StringsNomes.getID() + getFECHAPARENTESES() +
-            getFECHAPARENTESES();
+
+    //TIPOS DE TRANSPORTE
     private static final String CREATE_TABLE_TIPOSTRANSPORTE = getCreateTable() + StringsNomes.getTabelaTipostransporte() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getTrNome() + getTEXTO() +
             getFECHAPARENTESES();
+
+    //TIPOS DE HOSPEDAGEM
     private static final String CREATE_TABLE_TIPOSHOSPEDAGEM = getCreateTable() + StringsNomes.getTabelaTiposhospedagem() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getHoNome() + getTEXTO() +
             getFECHAPARENTESES();
+
+    //TIPOS DE PAGAMENTO
     private static final String CREATE_TABLE_TIPOSPAGAMENTO = getCreateTable() + StringsNomes.getTabelaTipospagamento() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getTpNome() + getTEXTO() +
             getFECHAPARENTESES();
+
+    //VIAGENS
     private static final String CREATE_TABLE_VIAGENS = getCreateTable() + StringsNomes.getTabelaViagens() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getUsId() + getINTEIRO() + getVIRGULA() +
@@ -73,6 +73,8 @@ public class DBCreateDrop {
             getFOREINGKEY() + getABREPARENTESES() + StringsNomes.getTrId() + getFECHAPARENTESES() + getREFERENCES() + StringsNomes.getTabelaTipostransporte() + getABREPARENTESES() + StringsNomes.getID() + getFECHAPARENTESES() +
             getFOREINGKEY() + getABREPARENTESES() + StringsNomes.getHoId() + getFECHAPARENTESES() + getREFERENCES() + StringsNomes.getTabelaTiposhospedagem() + getABREPARENTESES() + StringsNomes.getID() + getFECHAPARENTESES() +
             getFECHAPARENTESES();
+
+    //PLANEJAMENTO
     private static final String CREATE_TABLE_PLANEJAMENTO = getCreateTable() + StringsNomes.getTabelaPlanejamentos() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getUsId() + getINTEIRO() + getVIRGULA() +
@@ -84,6 +86,8 @@ public class DBCreateDrop {
             getFOREINGKEY() + getABREPARENTESES() + StringsNomes.getViId() + getFECHAPARENTESES() + getREFERENCES() + StringsNomes.getTabelaViagens() + getABREPARENTESES() + StringsNomes.getID() + getFECHAPARENTESES() +
             getFOREINGKEY() + getABREPARENTESES() + StringsNomes.getScId() + getFECHAPARENTESES() + getREFERENCES() + StringsNomes.getTabelaSubcategorias() + getABREPARENTESES() + StringsNomes.getID() + getFECHAPARENTESES() +
             getFECHAPARENTESES();
+
+    //GASTOS
     private static final String CREATE_TABLE_GASTOS = getCreateTable() + StringsNomes.getTabelaGastos() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getUsId() + getINTEIRO() + getVIRGULA() +
@@ -95,6 +99,8 @@ public class DBCreateDrop {
             getFOREINGKEY() + getABREPARENTESES() + StringsNomes.getViId() + getFECHAPARENTESES() + getREFERENCES() + StringsNomes.getTabelaViagens() + getABREPARENTESES() + StringsNomes.getID() + getFECHAPARENTESES() +
             getFOREINGKEY() + getABREPARENTESES() + StringsNomes.getScId() + getFECHAPARENTESES() + getREFERENCES() + StringsNomes.getTabelaSubcategorias() + getABREPARENTESES() + StringsNomes.getID() + getFECHAPARENTESES() +
             getFECHAPARENTESES();
+
+    //MÉTODOS DE PAGAMENTO
     private static final String CREATE_TABLE_METODOSPAGAMENTO = getCreateTable() + StringsNomes.getTabelaMetodospagamento() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getUsId() + getINTEIRO() + getVIRGULA() +
@@ -111,7 +117,6 @@ public class DBCreateDrop {
     // Apagar tabelas
     private static final String DROP_TABLE_CATEGORIAS = getDropTable() + StringsNomes.getTabelaCategorias();
     private static final String DROP_TABLE_USUARIOS = getDropTable() + StringsNomes.getTabelaUsuarios();
-    private static final String DROP_TABLE_SUBCATEGORIAS = getDropTable() + StringsNomes.getTabelaSubcategorias();
     private static final String DROP_TABLE_TIPOSTRANSPORTE = getDropTable() + StringsNomes.getTabelaTipostransporte();
     private static final String DROP_TABLE_TIPOSHOSPEDAGEM = getDropTable() + StringsNomes.getTabelaTiposhospedagem();
     private static final String DROP_TABLE_TIPOSPAGAMENTO = getDropTable() + StringsNomes.getTabelaTipospagamento();
@@ -173,10 +178,6 @@ public class DBCreateDrop {
         return CREATE_TABLE_USUARIOS;
     }
 
-    public static String getCreateTableSubcategorias() {
-        return CREATE_TABLE_SUBCATEGORIAS;
-    }
-
     public static String getCreateTableTipostransporte() {
         return CREATE_TABLE_TIPOSTRANSPORTE;
     }
@@ -213,10 +214,6 @@ public class DBCreateDrop {
         return DROP_TABLE_USUARIOS;
     }
 
-    public static String getDropTableSubcategorias() {
-        return DROP_TABLE_SUBCATEGORIAS;
-    }
-
     public static String getDropTableTipostransporte() {
         return DROP_TABLE_TIPOSTRANSPORTE;
     }
@@ -243,13 +240,5 @@ public class DBCreateDrop {
 
     public static String getDropTableMetodospagamento() {
         return DROP_TABLE_METODOSPAGAMENTO;
-    }
-
-    public static String getCreateViews() {
-        return CREATE_VIEWS;
-    }
-
-    public static String getCreateViewViagens() {
-        return CREATE_VIEW_VIAGENS;
     }
 }

@@ -37,7 +37,7 @@ public class DBSelects {
 
 
 
-
+    // getters
     public static String getAtualizarWhere() {
         return ATUALIZAR_WHERE;
     }
@@ -97,7 +97,6 @@ public class DBSelects {
     public static String getSelecionarIdTiposHospedagem() {
         return SELECIONAR_ID_TIPOS_HOSPEDAGEM;
     }
-
 
     public static String getSelecionarNomeViagens() {
         return SELECIONAR_NOME_VIAGENS;
