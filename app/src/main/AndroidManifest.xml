@@ -50,24 +50,6 @@
                 android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
-            android:name=".Categoria.CategoriaShowActivity"
-            android:label="@string/title_activity_categoria_show"
-            android:parentActivityName=".Categoria.CategoriaListActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Categoria.CategoriaListActivity" />
-        </activity>
-        <activity
-            android:name=".Categoria.CategoriaNovoActivity"
-            android:label="@string/title_activity_categoria_novo"
-            android:parentActivityName=".Categoria.CategoriaShowActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Categoria.CategoriaShowActivity" />
-        </activity>
-        <activity
             android:name=".MetodosPagamento.MetodosPagamentoListActivity"
             android:label="@string/title_activity_metodos_pagamento_list"
             android:parentActivityName=".Inicio.InicioActivity"

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import libelulati.tripctrl.BancoDados.BancoDados;
+import libelulati.tripctrl.BancoDados.DBCreateDrop;
 import libelulati.tripctrl.BancoDados.DBSelects;
 import libelulati.tripctrl.BancoDados.StringsNomes;
 

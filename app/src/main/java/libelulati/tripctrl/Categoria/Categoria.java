@@ -1,27 +1,16 @@
 package libelulati.tripctrl.Categoria;
 
 public class Categoria {
-    private int sc_id;
     private int ca_id;
-    private String sc_nome;
+    private String ca_nome;
     private int us_id;
 
     public Categoria() {
     }
 
-    public Categoria(int sc_id, int ca_id, String sc_nome, int us_id) {
-        this.sc_id = sc_id;
+    public Categoria(int ca_id, String ca_nome) {
         this.ca_id = ca_id;
-        this.sc_nome = sc_nome;
-        this.us_id = us_id;
-    }
-
-    public int getSc_id() {
-        return sc_id;
-    }
-
-    public void setSc_id(int sc_id) {
-        this.sc_id = sc_id;
+        this.ca_nome = ca_nome;
     }
 
     public int getCa_id() {
@@ -32,12 +21,12 @@ public class Categoria {
         this.ca_id = ca_id;
     }
 
-    public String getSc_nome() {
-        return sc_nome;
+    public String getCa_nome() {
+        return ca_nome;
     }
 
-    public void setSc_nome(String sc_nome) {
-        this.sc_nome = sc_nome;
+    public void setCa_nome(String ca_nome) {
+        this.ca_nome = ca_nome;
     }
 
     public int getUs_id() {
@@ -48,3 +37,4 @@ public class Categoria {
         this.us_id = us_id;
     }
 }
+

@@ -134,6 +134,7 @@
     <string name="validar_senha">A senha precisa ter entre 6 e 10 caracteres. Pelo menos um número, um caracter maíusculo e um caracter minúsculo.</string>
     <string name="validar_telefone">O telefone digitado não é válido.</string>
     <string name="validar_valor">O Valor deve ser maior que 0.99.</string>
+    <string name="validar_categoria">A categoria precisa ter o mínimo de 5 caracteres não numéricos.</string>
 
     <!-- NEGAÇÕES -->
     <string name="encontrado_registro">Nenhum registro encontrado.</string>
@@ -152,6 +153,7 @@
     <string name="sucesso_enviar_codigoSenha">Código de confirmação enviado com sucesso.</string>
     <string name="sucesso_excluir_metodopagamento">Método de pagamento deletado com sucesso.</string>
     <string name="sucesso_excluir_viagem">Viagem deletada com sucesso.</string>
+    <string name="sucesso_criar_categoria">Categoria criada com sucesso.</string>
 
 
     <!-- MENSAGENS DE ERRO -->
@@ -167,6 +169,7 @@
     <string name="erro_excluir_viagem">A viagem não pôde ser deletada.</string>
     <string name="erro_gerar_codigo">Erro ao gerar o código de confirmação. A senha não será alterada.</string>
     <string name="erro_validar_campos">Existem campos que não foram validados. Verifique os dados e tente novamente.</string>
+    <string name="erro_criar_categoria">Ocorreu um erro ao criar a categoria.</string>
 
 
 </resources>

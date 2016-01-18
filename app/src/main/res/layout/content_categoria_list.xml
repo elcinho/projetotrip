@@ -12,4 +12,18 @@
     tools:context="libelulati.tripctrl.Categoria.CategoriaListActivity"
     tools:showIn="@layout/activity_categoria_list">
 
+    <ScrollView
+        android:id="@+id/lv_cal_categorias"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:dividerHeight="2dp">
+
+        <LinearLayout
+            android:id="@+id/lv_item_categorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>

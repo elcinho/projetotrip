@@ -16,6 +16,7 @@ public class DBSelects {
     //TODOS POR USUÁRIO
     private static final String SELECIONAR_VIAGENS = "select * from " + StringsNomes.getTabelaViagens() + " where " + StringsNomes.getUsId() + " = ";
     private static final String SELECIONAR_METODOSPAGAMENTO = "select * from " + StringsNomes.getTabelaMetodospagamento() + " where " + StringsNomes.getUsId() + " = ";
+    private static final String SELECIONAR_CATEGORIAS = "select * from " + StringsNomes.getTabelaCategorias() + " where " + StringsNomes.getUsId() + " is null OR " + StringsNomes.getUsId() + " = ";
 
 
     //DADOS
@@ -112,5 +113,9 @@ public class DBSelects {
 
     public static String getSelecionarMetodospagamento() {
         return SELECIONAR_METODOSPAGAMENTO;
+    }
+
+    public static String getSelecionarCategorias() {
+        return SELECIONAR_CATEGORIAS;
     }
 }
