@@ -31,8 +31,14 @@ import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.Senha.AlterarSenha;
 
+/*
+ * Classe responsável pelo funcionamento da activity ver/editar usuário (show)
+ *
+ */
+
 public class UsuarioShowActivity extends AppCompatActivity {
 
+    //declaração dos objetos e variáveis
     FloatingActionButton fab_editar;
     EditText uss_nome, uss_dtnasc, uss_email, uss_telefone, uss_localizacao, uss_cod, uss_codarea;
     Context contexto;
@@ -48,8 +54,10 @@ public class UsuarioShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_show);
 
+        //ativa o funcionamento do botão voltar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // esconde o menu "salvar / alterar senha" caso esteja na tela de visualização
         vis_menu = 1;
         invalidateOptionsMenu();
 
@@ -66,15 +74,19 @@ public class UsuarioShowActivity extends AppCompatActivity {
 
         uss_dtnasc.setInputType(InputType.TYPE_NULL);
 
+        // desativa o teclado ao carregar a tela de visualização
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(uss_nome.getWindowToken(), 0);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        //determina o título para visualização e edição
         titulo_show = contexto.getResources().getString(R.string.title_activity_usuario_show) + " " + uss_nome.getText().toString();
         titulo_edit = contexto.getResources().getString(R.string.title_activity_usuario_edit) + " " + uss_nome.getText().toString();
 
+        // seta o título visualização ao carregar a tela
         getSupportActionBar().setTitle(titulo_show);
 
+        // verifica o campo nome ao perder o foco
         uss_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -85,6 +97,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
             }
         });
 
+        // verifica o campo data de nascimento ao perder o foco
         uss_dtnasc.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -98,6 +111,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
             }
         });
 
+        // verifica o campo codigo de area ao perder o foco
         uss_codarea.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -108,6 +122,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
             }
         });
 
+        // verifica o campo telefone ao perder o foco
         uss_telefone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -118,12 +133,15 @@ public class UsuarioShowActivity extends AppCompatActivity {
             }
         });
 
+        // determina a ação do click no botão editar
         fab_editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                //seta o título editar
                 getSupportActionBar().setTitle(titulo_edit);
 
+                // habilita a edição dos campos
                 uss_nome.setEnabled(true);
                 uss_dtnasc.setEnabled(true);
                 uss_localizacao.setEnabled(true);
@@ -133,8 +151,10 @@ public class UsuarioShowActivity extends AppCompatActivity {
                 uss_email.setTextColor(contexto.getResources().getColor(R.color.cinza));
                 uss_cod.setTextColor(contexto.getResources().getColor(R.color.cinza));
 
+                //oculta o botão editar
                 fab_editar.setVisibility(View.INVISIBLE);
 
+                // exibe o menu 'salvar / alterar senha'
                 vis_menu = 2;
                 invalidateOptionsMenu();
 
@@ -143,6 +163,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
         });
     }
 
+    /* Menu */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -178,6 +199,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
         }
         return (true);
     }
+    /* Menu - Fim */
 
     @Override
     public void onResume(){
@@ -185,11 +207,13 @@ public class UsuarioShowActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    // Método para exibir o diálogo 'alterar senha'
     public void exibirAlterarSenha(){
         android.app.DialogFragment alterarsenha = new AlterarSenha(usuaruioid);
         alterarsenha.show(getFragmentManager(), "alterarsenha");
     }
 
+    // Método para alterar os dados de usuário
     public void AtualizarDados(){
         contexto = getApplicationContext();
 
@@ -219,6 +243,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
         }
     }
 
+    // Método para salvar as alterações do usuário
     public void salvar(){
         if(IsValido()){
             Usuario usuario = new Usuario();
@@ -247,6 +272,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
         }
     }
 
+    // Método para verificar se todos os campos sao válidos
     public boolean IsValido(){
         if(v_nome && v_dtnasc && v_codarea && v_telefone){
             return true;
@@ -256,6 +282,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
         }
     }
 
+    // Método para verificar Nome
     public void verificarNome(){
         validar = Validar.ValidarNome(uss_nome.getText().toString());
         if(!validar){
@@ -267,6 +294,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
         }
     }
 
+    // Método para verificar data de nascimento
     public void verificarDtNasc(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -284,6 +312,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
         }
     }
 
+    // Método para verificar telefone
     public void verificarTelefone(){
         validar = Validar.ValidarTelefone(uss_telefone.length(), uss_telefone.getText().toString());
         if(!validar){
@@ -295,6 +324,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
         }
     }
 
+    // Método para verificar codigo área
     public void verificarCodArea(){
         validar = Validar.ValidarCodArea(uss_codarea.getText().toString());
         if(!validar){
@@ -306,6 +336,7 @@ public class UsuarioShowActivity extends AppCompatActivity {
         }
     }
 
+    // Método para criar o datapicker/calendário com a data atual
     public void calendario() {
         final Calendar calendar = Calendar.getInstance();
         ano = calendar.get(Calendar.YEAR);
@@ -313,16 +344,19 @@ public class UsuarioShowActivity extends AppCompatActivity {
         dia = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
+    // Método para atualizar o datapicker/calendário para a data informada
     public void AtualizarData() {
         dataformatada = (new StringBuilder().append(dia).append("/").append(mes).append("/").append(ano));
         uss_dtnasc.setText(dataformatada);
     }
 
+    // Método para exibir o datapicker/calendário
     public void showDatePickerDialog_uss_dtnasc(View view) {
         DialogFragment dialogFragment = new DatePickerFragment();
         dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
 
+    // Subclasse para instanciar o calendário
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {

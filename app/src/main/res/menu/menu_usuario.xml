@@ -4,12 +4,12 @@
 
     <item android:id="@+id/mn_us_salvar"
         android:icon="@drawable/ic_action_accept"
-        android:orderInCategory="2"
+        android:orderInCategory="1"
         android:title="@string/salvar"
         app:showAsAction="always"/>
     <item android:id="@+id/mn_us_alterarsenha"
         android:icon="@drawable/ic_action_accounts"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         android:title="@string/alterarsenha"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
 </menu>

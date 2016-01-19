@@ -88,7 +88,7 @@ public class MetodosPagamentoShowActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(titulo_show);
 
         listatipopagamento = new MetodosPagamentoDAO(context).sp_tipospagamento();
-        listaviagem = new MetodosPagamentoDAO(context).sp_viagens();
+        listaviagem = new MetodosPagamentoDAO(context).sp_viagens(usuario);
 
         mps_viagem.setInputType(InputType.TYPE_NULL);
         mps_tipopagamento.setInputType(InputType.TYPE_NULL);

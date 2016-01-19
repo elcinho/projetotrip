@@ -7,6 +7,11 @@ import java.util.Date;
 
 public class Funcao {
 
+    /*
+     * Função F0001: Pega a data atual do telefone.
+     *
+     */
+
     public static String DataAtual() {
 
         Date data = new Date();

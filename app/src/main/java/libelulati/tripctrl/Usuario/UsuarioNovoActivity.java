@@ -27,8 +27,14 @@ import libelulati.tripctrl.Funcoes.Codigos;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.R;
 
+/*
+ *Classe que instancia e determina as funções da activity 'NovoUsuário'
+ *
+ */
+
 public class UsuarioNovoActivity extends AppCompatActivity {
 
+    //Declaração dos parâmetros e variáveis
     EditText us_nome, us_dtnasc, us_email, us_localizacao, us_codarea, us_telefone, us_senha, us_confirmesenha;
     int ano, mes, dia;
     boolean validar, v_nome, v_email, v_codarea, v_telefone, v_dtnasc, v_senha, v_confirmesenha;
@@ -39,6 +45,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_novo);
 
+        //habilita a funçao 'voltar'
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = UsuarioNovoActivity.this;
@@ -54,6 +61,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
 
         us_dtnasc.setInputType(InputType.TYPE_NULL);
 
+        //verifica  o campo nome ao perder o foco
         us_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -64,6 +72,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
             }
         });
 
+        //verifica  o campo data de nascimento ao perder o foco
         us_dtnasc.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -76,6 +85,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
             }
         });
 
+        //verifica  o campo e-mail ao perder o foco
         us_email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -86,6 +96,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
             }
         });
 
+        //verifica  o campo codarea ao perder o foco
         us_codarea.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -96,6 +107,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
             }
         });
 
+        //verifica  o campo telefone ao perder o foco
         us_telefone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -106,6 +118,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
             }
         });
 
+        //verifica  o campo senha ao perder o foco
         us_senha.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -116,6 +129,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
             }
         });
 
+        //verifica  o campo confirme senha ao perder o foco
         us_confirmesenha.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -127,7 +141,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         });
     }
 
-
+    /* Menu */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -148,7 +162,9 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
         return true;
     }
+    /*Menu Fim */
 
+    // Método salvar: Conecta-se ao banco de dados e salva todos os registros informados.
     public void salvar(){
         if(isValido()){
             Codigos codigos = new Codigos();
@@ -181,6 +197,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
     }
 
+    //Método para verificar nome
     public void verificarnome() {
         validar = Validar.ValidarNome(String.valueOf(us_nome.getText().toString()));
         if (!validar) {
@@ -191,6 +208,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
     }
 
+    //Método para verificar email
     public void verificaremail() {
         validar = Validar.ValidarEmail(us_email.length(), String.valueOf(us_email.getText().toString()));
         if (!validar) {
@@ -201,6 +219,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
     }
 
+    //Método para verificar data de nascimento
     public void verificarnascimento() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -218,6 +237,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
     }
 
+    //Método para verificar código de área
     public void verificarcodarea(){
         validar  = Validar.ValidarCodArea(us_codarea.getText().toString());
         if(!validar){
@@ -229,6 +249,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
     }
 
+    //Método para verificar telefone
     public void verificartelefone() {
         validar = Validar.ValidarTelefone(us_telefone.length(), String.valueOf(us_telefone.getText().toString()));
         if (!validar) {
@@ -239,6 +260,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
     }
 
+    //Método para verificar senha
     public void verificarsenha() {
         validar = Validar.ValidarSenha(String.valueOf(us_senha.getText().toString()));
         if (!validar) {
@@ -249,6 +271,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
     }
 
+    //Método para verificar confirmesenha
     public void verificarconfirmesenha() {
         validar = Validar.ValidarConfirmeSenha(String.valueOf(us_senha.getText().toString()), String.valueOf(us_confirmesenha.getText().toString()));
         if (!validar) {
@@ -259,6 +282,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
     }
 
+    // Método para verificar se todos os campos são válidos
     public boolean isValido(){
         if(v_nome && v_email && v_dtnasc && v_codarea && v_telefone && v_senha && v_confirmesenha){
             return true;
@@ -268,6 +292,7 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         }
     }
 
+    // Método para criar o datapicker/calendário com a data atual
     public void calendario() {
         final Calendar calendar = Calendar.getInstance();
         ano = calendar.get(Calendar.YEAR);
@@ -275,15 +300,18 @@ public class UsuarioNovoActivity extends AppCompatActivity {
         dia = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
+    // Método para atualizar o datapicker/calendário para a data informada
     public void AtualizarData() {
         us_dtnasc.setText(new StringBuilder().append(dia).append("/").append(mes).append("/").append(ano));
     }
 
+    // Método para exibir o datapicker/calendário
     public void showDatePickerDialog_new(View view) {
         DialogFragment dialogFragment = new DatePickerFragment();
         dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
 
+    // Subclasse para instanciar o calendário
     @SuppressLint("ValidFragment")
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         @Override

@@ -18,11 +18,13 @@ import android.widget.Toast;
 import java.util.List;
 
 import libelulati.tripctrl.BancoDados.StringsNomes;
+import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
 
 public class ViagensListActivity extends AppCompatActivity {
 
+    int usuario = InicioActivity.getId_uslogado();
     Context context;
     String id_viagem;
 
@@ -73,7 +75,7 @@ public class ViagensListActivity extends AppCompatActivity {
         LinearLayout linearLayoutLista = (LinearLayout) findViewById(R.id.lv_item_viagens);
         linearLayoutLista.removeAllViews();
 
-        List<Viagens> viagens = new ViagensDAO(this).listar();
+        List<Viagens> viagens = new ViagensDAO(this).listar(usuario);
 
         if (viagens.size() > 0) {
             for (Viagens viag : viagens) {

@@ -251,8 +251,8 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
     public void dialogoCodigo() {
         AlertDialog codigoaltsenha;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(getApplicationContext().getResources().getString(R.string.codigo_confirmacao));
-        builder.setMessage(getApplicationContext().getResources().getString(R.string.codigo_confirme));
+        builder.setTitle(getApplicationContext().getResources().getString(R.string.codigoconfirmacao));
+        builder.setMessage(getApplicationContext().getResources().getString(R.string.codigoconfirme));
         LayoutInflater inflater = getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.dialog_edittext, null));
 

@@ -6,8 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import libelulati.tripctrl.BancoDados.BancoDados;
+import libelulati.tripctrl.BancoDados.DBCreateDrop;
 import libelulati.tripctrl.BancoDados.DBSelects;
 import libelulati.tripctrl.BancoDados.StringsNomes;
+
+/*
+ *Classe de conexão do objeto Usuário ao banco de dados com os métodos de manipulação do mesmo.
+ *
+ */
 
 public class UsuarioDAO extends BancoDados {
 
@@ -15,6 +21,7 @@ public class UsuarioDAO extends BancoDados {
         super(context);
     }
 
+    //INSERT: Cria um novo usuário
     public boolean criar(Usuario usuario) {
 
         ContentValues values = new ContentValues();
@@ -38,6 +45,7 @@ public class UsuarioDAO extends BancoDados {
         return sucesso;
     }
 
+    //UPDATE: atualiza o registro do usuário conforme seu ID
     public boolean atualizar(Usuario usuario, int id) {
 
         ContentValues values = new ContentValues();
@@ -60,6 +68,7 @@ public class UsuarioDAO extends BancoDados {
         return sucesso;
     }
 
+    //Altera a senha do usuário
     public boolean alterarsenha(Usuario usuario, int id) {
 
         ContentValues values = new ContentValues();
@@ -78,6 +87,7 @@ public class UsuarioDAO extends BancoDados {
         return sucesso;
     }
 
+    //SELECT ID: Faz uma busca pelo ID informado
     public Usuario buscaId(int id) {
 
         Usuario usuario = null;
@@ -120,6 +130,7 @@ public class UsuarioDAO extends BancoDados {
         return usuario;
     }
 
+    //SELECT EMAIL: faz uma busca pelo e-mail informado
     public Usuario buscaEmail(String email) {
 
         Usuario usuario = null;

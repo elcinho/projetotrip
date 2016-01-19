@@ -2,12 +2,14 @@ package libelulati.tripctrl.BancoDados;
 
 public class DBInsertTabelas {
 
+        //CATEGORIAS
         private static final String INSERT_TABELA_CATEGORIAS_TRANSPORTE = "insert into categorias(ca_nome) values ('TRANSPORTE')";
         private static final String INSERT_TABELA_CATEGORIAS_HOSPEDAGEM = "insert into categorias(ca_nome) values ('HOSPEDAGEM')";
         private static final String INSERT_TABELA_CATEGORIAS_ALIMENTACAO = "insert into categorias(ca_nome) values ('ALIMENTAÇÃO')";
         private static final String INSERT_TABELA_CATEGORIAS_LAZER =  "insert into categorias(ca_nome) values ('LAZER')";
         private static final String INSERT_TABELA_CATEGORIAS_COMPRAS = "insert into categorias(ca_nome) values ('COMPRAS')";
 
+        //TIPO DE HOSPEDAGEM
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_HOTEL = "insert into tiposhospedagem(ho_nome) values ('Hotel')";
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_HOSTEL = "insert into tiposhospedagem(ho_nome) values ('Hostel')";
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_POUSADA = "insert into tiposhospedagem(ho_nome) values ('Pousada')";
@@ -16,6 +18,7 @@ public class DBInsertTabelas {
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_PROPRIO =  "insert into tiposhospedagem(ho_nome) values ('Próprio')";
         private static final String INSERT_TABELA_TIPOSHOSPEDAGEM_OUTRO = "insert into tiposhospedagem(ho_nome) values ('Outro')";
 
+        //TIPO DE PAGAMENTO
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_DINHEIRO = "insert into tipospagamento (tp_nome) values ('Dinheiro')";
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_CC = "insert into tipospagamento (tp_nome) values ('Cartão de Crédito')";
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_CD = "insert into tipospagamento (tp_nome) values ('Cartão de Débito')";
@@ -23,6 +26,7 @@ public class DBInsertTabelas {
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_TERCEIROS =  "insert into tipospagamento (tp_nome) values ('Terceiros')";
         private static final String INSERT_TABELA_TIPOSPAGAMENTO_OUTRO =  "insert into tipospagamento (tp_nome) values ('Outro')";
 
+        //TIPO DE TRANSPORTE
         private static final String INSERT_TABELA_TIPOSTRANSPORTE_AVIAO = "insert into tipostransporte(tr_nome) values ('Avião')";
         private static final String INSERT_TABELA_TIPOSTRANSPORTE_NAVIO =  "insert into tipostransporte(tr_nome) values ('Navio')";
         private static final String INSERT_TABELA_TIPOSTRANSPORTE_ONIBUS =  "insert into tipostransporte(tr_nome) values ('Ônibus')";
@@ -31,11 +35,11 @@ public class DBInsertTabelas {
         private static final String INSERT_TABELA_TIPOSTRANSPORTE_VA = "insert into tipostransporte(tr_nome) values ('Veículo Alugado')";
         private static final String INSERT_TABELA_TIPOSTRANSPORTE_OUTRO = "insert into tipostransporte(tr_nome) values ('Outro')";
 
-        private static final String INSERT_TABELA_USUARIO_GERAL = "insert into usuarios(us_cod, us_nome, us_dtnasc, us_email, us_latitude, us_longitude, us_codarea, us_telefone, us_senha, us_confirmesenha) values ('122015TRIPadm','Administrador', '2015-10-06', 'marcelaamelo1986@gmail.com', '102030', '302010', '+55 31', '971720145', 'teste123A', 'teste123A')";
+        //USUARIO MASTER
+        private static final String INSERT_TABELA_USUARIO_GERAL = "insert into usuarios(us_cod, us_nome, us_dtnasc, us_email, us_latitude, us_longitude, us_codarea, us_telefone, us_senha, us_confirmesenha) values ('122015TRIPadm','Administrador', '2015-10-06', 'master@libelulati.com', '102030', '302010', '+55 31', '971720145', '1a2b3C', '1a2b3C')";
+
 
         // getters
-
-
         public static String getInsertTabelaCategoriasTransporte() {
                 return INSERT_TABELA_CATEGORIAS_TRANSPORTE;
         }
