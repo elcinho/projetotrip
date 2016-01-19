@@ -20,6 +20,7 @@ public class CategoriaDAO extends BancoDados{
         super(context);
     }
 
+    //Método para criar uma categoria
     public boolean criar(Categoria categoria){
 
         ContentValues values = new ContentValues();
@@ -35,6 +36,7 @@ public class CategoriaDAO extends BancoDados{
         return sucesso;
     }
 
+    //Método para listar categorias
     public List<Categoria> listar(int usuario){
 
         List<Categoria> listarcategorias = new ArrayList<>();

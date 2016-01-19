@@ -28,6 +28,7 @@ import libelulati.tripctrl.R;
 
 public class CategoriaListActivity extends AppCompatActivity {
 
+    //Declaração de variáveis e objetos
     Context context;
     int usuario = InicioActivity.getId_uslogado();
     EditText ed_ca_nome;
@@ -41,9 +42,11 @@ public class CategoriaListActivity extends AppCompatActivity {
 
         context = CategoriaListActivity.this;
 
+        // Habilita a função 'voltar'
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_ca_novo);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +61,7 @@ public class CategoriaListActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    //Método para listar as categorias
     public void listarCategorias(){
 
         LinearLayout linearLayoutLista = (LinearLayout) findViewById(R.id.lv_item_categorias);
@@ -83,15 +87,19 @@ public class CategoriaListActivity extends AppCompatActivity {
         }
     }
 
+    // Método para criar nova categoria
     public void novaCategoria(){
+
+        AlertDialog novacategoria;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogview = inflater.inflate(R.layout.dialog_categoria, null);
         builder.setView(dialogview);
         builder.setTitle(context.getResources().getString(R.string.title_activity_categoria_novo));
+        builder.setMessage(" ");
 
-        ed_ca_nome = (EditText)findViewById(R.id.ed_ca_nome);
+        ed_ca_nome = (EditText)dialogview.findViewById(R.id.ed_ca_nome);
 
         ed_ca_nome.addTextChangedListener(new TextWatcher() {
             @Override
@@ -101,14 +109,40 @@ public class CategoriaListActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(ed_ca_nome.length() > 5){
+                if (ed_ca_nome.length() > 5) {
                     verificarNome();
+                }
+                else{
+                    ed_ca_nome.setError(null);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                verificarNome();
+
+            }
+        });
+
+        ed_ca_nome.removeTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (ed_ca_nome.length() > 5) {
+                    verificarNome();
+                }
+                else{
+                    ed_ca_nome.setError(null);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -116,6 +150,7 @@ public class CategoriaListActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 salvar();
+                listarCategorias();
             }
         });
 
@@ -127,16 +162,18 @@ public class CategoriaListActivity extends AppCompatActivity {
         });
 
 
-        AlertDialog dialog = builder.create();
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+        novacategoria = builder.create();
+        novacategoria.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                positivo = ((android.app.AlertDialog) dialog).getButton(android.app.AlertDialog.BUTTON_POSITIVE);
+                positivo = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
                 positivo.setEnabled(false);
             }
         });
+        novacategoria.show();
     }
 
+    //Método para salvar categoria
     public void salvar(){
 
         Categoria categoria = new Categoria();
@@ -158,6 +195,7 @@ public class CategoriaListActivity extends AppCompatActivity {
 
     }
 
+    // Método para verificar Nome
     public void verificarNome(){
         validar = Validar.ValidarNome(ed_ca_nome.getText().toString());
         if(!validar){
@@ -166,10 +204,12 @@ public class CategoriaListActivity extends AppCompatActivity {
         }
         else{
             v_nome = true;
+            ed_ca_nome.setError(null);
             positivo.setEnabled(true);
         }
     }
 
+    /* Menu */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -186,5 +226,7 @@ public class CategoriaListActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    /* Fim do menu */
 
 }
