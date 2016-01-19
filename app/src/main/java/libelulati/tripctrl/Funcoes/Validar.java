@@ -70,26 +70,18 @@ public class Validar {
      */
 
     public static boolean ValidarTelefone(int tamanho, String telefone) {
-        int cont = 0, seq = 0;
+        int seq = 0;
         String numeros = "0123456789";
         //verifica se tamanho é menor que 8 caracteres
         if (tamanho < 8) {
             return false;
         } else {
-            //verifica se foi digitado caracteres não númericos
-            for(int i = 0; i < tamanho; i++){
-                for(int j = 0; j < numeros.length(); j++){
-                    if(telefone.charAt(i) != numeros.charAt(j)){
-                        cont++;
-                    }
-                }
-            }
             //verifica se foi digitado sequencias
             for (int i = 0; i < tamanho - 1; i++) {
                 if(telefone.charAt(i) == telefone.charAt(i + 1))
                     seq ++;
             }
-            return seq < 5 && cont == 0;
+            return seq < 5;
         }
     }
 
