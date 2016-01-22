@@ -25,6 +25,8 @@ public class BancoDados extends SQLiteOpenHelper{
         db.execSQL(DBCreateDrop.getCreateTablePlanejamento());
         db.execSQL(DBCreateDrop.getCreateTableMetodospagamento());
         db.execSQL(DBCreateDrop.getCreateTableGastos());
+        db.execSQL(DBCreateDrop.getCreateTableListas());
+        db.execSQL(DBCreateDrop.getCreateTableItemlista());
 
         //insere dados nas tabelas fixas
 
@@ -72,6 +74,8 @@ public class BancoDados extends SQLiteOpenHelper{
         db.execSQL(DBCreateDrop.getDropTableTipospagamento());
         db.execSQL(DBCreateDrop.getDropTableUsuarios());
         db.execSQL(DBCreateDrop.getDropTableCategorias());
+        db.execSQL(DBCreateDrop.getDropTableItemlista());
+        db.execSQL(DBCreateDrop.getDropTableListas());
 
         // recria as tabelas
         onCreate(db);

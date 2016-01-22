@@ -17,6 +17,9 @@ public class StringsNomes {
     private static final String TABELA_PLANEJAMENTOS = "planejamentos";
     private static final String TABELA_METODOSPAGAMENTO = "metodospagamento";
     private static final String TABELA_GASTOS = "gastos";
+    private static final String TABELA_LISTAS = "listas";
+    private static final String TABELA_LISTAITEM = "listaitem";
+
 
     // CAMPO ID : CHAVE PRIMÁRIA DE TODAS AS TABELAS
     private static final String ID = "_id";
@@ -63,7 +66,7 @@ public class StringsNomes {
 
     //CAMPOS DE PLANEJAMENTO
     private static final String PL_VALORCAT = "pl_valorcat";
-    private static final String PL_VALORTOT = "pl_valortot";
+    private static final String PL_DESCRICAO = "pl_descricao";
     private static final String PL_ID = "pl_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
 
     //CAMPOS DE MÉTODOS DE PAGAMENTO
@@ -74,11 +77,22 @@ public class StringsNomes {
 
     //CAMPOS DE GASTOS
     private static final String GA_VALORCAT = "ga_valorcat";
-    private static final String GA_VALORTOT = "ga_valortot";
+    private static final String GA_DESCRICAO = "ga_descricao";
     private static final String GA_ID = "ga_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
+
+    //CAMPOS DE LISTAS
+    private static final String LI_NOME = "li_nome";
+    private static final String LI_ID = "li_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
+
+    //CAMPOS DE ITEM LISTA
+    private static final String IL_NOME = "il_nome";
+    private static final String IL_CHECK = "il_check";
+    private static final String IL_ID = "il_id"; //CHAVE ESTRANGEIRA PARA ESTA TABELA
+
 
 
     // getters
+
     public static String getNomeBanco() {
         return NOME_BANCO;
     }
@@ -125,6 +139,14 @@ public class StringsNomes {
 
     public static String getTabelaGastos() {
         return TABELA_GASTOS;
+    }
+
+    public static String getTabelaListas() {
+        return TABELA_LISTAS;
+    }
+
+    public static String getTabelaListaitem() {
+        return TABELA_LISTAITEM;
     }
 
     public static String getID() {
@@ -181,6 +203,10 @@ public class StringsNomes {
 
     public static String getUsId() {
         return US_ID;
+    }
+
+    public static String getUsUso() {
+        return US_USO;
     }
 
     public static String getTrNome() {
@@ -243,8 +269,8 @@ public class StringsNomes {
         return PL_VALORCAT;
     }
 
-    public static String getPlValortot() {
-        return PL_VALORTOT;
+    public static String getPlDescricao() {
+        return PL_DESCRICAO;
     }
 
     public static String getPlId() {
@@ -271,15 +297,31 @@ public class StringsNomes {
         return GA_VALORCAT;
     }
 
-    public static String getGaValortot() {
-        return GA_VALORTOT;
+    public static String getGaDescricao() {
+        return GA_DESCRICAO;
     }
 
     public static String getGaId() {
         return GA_ID;
     }
 
-    public static String getUsUso() {
-        return US_USO;
+    public static String getLiNome() {
+        return LI_NOME;
+    }
+
+    public static String getLiId() {
+        return LI_ID;
+    }
+
+    public static String getIlNome() {
+        return IL_NOME;
+    }
+
+    public static String getIlCheck() {
+        return IL_CHECK;
+    }
+
+    public static String getIlId() {
+        return IL_ID;
     }
 }
