@@ -30,6 +30,8 @@
     <string name="title_activity_viagens_list">Viagens</string>
     <string name="title_activity_viagens_novo">Nova Viagem</string>
     <string name="title_activity_viagens_show">Viagem</string>
+    <string name="title_activity_listas_list">Listas</string>
+    <string name="title_activity_item_lista_list">Lista</string>
 
 
     <!-- MENUS -->
@@ -94,6 +96,7 @@
     <string name="tipotransporte">Tipo de transporte</string>
     <string name="transporte">Transporte</string>
     <string name="valortotal">Valor total</string>
+    <string name="lista">Nova Lista</string>
 
     <!-- TABELAS -->
     <string name="categoria">Categoria</string>
@@ -135,6 +138,7 @@
     <string name="validar_telefone">O telefone digitado não é válido.</string>
     <string name="validar_valor">O Valor deve ser maior que 0.99.</string>
     <string name="validar_categoria">A categoria precisa ter o mínimo de 5 caracteres não numéricos.</string>
+    <string name="validar_lista">A lista precisa ter o mínimo de 5 caracteres não numéricos.</string>
 
     <!-- NEGAÇÕES -->
     <string name="encontrado_registro">Nenhum registro encontrado.</string>
@@ -154,6 +158,7 @@
     <string name="sucesso_excluir_metodopagamento">Método de pagamento deletado com sucesso.</string>
     <string name="sucesso_excluir_viagem">Viagem deletada com sucesso.</string>
     <string name="sucesso_criar_categoria">Categoria criada com sucesso.</string>
+    <string name="sucesso_criar_lista">Lista criada com sucesso.</string>
 
 
     <!-- MENSAGENS DE ERRO -->
@@ -170,6 +175,6 @@
     <string name="erro_gerar_codigo">Erro ao gerar o código de confirmação. A senha não será alterada.</string>
     <string name="erro_validar_campos">Existem campos que não foram validados. Verifique os dados e tente novamente.</string>
     <string name="erro_criar_categoria">Ocorreu um erro ao criar a categoria.</string>
-
+    <string name="erro_criar_lista">Ocorreu um erro ao criar a lista.</string>
 
 </resources>

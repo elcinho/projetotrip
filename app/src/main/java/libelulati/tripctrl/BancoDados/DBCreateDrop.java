@@ -11,8 +11,6 @@ public class DBCreateDrop {
     private static final String ABREPARENTESES = "(";
     private static final String FECHAPARENTESES = ")";
     private static final String VIRGULA = ", ";
-    private static final String FOREINGKEY = " FOREIGN KEY";
-    private static final String REFERENCES = " REFERENCES ";
 
     // Criar tabelas
 
@@ -107,7 +105,6 @@ public class DBCreateDrop {
     private static final String CREATE_TABLE_LISTAS = getCreateTable() + StringsNomes.getTabelaListas() + getABREPARENTESES() +
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getUsId() + getINTEIRO() + getVIRGULA() +
-            StringsNomes.getViId() + getTEXTO() + getVIRGULA() +
             StringsNomes.getLiNome() + getTEXTO() +
             getFECHAPARENTESES();
 
@@ -172,14 +169,6 @@ public class DBCreateDrop {
 
     public static String getVIRGULA() {
         return VIRGULA;
-    }
-
-    public static String getFOREINGKEY() {
-        return FOREINGKEY;
-    }
-
-    public static String getREFERENCES() {
-        return REFERENCES;
     }
 
     public static String getCreateTableCategorias() {
