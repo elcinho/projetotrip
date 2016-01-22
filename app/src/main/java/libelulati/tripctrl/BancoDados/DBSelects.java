@@ -36,6 +36,7 @@ public class DBSelects {
 
     //CAMPO ISOLADO
     private static final String SELECIONAR_EMAIL_USUARIO = "select * from " + StringsNomes.getTabelaUsuarios() + " where " + StringsNomes.getUsEmail() + " = ";
+    private static final  String SELECIONAR_ITEM_LISTA = "select * from " + StringsNomes.getTabelaListaitem() + " where " + StringsNomes.getLiId() + " = ";
 
 
 
@@ -122,5 +123,9 @@ public class DBSelects {
 
     public static String getSelecionarListas() {
         return SELECIONAR_LISTAS;
+    }
+
+    public static String getSelecionarItemLista() {
+        return SELECIONAR_ITEM_LISTA;
     }
 }
