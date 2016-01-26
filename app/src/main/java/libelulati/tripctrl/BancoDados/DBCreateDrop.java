@@ -113,7 +113,7 @@ public class DBCreateDrop {
             StringsNomes.getID() + getPRIMARYKEY() + getVIRGULA() +
             StringsNomes.getLiId() + getTEXTO() + getVIRGULA() +
             StringsNomes.getIlNome() + getTEXTO() + getVIRGULA() +
-            StringsNomes. getIlCheck() + getINTEIRO() + getVIRGULA() +
+            StringsNomes. getIlCheck() + getINTEIRO() +
             getFECHAPARENTESES();
 
 

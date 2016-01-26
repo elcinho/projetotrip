@@ -20,39 +20,44 @@
         android:title="@string/editarusuario"
         app:showAsAction="never" />
 
-    <item android:id="@+id/mn_ini_categoria"
+    <item android:id="@+id/mn_ini_listas"
         android:orderInCategory="4"
+        android:title="@string/lista"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/mn_ini_categoria"
+        android:orderInCategory="5"
         android:title="@string/categorias"
         app:showAsAction="never" />
 
     <item android:id="@+id/mn_ini_metodopagamento"
-        android:orderInCategory="5"
+        android:orderInCategory="6"
         android:title="@string/metodospagamento"
         app:showAsAction="never" />
 
     <item android:id="@+id/mn_ini_viagens"
-        android:orderInCategory="6"
+        android:orderInCategory="7"
         android:title="@string/viagens"
         app:showAsAction="never" />
 
     <item android:id="@+id/mn_ini_planejamento"
-        android:orderInCategory="7"
+        android:orderInCategory="8"
         android:title="@string/planejamentos"
         app:showAsAction="never" />
 
     <item android:id="@+id/mn_ini_gastos"
-        android:orderInCategory="8"
+        android:orderInCategory="9"
         android:title="@string/gastos"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/mn_ini_relatorios"
-        android:orderInCategory="9"
+        android:orderInCategory="10"
         android:title="@string/relatorios"
         app:showAsAction="never" />
 
     <item android:id="@+id/mn_ini_configuracao"
-        android:orderInCategory="9"
+        android:orderInCategory="11"
         android:title="@string/configuracoes"
         app:showAsAction="never" />
 </menu>

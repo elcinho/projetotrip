@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Categoria.CategoriaListActivity;
 import libelulati.tripctrl.Gastos.GastosListActivity;
+import libelulati.tripctrl.Listas.ListasListActivity;
 import libelulati.tripctrl.MetodosPagamento.MetodosPagamentoListActivity;
 import libelulati.tripctrl.Planejamentos.PlanejamentosListActivity;
 import libelulati.tripctrl.R;
@@ -103,6 +104,10 @@ public class InicioActivity extends AppCompatActivity {
             case R.id.mn_ini_relatorios:
                 Intent it_ini_relatorio = new Intent(InicioActivity.this, RelatoriosActivity.class);
                 startActivity(it_ini_relatorio);
+                break;
+            case R.id.mn_ini_listas:
+                Intent it_ini_listas = new Intent(InicioActivity.this, ListasListActivity.class);
+                startActivity(it_ini_listas);
                 break;
         }
         return true;
