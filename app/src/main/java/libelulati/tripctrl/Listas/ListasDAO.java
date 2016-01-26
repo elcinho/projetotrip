@@ -96,4 +96,30 @@ public class ListasDAO extends BancoDados{
 
         return listaritem;
     }
+
+    public Lista buscarListaID(int id){
+        Lista lista = null;
+
+        String sql = DBSelects.getSelecionarIdListas() + id;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if(cursor.moveToFirst()){
+
+            int us_id = InicioActivity.getId_uslogado();
+            String li_nome = cursor.getString(cursor.getColumnIndex(StringsNomes.getLiNome()));
+
+            lista = new Lista();
+            lista.setLi_id(id);
+            lista.setUs_id(us_id);
+            lista.setLi_nome(li_nome);
+        }
+
+        close();
+        db.close();
+
+        return lista;
+    }
 }

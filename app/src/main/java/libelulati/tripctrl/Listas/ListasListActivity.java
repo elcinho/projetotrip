@@ -2,6 +2,7 @@ package libelulati.tripctrl.Listas;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import libelulati.tripctrl.BancoDados.StringsNomes;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
@@ -41,12 +43,11 @@ public class ListasListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listas_list);
 
-        context = ListasListActivity.this;
-
-        // Habilita a função 'voltar'
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        context = ListasListActivity.this;
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_li_novo);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +156,7 @@ public class ListasListActivity extends AppCompatActivity {
 
         if(lista.size() > 0 ){
             for(Lista list : lista){
-                int id = list.getLi_id();
+                final int id = list.getLi_id();
                 String li_nome = list.getLi_nome();
 
                 TextView tx_li_item = new TextView(this);
@@ -166,8 +167,22 @@ public class ListasListActivity extends AppCompatActivity {
                 tx_li_item.setTextSize(20);
                 tx_li_item.setTextColor(getResources().getColor(R.color.colorAccent));
 
+                tx_li_item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clicar(id);
+                    }
+                });
+
                 linearLayoutLista.addView(tx_li_item);
             }
+        }
+        else{
+            TextView tx_novo = new TextView(this);
+            tx_novo.setPadding(8, 8, 8, 8);
+            tx_novo.setText(context.getResources().getString(R.string.encontrado_registro));
+
+            linearLayoutLista.addView(tx_novo);
         }
     }
 
@@ -221,7 +236,20 @@ public class ListasListActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
     /* Fim do menu */
 
+    public void clicar(int id){
+
+        ListasDAO listasDAO = new ListasDAO(context);
+        Lista lista = listasDAO.buscarListaID(id);
+
+        Intent listashow = new Intent(ListasListActivity.this, ItemListaListActivity.class);
+        Bundle bundle = new Bundle();
+
+        bundle.putInt(StringsNomes.getID(), id);
+        bundle.putString(StringsNomes.getLiNome(), lista.getLi_nome());
+
+        listashow.putExtras(bundle);
+        startActivityForResult(listashow, 1);
+    }
 }

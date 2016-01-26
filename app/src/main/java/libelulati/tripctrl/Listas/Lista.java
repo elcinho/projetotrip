@@ -2,9 +2,9 @@ package libelulati.tripctrl.Listas;
 
 public class Lista {
 
-    int li_id;
-    String li_nome;
-    int us_id;
+    private int li_id;
+    private String li_nome;
+    private int us_id;
 
     public Lista() {
     }

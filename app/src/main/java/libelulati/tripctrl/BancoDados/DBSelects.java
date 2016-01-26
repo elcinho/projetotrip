@@ -33,6 +33,8 @@ public class DBSelects {
     private static final String SELECIONAR_ID_TIPO_PAGAMENTO = "select * from " + StringsNomes.getTabelaTipospagamento() + " where _id = ";
     private static final String SELECIONAR_ID_TIPOS_TRANSPORTE = "select * from " + StringsNomes.getTabelaTipostransporte() + " where _id = ";
     private static final String SELECIONAR_ID_TIPOS_HOSPEDAGEM = "select * from " + StringsNomes.getTabelaTiposhospedagem() + " where _id = ";
+    private static final String SELECIONAR_ID_LISTAS = "select * from " + StringsNomes.getTabelaListas() + " where _id = ";
+
 
     //CAMPO ISOLADO
     private static final String SELECIONAR_EMAIL_USUARIO = "select * from " + StringsNomes.getTabelaUsuarios() + " where " + StringsNomes.getUsEmail() + " = ";
@@ -127,5 +129,9 @@ public class DBSelects {
 
     public static String getSelecionarItemLista() {
         return SELECIONAR_ITEM_LISTA;
+    }
+
+    public static String getSelecionarIdListas() {
+        return SELECIONAR_ID_LISTAS;
     }
 }

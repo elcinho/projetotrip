@@ -178,12 +178,20 @@
         <activity
             android:name=".Listas.ListasListActivity"
             android:label="@string/title_activity_listas_list"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".Listas.ItemListaListActivity"
             android:label="@string/title_activity_item_lista_list"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Listas.ListasListActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Listas.ListasListActivity" />
         </activity>
     </application>
 

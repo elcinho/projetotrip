@@ -2,10 +2,10 @@ package libelulati.tripctrl.Listas;
 
 public class ItemLista {
 
-    int il_id;
-    String il_nome;
-    String il_lista;
-    int il_check;
+    private int il_id;
+    private String il_nome;
+    private String il_lista;
+    private int il_check;
 
     public ItemLista() {
     }
