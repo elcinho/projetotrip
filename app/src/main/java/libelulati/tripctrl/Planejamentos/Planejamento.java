@@ -3,18 +3,11 @@ package libelulati.tripctrl.Planejamentos;
 public class Planejamento {
     private int pl_id;
     private int us_id;
-    private int dv_id;
-    private int sc_id;
-    private float pl_valorcategoria;
-    private float pl_valortotal;
+    private int vi_id;
+    private String ca_id;
+    private double pl_valor;
 
-    public Planejamento(int pl_id, int us_id, int dv_id, int sc_id, float pl_valorcategoria, float pl_valortotal) {
-        this.pl_id = pl_id;
-        this.us_id = us_id;
-        this.dv_id = dv_id;
-        this.sc_id = sc_id;
-        this.pl_valorcategoria = pl_valorcategoria;
-        this.pl_valortotal = pl_valortotal;
+    public Planejamento() {
     }
 
     public int getPl_id() {
@@ -33,35 +26,27 @@ public class Planejamento {
         this.us_id = us_id;
     }
 
-    public int getDv_id() {
-        return dv_id;
+    public String getCa_id() {
+        return ca_id;
     }
 
-    public void setDv_id(int dv_id) {
-        this.dv_id = dv_id;
+    public void setCa_id(String ca_id) {
+        this.ca_id = ca_id;
     }
 
-    public int getSc_id() {
-        return sc_id;
+    public double getPl_valor() {
+        return pl_valor;
     }
 
-    public void setSc_id(int sc_id) {
-        this.sc_id = sc_id;
+    public void setPl_valor(double pl_valor) {
+        this.pl_valor = pl_valor;
     }
 
-    public float getPl_valorcategoria() {
-        return pl_valorcategoria;
+    public int getVi_id() {
+        return vi_id;
     }
 
-    public void setPl_valorcategoria(float pl_valorcategoria) {
-        this.pl_valorcategoria = pl_valorcategoria;
-    }
-
-    public float getPl_valortotal() {
-        return pl_valortotal;
-    }
-
-    public void setPl_valortotal(float pl_valortotal) {
-        this.pl_valortotal = pl_valortotal;
+    public void setVi_id(int vi_id) {
+        this.vi_id = vi_id;
     }
 }

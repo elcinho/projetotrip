@@ -1,20 +1,16 @@
 package libelulati.tripctrl.Gastos;
 
 public class Gasto {
+
     private int ga_id;
     private int us_id;
-    private int dv_id;
-    private int sc_id;
-    private float ga_valorcategoria;
-    private float ga_valortotal;
+    private int vi_id;
+    private String pa_id;
+    private String ca_id;
+    private double ga_valor;
+    private String ga_descricao;
 
-    public Gasto(int ga_id, int us_id, int dv_id, int sc_id, float ga_valorcategoria, float ga_valortotal) {
-        this.ga_id = ga_id;
-        this.us_id = us_id;
-        this.dv_id = dv_id;
-        this.sc_id = sc_id;
-        this.ga_valorcategoria = ga_valorcategoria;
-        this.ga_valortotal = ga_valortotal;
+    public Gasto() {
     }
 
     public int getGa_id() {
@@ -33,35 +29,43 @@ public class Gasto {
         this.us_id = us_id;
     }
 
-    public int getDv_id() {
-        return dv_id;
+    public String getPa_id() {
+        return pa_id;
     }
 
-    public void setDv_id(int dv_id) {
-        this.dv_id = dv_id;
+    public void setPa_id(String pa_id) {
+        this.pa_id = pa_id;
     }
 
-    public int getSc_id() {
-        return sc_id;
+    public int getVi_id() {
+        return vi_id;
     }
 
-    public void setSc_id(int sc_id) {
-        this.sc_id = sc_id;
+    public void setVi_id(int vi_id) {
+        this.vi_id = vi_id;
     }
 
-    public float getGa_valorcategoria() {
-        return ga_valorcategoria;
+    public String getCa_id() {
+        return ca_id;
     }
 
-    public void setGa_valorcategoria(float ga_valorcategoria) {
-        this.ga_valorcategoria = ga_valorcategoria;
+    public void setCa_id(String ca_id) {
+        this.ca_id = ca_id;
     }
 
-    public float getGa_valortotal() {
-        return ga_valortotal;
+    public double getGa_valor() {
+        return ga_valor;
     }
 
-    public void setGa_valortotal(float ga_valortotal) {
-        this.ga_valortotal = ga_valortotal;
+    public void setGa_valor(double ga_valor) {
+        this.ga_valor = ga_valor;
+    }
+
+    public String getGa_descricao() {
+        return ga_descricao;
+    }
+
+    public void setGa_descricao(String ga_descricao) {
+        this.ga_descricao = ga_descricao;
     }
 }

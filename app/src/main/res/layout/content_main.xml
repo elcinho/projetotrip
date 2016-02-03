@@ -9,56 +9,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="libelulati.tripctrl.MainActivity"
+    tools:context="libelulati.tripctrl.Main.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <ImageView
-        android:id="@+id/iv_main_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/trip"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="87dp" />
-
     <Button
-        android:id="@+id/bt_main_entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:text="@string/entrar"
-        android:textColor="@color/colorBranco"
-        android:textSize="@dimen/fontebotoes"
-        android:layout_marginTop="310dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="@string/cadastrar"
-        android:textColor="@color/colorBranco"
-        android:textSize="@dimen/fontebotoes"
-        android:id="@+id/bt_main_cadastrar"
-        android:layout_below="@+id/bt_main_entrar"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/tx_main_esquecisenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/esquecisenha"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/colorPrimary"
+        android:id="@+id/bt_main_entrar"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="123dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/fonte_botoes"/>
 </RelativeLayout>

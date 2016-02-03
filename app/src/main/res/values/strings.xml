@@ -4,35 +4,7 @@
 
 
     <!-- TITULOS ACTIVITYS -->
-    <string name="title_activity_categoria_edit">Editar Categoria</string>
-    <string name="title_activity_categoria_list">Categorias</string>
-    <string name="title_activity_categoria_novo">Nova Categoria</string>
-    <string name="title_activity_categoria_show">Categoria</string>
-    <string name="title_activity_esqueci_senha">Esqueci Senha</string>
-    <string name="title_activity_gasto_edit">Editar Gasto</string>
-    <string name="title_activity_gasto_show">Gasto</string>
-    <string name="title_activity_gastos_list">Gastos</string>
     <string name="title_activity_inicio">Início</string>
-    <string name="title_activity_main">Bem vindo ao trip control</string>
-    <string name="title_activity_metodos_pagamento_edit">Editar Método de Pagamento</string>
-    <string name="title_activity_metodos_pagamento_list">Métodos de Pagamento</string>
-    <string name="title_activity_metodos_pagamento_novo">Novo método de pagamento</string>
-    <string name="title_activity_metodos_pagamento_show">Método de Pagamento</string>
-    <string name="title_activity_nova_senha">Cadastrar nova senha</string>
-    <string name="title_activity_novo_usuario">Cadastro de Usuário</string>
-    <string name="title_activity_planejamento_edit">Editar Planejamento</string>
-    <string name="title_activity_planejamento_show">Planejamento</string>
-    <string name="title_activity_planejamentos_list">Planejamentos</string>
-    <string name="title_activity_relatorios">Relatórios</string>
-    <string name="title_activity_usuario_edit">Editar Usuário</string>
-    <string name="title_activity_usuario_show">Usuário</string>
-    <string name="title_activity_viagens_edit">Editar Viagem</string>
-    <string name="title_activity_viagens_list">Viagens</string>
-    <string name="title_activity_viagens_novo">Nova Viagem</string>
-    <string name="title_activity_viagens_show">Viagem</string>
-    <string name="title_activity_listas_list">Listas</string>
-    <string name="title_activity_item_lista_list">Lista</string>
-
 
     <!-- MENUS -->
     <string name="atualizar">Atualizar</string>
@@ -70,6 +42,7 @@
     <string name="novousuario">Novo usuário</string>
     <string name="selecioneopcao">Selecione uma opção abaixo para redefinir sua senha:</string>
     <string name="usarcodusuario">Usar meu código de usuario</string>
+    <string name="adicioneviagem">Adicione uma viagem para começar</string>
 
 
     <!-- CAMPOS -->
@@ -176,5 +149,6 @@
     <string name="erro_validar_campos">Existem campos que não foram validados. Verifique os dados e tente novamente.</string>
     <string name="erro_criar_categoria">Ocorreu um erro ao criar a categoria.</string>
     <string name="erro_criar_lista">Ocorreu um erro ao criar a lista.</string>
+
 
 </resources>
