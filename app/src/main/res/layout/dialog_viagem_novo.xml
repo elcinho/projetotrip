@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_dvi_nome"
+        android:hint="@string/nome"
+        android:textColor="@color/colorPrimary"
+        android:inputType="textAutoComplete|textPersonName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_dvi_dtinic"
+        android:hint="@string/dtinicio"
+        android:textColor="@color/colorPrimary"
+        android:inputType="date"
+        android:onClick=""/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_dvi_dtfim"
+        android:hint="@string/dtfim"
+        android:textColor="@color/colorPrimary"
+        android:inputType="date"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_dvi_valor"
+        android:hint="@string/valortotal"
+        android:textColor="@color/colorPrimary"
+        android:inputType="numberDecimal"/>
+</LinearLayout>

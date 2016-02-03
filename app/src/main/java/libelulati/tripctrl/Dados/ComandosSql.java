@@ -100,6 +100,9 @@ public class ComandosSql {
     private static final String INSERT_TIPOSPAGAMENTO_MILHAS = getInsertInto() + Nomes.getTabelaTipospagamento() + "(" +
             " " + Nomes.getTpNome() + ")" + getVALUES() + "(Milhas)";
 
+    //SELECTS TODOS POR USUÁRIO
+    private static final String SELECT_VIAGENS = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getUsId() + " = ";
+
 
     //GETTERS
 
@@ -226,5 +229,9 @@ public class ComandosSql {
 
     public static String getInsertTipospagamentoMilhas() {
         return INSERT_TIPOSPAGAMENTO_MILHAS;
+    }
+
+    public static String getSelectViagens() {
+        return SELECT_VIAGENS;
     }
 }
