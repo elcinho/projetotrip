@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
+
 public class MainActivity extends AppCompatActivity {
 
     Button bt_main_entrar;
