@@ -80,29 +80,32 @@ public class ComandosSql {
 
     // INSERT TABLE CATEGORIAS
     private static final String INSERT_CATEGORIAS_ALIMENTACAO = getInsertInto() + Nomes.getTabelaCategorias() + "(" +
-            " " + Nomes.getCaNome() + ")" + getVALUES() + "(Alimentação)";
+            " " + Nomes.getCaNome() + ")" + getVALUES() + "('Alimentação')";
     private static final String INSERT_CATEGORIAS_TRANSPORTE = getInsertInto() + Nomes.getTabelaCategorias() + "(" +
-            " " + Nomes.getCaNome() + ")" + getVALUES() + "(Transporte)";
+            " " + Nomes.getCaNome() + ")" + getVALUES() + "('Transporte')";
     private static final String INSERT_CATEGORIAS_HOSPEDAGEM = getInsertInto() + Nomes.getTabelaCategorias() + "(" +
-            " " + Nomes.getCaNome() + ")" + getVALUES() + "(Hospedagem)";
+            " " + Nomes.getCaNome() + ")" + getVALUES() + "('Hospedagem')";
     private static final String INSERT_CATEGORIAS_LAZER = getInsertInto() + Nomes.getTabelaCategorias() + "(" +
-            " " + Nomes.getCaNome() + ")" + getVALUES() + "(Lazer)";
+            " " + Nomes.getCaNome() + ")" + getVALUES() + "('Lazer')";
     private static final String INSERT_CATEGORIAS_COMPRAS = getInsertInto() + Nomes.getTabelaCategorias() + "(" +
-            " " + Nomes.getCaNome() + ")" + getVALUES() + "(Compras)";
+            " " + Nomes.getCaNome() + ")" + getVALUES() + "('Compras')";
 
     //INSERT TABLE TIPOS PAGAMENTO
     private static final String INSERT_TIPOSPAGAMENTO_DINHEIRO = getInsertInto() + Nomes.getTabelaTipospagamento() + "(" +
-            " " + Nomes.getTpNome() + ")" + getVALUES() + "(Dinheiro)";
+            " " + Nomes.getTpNome() + ")" + getVALUES() + "('Dinheiro')";
     private static final String INSERT_TIPOSPAGAMENTO_CREDITO = getInsertInto() + Nomes.getTabelaTipospagamento() + "(" +
-            " " + Nomes.getTpNome() + ")" + getVALUES() + "(Cartão de Crédito)";
+            " " + Nomes.getTpNome() + ")" + getVALUES() + "('Cartão de Crédito')";
     private static final String INSERT_TIPOSPAGAMENTO_DEBITO = getInsertInto() + Nomes.getTabelaTipospagamento() + "(" +
-            " " + Nomes.getTpNome() + ")" + getVALUES() + "(Cartão de Débito)";
+            " " + Nomes.getTpNome() + ")" + getVALUES() + "('Cartão de Débito')";
     private static final String INSERT_TIPOSPAGAMENTO_MILHAS = getInsertInto() + Nomes.getTabelaTipospagamento() + "(" +
-            " " + Nomes.getTpNome() + ")" + getVALUES() + "(Milhas)";
+            " " + Nomes.getTpNome() + ")" + getVALUES() + "('Milhas')";
 
-    //SELECTS TODOS POR USUÁRIO
+    //SELECIONAR TODOS POR USUÁRIO
     private static final String SELECT_VIAGENS = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getUsId() + " = ";
 
+
+    //SELECIONAR TODOS POR ID
+    private static final String SELECT_ID_VIAGEM = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getID() + " = ";
 
     //GETTERS
 
@@ -233,5 +236,9 @@ public class ComandosSql {
 
     public static String getSelectViagens() {
         return SELECT_VIAGENS;
+    }
+
+    public static String getSelectIdViagem() {
+        return SELECT_ID_VIAGEM;
     }
 }

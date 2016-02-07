@@ -5,6 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGrey">#BFBFBF</color>
+    <color name="colorGreen">#00cc66</color>
+    <color name="colorYellow">#ffff00</color>
+    <color name="colorBlue">#6666ff</color>
+    <color name="colorPurple">#990099</color>
 </resources>
 
 

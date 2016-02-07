@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import libelulati.tripctrl.Funcoes.Validar;
+import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
 public class Viagem_New extends DialogFragment{
@@ -43,6 +44,7 @@ public class Viagem_New extends DialogFragment{
         ed_dvi_dtinic = (EditText)dialogview.findViewById(R.id.ed_dvi_dtinic);
         ed_dvi_dtfim = (EditText)dialogview.findViewById(R.id.ed_dvi_dtfim);
         ed_dvi_valor = (EditText)dialogview.findViewById(R.id.ed_dvi_valor);
+        id_usuario = InicioActivity.getId_usuario();
 
         ed_dvi_nome.addTextChangedListener(new TextWatcher() {
             @Override
@@ -57,14 +59,14 @@ public class Viagem_New extends DialogFragment{
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                IsValido();
             }
         });
 
         ed_dvi_dtinic.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus)
+                if (!hasFocus)
                     VerificarDtini();
             }
         });
@@ -77,13 +79,23 @@ public class Viagem_New extends DialogFragment{
             }
         });
 
-        ed_dvi_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        ed_dvi_valor.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus)
-                    VerificarValor();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                VerificarValor();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                IsValido();
             }
         });
+
 
         builder.setPositiveButton(getActivity().getResources().getString(R.string.salvar), new DialogInterface.OnClickListener() {
             @Override
@@ -210,9 +222,4 @@ public class Viagem_New extends DialogFragment{
             return false;
         }
     }
-
-
-
-
-
 }
