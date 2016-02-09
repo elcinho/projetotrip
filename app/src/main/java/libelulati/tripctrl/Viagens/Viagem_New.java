@@ -27,7 +27,7 @@ public class Viagem_New extends DialogFragment{
     EditText ed_dvi_nome, ed_dvi_dtinic, ed_dvi_dtfim, ed_dvi_valor;
     boolean v_nome, v_dtini, v_dtfim, v_valor, validar;
     Button positivo, negativo;
-    int id_usuario;
+    int id_usuario = InicioActivity.getId_usuario();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -44,7 +44,6 @@ public class Viagem_New extends DialogFragment{
         ed_dvi_dtinic = (EditText)dialogview.findViewById(R.id.ed_dvi_dtinic);
         ed_dvi_dtfim = (EditText)dialogview.findViewById(R.id.ed_dvi_dtfim);
         ed_dvi_valor = (EditText)dialogview.findViewById(R.id.ed_dvi_valor);
-        id_usuario = InicioActivity.getId_usuario();
 
         ed_dvi_nome.addTextChangedListener(new TextWatcher() {
             @Override
@@ -136,7 +135,7 @@ public class Viagem_New extends DialogFragment{
         viagem.setVi_dtfim(ed_dvi_dtfim.getText().toString());
         viagem.setVi_valor(ed_dvi_valor.getText().toString());
 
-        boolean sucesso = new Viagens_Dao(getActivity()).criar(viagem);
+        boolean sucesso = new Viagens_DAO(getActivity()).criar(viagem);
         if(sucesso){
             Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.sucesso_criar_viagem), Toast.LENGTH_LONG).show();
         }

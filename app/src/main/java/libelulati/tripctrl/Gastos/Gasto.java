@@ -7,10 +7,20 @@ public class Gasto {
     private int vi_id;
     private String pa_id;
     private String ca_id;
-    private double ga_valor;
+    private String ga_valor;
     private String ga_descricao;
+    private String ga_data;
 
     public Gasto() {
+    }
+
+    public Gasto(int ga_id, String pa_id, String ca_id, String ga_valor, String ga_descricao, String ga_data) {
+        this.ga_id = ga_id;
+        this.pa_id = pa_id;
+        this.ca_id = ca_id;
+        this.ga_valor = ga_valor;
+        this.ga_descricao = ga_descricao;
+        this.ga_data = ga_data;
     }
 
     public int getGa_id() {
@@ -53,11 +63,11 @@ public class Gasto {
         this.ca_id = ca_id;
     }
 
-    public double getGa_valor() {
+    public String getGa_valor() {
         return ga_valor;
     }
 
-    public void setGa_valor(double ga_valor) {
+    public void setGa_valor(String ga_valor) {
         this.ga_valor = ga_valor;
     }
 
@@ -67,5 +77,13 @@ public class Gasto {
 
     public void setGa_descricao(String ga_descricao) {
         this.ga_descricao = ga_descricao;
+    }
+
+    public String getGa_data() {
+        return ga_data;
+    }
+
+    public void setGa_data(String ga_data) {
+        this.ga_data = ga_data;
     }
 }

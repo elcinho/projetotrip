@@ -13,8 +13,8 @@ import libelulati.tripctrl.Dados.Dados;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
 
-public class Viagens_Dao extends Dados{
-    public Viagens_Dao(Context context) {
+public class Viagens_DAO extends Dados{
+    public Viagens_DAO(Context context) {
         super(context);
     }
 

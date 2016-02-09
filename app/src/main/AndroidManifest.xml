@@ -26,21 +26,46 @@
         <activity
             android:name=".Gastos.GastosListActivity"
             android:label="@string/title_activity_gastos_list"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".Planejamentos.PlanejamentosListActivity"
             android:label="@string/title_activity_planejamentos_list"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".Pagamentos.PagamentosListActivity"
             android:label="@string/title_activity_pagamentos_list"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".Configuracoes.ConfiguracoesActivity"
-            android:label="@string/title_activity_configuracoes" >
+            android:label="@string/title_activity_configuracoes"
+            android:parentActivityName=".Inicio.InicioActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
+        </activity>
+        <activity
+            android:name=".Gastos.GastoEditActivity"
+            android:label="@string/title_activity_gasto_edit"
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
     </application>
 

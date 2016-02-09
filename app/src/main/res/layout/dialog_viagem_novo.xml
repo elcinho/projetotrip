@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ed_dvi_valor"
-        android:hint="@string/valortotal"
+        android:hint="@string/valor"
         android:textColor="@color/colorPrimary"
         android:inputType="numberDecimal"/>
 </LinearLayout>

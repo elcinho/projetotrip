@@ -4,7 +4,11 @@
 
 
     <!-- TITULOS ACTIVITYS -->
+    <string name="title_activity_configuracoes">Configurações</string>
+    <string name="title_activity_gastos_list">Gastos</string>
     <string name="title_activity_inicio">Início</string>
+    <string name="title_activity_pagamentos_list">Pagamentos</string>
+    <string name="title_activity_planejamentos_list">Planejamentos</string>
 
     <!-- MENUS -->
     <string name="atualizar">Atualizar</string>
@@ -26,6 +30,8 @@
 
 
     <!-- BOTÕES, LINKS E TÍTULOS -->
+    <string name="a">a</string>
+    <string name="adicioneviagem">Adicione uma viagem para começar</string>
     <string name="alterarsenha">Alterar senha</string>
     <string name="cadastrar">Cadastrar</string>
     <string name="codigoconfirmacao">Código de confirmação</string>
@@ -39,21 +45,20 @@
     <string name="login">Login</string>
     <string name="logo">Logomarca</string>
     <string name="moeda">R$</string>
+    <string name="novaviagem">Nova viagem</string>
     <string name="novousuario">Novo usuário</string>
+    <string name="periodo">Período:</string>
     <string name="selecioneopcao">Selecione uma opção abaixo para redefinir sua senha:</string>
     <string name="usarcodusuario">Usar meu código de usuario</string>
-    <string name="adicioneviagem">Adicione uma viagem para começar</string>
-    <string name="novaviagem">Nova viagem</string>
-    <string name="periodo">Período:</string>
-    <string name="a">a</string>
     <string name="valordisponivel">Valor disponível:</string>
-
 
     <!-- CAMPOS -->
     <string name="codarea">Código de área / DDD</string>
     <string name="codigosenha">Código</string>
     <string name="codusuario">Código de usuário</string>
     <string name="confirmesenha">Confirme a senha</string>
+    <string name="data">Data</string>
+    <string name="descricao">Descrição</string>
     <string name="detalhe">Detalhe</string>
     <string name="digiteseuemail">Insira o e-mail utilizado no cadastro de usuário</string>
     <string name="dtfim">Fim</string>
@@ -62,8 +67,10 @@
     <string name="dtvenc">Vencimento</string>
     <string name="email">E-mail</string>
     <string name="hospedagem">Hospedagem</string>
+    <string name="lista">Nova Lista</string>
     <string name="localizacao">Localização</string>
     <string name="nome">Nome</string>
+    <string name="formapagamento">Forma de pagamento</string>
     <string name="relatorios">Relatórios</string>
     <string name="selecioneviagem">Selecione uma Viagem</string>
     <string name="senha">Senha</string>
@@ -72,18 +79,14 @@
     <string name="tipopagamento">Tipo Pagamento</string>
     <string name="tipotransporte">Tipo de transporte</string>
     <string name="transporte">Transporte</string>
-    <string name="valortotal">Valor total</string>
-    <string name="lista">Nova Lista</string>
+    <string name="valor">Valor disponível</string>
 
     <!-- TABELAS -->
     <string name="categoria">Categoria</string>
     <string name="gasto">Gasto</string>
-    <string name="metodopagameto">Métodos de Pagamento</string>
+    <string name="pagamento">Pagamento</string>
     <string name="planejamento">Planejamento</string>
-    <string name="subcategoria">Subcategoria</string>
-    <string name="tphospedagem">Tipo de Hospedagem</string>
     <string name="tppagamento">Tipo de Pagamento</string>
-    <string name="tptransporte">Tipo de Transporte</string>
     <string name="usuario">Usuário</string>
     <string name="viagem">Viagem</string>
 
@@ -100,6 +103,7 @@
     <!-- VALIDAÇÃO DE CAMPOS -->
     <string name="nulo_email">O e-mail não pode ser nulo.</string>
     <string name="validar_campo_vazio">O campo não pode ser vazio.</string>
+    <string name="validar_categoria">A categoria precisa ter o mínimo de 5 caracteres não numéricos.</string>
     <string name="validar_codarea">O código de área deve possuir mais de 2 caracteres numéricos.</string>
     <string name="validar_codigoSenha">O código digitado não corresponde ao enviado. Tente novamente.</string>
     <string name="validar_codigoUsuario">O código de usuário digitado não é válido.</string>
@@ -110,12 +114,11 @@
     <string name="validar_dtnasc">A idade não pode ser menor que 15 anos.</string>
     <string name="validar_dtvenc">A data de vencimento não pode ser anterior à data atual.</string>
     <string name="validar_email">O e-mail digitado não é válido.</string>
+    <string name="validar_lista">A lista precisa ter o mínimo de 5 caracteres não numéricos.</string>
     <string name="validar_nome">O nome precisa ter o mínimo de 5 caracteres não numéricos.</string>
     <string name="validar_senha">A senha precisa ter entre 6 e 10 caracteres. Pelo menos um número, um caracter maíusculo e um caracter minúsculo.</string>
     <string name="validar_telefone">O telefone digitado não é válido.</string>
     <string name="validar_valor">O Valor deve ser maior que 0.99.</string>
-    <string name="validar_categoria">A categoria precisa ter o mínimo de 5 caracteres não numéricos.</string>
-    <string name="validar_lista">A lista precisa ter o mínimo de 5 caracteres não numéricos.</string>
 
     <!-- NEGAÇÕES -->
     <string name="encontrado_registro">Nenhum registro encontrado.</string>
@@ -128,15 +131,14 @@
     <string name="sucesso_alterar_senha">A senha foi alterada com sucesso.</string>
     <string name="sucesso_alterar_usuario">O usuário foi alterado com sucesso.</string>
     <string name="sucesso_alterar_viagem">A viagem foi alterada com sucesso.</string>
+    <string name="sucesso_criar_categoria">Categoria criada com sucesso.</string>
+    <string name="sucesso_criar_lista">Lista criada com sucesso.</string>
     <string name="sucesso_criar_metodopagamento">Método de pagamento criado com sucesso.</string>
     <string name="sucesso_criar_usuario">Usuário criado com sucesso.</string>
     <string name="sucesso_criar_viagem">Viagem criada com sucesso.</string>
     <string name="sucesso_enviar_codigoSenha">Código de confirmação enviado com sucesso.</string>
     <string name="sucesso_excluir_metodopagamento">Método de pagamento deletado com sucesso.</string>
     <string name="sucesso_excluir_viagem">Viagem deletada com sucesso.</string>
-    <string name="sucesso_criar_categoria">Categoria criada com sucesso.</string>
-    <string name="sucesso_criar_lista">Lista criada com sucesso.</string>
-
 
     <!-- MENSAGENS DE ERRO -->
     <string name="erro_alterar_metodopagamento">Os dados do método de pagamento não foram alterados.</string>
@@ -144,6 +146,8 @@
     <string name="erro_alterar_usuario">Os dados do usuário não foram alterados.</string>
     <string name="erro_alterar_viagem">Os dados da viagem não foram alterados.</string>
     <string name="erro_autenticar">Usuário ou senha inválidos. Tente novamente.</string>
+    <string name="erro_criar_categoria">Ocorreu um erro ao criar a categoria.</string>
+    <string name="erro_criar_lista">Ocorreu um erro ao criar a lista.</string>
     <string name="erro_criar_metodopagamento">Ocorreu um erro ao criar o método de pagamento.</string>
     <string name="erro_criar_usuario">Ocorreu um erro ao criar usuário.</string>
     <string name="erro_criar_viagem">Ocorreu um erro ao criar a viagem.</string>
@@ -151,12 +155,6 @@
     <string name="erro_excluir_viagem">A viagem não pôde ser deletada.</string>
     <string name="erro_gerar_codigo">Erro ao gerar o código de confirmação. A senha não será alterada.</string>
     <string name="erro_validar_campos">Existem campos que não foram validados. Verifique os dados e tente novamente.</string>
-    <string name="erro_criar_categoria">Ocorreu um erro ao criar a categoria.</string>
-    <string name="erro_criar_lista">Ocorreu um erro ao criar a lista.</string>
-    <string name="title_activity_gastos_list">Gastos</string>
-    <string name="title_activity_planejamentos_list">Planejamentos</string>
-    <string name="title_activity_pagamentos_list">Pagamentos</string>
-    <string name="title_activity_configuracoes">Configurações</string>
 
     <!-- Strings related to Settings -->
 
@@ -215,6 +213,7 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_gasto_edit">Gasto</string>
 
 
 </resources>

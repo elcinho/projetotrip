@@ -48,6 +48,7 @@ public class Nomes {
     private static final String PL_ID = "pl_id";
 
     //CAMPOS DE PAGAMENTOS
+    private static final String PA_DESCRICAO = "pa_descricao";
     private static final String PA_VALOR = "pa_valor";
     private static final String PA_VENCIMENTO = "pa_vencimento";
     private static final String PA_ID = "pa_id";
@@ -56,6 +57,7 @@ public class Nomes {
     private static final String GA_VALOR = "ga_valor";
     private static final String GA_DESCRICAO = "ga_descricao";
     private static final String GA_ID = "ga_id";
+    private static final String GA_DATA = "ga_data";
 
     public static String getNomeBanco() {
         return NOME_BANCO;
@@ -165,6 +167,10 @@ public class Nomes {
         return PL_ID;
     }
 
+    public static String getPaDescricao() {
+        return PA_DESCRICAO;
+    }
+
     public static String getPaValor() {
         return PA_VALOR;
     }
@@ -187,5 +193,10 @@ public class Nomes {
 
     public static String getGaId() {
         return GA_ID;
+    }
+
+    public static String getGaData() {
+
+        return GA_DATA;
     }
 }

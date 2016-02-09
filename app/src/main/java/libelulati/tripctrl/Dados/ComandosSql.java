@@ -8,7 +8,6 @@ public class ComandosSql {
     private static final String PRIMARYKEY = " INTEGER PRIMARY KEY AUTOINCREMENT";
     private static final String TEXTO = " TEXT";
     private static final String INTEIRO = " INTEGER";
-    private static final String DECIMAL = " DECIMAL";
     private static final String INSERT_INTO = "INSERT INTO ";
     private static final String VALUES = " VALUES ";
 
@@ -40,14 +39,15 @@ public class ComandosSql {
             " " + Nomes.getViNome() + getTEXTO() + "," +
             " " + Nomes.getViDtini() + getTEXTO() + "," +
             " " + Nomes.getViDtfim() + getTEXTO() + "," +
-            " " + Nomes.getViValortotal() + getDECIMAL() + ")";
+            " " + Nomes.getViValortotal() + getTEXTO() + ")";
 
     // TABELA PAGAMENTOS
     private static final String CREATE_TABLE_PAGAMENTOS = getCreateTable() + Nomes.getTabelaPagamentos() + "(" +
             " " + Nomes.getID() + getPRIMARYKEY() + "," +
             " " + Nomes.getUsId() + getINTEIRO() + "," +
             " " + Nomes.getTpId() + getTEXTO() + "," +
-            " " + Nomes.getPaValor() + getDECIMAL() + "," +
+            " " + Nomes.getPaDescricao() + getTEXTO() + "," +
+            " " + Nomes.getPaValor() + getTEXTO() + "," +
             " " + Nomes.getPaVencimento() + getTEXTO() + ")";
 
     // TABELA PLANEJAMENTO
@@ -56,7 +56,7 @@ public class ComandosSql {
             " " + Nomes.getUsId() + getINTEIRO() + "," +
             " " + Nomes.getViId() + getTEXTO() + "," +
             " " + Nomes.getCaId() + getTEXTO() + "," +
-            " " + Nomes.getPlValorcat() + getDECIMAL() + ")";
+            " " + Nomes.getPlValorcat() + getTEXTO() + ")";
 
     // TABELA GASTOS
     private static final String CREATE_TABLE_GASTOS = getCreateTable() + Nomes.getTabelaGastos() + "(" +
@@ -65,7 +65,8 @@ public class ComandosSql {
             " " + Nomes.getViId() + getTEXTO() + "," +
             " " + Nomes.getCaId() + getTEXTO() + "," +
             " " + Nomes.getPaId() + getTEXTO() + "," +
-            " " + Nomes.getGaValor() + getDECIMAL() + "," +
+            " " + Nomes.getGaValor() + getTEXTO() + "," +
+            " " + Nomes.getGaData() + getTEXTO() + "," +
             " " + Nomes.getGaDescricao() + getTEXTO() + ")";
 
 
@@ -102,13 +103,13 @@ public class ComandosSql {
 
     //SELECIONAR TODOS POR USUÁRIO
     private static final String SELECT_VIAGENS = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getUsId() + " = ";
+    private static final String SELECT_GASTOS = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getViId() + " = ";
 
 
     //SELECIONAR TODOS POR ID
     private static final String SELECT_ID_VIAGEM = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getID() + " = ";
 
     //GETTERS
-
 
     public static String getCreateTable() {
         return CREATE_TABLE;
@@ -128,10 +129,6 @@ public class ComandosSql {
 
     public static String getINTEIRO() {
         return INTEIRO;
-    }
-
-    public static String getDECIMAL() {
-        return DECIMAL;
     }
 
     public static String getInsertInto() {
@@ -240,5 +237,9 @@ public class ComandosSql {
 
     public static String getSelectIdViagem() {
         return SELECT_ID_VIAGEM;
+    }
+
+    public static String getSelectGastos() {
+        return SELECT_GASTOS;
     }
 }
