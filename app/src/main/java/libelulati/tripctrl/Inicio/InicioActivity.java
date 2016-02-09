@@ -58,6 +58,7 @@ public class InicioActivity extends AppCompatActivity {
 
         final ImageView fabIconNew = new ImageView(this);
         fabIconNew.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_new));
+        fabIconNew.setColorFilter(getResources().getColor(R.color.colorWhite));
 
         com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.LayoutParams newParams = new com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.LayoutParams(floatActionButtonSize, floatActionButtonSize);
         newParams.setMargins(floatActionButtonMargin, floatActionButtonMargin, floatActionButtonMargin, floatActionButtonMargin);
@@ -71,12 +72,12 @@ public class InicioActivity extends AppCompatActivity {
                 .setLayoutParams(newParams)
                 .build();
 
+        FrameLayout.LayoutParams itensParams = new FrameLayout.LayoutParams(subActionButtonSize, subActionButtonSize);
+        itensParams.setMargins(subActionButtonMargin, subActionButtonMargin, subActionButtonMargin, subActionButtonMargin);
+
         SubActionButton.Builder itensMenu = new SubActionButton.Builder(this);
         itensMenu.setBackgroundDrawable(getResources().getDrawable(R.drawable.bk_subactionbutton));
-
-        FrameLayout.LayoutParams subContentParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
-        subContentParams.setMargins(subActionButtonMargin, subActionButtonMargin, subActionButtonMargin, subActionButtonMargin);
-        itensMenu.setLayoutParams(subContentParams);
+        itensMenu.setLayoutParams(itensParams);
 
         ImageView itemGasto = new ImageView(this);
         ImageView itemPlanejamento = new ImageView(this);
@@ -86,9 +87,11 @@ public class InicioActivity extends AppCompatActivity {
         itemGasto.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_attach_money));
         itemGasto.setColorFilter(getResources().getColor(R.color.colorWhite));
         itemPlanejamento.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_assignment));
+        itemPlanejamento.setColorFilter(getResources().getColor(R.color.colorWhite));
         itemPagamento.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_payment));
+        itemPagamento.setColorFilter(getResources().getColor(R.color.colorWhite));
         itemConfiguracoes.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_settings));
-
+        itemConfiguracoes.setColorFilter(getResources().getColor(R.color.colorWhite));
 
         final FloatingActionMenu menuPrincipal = new FloatingActionMenu.Builder(this)
                 .addSubActionView(itensMenu.setContentView(itemConfiguracoes).build())

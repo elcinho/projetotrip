@@ -15,7 +15,7 @@
     <dimen name="float_action_button_content_size">16dp</dimen>
     <dimen name="float_action_button_content_margin">16dp</dimen>
 
-    <dimen name="sub_action_button_size">48dp</dimen>
+    <dimen name="sub_action_button_size">60dp</dimen>
     <dimen name="sub_action_button_content_margin">16dp</dimen>
 
 </resources>
