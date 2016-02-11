@@ -10,12 +10,15 @@
     <dimen name="fonte_list_item">20dp</dimen>
     <dimen name="padding_list_itens">10dp</dimen>
 
-    <dimen name="float_action_button_size">90dp</dimen>
+    <dimen name="float_action_button_size">75dp</dimen>
     <dimen name="float_action_button_margin">16dp</dimen>
-    <dimen name="float_action_button_content_size">16dp</dimen>
+    <dimen name="float_action_button_content_size">20dp</dimen>
     <dimen name="float_action_button_content_margin">16dp</dimen>
 
     <dimen name="sub_action_button_size">60dp</dimen>
+    <dimen name="sub_action_button_margin">16dp</dimen>
+    <dimen name="sub_action_button_content_size">20</dimen>
     <dimen name="sub_action_button_content_margin">16dp</dimen>
+
 
 </resources>

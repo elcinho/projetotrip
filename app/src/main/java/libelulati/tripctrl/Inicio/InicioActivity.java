@@ -53,7 +53,10 @@ public class InicioActivity extends AppCompatActivity {
         int floatActionButtonContentSize = getResources().getDimensionPixelSize(R.dimen.float_action_button_content_size);
         int floatActionButtonContentMargin = getResources().getDimensionPixelSize(R.dimen.float_action_button_content_margin);
         int subActionButtonSize = getResources().getDimensionPixelSize(R.dimen.sub_action_button_size);
-        int subActionButtonMargin = getResources().getDimensionPixelSize(R.dimen.sub_action_button_content_margin);
+        int subActionButtonMargin = getResources().getDimensionPixelOffset(R.dimen.sub_action_button_margin);
+        int subActionButtonContentSize = getResources().getDimensionPixelSize(R.dimen.sub_action_button_content_size);
+        int subActionButtonContentMargin = getResources().getDimensionPixelOffset(R.dimen.sub_action_button_content_margin);
+
 
 
         final ImageView fabIconNew = new ImageView(this);
@@ -72,12 +75,9 @@ public class InicioActivity extends AppCompatActivity {
                 .setLayoutParams(newParams)
                 .build();
 
-        FrameLayout.LayoutParams itensParams = new FrameLayout.LayoutParams(subActionButtonSize, subActionButtonSize);
-        itensParams.setMargins(subActionButtonMargin, subActionButtonMargin, subActionButtonMargin, subActionButtonMargin);
 
         SubActionButton.Builder itensMenu = new SubActionButton.Builder(this);
         itensMenu.setBackgroundDrawable(getResources().getDrawable(R.drawable.bk_subactionbutton));
-        itensMenu.setLayoutParams(itensParams);
 
         ImageView itemGasto = new ImageView(this);
         ImageView itemPlanejamento = new ImageView(this);
@@ -98,7 +98,7 @@ public class InicioActivity extends AppCompatActivity {
                 .addSubActionView(itensMenu.setContentView(itemPagamento).build())
                 .addSubActionView(itensMenu.setContentView(itemPlanejamento).build())
                 .addSubActionView(itensMenu.setContentView(itemGasto).build())
-                .setRadius(300)
+                .setRadius(600)
                 .attachTo(fab_novo).build();
 
         menuPrincipal.setStateChangeListener(new FloatingActionMenu.MenuStateChangeListener() {
