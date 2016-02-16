@@ -108,6 +108,7 @@ public class ComandosSql {
 
     //SELECIONAR TODOS POR ID
     private static final String SELECT_ID_VIAGEM = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getID() + " = ";
+    private static final String SELECT_ID_GASTO = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getID() + " = ";
 
     //GETTERS
 
@@ -241,5 +242,9 @@ public class ComandosSql {
 
     public static String getSelectGastos() {
         return SELECT_GASTOS;
+    }
+
+    public static String getSelectIdGasto() {
+        return SELECT_ID_GASTO;
     }
 }

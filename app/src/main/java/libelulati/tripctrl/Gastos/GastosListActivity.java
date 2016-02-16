@@ -42,6 +42,7 @@ public class GastosListActivity extends AppCompatActivity {
                 Intent it_new_gasto = new Intent(context, GastoEditActivity.class);
                 Bundle bdnovo = new Bundle();
                 bdnovo.putInt("isnew", 1);
+                bdnovo.putInt(Nomes.getViId(), id_viagem);
 
                 it_new_gasto.putExtras(bdnovo);
                 startActivityForResult(it_new_gasto, 1);

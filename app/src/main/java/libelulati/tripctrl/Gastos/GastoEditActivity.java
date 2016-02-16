@@ -13,6 +13,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.List;
+
+import libelulati.tripctrl.Dados.Nomes;
+import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.R;
 
 public class GastoEditActivity extends AppCompatActivity {
@@ -21,6 +25,8 @@ public class GastoEditActivity extends AppCompatActivity {
     Spinner sp_gae_categoria, sp_gae_pagamento;
     Context context;
     int id_viagem, id_gasto;
+    List<String> listacategorias, listapagamentos;
+    MeuSpinner meuSpinner = new MeuSpinner();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,7 @@ public class GastoEditActivity extends AppCompatActivity {
         Bundle bundle = it_ga_novo.getExtras();
 
         novo = bundle.getInt("isnew");
+        id_viagem = bundle.getInt(Nomes.getViId());
 
         if(novo == 1){
             getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_gasto_new));
@@ -51,9 +58,7 @@ public class GastoEditActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_gasto_edit));
             ed_gae_categoria.setVisibility(View.VISIBLE);
             ed_gae_pagamento.setVisibility(View.VISIBLE);
-
         }
-
     }
 
     public void Salvar(){
