@@ -1,5 +1,6 @@
 package libelulati.tripctrl.Gastos;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,16 +10,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import libelulati.tripctrl.R;
 
 public class GastoEditActivity extends AppCompatActivity {
     int novo = 0;
+    EditText ed_gae_data, ed_gae_categoria, ed_gae_descricao, ed_gae_valor, ed_gae_pagamento;
+    Spinner sp_gae_categoria, sp_gae_pagamento;
+    Context context;
+    int id_viagem, id_gasto;
+    String titulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gasto_edit);
+
+        context = GastoEditActivity.this;
+
 
         Intent it_ga_novo = getIntent();
         Bundle bundle = it_ga_novo.getExtras();
