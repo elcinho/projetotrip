@@ -4,9 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -37,7 +35,7 @@ public class InicioActivity extends AppCompatActivity {
     TextView tx_ini_dataviagem, tx_ini_valorviagem;
     Context context;
     String titulo;
-    int posicao;
+    int id_viagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +56,6 @@ public class InicioActivity extends AppCompatActivity {
         int subActionButtonContentMargin = getResources().getDimensionPixelOffset(R.dimen.sub_action_button_content_margin);
 
 
-
         final ImageView fabIconNew = new ImageView(this);
         fabIconNew.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_new));
         fabIconNew.setColorFilter(getResources().getColor(R.color.colorWhite));
@@ -75,9 +72,13 @@ public class InicioActivity extends AppCompatActivity {
                 .setLayoutParams(newParams)
                 .build();
 
+        FrameLayout.LayoutParams subNewParams = new FrameLayout.LayoutParams(subActionButtonSize, subActionButtonSize);
+        subNewParams.setMargins(subActionButtonMargin, subActionButtonMargin, subActionButtonMargin, subActionButtonMargin);
+
+        SubActionButton.LayoutParams newItemParams = new SubActionButton.LayoutParams(subActionButtonContentSize, subActionButtonContentSize);
+        newItemParams.setMargins(subActionButtonContentMargin, subActionButtonContentMargin, subActionButtonContentMargin, subActionButtonContentMargin);
 
         SubActionButton.Builder itensMenu = new SubActionButton.Builder(this);
-        itensMenu.setBackgroundDrawable(getResources().getDrawable(R.drawable.bk_subactionbutton));
 
         ImageView itemGasto = new ImageView(this);
         ImageView itemPlanejamento = new ImageView(this);
@@ -85,20 +86,21 @@ public class InicioActivity extends AppCompatActivity {
         ImageView itemConfiguracoes = new ImageView(this);
 
         itemGasto.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_attach_money));
-        itemGasto.setColorFilter(getResources().getColor(R.color.colorWhite));
+        itemGasto.setColorFilter(getResources().getColor(R.color.colorPrimary));
         itemPlanejamento.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_assignment));
-        itemPlanejamento.setColorFilter(getResources().getColor(R.color.colorWhite));
+        itemPlanejamento.setColorFilter(getResources().getColor(R.color.colorPrimary));
         itemPagamento.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_payment));
-        itemPagamento.setColorFilter(getResources().getColor(R.color.colorWhite));
+        itemPagamento.setColorFilter(getResources().getColor(R.color.colorPrimary));
         itemConfiguracoes.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_settings));
-        itemConfiguracoes.setColorFilter(getResources().getColor(R.color.colorWhite));
+        itemConfiguracoes.setColorFilter(getResources().getColor(R.color.colorPrimary));
 
         final FloatingActionMenu menuPrincipal = new FloatingActionMenu.Builder(this)
-                .addSubActionView(itensMenu.setContentView(itemConfiguracoes).build())
+                .addSubActionView(itensMenu.setContentView(itemConfiguracoes)
+                        .build())
                 .addSubActionView(itensMenu.setContentView(itemPagamento).build())
                 .addSubActionView(itensMenu.setContentView(itemPlanejamento).build())
                 .addSubActionView(itensMenu.setContentView(itemGasto).build())
-                .setRadius(600)
+                .setRadius(getResources().getDimensionPixelSize(R.dimen.float_menu_radius))
                 .attachTo(fab_novo).build();
 
         menuPrincipal.setStateChangeListener(new FloatingActionMenu.MenuStateChangeListener() {
@@ -112,10 +114,17 @@ public class InicioActivity extends AppCompatActivity {
 
             @Override
             public void onMenuClosed(FloatingActionMenu floatingActionMenu) {
-                fabIconNew.setRotation(45);
+                fabIconNew.setRotation(getResources().getDimensionPixelSize(R.dimen.float_menu_angulo));
                 PropertyValuesHolder propertyValuesHolder = PropertyValuesHolder.ofFloat(View.ROTATION, 0);
                 ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(fabIconNew, propertyValuesHolder);
                 animator.start();
+            }
+        });
+
+        itemGasto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChamarListGasto();
             }
         });
 
@@ -171,8 +180,8 @@ public class InicioActivity extends AppCompatActivity {
             bt_ini_addviagem.setVisibility(View.INVISIBLE);
             tx_ini_dataviagem.setVisibility(View.VISIBLE);
             tx_ini_valorviagem.setVisibility(View.VISIBLE);
-            posicao = viagens.size();
-            viagem = new Viagens_DAO(context).buscarID(posicao);
+            id_viagem = viagens.size();
+            viagem = new Viagens_DAO(context).buscarID(id_viagem);
             titulo = viagem.getVi_nome();
             getSupportActionBar().setTitle(titulo);
             tx_ini_dataviagem.setText(context.getResources().getString(R.string.periodo
@@ -184,6 +193,16 @@ public class InicioActivity extends AppCompatActivity {
             tx_ini_dataviagem.setVisibility(View.INVISIBLE);
             tx_ini_valorviagem.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void ChamarListGasto(){
+        Intent it_gastos = new Intent(context, GastosListActivity.class);
+        Bundle bundle = new Bundle();
+
+        bundle.putInt(Nomes.getViId(), id_viagem);
+        it_gastos.putExtras(bundle);
+
+        startActivityForResult(it_gastos, 1);
     }
 
     public static int getId_usuario() {

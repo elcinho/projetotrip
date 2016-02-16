@@ -41,6 +41,4 @@
         android:text=" "
         android:id="@+id/tx_ini_valorviagem"
         android:layout_below="@+id/tx_ini_dataviagem"/>
-
-
 </RelativeLayout>
