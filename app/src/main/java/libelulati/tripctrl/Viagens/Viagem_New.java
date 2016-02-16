@@ -62,6 +62,15 @@ public class Viagem_New extends DialogFragment{
             }
         });
 
+        ed_dvi_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    VerificarNome();
+                }
+            }
+        });
+
         ed_dvi_dtinic.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

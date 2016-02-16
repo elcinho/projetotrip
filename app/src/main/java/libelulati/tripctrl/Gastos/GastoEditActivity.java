@@ -21,7 +21,6 @@ public class GastoEditActivity extends AppCompatActivity {
     Spinner sp_gae_categoria, sp_gae_pagamento;
     Context context;
     int id_viagem, id_gasto;
-    String titulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +29,43 @@ public class GastoEditActivity extends AppCompatActivity {
 
         context = GastoEditActivity.this;
 
+        ed_gae_data = (EditText)findViewById(R.id.ed_gae_data);
+        ed_gae_categoria = (EditText)findViewById(R.id.ed_gae_categoria);
+        ed_gae_descricao = (EditText)findViewById(R.id.ed_gae_descricao);
+        ed_gae_valor = (EditText)findViewById(R.id.ed_gae_valor);
+        ed_gae_pagamento = (EditText)findViewById(R.id.ed_gae_pagamento);
+        sp_gae_categoria = (Spinner)findViewById(R.id.sp_gae_categoria);
+        sp_gae_pagamento = (Spinner)findViewById(R.id.sp_gae_pagamento);
 
         Intent it_ga_novo = getIntent();
         Bundle bundle = it_ga_novo.getExtras();
 
         novo = bundle.getInt("isnew");
+
+        if(novo == 1){
+            getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_gasto_new));
+            ed_gae_categoria.setVisibility(View.INVISIBLE);
+            ed_gae_pagamento.setVisibility(View.INVISIBLE);
+        }
+        else {
+            getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_gasto_edit));
+            ed_gae_categoria.setVisibility(View.VISIBLE);
+            ed_gae_pagamento.setVisibility(View.VISIBLE);
+
+        }
+
+    }
+
+    public void Salvar(){
+
+    }
+
+    public void Editar(){
+
+    }
+
+    public void Deletar(){
+
     }
 
     @Override
@@ -56,14 +87,15 @@ public class GastoEditActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.mn_gb_salvar:
+                Salvar();
                 break;
             case R.id.mn_gb_editar:
+                Editar();
                 break;
             case R.id.mn_gb_deletar:
+                Deletar();
                 break;
         }
         return true;
     }
-
-
 }
