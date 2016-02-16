@@ -79,6 +79,7 @@ public class InicioActivity extends AppCompatActivity {
         newItemParams.setMargins(subActionButtonContentMargin, subActionButtonContentMargin, subActionButtonContentMargin, subActionButtonContentMargin);
 
         SubActionButton.Builder itensMenu = new SubActionButton.Builder(this);
+        itensMenu.setLayoutParams(subNewParams);
 
         ImageView itemGasto = new ImageView(this);
         ImageView itemPlanejamento = new ImageView(this);
@@ -95,8 +96,7 @@ public class InicioActivity extends AppCompatActivity {
         itemConfiguracoes.setColorFilter(getResources().getColor(R.color.colorPrimary));
 
         final FloatingActionMenu menuPrincipal = new FloatingActionMenu.Builder(this)
-                .addSubActionView(itensMenu.setContentView(itemConfiguracoes)
-                        .build())
+                .addSubActionView(itensMenu.setContentView(itemConfiguracoes).build())
                 .addSubActionView(itensMenu.setContentView(itemPagamento).build())
                 .addSubActionView(itensMenu.setContentView(itemPlanejamento).build())
                 .addSubActionView(itensMenu.setContentView(itemGasto).build())

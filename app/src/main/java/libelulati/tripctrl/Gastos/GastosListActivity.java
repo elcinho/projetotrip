@@ -21,7 +21,7 @@ public class GastosListActivity extends AppCompatActivity {
     int id_usuario = InicioActivity.getId_usuario();
     int id_viagem;
     Context context;
-    String id_gastos;
+    int id_gastos;
     FloatingActionButton fab_ga_new;
 
     @Override
@@ -64,14 +64,14 @@ public class GastosListActivity extends AppCompatActivity {
 
         if(gastos.size() > 0){
             for(Gasto gasto : gastos){
-                int ga_id = gasto.getGa_id();
+                id_gastos = gasto.getGa_id();
                 String ga_descricao = gasto.getGa_descricao();
                 String ga_valor = gasto.getGa_valor();
                 String ga_categoria = gasto.getCa_id();
                 String ga_data = gasto.getGa_data();
 
                 RelativeLayout relativeLayout_itens = (RelativeLayout)findViewById(R.id.re_ga_itens);
-                relativeLayout_itens.setTag(ga_id);
+                relativeLayout_itens.setTag(id_gastos);
 
                 TextView tx_ga_descricao = (TextView)findViewById(R.id.tx_ga_descricao);
                 TextView tx_ga_categoria = (TextView)findViewById(R.id.tx_ga_categoria);
