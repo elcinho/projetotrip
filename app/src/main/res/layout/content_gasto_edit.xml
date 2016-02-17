@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/categoria"
                 android:id="@+id/tx_gae_categoria"
+                android:layout_marginTop="@dimen/margin_top"
                 android:layout_below="@+id/ed_gae_data"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -62,13 +63,16 @@
                 android:id="@+id/sp_gae_categoria"
                 android:layout_below="@+id/tx_gae_categoria"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_gae_data"
+                android:layout_alignEnd="@+id/ed_gae_data" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/descricao"
                 android:id="@+id/tx_gae_descricao"
+                android:layout_marginTop="@dimen/margin_top"
                 android:layout_below="@+id/sp_gae_categoria"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -89,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/valor"
                 android:id="@+id/tx_gae_valor"
+                android:layout_marginTop="@dimen/margin_top"
                 android:layout_below="@+id/ed_gae_descricao"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -109,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/formapagamento"
                 android:id="@+id/tx_gae_pagameto"
+                android:layout_marginTop="@dimen/margin_top"
                 android:layout_below="@+id/ed_gae_valor"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -127,9 +133,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/sp_gae_pagamento"
-                android:layout_alignTop="@+id/ed_gae_pagamento"
+                android:layout_below="@+id/tx_gae_pagameto"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/ed_gae_valor"
+                android:layout_alignEnd="@+id/ed_gae_valor" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
