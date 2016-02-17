@@ -158,5 +158,24 @@ public class Gastos_DAO extends Dados{
         return listarcategorias;
     }
 
+    public List sp_pagamentos(int id_usuario){
+        List<String> listarpagamentos = new ArrayList<>();
+        String sql = ComandosSql.getSelectPagamentos() + id_usuario;
 
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor.moveToFirst()){
+
+            int indice = cursor.getColumnIndex(Nomes.getPaDescricao());
+            do{
+                listarpagamentos.add(cursor.getString(indice));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return listarpagamentos;
+    }
 }
