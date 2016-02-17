@@ -104,11 +104,15 @@ public class ComandosSql {
     //SELECIONAR TODOS POR USUÁRIO
     private static final String SELECT_VIAGENS = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getUsId() + " = ";
     private static final String SELECT_GASTOS = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getViId() + " = ";
+    private static final String SELECT_CATEGORIAS = "SELECT * FROM " + Nomes.getTabelaCategorias() + " WHERE " + Nomes.getUsId() + " IS NULL OR " + Nomes.getUsId() + " = ";
 
 
     //SELECIONAR TODOS POR ID
     private static final String SELECT_ID_VIAGEM = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getID() + " = ";
     private static final String SELECT_ID_GASTO = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getID() + " = ";
+
+    //ATUALIZAÇÃO
+    private static final String ATUALIZAR_WHERE = "_id = ?";
 
     //GETTERS
 
@@ -246,5 +250,13 @@ public class ComandosSql {
 
     public static String getSelectIdGasto() {
         return SELECT_ID_GASTO;
+    }
+
+    public static String getAtualizarWhere() {
+        return ATUALIZAR_WHERE;
+    }
+
+    public static String getSelectCategorias() {
+        return SELECT_CATEGORIAS;
     }
 }

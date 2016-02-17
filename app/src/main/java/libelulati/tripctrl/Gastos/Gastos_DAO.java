@@ -102,7 +102,26 @@ public class Gastos_DAO extends Dados{
     }
 
     public boolean atualizar(Gasto gasto, int id){
-        return false;
+
+        ContentValues values = new ContentValues();
+
+        values.put(Nomes.getUsId(), gasto.getUs_id());
+        values.put(Nomes.getViId(), gasto.getVi_id());
+        values.put(Nomes.getCaId(), gasto.getCa_id());
+        values.put(Nomes.getPaId(), gasto.getPa_id());
+        values.put(Nomes.getGaDescricao(), gasto.getGa_descricao());
+        values.put(Nomes.getGaData(), gasto.getGa_data());
+        values.put(Nomes.getGaValor(), gasto.getGa_valor());
+
+        String where = ComandosSql.getAtualizarWhere();
+        String[] whereArgs = {Integer.toString(id)};
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        boolean sucesso = db.update(Nomes.getTabelaGastos(), values, where, whereArgs) > 0;
+        db.close();
+
+        return sucesso;
     }
 
     public boolean deletar(int id){
@@ -116,4 +135,28 @@ public class Gastos_DAO extends Dados{
 
         return sucesso;
     }
+
+    public List sp_categorias(int id_usuario){
+        List<String> listarcategorias = new ArrayList<>();
+        String sql = ComandosSql.getSelectCategorias() + id_usuario;
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor.moveToFirst()){
+
+            int indice = cursor.getColumnIndex(Nomes.getCaNome());
+
+            do{
+                listarcategorias.add(cursor.getString(indice));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return listarcategorias;
+    }
+
+
 }
