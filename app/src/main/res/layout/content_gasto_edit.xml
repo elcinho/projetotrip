@@ -55,7 +55,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/ed_gae_data"
-                android:layout_alignEnd="@+id/ed_gae_data" />
+                android:layout_alignEnd="@+id/ed_gae_data"
+                android:textColor="@color/colorWhite"/>
 
             <Spinner
                 android:layout_width="wrap_content"
@@ -65,7 +66,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/ed_gae_data"
-                android:layout_alignEnd="@+id/ed_gae_data" />
+                android:layout_alignEnd="@+id/ed_gae_data"
+                android:layout_marginTop="@dimen/margin_spinner"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -127,7 +129,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/ed_gae_valor"
-                android:layout_alignEnd="@+id/ed_gae_valor" />
+                android:layout_alignEnd="@+id/ed_gae_valor"
+                android:textColor="@color/colorWhite"/>
 
             <Spinner
                 android:layout_width="wrap_content"
@@ -137,7 +140,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/ed_gae_valor"
-                android:layout_alignEnd="@+id/ed_gae_valor" />
+                android:layout_alignEnd="@+id/ed_gae_valor"
+                android:layout_marginTop="@dimen/margin_spinner"/>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

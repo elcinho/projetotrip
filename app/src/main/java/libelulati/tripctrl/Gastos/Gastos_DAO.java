@@ -49,12 +49,12 @@ public class Gastos_DAO extends Dados{
             do{
                 int ga_id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Nomes.getID())));
                 String ga_descricao = cursor.getString(cursor.getColumnIndex(Nomes.getGaDescricao()));
+                String ga_categoria = cursor.getString(cursor.getColumnIndex(Nomes.getCaId()));
                 String ga_valor = cursor.getString(cursor.getColumnIndex(Nomes.getGaValor()));
                 String ga_data = cursor.getString(cursor.getColumnIndex(Nomes.getGaData()));
-                String ga_categoria = cursor.getString(cursor.getColumnIndex(Nomes.getCaNome()));
-                String ga_pagamento = cursor.getString(cursor.getColumnIndex(Nomes.getPaId()));
 
-                Gasto gasto = new Gasto(ga_id, ga_descricao, ga_valor, ga_data, ga_categoria, ga_pagamento);
+
+                Gasto gasto = new Gasto(ga_id, ga_descricao, ga_categoria, ga_valor, ga_data);
 
                 listarregistros.add(gasto);
             }while(cursor.moveToNext());
@@ -158,7 +158,7 @@ public class Gastos_DAO extends Dados{
         return listarcategorias;
     }
 
-    public List sp_pagamentos(int id_usuario){
+    public List sp_pagamentos(int id_usuario, String nulo){
         List<String> listarpagamentos = new ArrayList<>();
         String sql = ComandosSql.getSelectPagamentos() + id_usuario;
 
@@ -171,6 +171,9 @@ public class Gastos_DAO extends Dados{
             do{
                 listarpagamentos.add(cursor.getString(indice));
             }while (cursor.moveToNext());
+        }
+        else{
+            listarpagamentos.add(nulo);
         }
 
         cursor.close();

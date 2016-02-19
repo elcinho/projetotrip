@@ -10,7 +10,7 @@ public class Validar {
         String espaco = " ";
         String numeros = "0123456789";
 
-        if(nome.length() < 5)
+        if(nome.length() < 4)
             return false;
         else{
             for(int i = 0; i < nome.length(); i++){

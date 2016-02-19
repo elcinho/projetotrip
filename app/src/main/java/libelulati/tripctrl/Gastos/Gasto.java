@@ -14,12 +14,11 @@ public class Gasto {
     public Gasto() {
     }
 
-    public Gasto(int ga_id, String pa_id, String ca_id, String ga_valor, String ga_descricao, String ga_data) {
+    public Gasto(int ga_id, String ga_descricao, String ca_id, String ga_valor, String ga_data) {
         this.ga_id = ga_id;
-        this.pa_id = pa_id;
+        this.ga_descricao = ga_descricao;
         this.ca_id = ca_id;
         this.ga_valor = ga_valor;
-        this.ga_descricao = ga_descricao;
         this.ga_data = ga_data;
     }
 

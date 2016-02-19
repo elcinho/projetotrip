@@ -32,6 +32,7 @@ public class GastoEditActivity extends AppCompatActivity {
     int id_viagem, id_gasto;
     List<String> listacategorias, listapagamentos;
     MeuSpinner meuSpinner = new MeuSpinner();
+    String nulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +56,14 @@ public class GastoEditActivity extends AppCompatActivity {
 
         novo = bundle.getInt("isnew");
         id_viagem = bundle.getInt(Nomes.getViId());
+        nulo = context.getResources().getString(R.string.encontrado_registro);
 
         listacategorias = new Gastos_DAO(context).sp_categorias(id_usuario);
-        listapagamentos = new Gastos_DAO(context).sp_pagamentos(id_usuario);
+        listapagamentos = new Gastos_DAO(context).sp_pagamentos(id_usuario, nulo);
 
         switch (novo){
             case 1:
                 getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_gasto_new));
-                ed_gae_categoria.setVisibility(View.INVISIBLE);
-                ed_gae_pagamento.setVisibility(View.INVISIBLE);
 
                 meuSpinner.preencherSpinner(context, listacategorias, sp_gae_categoria);
                 meuSpinner.selecionarItem(sp_gae_categoria, ed_gae_categoria);

@@ -5,6 +5,7 @@
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="margin_top">15dp</dimen>
+    <dimen name="margin_spinner">6dp</dimen>
 
     <dimen name="fonte_botoes">25dp</dimen>
 
@@ -16,7 +17,7 @@
     <dimen name="float_action_button_content_size">30dp</dimen>
     <dimen name="float_action_button_content_margin">16dp</dimen>
 
-    <dimen name="sub_action_button_size">70dp</dimen>
+    <dimen name="sub_action_button_size">60dp</dimen>
     <dimen name="sub_action_button_margin">16dp</dimen>
     <dimen name="sub_action_button_content_size">16dp</dimen>
     <dimen name="sub_action_button_content_margin">16dp</dimen>

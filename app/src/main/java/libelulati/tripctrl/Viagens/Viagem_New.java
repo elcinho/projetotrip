@@ -25,7 +25,7 @@ import libelulati.tripctrl.R;
 
 public class Viagem_New extends DialogFragment{
     EditText ed_dvi_nome, ed_dvi_dtinic, ed_dvi_dtfim, ed_dvi_valor;
-    boolean v_nome, v_dtini, v_dtfim, v_valor, validar;
+    boolean v_nome, v_dtini, v_dtfim, v_valor;
     Button positivo, negativo;
     int id_usuario = InicioActivity.getId_usuario();
 
@@ -53,7 +53,7 @@ public class Viagem_New extends DialogFragment{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                VerificarNome();
+
             }
 
             @Override
@@ -155,6 +155,7 @@ public class Viagem_New extends DialogFragment{
     }
 
     public void VerificarNome(){
+        boolean validar = false;
         validar = Validar.ValidarNome(String.valueOf(ed_dvi_nome.getText().toString()));
         if(!validar){
             ed_dvi_nome.setError(getActivity().getResources().getString(R.string.validar_nome));
@@ -167,6 +168,7 @@ public class Viagem_New extends DialogFragment{
 
     public void VerificarDtini(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        boolean validar = false;
         try {
             Date data = sdf.parse(String.valueOf(ed_dvi_dtinic.getText().toString()));
             validar = Validar.ValidarDataInicio(data);
@@ -183,6 +185,7 @@ public class Viagem_New extends DialogFragment{
     }
 
     public void VerificarDtfim(){
+        boolean validar = false;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date inicio = sdf.parse(String.valueOf(ed_dvi_dtinic.getText().toString()));
@@ -201,6 +204,7 @@ public class Viagem_New extends DialogFragment{
     }
 
     public void VerificarValor(){
+        boolean validar = false;
         double valor = 0;
         if(ed_dvi_valor.length() > 0){
             valor = Double.parseDouble(ed_dvi_valor.getText().toString());
