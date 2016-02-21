@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -14,11 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import libelulati.tripctrl.Funcoes.DatePicker;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
@@ -28,6 +27,7 @@ public class Viagem_New extends DialogFragment{
     boolean v_nome, v_dtini, v_dtfim, v_valor;
     Button positivo, negativo;
     int id_usuario = InicioActivity.getId_usuario();
+    View dialogview;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -35,10 +35,9 @@ public class Viagem_New extends DialogFragment{
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View dialogview = inflater.inflate(R.layout.dialog_viagem_novo, null);
+        dialogview = inflater.inflate(R.layout.dialog_viagem_novo, null);
         builder.setView(dialogview);
         builder.setTitle(getActivity().getResources().getString(R.string.novaviagem));
-
 
         ed_dvi_nome = (EditText)dialogview.findViewById(R.id.ed_dvi_nome);
         ed_dvi_dtinic = (EditText)dialogview.findViewById(R.id.ed_dvi_dtinic);
@@ -65,9 +64,16 @@ public class Viagem_New extends DialogFragment{
         ed_dvi_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
+                if (!hasFocus) {
                     VerificarNome();
                 }
+            }
+        });
+
+        ed_dvi_dtinic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker(v, ed_dvi_dtinic);
             }
         });
 
@@ -79,11 +85,24 @@ public class Viagem_New extends DialogFragment{
             }
         });
 
+        ed_dvi_dtfim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         ed_dvi_dtfim.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus)
+                if (!hasFocus)
                     VerificarDtfim();
+            }
+        });
+        ed_dvi_dtfim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker(v, ed_dvi_dtfim);
             }
         });
 
@@ -132,6 +151,11 @@ public class Viagem_New extends DialogFragment{
         });
 
         return dialog;
+    }
+
+    public void showDatePicker(View view, EditText ed_data){
+        DialogFragment dialogFragment = new DatePicker(ed_data);
+        dialogFragment.show(getFragmentManager(), "datepicker");
     }
 
     public void Salvar(){
@@ -234,4 +258,6 @@ public class Viagem_New extends DialogFragment{
             return false;
         }
     }
+
+
 }

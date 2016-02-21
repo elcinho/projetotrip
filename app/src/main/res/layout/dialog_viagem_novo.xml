@@ -17,8 +17,7 @@
         android:id="@+id/ed_dvi_dtinic"
         android:hint="@string/dtinicio"
         android:textColor="@color/colorPrimary"
-        android:inputType="date"
-        android:onClick=""/>
+        android:inputType="none" />
 
     <EditText
         android:layout_width="match_parent"
@@ -26,8 +25,7 @@
         android:id="@+id/ed_dvi_dtfim"
         android:hint="@string/dtfim"
         android:textColor="@color/colorPrimary"
-        android:inputType="date"
-        />
+        android:inputType="none"/>
 
     <EditText
         android:layout_width="match_parent"

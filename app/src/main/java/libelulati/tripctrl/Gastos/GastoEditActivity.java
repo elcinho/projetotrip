@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import libelulati.tripctrl.Dados.Nomes;
+import libelulati.tripctrl.Funcoes.DatePicker;
 import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
@@ -90,6 +91,14 @@ public class GastoEditActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+                ed_gae_data.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
                 break;
             case 2:
                 getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_gasto_edit));
