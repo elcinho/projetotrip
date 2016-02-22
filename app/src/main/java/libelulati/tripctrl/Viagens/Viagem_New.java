@@ -2,6 +2,7 @@ package libelulati.tripctrl.Viagens;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -175,6 +176,7 @@ public class Viagem_New extends DialogFragment{
         else{
             Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.erro_criar_viagem), Toast.LENGTH_LONG).show();
         }
+
         dismiss();
     }
 

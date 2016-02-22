@@ -35,13 +35,16 @@ public class InicioActivity extends AppCompatActivity {
     TextView tx_ini_dataviagem, tx_ini_valorviagem;
     Context context;
     String titulo;
-    int id_viagem;
+    int id_viagem, exibir_menu;
+    View v_inicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
         id_usuario = 1; // BUSCAR ID DO USUARIO LOGADO
+
+        v_inicio = findViewById(R.id.rl_inicio);
 
         context = InicioActivity.this;
 
@@ -105,6 +108,7 @@ public class InicioActivity extends AppCompatActivity {
         menuPrincipal.setStateChangeListener(new FloatingActionMenu.MenuStateChangeListener() {
             @Override
             public void onMenuOpened(FloatingActionMenu floatingActionMenu) {
+                v_inicio.setBackgroundColor(context.getResources().getColor(R.color.colorBlack));
                 fabIconNew.setRotation(0);
                 PropertyValuesHolder propertyValuesHolder = PropertyValuesHolder.ofFloat(View.ROTATION, 45);
                 ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(fabIconNew, propertyValuesHolder);
@@ -113,6 +117,7 @@ public class InicioActivity extends AppCompatActivity {
 
             @Override
             public void onMenuClosed(FloatingActionMenu floatingActionMenu) {
+                v_inicio.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
                 fabIconNew.setRotation(getResources().getDimensionPixelSize(R.dimen.float_menu_angulo));
                 PropertyValuesHolder propertyValuesHolder = PropertyValuesHolder.ofFloat(View.ROTATION, 0);
                 ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(fabIconNew, propertyValuesHolder);
@@ -151,8 +156,9 @@ public class InicioActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        getMenuInflater().inflate(R.menu.inicio_menu, menu);
-        return (true);
+        if(exibir_menu == 1)
+            getMenuInflater().inflate(R.menu.inicio_menu, menu);
+            return (true);
     }
 
     @Override
@@ -186,11 +192,13 @@ public class InicioActivity extends AppCompatActivity {
             tx_ini_dataviagem.setText(context.getResources().getString(R.string.periodo
             ) + " " + viagem.getVi_dtinic() + " " + context.getResources().getString(R.string.a) + " " + viagem.getVi_dtfim());
             tx_ini_valorviagem.setText(context.getResources().getString(R.string.valordisponivel)+ " " + context.getResources().getString(R.string.moeda) + " " + viagem.getVi_valor());
+            exibir_menu = 1;
         }
         else{
             bt_ini_addviagem.setVisibility(View.VISIBLE);
             tx_ini_dataviagem.setVisibility(View.INVISIBLE);
             tx_ini_valorviagem.setVisibility(View.INVISIBLE);
+            exibir_menu = 0;
         }
     }
 

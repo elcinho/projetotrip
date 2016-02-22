@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -95,7 +96,7 @@ public class GastoEditActivity extends AppCompatActivity {
                 ed_gae_data.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        showDatePicker(v, ed_gae_data);
                     }
                 });
 
@@ -106,6 +107,11 @@ public class GastoEditActivity extends AppCompatActivity {
                 ed_gae_pagamento.setVisibility(View.VISIBLE);
                 break;
         }
+    }
+
+    public void showDatePicker(View view, EditText ed_data){
+        DialogFragment dialogFragment = new DatePicker(ed_data);
+        dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
 
     public void Salvar(){

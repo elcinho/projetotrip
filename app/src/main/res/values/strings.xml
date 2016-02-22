@@ -81,7 +81,7 @@
     <string name="tipopagamento">Tipo Pagamento</string>
     <string name="tipotransporte">Tipo de transporte</string>
     <string name="transporte">Transporte</string>
-    <string name="valor">Valor disponível</string>
+    <string name="valor">Valor</string>
 
     <!-- TABELAS -->
     <string name="categoria">Categoria</string>

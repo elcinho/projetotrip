@@ -9,6 +9,7 @@
     <color name="colorYellow">#ffff00</color>
     <color name="colorBlue">#6666ff</color>
     <color name="colorPurple">#990099</color>
+    <color name="colorBlack">#99000000</color>
 </resources>
 
 
