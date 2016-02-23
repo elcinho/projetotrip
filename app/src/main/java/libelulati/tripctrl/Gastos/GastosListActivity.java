@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -62,6 +63,8 @@ public class GastosListActivity extends AppCompatActivity {
         linearLayout_itens.removeAllViews();
 
         List<Gasto> gastos = new Gastos_DAO(context).listar(id_viagem);
+        View viewItens = null;
+        TextView tx_ga_descricao, tx_ga_categoria, tx_ga_valor, tx_ga_data;
 
         if(gastos.size() > 0){
             for(Gasto gasto : gastos){
@@ -71,21 +74,22 @@ public class GastosListActivity extends AppCompatActivity {
                 String ga_categoria = gasto.getCa_id();
                 String ga_data = gasto.getGa_data();
 
-                RelativeLayout relativeLayout_itens = (RelativeLayout)findViewById(R.id.re_ga_itens);
-                relativeLayout_itens.setTag(id_gastos);
+                LayoutInflater inflater = getLayoutInflater();
+                viewItens = inflater.inflate(R.layout.view_list_gastos, null);
 
-                TextView tx_ga_descricao = (TextView)findViewById(R.id.tx_ga_descricao);
-                TextView tx_ga_categoria = (TextView)findViewById(R.id.tx_ga_categoria);
-                TextView tx_ga_valor = (TextView)findViewById(R.id.tx_ga_valor);
-                TextView tx_ga_data = (TextView)findViewById(R.id.tx_ga_data);
+                tx_ga_descricao = (TextView)viewItens.findViewById(R.id.tx_ga_descricao);
+                tx_ga_categoria = (TextView)viewItens.findViewById(R.id.tx_ga_categoria);
+                tx_ga_valor = (TextView)viewItens.findViewById(R.id.tx_ga_valor);
+                tx_ga_data = (TextView)viewItens.findViewById(R.id.tx_ga_data);
 
                 tx_ga_descricao.setText(ga_descricao);
-                tx_ga_valor.setText(ga_valor);
                 tx_ga_categoria.setText(ga_categoria);
+                tx_ga_valor.setText(ga_valor);
                 tx_ga_data.setText(ga_data);
 
+                viewItens.setTag(id_gastos);
 
-                linearLayout_itens.addView(relativeLayout_itens);
+                linearLayout_itens.addView(viewItens);
             }
         }
         else{

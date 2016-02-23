@@ -33,6 +33,4 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tx_ga_valor"
         android:layout_alignParentRight="true"/>
-
-
 </RelativeLayout>

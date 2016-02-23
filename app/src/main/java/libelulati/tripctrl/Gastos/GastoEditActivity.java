@@ -100,6 +100,17 @@ public class GastoEditActivity extends AppCompatActivity {
                     }
                 });
 
+                ed_gae_data.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if(hasFocus){
+                            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+                                    .hideSoftInputFromWindow(ed_gae_data.getWindowToken(),
+                                            InputMethodManager.HIDE_NOT_ALWAYS);
+                        }
+                    }
+                });
+
                 break;
             case 2:
                 getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_gasto_edit));
