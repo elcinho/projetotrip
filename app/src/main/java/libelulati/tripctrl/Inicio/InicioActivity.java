@@ -70,7 +70,7 @@ public class InicioActivity extends AppCompatActivity {
 
         final com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton fab_novo = new com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.Builder(this)
                 .setContentView(fabIconNew, newIconParams)
-                .setBackgroundDrawable(getResources().getDrawable(R.drawable.bk_floatactionbutton))
+                .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_pink))
                 .setLayoutParams(newParams)
                 .build();
 
@@ -89,19 +89,23 @@ public class InicioActivity extends AppCompatActivity {
         ImageView itemConfiguracoes = new ImageView(this);
 
         itemGasto.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_attach_money));
-        itemGasto.setColorFilter(getResources().getColor(R.color.colorPrimary));
         itemPlanejamento.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_assignment));
-        itemPlanejamento.setColorFilter(getResources().getColor(R.color.colorPrimary));
         itemPagamento.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_payment));
-        itemPagamento.setColorFilter(getResources().getColor(R.color.colorPrimary));
         itemConfiguracoes.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_settings));
-        itemConfiguracoes.setColorFilter(getResources().getColor(R.color.colorPrimary));
 
         final FloatingActionMenu menuPrincipal = new FloatingActionMenu.Builder(this)
-                .addSubActionView(itensMenu.setContentView(itemConfiguracoes).build())
-                .addSubActionView(itensMenu.setContentView(itemPagamento).build())
-                .addSubActionView(itensMenu.setContentView(itemPlanejamento).build())
-                .addSubActionView(itensMenu.setContentView(itemGasto).build())
+                .addSubActionView(itensMenu.setContentView(itemConfiguracoes)
+                        .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_blue))
+                        .build())
+                .addSubActionView(itensMenu.setContentView(itemPagamento)
+                        .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_orange))
+                        .build())
+                .addSubActionView(itensMenu.setContentView(itemPlanejamento)
+                        .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_green))
+                        .build())
+                .addSubActionView(itensMenu.setContentView(itemGasto)
+                        .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_violet))
+                        .build())
                 .setRadius(getResources().getDimensionPixelSize(R.dimen.float_menu_radius))
                 .attachTo(fab_novo).build();
 
