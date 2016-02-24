@@ -308,7 +308,7 @@ public class GastoEditActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        switch (novo) {
+        switch (vis_menu) {
             case 1:
                 getMenuInflater().inflate(R.menu.salvar_menu, menu);
                 break;
