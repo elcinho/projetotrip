@@ -142,6 +142,8 @@
     <string name="sucesso_excluir_metodopagamento">Método de pagamento deletado com sucesso.</string>
     <string name="sucesso_excluir_viagem">Viagem deletada com sucesso.</string>
     <string name="sucesso_criar_gasto">Despesa inserida com sucesso.</string>
+    <string name="sucesso_atualizar_gasto">Despesa atualizada com sucesso.</string>
+    <string name="sucesso_excluir_gasto">Despesa deletada com sucesso.</string>
 
     <!-- MENSAGENS DE ERRO -->
     <string name="erro_alterar_metodopagamento">Os dados do método de pagamento não foram alterados.</string>
@@ -159,6 +161,8 @@
     <string name="erro_gerar_codigo">Erro ao gerar o código de confirmação. A senha não será alterada.</string>
     <string name="erro_validar_campos">Existem campos que não foram validados. Verifique os dados e tente novamente.</string>
     <string name="erro_criar_gasto">Ocorreu um erro ao inserir a despesa.</string>
+    <string name="erro_atualizar_gasto">A despesa não foi alterada.</string>
+    <string name="erro_excluir_gasto">A despesa não pôde ser excluída.</string>
 
     <!-- Strings related to Settings -->
 

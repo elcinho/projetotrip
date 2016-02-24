@@ -42,8 +42,15 @@ public class GastosListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent it_new_gasto = new Intent(context, GastoEditActivity.class);
                 Bundle bdnovo = new Bundle();
-                bdnovo.putInt("isnew", 1);
+                bdnovo.putInt("novo", 1);
+                bdnovo.putInt(Nomes.getID(), id_gastos);
                 bdnovo.putInt(Nomes.getViId(), id_viagem);
+                bdnovo.putInt(Nomes.getUsId(), id_usuario);
+                bdnovo.putString(Nomes.getCaId(), null);
+                bdnovo.putString(Nomes.getPaId(), null);
+                bdnovo.putString(Nomes.getGaDescricao(), null);
+                bdnovo.putString(Nomes.getGaData(), null);
+                bdnovo.putString(Nomes.getGaValor(), null);
 
                 it_new_gasto.putExtras(bdnovo);
                 startActivityForResult(it_new_gasto, 1);
@@ -67,11 +74,11 @@ public class GastosListActivity extends AppCompatActivity {
         TextView tx_ga_descricao, tx_ga_categoria, tx_ga_valor, tx_ga_data;
 
         if(gastos.size() > 0){
-            for(Gasto gasto : gastos){
+            for(final Gasto gasto : gastos){
                 id_gastos = gasto.getGa_id();
                 String ga_descricao = gasto.getGa_descricao();
                 String ga_valor = gasto.getGa_valor();
-                String ga_categoria = gasto.getCa_id();
+                final String ga_categoria = gasto.getCa_id();
                 String ga_data = gasto.getGa_data();
 
                 LayoutInflater inflater = getLayoutInflater();
@@ -88,6 +95,27 @@ public class GastosListActivity extends AppCompatActivity {
                 tx_ga_data.setText(ga_data);
 
                 viewItens.setTag(id_gastos);
+
+                viewItens.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent it_ga_show = new Intent(context, GastoEditActivity.class);
+                        Bundle bdshow = new Bundle();
+
+                        bdshow.putInt("novo", 2);
+                        bdshow.putInt(Nomes.getID(), id_gastos);
+                        bdshow.putInt(Nomes.getViId(), id_viagem);
+                        bdshow.putInt(Nomes.getUsId(), id_usuario);
+                        bdshow.putString(Nomes.getCaId(), gasto.getCa_id());
+                        bdshow.putString(Nomes.getPaId(), gasto.getPa_id());
+                        bdshow.putString(Nomes.getGaDescricao(), gasto.getGa_descricao());
+                        bdshow.putString(Nomes.getGaData(), gasto.getGa_data());
+                        bdshow.putString(Nomes.getGaValor(), gasto.getGa_valor());
+
+                        it_ga_show.putExtras(bdshow);
+                        startActivityForResult(it_ga_show, 1);
+                    }
+                });
 
                 linearLayout_itens.addView(viewItens);
             }
