@@ -10,6 +10,9 @@ public class Pagamento {
     private String pa_valor;
     private String pa_dtvenc;
 
+    public Pagamento() {
+    }
+
     public Pagamento(int pa_id, String pa_descricao, String pa_valor, String pa_dtvenc, String tp_id) {
         this.tp_id = tp_id;
         this.pa_descricao = pa_descricao;

@@ -114,6 +114,7 @@ public class ComandosSql {
     //SELECIONAR TODOS POR ID
     private static final String SELECT_ID_VIAGEM = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getID() + " = ";
     private static final String SELECT_ID_GASTO = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getID() + " = ";
+    private static final String SELECT_ID_PAGAMENTO = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getID() + " = ";
 
     //ATUALIZAÇÃO
     private static final String ATUALIZAR_WHERE = "_id = ?";
@@ -274,5 +275,9 @@ public class ComandosSql {
 
     public static String getSelectTipospagamento() {
         return SELECT_TIPOSPAGAMENTO;
+    }
+
+    public static String getSelectIdPagamento() {
+        return SELECT_ID_PAGAMENTO;
     }
 }
