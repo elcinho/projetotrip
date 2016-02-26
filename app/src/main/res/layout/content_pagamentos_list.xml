@@ -10,4 +10,16 @@
     tools:showIn="@layout/activity_pagamentos_list"
     tools:context="libelulati.tripctrl.Pagamentos.PagamentosListActivity">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sc_pa_lista">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/li_pa_lista"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>

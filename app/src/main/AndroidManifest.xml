@@ -59,6 +59,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
         </activity>
+        <activity
+            android:name=".Pagamentos.PagamentosEditActivity"
+            android:label="@string/title_activity_pagamentos_edit"
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -11,6 +11,8 @@
     <string name="title_activity_inicio">Início</string>
     <string name="title_activity_pagamentos_list">Pagamentos</string>
     <string name="title_activity_planejamentos_list">Planejamentos</string>
+    <string name="title_activity_pagamentos_edit">Editar Pagamento</string>
+
 
     <!-- MENUS -->
     <string name="atualizar">Atualizar</string>

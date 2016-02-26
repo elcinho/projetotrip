@@ -45,6 +45,7 @@ public class ComandosSql {
     private static final String CREATE_TABLE_PAGAMENTOS = getCreateTable() + Nomes.getTabelaPagamentos() + "(" +
             " " + Nomes.getID() + getPRIMARYKEY() + "," +
             " " + Nomes.getUsId() + getINTEIRO() + "," +
+            " " + Nomes.getViId() + getINTEIRO() + "," +
             " " + Nomes.getTpId() + getTEXTO() + "," +
             " " + Nomes.getPaDescricao() + getTEXTO() + "," +
             " " + Nomes.getPaValor() + getTEXTO() + "," +
