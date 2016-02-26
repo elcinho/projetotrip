@@ -24,6 +24,8 @@ public class GastosListActivity extends AppCompatActivity {
     Context context;
     int id_gastos;
     FloatingActionButton fab_ga_new;
+    double ga_total = 0, dc_valor = 0;
+    TextView tx_ga_total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class GastosListActivity extends AppCompatActivity {
         Bundle bundle = it_ga_gastos.getExtras();
         id_viagem = bundle.getInt(Nomes.getViId());
 
+        tx_ga_total = (TextView)findViewById(R.id.tx_ga_total);
         fab_ga_new = (FloatingActionButton)findViewById(R.id.fab_ga_new);
         fab_ga_new.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +75,8 @@ public class GastosListActivity extends AppCompatActivity {
         List<Gasto> gastos = new Gastos_DAO(context).listar(id_viagem);
         View viewItens = null;
         TextView tx_ga_descricao, tx_ga_categoria, tx_ga_valor, tx_ga_data;
+
+        ga_total = 0;
 
         if(gastos.size() > 0){
             for(final Gasto gasto : gastos){
@@ -118,6 +123,11 @@ public class GastosListActivity extends AppCompatActivity {
                 });
 
                 linearLayout_itens.addView(viewItens);
+
+                dc_valor = Double.parseDouble(gasto.getGa_valor());
+                ga_total = ga_total + dc_valor;
+
+                tx_ga_total.setText(context.getResources().getString(R.string.total) + " " + context.getResources().getString(R.string.moeda) + " " + format(ga_total));
             }
         }
         else{
@@ -127,6 +137,10 @@ public class GastosListActivity extends AppCompatActivity {
 
             linearLayout_itens.addView(nenhumregistro);
         }
+    }
+
+    public static String format(double x){
+        return String.format("%.2f", x);
     }
 }
 

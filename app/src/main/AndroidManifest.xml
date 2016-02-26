@@ -51,14 +51,6 @@
                 android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
-            android:name=".Configuracoes.ConfiguracoesActivity"
-            android:label="@string/title_activity_configuracoes"
-            android:parentActivityName=".Inicio.InicioActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Inicio.InicioActivity" />
-        </activity>
-        <activity
             android:name=".Gastos.GastoEditActivity"
             android:label="@string/title_activity_gasto_edit"
             android:parentActivityName=".Inicio.InicioActivity"
