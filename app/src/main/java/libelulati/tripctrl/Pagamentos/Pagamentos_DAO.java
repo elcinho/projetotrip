@@ -149,8 +149,4 @@ public class Pagamentos_DAO extends Dados{
 
         return listartipospagamentos;
     }
-
-
-
-
 }

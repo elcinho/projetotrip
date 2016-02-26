@@ -5,7 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.List;
 
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
@@ -60,7 +65,61 @@ public class PagamentosListActivity extends AppCompatActivity {
 
     public void Listar(){
 
+        LinearLayout linearLayout_itens = (LinearLayout) findViewById(R.id.li_pa_lista);
+        linearLayout_itens.removeAllViews();
+
+        List<Pagamento> pagamentos = new Pagamentos_DAO(context).listar(id_viagem);
+        View viewItens = null;
+        TextView tx_pa_descricao, tx_pa_tipopagamento, tx_pa_valor, tx_pa_vencimento;
+
+        if(pagamentos.size() > 0){
+            for (final Pagamento pagamento : pagamentos){
+                id_pagamento = pagamento.getPa_id();
+                String pa_descricao = pagamento.getPa_descricao();
+                String pa_tipopagamento = pagamento.getTp_id();
+                String pa_valor = pagamento.getPa_valor();
+                String pa_vencimento = pagamento.getPa_dtvenc();
+
+                LayoutInflater inflater = getLayoutInflater();
+                viewItens = inflater.inflate(R.layout.view_list_pagamentos, null);
+
+                tx_pa_descricao = (TextView)viewItens.findViewById(R.id.tx_pa_descricao);
+                tx_pa_tipopagamento = (TextView)viewItens.findViewById(R.id.tx_pa_tipopagamento);
+                tx_pa_valor = (TextView)viewItens.findViewById(R.id.tx_pa_valor);
+                tx_pa_vencimento = (TextView)viewItens.findViewById(R.id.tx_pa_data);
+
+                viewItens.setTag(id_pagamento);
+
+                viewItens.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent it_pa_show = new Intent(context, PagamentosEditActivity.class);
+                        Bundle bdshow = new Bundle();
+
+                        bdshow.putInt("novo", 2);
+                        bdshow.putInt(Nomes.getID(), id_pagamento);
+                        bdshow.putInt(Nomes.getUsId(), id_usuario);
+                        bdshow.putInt(Nomes.getViId(), id_viagem);
+                        bdshow.putString(Nomes.getTpId(), pagamento.getTp_id());
+                        bdshow.putString(Nomes.getPaDescricao(), pagamento.getPa_descricao());
+                        bdshow.putString(Nomes.getPaValor(), pagamento.getPa_valor());
+                        bdshow.putString(Nomes.getPaVencimento(), pagamento.getPa_dtvenc());
+
+                        it_pa_show.putExtras(bdshow);
+                        startActivityForResult(it_pa_show, 1);
+                    }
+                });
+
+                linearLayout_itens.addView(viewItens);
+
+            }
+        }
+        else{
+            TextView nenhumregistro = new TextView(context);
+            nenhumregistro.setPadding(8,8,8,8);
+            nenhumregistro.setText(context.getResources().getString(R.string.encontrado_registro));
+
+            linearLayout_itens.addView(nenhumregistro);
+        }
     }
-
-
 }

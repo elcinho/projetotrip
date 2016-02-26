@@ -17,7 +17,7 @@
             android:textSize="@dimen/fonte_list_item"
             android:textStyle="bold"/>
         <TextView
-            android:id="@+id/tx_pa_categoria"
+            android:id="@+id/tx_pa_tipopagamento"
             android:text="tipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

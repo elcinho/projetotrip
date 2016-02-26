@@ -22,6 +22,7 @@ import java.util.List;
 
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Gastos.GastosListActivity;
+import libelulati.tripctrl.Pagamentos.PagamentosListActivity;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.Viagens.Viagem;
 import libelulati.tripctrl.Viagens.Viagem_New;
@@ -136,6 +137,13 @@ public class InicioActivity extends AppCompatActivity {
             }
         });
 
+        itemPagamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChamarListPagamento();
+            }
+        });
+
         // FIM MENU FLUTUANTE
 
         bt_ini_addviagem = (Button) findViewById(R.id.bt_ini_addviagem);
@@ -214,6 +222,16 @@ public class InicioActivity extends AppCompatActivity {
         it_gastos.putExtras(bundle);
 
         startActivityForResult(it_gastos, 1);
+    }
+
+    public void ChamarListPagamento(){
+        Intent it_pagamento = new Intent(context, PagamentosListActivity.class);
+        Bundle bundle = new Bundle();
+
+        bundle.putInt(Nomes.getViId(), id_viagem);
+        it_pagamento.putExtras(bundle);
+
+        startActivityForResult(it_pagamento, 1);
     }
 
     public static int getId_usuario() {
