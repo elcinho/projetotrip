@@ -6,14 +6,16 @@ public class Pagamento {
     private int us_id;
     private int vi_id;
     private String tp_id;
+    private String pa_descricao;
     private String pa_valor;
     private String pa_dtvenc;
 
-    public Pagamento(int pa_id, String tp_id, String pa_valor, String pa_dtvenc) {
-        this.pa_id = pa_id;
+    public Pagamento(int pa_id, String pa_descricao, String pa_valor, String pa_dtvenc, String tp_id) {
         this.tp_id = tp_id;
+        this.pa_descricao = pa_descricao;
         this.pa_valor = pa_valor;
         this.pa_dtvenc = pa_dtvenc;
+        this.pa_id = pa_id;
     }
 
     public int getPa_id() {
@@ -46,6 +48,14 @@ public class Pagamento {
 
     public void setTp_id(String tp_id) {
         this.tp_id = tp_id;
+    }
+
+    public String getPa_descricao() {
+        return pa_descricao;
+    }
+
+    public void setPa_descricao(String pa_descricao) {
+        this.pa_descricao = pa_descricao;
     }
 
     public String getPa_valor() {

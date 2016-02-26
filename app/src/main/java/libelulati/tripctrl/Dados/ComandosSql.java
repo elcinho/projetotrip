@@ -107,6 +107,8 @@ public class ComandosSql {
     private static final String SELECT_GASTOS = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getViId() + " = ";
     private static final String SELECT_CATEGORIAS = "SELECT * FROM " + Nomes.getTabelaCategorias() + " WHERE " + Nomes.getUsId() + " IS NULL OR " + Nomes.getUsId() + " = ";
     private static final String SELECT_PAGAMENTOS = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getUsId() + " = ";
+    private static final String SELECT_PAGAMENTOS_LIST = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getViId() + " = ";
+    private  static final String SELECT_TIPOSPAGAMENTO = "SELECT * FROM " + Nomes.getTabelaTipospagamento();
 
 
     //SELECIONAR TODOS POR ID
@@ -264,5 +266,13 @@ public class ComandosSql {
 
     public static String getSelectPagamentos() {
         return SELECT_PAGAMENTOS;
+    }
+
+    public static String getSelectPagamentosList() {
+        return SELECT_PAGAMENTOS_LIST;
+    }
+
+    public static String getSelectTipospagamento() {
+        return SELECT_TIPOSPAGAMENTO;
     }
 }
