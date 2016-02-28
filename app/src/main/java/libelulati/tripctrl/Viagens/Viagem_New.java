@@ -3,6 +3,7 @@ package libelulati.tripctrl.Viagens;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
@@ -128,6 +129,7 @@ public class Viagem_New extends DialogFragment{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Salvar();
+                Reload();
             }
         });
 
@@ -135,6 +137,7 @@ public class Viagem_New extends DialogFragment{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dismiss();
+                Reload();
             }
         });
 
@@ -178,6 +181,14 @@ public class Viagem_New extends DialogFragment{
 
         dismiss();
     }
+
+    public void Reload(){
+        Intent reiniciar = new Intent(getActivity(), InicioActivity.class);
+        getActivity().finish();
+        startActivity(reiniciar);
+        getActivity().overridePendingTransition(0, 0); reiniciar.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    }
+
 
     public void VerificarNome(){
         boolean validar = false;

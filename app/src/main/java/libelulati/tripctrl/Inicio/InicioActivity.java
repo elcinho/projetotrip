@@ -39,15 +39,14 @@ public class InicioActivity extends AppCompatActivity {
     String titulo;
     int id_viagem, exibir_menu;
     View v_inicio;
+    ImageView fabIconNew;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
         id_usuario = 1; // BUSCAR ID DO USUARIO LOGADO
-
         v_inicio = findViewById(R.id.rl_inicio);
-
         context = InicioActivity.this;
 
         // MENU FLUTUANTE
@@ -60,8 +59,7 @@ public class InicioActivity extends AppCompatActivity {
         int subActionButtonContentSize = getResources().getDimensionPixelSize(R.dimen.sub_action_button_content_size);
         int subActionButtonContentMargin = getResources().getDimensionPixelOffset(R.dimen.sub_action_button_content_margin);
 
-
-        final ImageView fabIconNew = new ImageView(this);
+        fabIconNew = new ImageView(this);
         fabIconNew.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_new));
 
         com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.LayoutParams newParams = new com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.LayoutParams(floatActionButtonSize, floatActionButtonSize);
@@ -131,22 +129,32 @@ public class InicioActivity extends AppCompatActivity {
             }
         });
 
+        v_inicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                menuPrincipal.close(true);
+            }
+        });
+
         itemGasto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ChamarListGasto();
+                menuPrincipal.close(true);
             }
         });
         itemPagamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ChamarListPagamento();
+                menuPrincipal.close(true);
             }
         });
         itemPlanejamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ChamarListPlanejamento();
+                menuPrincipal.close(true);
             }
         });
 
@@ -249,6 +257,7 @@ public class InicioActivity extends AppCompatActivity {
 
         startActivityForResult(it_planejamento, 1);
     }
+
 
     public static int getId_usuario() {
         return id_usuario;
