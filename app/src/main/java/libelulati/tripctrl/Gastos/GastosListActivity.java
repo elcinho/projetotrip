@@ -125,7 +125,7 @@ public class GastosListActivity extends AppCompatActivity {
                 linearLayout_itens.addView(viewItens);
 
                 dc_valor = Double.parseDouble(gasto.getGa_valor());
-                ga_total = ga_total + dc_valor;
+                ga_total += dc_valor;
 
                 tx_ga_total.setText(context.getResources().getString(R.string.total) + " " + context.getResources().getString(R.string.moeda) + " " + format(ga_total));
             }

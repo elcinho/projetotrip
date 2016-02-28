@@ -9,7 +9,8 @@
         android:id="@+id/ed_dvi_nome"
         android:hint="@string/nome"
         android:textColor="@color/colorPrimary"
-        android:inputType="textAutoComplete|textPersonName"/>
+        android:inputType="textAutoComplete|textPersonName"
+        android:layout_marginTop="@dimen/margin_top"/>
 
     <EditText
         android:layout_width="match_parent"
