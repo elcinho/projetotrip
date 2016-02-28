@@ -88,6 +88,11 @@ public class PagamentosListActivity extends AppCompatActivity {
                 tx_pa_valor = (TextView)viewItens.findViewById(R.id.tx_pa_valor);
                 tx_pa_vencimento = (TextView)viewItens.findViewById(R.id.tx_pa_data);
 
+                tx_pa_descricao.setText(pa_descricao);
+                tx_pa_tipopagamento.setText(pa_tipopagamento);
+                tx_pa_valor.setText(pa_valor);
+                tx_pa_vencimento.setText(pa_vencimento);
+
                 viewItens.setTag(id_pagamento);
 
                 viewItens.setOnClickListener(new View.OnClickListener() {
