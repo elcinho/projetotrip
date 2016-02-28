@@ -14,12 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import libelulati.tripctrl.Funcoes.DatePicker;
-import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
@@ -66,7 +62,6 @@ public class Viagem_New extends DialogFragment{
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    VerificarNome();
                 }
             }
         });
@@ -81,8 +76,8 @@ public class Viagem_New extends DialogFragment{
         ed_dvi_dtinic.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus)
-                    VerificarDtini();
+                if (!hasFocus){}
+
             }
         });
 
@@ -96,8 +91,8 @@ public class Viagem_New extends DialogFragment{
         ed_dvi_dtfim.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus)
-                    VerificarDtfim();
+                if (!hasFocus){}
+
             }
         });
         ed_dvi_dtfim.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +110,7 @@ public class Viagem_New extends DialogFragment{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                VerificarValor();
+
             }
 
             @Override
@@ -190,75 +185,6 @@ public class Viagem_New extends DialogFragment{
     }
 
 
-    public void VerificarNome(){
-        boolean validar = false;
-        validar = Validar.ValidarNome(String.valueOf(ed_dvi_nome.getText().toString()));
-        if(!validar){
-            ed_dvi_nome.setError(getActivity().getResources().getString(R.string.validar_nome));
-            v_nome = false;
-        }
-        else{
-            v_nome = true;
-        }
-    }
-
-    public void VerificarDtini(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        boolean validar = false;
-        try {
-            Date data = sdf.parse(String.valueOf(ed_dvi_dtinic.getText().toString()));
-            validar = Validar.ValidarDataInicio(data);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        if(!validar) {
-            ed_dvi_dtinic.setError(getActivity().getResources().getString(R.string.validar_dtinicio));
-            v_dtini = false;
-        }
-        else{
-            v_dtini = true;
-        }
-    }
-
-    public void VerificarDtfim(){
-        boolean validar = false;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date inicio = sdf.parse(String.valueOf(ed_dvi_dtinic.getText().toString()));
-            Date fim = sdf.parse(String.valueOf(ed_dvi_dtfim.getText().toString()));
-            validar = Validar.ValidarDataFim(inicio, fim);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        if(!validar){
-            ed_dvi_dtfim.setError(getActivity().getResources().getString(R.string.validar_dtfim));
-            v_dtfim = false;
-        }
-        else{
-            v_dtfim = true;
-        }
-    }
-
-    public void VerificarValor(){
-        boolean validar = false;
-        double valor = 0;
-        if(ed_dvi_valor.length() > 0){
-            valor = Double.parseDouble(ed_dvi_valor.getText().toString());
-            if(valor != 0){
-                validar = Validar.ValidarValor(valor);
-                if(!validar){
-                    ed_dvi_valor.setError(getActivity().getResources().getString(R.string.validar_valor));
-                    v_valor = false;
-                }
-                else{
-                    v_valor = true;
-                }
-            }
-        }
-        else{
-            v_valor = true;
-        }
-    }
 
     public boolean IsValido(){
         if(v_nome && v_dtini && v_dtfim && v_valor){
