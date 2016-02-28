@@ -12,6 +12,7 @@
     <string name="title_activity_pagamentos_list">Pagamentos</string>
     <string name="title_activity_planejamentos_list">Planejamentos</string>
     <string name="title_activity_pagamentos_edit">Editar Pagamento</string>
+    <string name="title_activity_pagamentos_new">Novo Pagamento</string>
 
 
     <!-- MENUS -->
@@ -172,5 +173,6 @@
     <string name="erro_criar_pagamento">Ocorreu um erro ao inserir o pagamento.</string>
     <string name="erro_deletar_pagamento">O pagamento não pôde ser deletado.</string>
     <string name="erro_alterar_pagamento">O pagamento não foi alterado.</string>
+    <string name="erro_excluir_pagamento">O pagamento não pôde ser excluído.</string>
 
 </resources>

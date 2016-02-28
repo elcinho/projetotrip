@@ -181,11 +181,11 @@ public class GastoEditActivity extends AppCompatActivity {
         sp_gae_pagamento.setVisibility(View.INVISIBLE);
         sp_gae_categoria.setVisibility(View.INVISIBLE);
 
-        ed_gae_descricao.setEnabled(false);
-        ed_gae_categoria.setEnabled(false);
-        ed_gae_valor.setEnabled(false);
-        ed_gae_pagamento.setEnabled(false);
-        ed_gae_data.setEnabled(false);
+        ed_gae_descricao.setInputType(InputType.TYPE_NULL);
+        ed_gae_categoria.setInputType(InputType.TYPE_NULL);
+        ed_gae_valor.setInputType(InputType.TYPE_NULL);
+        ed_gae_pagamento.setInputType(InputType.TYPE_NULL);
+        ed_gae_data.setInputType(InputType.TYPE_NULL);
 
         ed_gae_categoria.setTextColor(context.getResources().getColor(R.color.colorGrey));
         ed_gae_pagamento.setTextColor(context.getResources().getColor(R.color.colorGrey));
