@@ -136,7 +136,6 @@ public class InicioActivity extends AppCompatActivity {
                 ChamarListGasto();
             }
         });
-
         itemPagamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

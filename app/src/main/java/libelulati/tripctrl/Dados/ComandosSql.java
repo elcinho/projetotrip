@@ -102,24 +102,38 @@ public class ComandosSql {
     private static final String INSERT_TIPOSPAGAMENTO_MILHAS = getInsertInto() + Nomes.getTabelaTipospagamento() + "(" +
             " " + Nomes.getTpNome() + ")" + getVALUES() + "('Milhas')";
 
+
+
+    //SELECIONAR TODOS
+    private static final String SELECT_TIPOSPAGAMENTO = "SELECT * FROM " + Nomes.getTabelaTipospagamento();
+
+
     //SELECIONAR TODOS POR USUÁRIO
-    private static final String SELECT_VIAGENS = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getUsId() + " = ";
-    private static final String SELECT_GASTOS = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getViId() + " = ";
-    private static final String SELECT_CATEGORIAS = "SELECT * FROM " + Nomes.getTabelaCategorias() + " WHERE " + Nomes.getUsId() + " IS NULL OR " + Nomes.getUsId() + " = ";
-    private static final String SELECT_PAGAMENTOS = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getUsId() + " = ";
-    private static final String SELECT_PAGAMENTOS_LIST = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getViId() + " = ";
-    private  static final String SELECT_TIPOSPAGAMENTO = "SELECT * FROM " + Nomes.getTabelaTipospagamento();
+    private static final String SELECT_VIAGENS_US = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getUsId() + " = ";
+    private static final String SELECT_CATEGORIAS_US = "SELECT * FROM " + Nomes.getTabelaCategorias() + " WHERE " + Nomes.getUsId() + " IS NULL OR " + Nomes.getUsId() + " = ";
+    private static final String SELECT_PAGAMENTOS_US = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getUsId() + " = ";
+    private static final String SELECT_PLANEJAMENTOS_US = "SELECT * FROM " + Nomes.getTabelaPlanejamentos() + " WHERE " + Nomes.getUsId() + " = ";
+
+
+    //SELECIONAR TODOS POR VIAGEM
+    private static final String SELECT_GASTOS_VI = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getViId() + " = ";
+    private static final String SELECT_PAGAMENTOS_VI = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getViId() + " = ";
+    private static final String SELECT_PLANEJAMENTOS_VI = "SELECT * FROM " + Nomes.getTabelaPlanejamentos() + " WHERE " + Nomes.getViId() + " = ";
+
 
 
     //SELECIONAR TODOS POR ID
     private static final String SELECT_ID_VIAGEM = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getID() + " = ";
     private static final String SELECT_ID_GASTO = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getID() + " = ";
     private static final String SELECT_ID_PAGAMENTO = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getID() + " = ";
+    private static final String SELECT_ID_PLANEJAMENTO = "SELECT * FROM " + Nomes.getTabelaPlanejamentos() + " WHERE " + Nomes.getID() + " = ";
+
 
     //ATUALIZAÇÃO
     private static final String ATUALIZAR_WHERE = "_id = ?";
 
     //GETTERS
+
 
     public static String getCreateTable() {
         return CREATE_TABLE;
@@ -241,43 +255,55 @@ public class ComandosSql {
         return INSERT_TIPOSPAGAMENTO_MILHAS;
     }
 
-    public static String getSelectViagens() {
-        return SELECT_VIAGENS;
+    public static String getSelectTipospagamento() {
+        return SELECT_TIPOSPAGAMENTO;
+    }
+
+    public static String getSelectViagensUs() {
+        return SELECT_VIAGENS_US;
+    }
+
+    public static String getSelectCategoriasUs() {
+        return SELECT_CATEGORIAS_US;
+    }
+
+    public static String getSelectPagamentosUs() {
+        return SELECT_PAGAMENTOS_US;
+    }
+
+    public static String getSelectPlanejamentosUs() {
+        return SELECT_PLANEJAMENTOS_US;
+    }
+
+    public static String getSelectGastosVi() {
+        return SELECT_GASTOS_VI;
+    }
+
+    public static String getSelectPagamentosVi() {
+        return SELECT_PAGAMENTOS_VI;
+    }
+
+    public static String getSelectPlanejamentosVi() {
+        return SELECT_PLANEJAMENTOS_VI;
     }
 
     public static String getSelectIdViagem() {
         return SELECT_ID_VIAGEM;
     }
 
-    public static String getSelectGastos() {
-        return SELECT_GASTOS;
-    }
-
     public static String getSelectIdGasto() {
         return SELECT_ID_GASTO;
     }
 
-    public static String getAtualizarWhere() {
-        return ATUALIZAR_WHERE;
-    }
-
-    public static String getSelectCategorias() {
-        return SELECT_CATEGORIAS;
-    }
-
-    public static String getSelectPagamentos() {
-        return SELECT_PAGAMENTOS;
-    }
-
-    public static String getSelectPagamentosList() {
-        return SELECT_PAGAMENTOS_LIST;
-    }
-
-    public static String getSelectTipospagamento() {
-        return SELECT_TIPOSPAGAMENTO;
-    }
-
     public static String getSelectIdPagamento() {
         return SELECT_ID_PAGAMENTO;
+    }
+
+    public static String getSelectIdPlanejamento() {
+        return SELECT_ID_PLANEJAMENTO;
+    }
+
+    public static String getAtualizarWhere() {
+        return ATUALIZAR_WHERE;
     }
 }

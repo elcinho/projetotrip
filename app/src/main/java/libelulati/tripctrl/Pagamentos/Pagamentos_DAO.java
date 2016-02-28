@@ -37,7 +37,7 @@ public class Pagamentos_DAO extends Dados{
 
     public List<Pagamento> listar(int viagem){
         List<Pagamento> listarregistros = new ArrayList<Pagamento>();
-        String sql = ComandosSql.getSelectPagamentosList() + viagem;
+        String sql = ComandosSql.getSelectPagamentosVi() + viagem;
 
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);

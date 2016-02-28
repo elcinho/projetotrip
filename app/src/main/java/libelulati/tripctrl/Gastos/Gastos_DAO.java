@@ -40,7 +40,7 @@ public class Gastos_DAO extends Dados{
 
     public List<Gasto> listar(int viagem){
         List<Gasto> listarregistros = new ArrayList<Gasto>();
-        String sql = ComandosSql.getSelectGastos() + viagem;
+        String sql = ComandosSql.getSelectGastosVi() + viagem;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
@@ -138,7 +138,7 @@ public class Gastos_DAO extends Dados{
 
     public List sp_categorias(int id_usuario){
         List<String> listarcategorias = new ArrayList<>();
-        String sql = ComandosSql.getSelectCategorias() + id_usuario;
+        String sql = ComandosSql.getSelectCategoriasUs() + id_usuario;
 
         SQLiteDatabase db = getWritableDatabase();
 
@@ -160,7 +160,7 @@ public class Gastos_DAO extends Dados{
 
     public List sp_pagamentos(int id_usuario, String nulo){
         List<String> listarpagamentos = new ArrayList<>();
-        String sql = ComandosSql.getSelectPagamentos() + id_usuario;
+        String sql = ComandosSql.getSelectPagamentosUs() + id_usuario;
 
         SQLiteDatabase db = getWritableDatabase();
 

@@ -1,31 +1,116 @@
 package libelulati.tripctrl.Planejamentos;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import java.util.List;
+
+import libelulati.tripctrl.Dados.Nomes;
+import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
 public class PlanejamentosListActivity extends AppCompatActivity {
+
+    int id_usuario = InicioActivity.getId_usuario();
+    int id_viagem;
+    int id_planejamento;
+    Context context;
+    FloatingActionButton fab_pl_new;
+    double pl_total = 0, dc_valor = 0;
+    TextView tx_pl_total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planejamentos_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        context = PlanejamentosListActivity.this;
+
+        final Intent it_pl_planejamnto = getIntent();
+        Bundle bundle = it_pl_planejamnto.getExtras();
+        id_viagem = bundle.getInt(Nomes.getViId());
+
+        tx_pl_total = (TextView)findViewById(R.id.tx_pl_total);
+        fab_pl_new = (FloatingActionButton)findViewById(R.id.fab_pl_new);
+        fab_pl_new.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                ExibirPlanejamentoNew();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        Listar();
+        super.onResume();
+    }
+
+    public void Listar(){
+        LinearLayout linearLayout_itens = (LinearLayout)findViewById(R.id.li_pl_lista);
+        linearLayout_itens.removeAllViews();
+
+        List<Planejamento> planejamentos = new Planejamento_DAO(context).listar(id_viagem);
+        View viewitens = null;
+        TextView tx_pl_categoria, tx_pl_valor;
+
+        pl_total = 0;
+
+        if(planejamentos.size() > 0){
+            for(final Planejamento planejamento : planejamentos){
+                id_planejamento = planejamento.getPl_id();
+                String pl_categoria = planejamento.getCa_id();
+                String pl_valor = planejamento.getPl_valor();
+
+                LayoutInflater inflater = getLayoutInflater();
+                viewitens = inflater.inflate(R.layout.view_list_planejamentos, null);
+
+                tx_pl_categoria = (TextView)viewitens.findViewById(R.id.tx_pl_categoria);
+                tx_pl_valor = (TextView)viewitens.findViewById(R.id.tx_pl_valor);
+
+                tx_pl_categoria.setText(pl_categoria);
+                tx_pl_valor.setText(pl_valor);
+
+                viewitens.setTag(id_planejamento);
+                viewitens.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                linearLayout_itens.addView(viewitens);
+
+                dc_valor = Double.parseDouble(planejamento.getPl_valor());
+                pl_total += dc_valor;
+
+                tx_pl_total.setText(context.getResources().getString(R.string.moeda) + " " + format(pl_total));
+            }
+        }
+        else{
+            TextView nenhumregistro = new TextView(context);
+            nenhumregistro.setPadding(8,8,8,8);
+            nenhumregistro.setText(context.getResources().getString(R.string.encontrado_registro));
+
+            linearLayout_itens.addView(nenhumregistro);
+        }
+    }
+
+
+    public void ExibirPlanejamentoNew(){
+
+    }
+
+    public static String format(double x){
+        return String.format("%.2f", x);
     }
 
 }

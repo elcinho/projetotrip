@@ -53,20 +53,20 @@
         <activity
             android:name=".Gastos.GastoEditActivity"
             android:label="@string/title_activity_gasto_edit"
-            android:parentActivityName=".Inicio.InicioActivity"
+            android:parentActivityName=".Gastos.GastosListActivity"
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Inicio.InicioActivity" />
+                android:value=".Gastos.GastosListActivity" />
         </activity>
         <activity
             android:name=".Pagamentos.PagamentosEditActivity"
             android:label="@string/title_activity_pagamentos_edit"
-            android:parentActivityName=".Inicio.InicioActivity"
+            android:parentActivityName=".Pagamentos.PagamentosListActivity"
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Inicio.InicioActivity" />
+                android:value=".Pagamentos.PagamentosListActivity" />
         </activity>
     </application>
 

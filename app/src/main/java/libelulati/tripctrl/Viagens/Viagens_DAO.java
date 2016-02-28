@@ -40,7 +40,7 @@ public class Viagens_DAO extends Dados{
     public List<Viagem> listar(int usuario) {
 
         List<Viagem> listaRegistros = new ArrayList<Viagem>();
-        String sql = ComandosSql.getSelectViagens() + usuario;
+        String sql = ComandosSql.getSelectViagensUs() + usuario;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);

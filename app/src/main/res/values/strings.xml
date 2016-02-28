@@ -13,6 +13,9 @@
     <string name="title_activity_planejamentos_list">Planejamentos</string>
     <string name="title_activity_pagamentos_edit">Editar Pagamento</string>
     <string name="title_activity_pagamentos_new">Novo Pagamento</string>
+    <string name="title_activity_planejamento_edit">Editar Planejamento</string>
+    <string name="title_activity_planejamentos_new">Novo Planejamento</string>
+
 
 
     <!-- MENUS -->
@@ -56,6 +59,7 @@
     <string name="selecioneopcao">Selecione uma opção abaixo para redefinir sua senha:</string>
     <string name="usarcodusuario">Usar meu código de usuario</string>
     <string name="valordisponivel">Valor disponível:</string>
+    <string name="novoplanejamento">Novo Planejamento</string>
 
     <!-- CAMPOS -->
     <string name="codarea">Código de área / DDD</string>
@@ -151,6 +155,10 @@
     <string name="sucesso_criar_pagamento">Pagamento criado com sucesso.</string>
     <string name="sucesso_excluir_pagamento">Pagamento deletado com sucesso.</string>
     <string name="sucesso_alterar_pagamento">Pagamento alterado com sucesso.</string>
+    <string name="sucesso_criar_planejamento">Planejamento criado com sucesso.</string>
+    <string name="sucesso_excluir_planejamento">Planejamento deletado com sucesso.</string>
+    <string name="sucesso_alterar_planejamento">Planejamento alterado com sucesso.</string>
+
 
     <!-- MENSAGENS DE ERRO -->
     <string name="erro_alterar_metodopagamento">Os dados do método de pagamento não foram alterados.</string>
@@ -174,5 +182,10 @@
     <string name="erro_deletar_pagamento">O pagamento não pôde ser deletado.</string>
     <string name="erro_alterar_pagamento">O pagamento não foi alterado.</string>
     <string name="erro_excluir_pagamento">O pagamento não pôde ser excluído.</string>
+    <string name="erro_criar_planejamento">Ocorreu um erro ao inserir o planejamento.</string>
+    <string name="erro_deletar_planejamento">O planejamento não pôde ser deletado.</string>
+    <string name="erro_alterar_planejamento">O planejamento não foi alterado.</string>
+    <string name="erro_excluir_planejamento">O planejamento não pôde ser excluído.</string>
+
 
 </resources>
