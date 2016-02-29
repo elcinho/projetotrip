@@ -152,7 +152,6 @@ public class PagamentosEditActivity extends AppCompatActivity {
 
         ed_pae_descricao.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE);
         ed_pae_valor.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-
         ed_pae_tipopagamento.setTextColor(context.getResources().getColor(R.color.colorWhite));
 
         meuSpinner.preencherSpinner(context, listatipopagamentos, sp_pae_tipopagamento);

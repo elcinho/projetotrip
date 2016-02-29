@@ -73,7 +73,7 @@ public class GastoEditActivity extends AppCompatActivity {
         nulo = context.getResources().getString(R.string.encontrado_registro);
 
         listacategorias = new Gastos_DAO(context).sp_categorias(id_usuario);
-        listapagamentos = new Gastos_DAO(context).sp_pagamentos(id_usuario, nulo);
+        listapagamentos = new Gastos_DAO(context).sp_pagamentos(id_viagem, nulo);
 
         switch (novo){
             case 1:
@@ -182,17 +182,25 @@ public class GastoEditActivity extends AppCompatActivity {
         sp_gae_pagamento.setVisibility(View.INVISIBLE);
         sp_gae_categoria.setVisibility(View.INVISIBLE);
 
-        ed_gae_descricao.setInputType(InputType.TYPE_NULL);
-        ed_gae_categoria.setInputType(InputType.TYPE_NULL);
-        ed_gae_valor.setInputType(InputType.TYPE_NULL);
-        ed_gae_pagamento.setInputType(InputType.TYPE_NULL);
-        ed_gae_data.setInputType(InputType.TYPE_NULL);
+        ed_gae_descricao.setEnabled(false);
+        ed_gae_categoria.setEnabled(false);
+        ed_gae_valor.setEnabled(false);
+        ed_gae_pagamento.setEnabled(false);
+        ed_gae_data.setEnabled(false);
 
-        ed_gae_categoria.setTextColor(context.getResources().getColor(R.color.colorGrey));
-        ed_gae_pagamento.setTextColor(context.getResources().getColor(R.color.colorGrey));
+        ed_gae_categoria.setTextColor(context.getResources().getColor(R.color.colorBlack));
+        ed_gae_pagamento.setTextColor(context.getResources().getColor(R.color.colorBlack));
+        ed_gae_descricao.setTextColor(context.getResources().getColor(R.color.colorBlack));
+        ed_gae_data.setTextColor(context.getResources().getColor(R.color.colorBlack));
+        ed_gae_valor.setTextColor(context.getResources().getColor(R.color.colorBlack));
+
     }
 
     public void GastoEditar(){
+        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(ed_gae_data.getWindowToken(), 0);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         vis_menu = 3;
         invalidateOptionsMenu();
 
@@ -204,6 +212,7 @@ public class GastoEditActivity extends AppCompatActivity {
         ed_gae_valor.setEnabled(true);
         ed_gae_pagamento.setEnabled(true);
         ed_gae_data.setEnabled(true);
+        ed_gae_data.setInputType(InputType.TYPE_NULL);
 
         ed_gae_categoria.setTextColor(context.getResources().getColor(R.color.colorWhite));
         ed_gae_pagamento.setTextColor(context.getResources().getColor(R.color.colorWhite));
