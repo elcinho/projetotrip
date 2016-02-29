@@ -18,17 +18,21 @@ import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
-public class Planejamento_new extends DialogFragment{
+public class Planejamento_edit extends DialogFragment{
     EditText ed_dpl_categoria, ed_dpl_valor;
+    String categoria, valor;
     Spinner sp_dpl_categoria;
     int id_usuario = InicioActivity.getId_usuario();
-    int id_viagem;
+    int id_viagem, id_planejamento;
     View dialogview;
     MeuSpinner meuSpinner = new MeuSpinner();
     List<String> listacategorias;
 
-    public Planejamento_new(int id_viagem) {
+    public Planejamento_edit(String categoria, String valor, int id_viagem, int id_planejamento) {
+        this.categoria = categoria;
+        this.valor = valor;
         this.id_viagem = id_viagem;
+        this.id_planejamento = id_planejamento;
     }
 
     @Override
@@ -39,7 +43,7 @@ public class Planejamento_new extends DialogFragment{
 
         dialogview = inflater.inflate(R.layout.dialog_planejamento_novo, null);
         builder.setView(dialogview);
-        builder.setTitle(getActivity().getResources().getString(R.string.novoplanejamento));
+        builder.setTitle(getActivity().getResources().getString(R.string.title_activity_planejamento_edit) + " " + categoria);
 
         ed_dpl_categoria = (EditText)dialogview.findViewById(R.id.ed_dpl_categoria);
         ed_dpl_valor = (EditText)dialogview.findViewById(R.id.ed_dpl_valor);
@@ -47,13 +51,17 @@ public class Planejamento_new extends DialogFragment{
 
         listacategorias = new Planejamento_DAO(getActivity()).sp_categorias(id_usuario);
 
+        ed_dpl_categoria.setText(categoria);
+        ed_dpl_valor.setText(valor);
+
         meuSpinner.preencherSpinner(getActivity(), listacategorias, sp_dpl_categoria);
+        meuSpinner.posicaoSelecionada(sp_dpl_categoria,categoria);
         meuSpinner.selecionarItem(sp_dpl_categoria, ed_dpl_categoria);
 
         builder.setPositiveButton(getActivity().getResources().getString(R.string.opcao_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Salvar();
+                Atualizar();
             }
         });
 
@@ -68,7 +76,7 @@ public class Planejamento_new extends DialogFragment{
         return dialog;
     }
 
-    public void Salvar(){
+    public void Atualizar(){
 
         Planejamento planejamento = new Planejamento();
         planejamento.setUs_id(id_usuario);
@@ -76,12 +84,12 @@ public class Planejamento_new extends DialogFragment{
         planejamento.setCa_id(ed_dpl_categoria.getText().toString());
         planejamento.setPl_valor(ed_dpl_valor.getText().toString());
 
-        boolean sucesso = new Planejamento_DAO(getActivity()).criar(planejamento);
+        boolean sucesso = new Planejamento_DAO(getActivity()).atualizar(planejamento, id_planejamento);
         if(sucesso){
-            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.sucesso_criar_planejamento), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.sucesso_alterar_planejamento), Toast.LENGTH_LONG).show();
         }
         else{
-            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.erro_criar_planejamento), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.erro_alterar_planejamento), Toast.LENGTH_LONG).show();
         }
         dismiss();
     }
@@ -89,4 +97,5 @@ public class Planejamento_new extends DialogFragment{
     public boolean IsValido(){
         return true;
     }
+
 }

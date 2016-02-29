@@ -187,13 +187,8 @@ public class Viagem_New extends DialogFragment{
 
 
     public boolean IsValido(){
-        if(v_nome && v_dtini && v_dtfim && v_valor){
             positivo.setEnabled(true);
             positivo.setTextColor(getActivity().getResources().getColor(R.color.colorAccent));
             return true;
-        }
-        else{
-            return false;
-        }
     }
 }

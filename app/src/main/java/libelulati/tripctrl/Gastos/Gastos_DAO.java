@@ -158,9 +158,9 @@ public class Gastos_DAO extends Dados{
         return listarcategorias;
     }
 
-    public List sp_pagamentos(int id_usuario, String nulo){
+    public List sp_pagamentos(int id_viagem, String nulo){
         List<String> listarpagamentos = new ArrayList<>();
-        String sql = ComandosSql.getSelectPagamentosUs() + id_usuario;
+        String sql = ComandosSql.getSelectPagamentosVi() + id_viagem;
 
         SQLiteDatabase db = getWritableDatabase();
 
