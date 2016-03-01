@@ -68,6 +68,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Pagamentos.PagamentosListActivity" />
         </activity>
+        <activity
+            android:name=".Planejamentos.PlanejamentoEditActivity"
+            android:label="@string/title_activity_planejamento_edit"
+            android:parentActivityName=".Planejamentos.PlanejamentosListActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Planejamentos.PlanejamentosListActivity" />
+        </activity>
     </application>
 
 </manifest>
