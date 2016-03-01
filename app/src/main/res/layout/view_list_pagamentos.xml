@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/re_pa_itens"
+        android:padding="@dimen/padding_list_itens">
+
+        <TextView
+            android:id="@+id/tx_pa_descricao"
+            android:text="descricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fonte_list_item"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tx_pa_tipopagamento"
+            android:text="tipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tx_pa_descricao"/>
+        <TextView
+            android:id="@+id/tx_pa_valor"
+            android:text="valor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/fonte_list_item"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tx_pa_data"
+            android:text="vencimento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tx_pa_valor"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+</LinearLayout>

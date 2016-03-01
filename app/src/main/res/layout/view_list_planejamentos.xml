@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/re_pl_itens"
+    android:padding="@dimen/padding_list_itens">
+
+    <TextView
+        android:id="@+id/tx_pl_categoria"
+        android:text="categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fonte_list_item"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tx_pl_valor"
+        android:text="valor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/fonte_list_item"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

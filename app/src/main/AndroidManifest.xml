@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".Main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" >
             <intent-filter>
@@ -19,107 +19,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Usuario.UsuarioNovoActivity"
-            android:label="@string/title_activity_novo_usuario"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity
-            android:name=".Senha.EsqueciSenhaActivity"
-            android:label="@string/title_activity_esqueci_senha"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity
             android:name=".Inicio.InicioActivity"
             android:label="@string/title_activity_inicio"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".Categoria.CategoriaListActivity"
-            android:label="@string/title_activity_categoria_list"
-            android:parentActivityName=".Inicio.InicioActivity"
             android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Inicio.InicioActivity" />
-        </activity>
-        <activity
-            android:name=".MetodosPagamento.MetodosPagamentoListActivity"
-            android:label="@string/title_activity_metodos_pagamento_list"
-            android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Inicio.InicioActivity" />
-        </activity>
-        <activity
-            android:name=".MetodosPagamento.MetodosPagamentoShowActivity"
-            android:label="@string/title_activity_metodos_pagamento_show"
-            android:parentActivityName=".MetodosPagamento.MetodosPagamentoListActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MetodosPagamento.MetodosPagamentoListActivity" />
-        </activity>
-        <activity
-            android:name=".MetodosPagamento.MetodosPagamentoNovoActivity"
-            android:label="@string/title_activity_metodos_pagamento_novo"
-            android:parentActivityName=".MetodosPagamento.MetodosPagamentoShowActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MetodosPagamento.MetodosPagamentoShowActivity" />
-        </activity>
-        <activity
-            android:name=".Viagens.ViagensListActivity"
-            android:label="@string/title_activity_viagens_list"
-            android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Inicio.InicioActivity" />
-        </activity>
-        <activity
-            android:name=".Viagens.ViagensShowActivity"
-            android:label="@string/title_activity_viagens_show"
-            android:parentActivityName=".Viagens.ViagensListActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Viagens.ViagensListActivity" />
-        </activity>
-        <activity
-            android:name=".Planejamentos.PlanejamentosListActivity"
-            android:label="@string/title_activity_planejamentos_list"
-            android:parentActivityName=".Inicio.InicioActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Inicio.InicioActivity" />
-        </activity>
-        <activity
-            android:name=".Planejamentos.PlanejamentoShowActivity"
-            android:label="@string/title_activity_planejamento_show"
-            android:parentActivityName=".Planejamentos.PlanejamentosListActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Planejamentos.PlanejamentosListActivity" />
-        </activity>
-        <activity
-            android:name=".Planejamentos.PlanejamentoEditActivity"
-            android:label="@string/title_activity_planejamento_edit"
-            android:parentActivityName=".Planejamentos.PlanejamentoShowActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Planejamentos.PlanejamentoShowActivity" />
         </activity>
         <activity
             android:name=".Gastos.GastosListActivity"
@@ -131,8 +33,26 @@
                 android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
-            android:name=".Gastos.GastoShowActivity"
-            android:label="@string/title_activity_gasto_show"
+            android:name=".Planejamentos.PlanejamentosListActivity"
+            android:label="@string/title_activity_planejamentos_list"
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
+        </activity>
+        <activity
+            android:name=".Pagamentos.PagamentosListActivity"
+            android:label="@string/title_activity_pagamentos_list"
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
+        </activity>
+        <activity
+            android:name=".Gastos.GastoEditActivity"
+            android:label="@string/title_activity_gasto_edit"
             android:parentActivityName=".Gastos.GastosListActivity"
             android:theme="@style/AppTheme" >
             <meta-data
@@ -140,17 +60,26 @@
                 android:value=".Gastos.GastosListActivity" />
         </activity>
         <activity
-            android:name=".Gastos.GastoEditActivity"
-            android:label="@string/title_activity_gasto_edit"
-            android:parentActivityName=".Gastos.GastoShowActivity"
+            android:name=".Pagamentos.PagamentosEditActivity"
+            android:label="@string/title_activity_pagamentos_edit"
+            android:parentActivityName=".Pagamentos.PagamentosListActivity"
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Gastos.GastoShowActivity" />
+                android:value=".Pagamentos.PagamentosListActivity" />
         </activity>
         <activity
-            android:name=".Relatorios.RelatoriosActivity"
-            android:label="@string/title_activity_relatorios"
+            android:name=".Planejamentos.PlanejamentoEditActivity"
+            android:label="@string/title_activity_planejamento_edit"
+            android:parentActivityName=".Planejamentos.PlanejamentosListActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Planejamentos.PlanejamentosListActivity" />
+        </activity>
+        <activity
+            android:name=".Configuracoes.ConfiguracoesListActivity"
+            android:label="@string/title_activity_configuracoes_list"
             android:parentActivityName=".Inicio.InicioActivity"
             android:theme="@style/AppTheme" >
             <meta-data
@@ -158,8 +87,8 @@
                 android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
-            android:name=".Usuario.UsuarioShowActivity"
-            android:label="@string/title_activity_usuario_show"
+            android:name=".Usuarios.UsuarioEditActivity"
+            android:label="@string/title_activity_usuario_edit"
             android:parentActivityName=".Inicio.InicioActivity"
             android:theme="@style/AppTheme" >
             <meta-data
@@ -167,13 +96,49 @@
                 android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
-            android:name=".Viagens.ViagensNovoActivity"
-            android:label="@string/title_activity_viagens_novo"
-            android:parentActivityName=".Viagens.ViagensListActivity"
+            android:name=".Categorias.CategoriaListActivity"
+            android:label="@string/title_activity_categoria_list"
+            android:parentActivityName=".Inicio.InicioActivity"
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Usuario.UsuarioShowActivity" />
+                android:value=".Inicio.InicioActivity" />
+        </activity>
+        <activity
+            android:name=".TipoPagamento.TiposPagamentoListActivity"
+            android:label="@string/title_activity_tipos_pagamento_list"
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
+        </activity>
+        <activity
+            android:name=".Notificacoes.NotificacoesConfiguracaoActivity"
+            android:label="@string/title_activity_notificacoes_configuracao"
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
+        </activity>
+        <activity
+            android:name=".Aplicativo.SobreActivity"
+            android:label="@string/title_activity_sobre"
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
+        </activity>
+        <activity
+            android:name=".Aplicativo.TermoUsoActivity"
+            android:label="@string/title_activity_termo_uso"
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
     </application>
 

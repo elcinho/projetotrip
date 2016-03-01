@@ -13,14 +13,12 @@ import libelulati.tripctrl.R;
 
 public class MeuSpinner {
 
-    //preenche a lista suspensa de um spinner
     public void preencherSpinner(Context context, List lista, Spinner spinner){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_custom, lista);
         adapter.setDropDownViewResource(R.layout.spinner_drop_custom);
         spinner.setAdapter(adapter);
     }
 
-    //seta um item pre-selecionado no spinner
     public void posicaoSelecionada(Spinner spinner, String item){
         for(int i = 0; i < spinner.getCount(); i++) {
             if (spinner.getItemAtPosition(i).toString().equals(item)) {
@@ -29,7 +27,6 @@ public class MeuSpinner {
         }
     }
 
-    //seta o item escolhido da lista no spinner e no edittext correspondente
     public void selecionarItem(Spinner spinner, final EditText editText){
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
