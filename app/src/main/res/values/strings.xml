@@ -199,6 +199,12 @@
     <string name="erro_deletar_planejamento">O planejamento não pôde ser deletado.</string>
     <string name="erro_alterar_planejamento">O planejamento não foi alterado.</string>
     <string name="erro_excluir_planejamento">O planejamento não pôde ser excluído.</string>
+    <string name="title_activity_usuario_edit">Usuário</string>
+    <string name="title_activity_categoria_list">Categorias</string>
+    <string name="title_activity_tipos_pagamento_list">Tipos de Pagamento</string>
+    <string name="title_activity_notificacoes_configuracao">Configurações de Notificação</string>
+    <string name="title_activity_sobre">Sobre</string>
+    <string name="title_activity_termo_uso">Termo de Uso e Privacidade</string>
 
 
 </resources>

@@ -58,4 +58,10 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
             linearLayout_itens.addView(viewItens);
         }
     }
+
+    public void Visualizar(int id){
+
+
+
+    }
 }
