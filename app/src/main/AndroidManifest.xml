@@ -87,32 +87,32 @@
                 android:value=".Planejamentos.PlanejamentosListActivity" />
         </activity>
         <activity
-            android:name=".UsuarioEditActivity"
+            android:name=".Usuarios.UsuarioEditActivity"
             android:label="@string/title_activity_usuario_edit"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".CategoriaListActivity"
+            android:name=".Categorias.CategoriaListActivity"
             android:label="@string/title_activity_categoria_list"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".TiposPagamentoListActivity"
+            android:name=".TipoPagamento.TiposPagamentoListActivity"
             android:label="@string/title_activity_tipos_pagamento_list"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".NotificacoesConfiguracaoActivity"
+            android:name=".Notificacoes.NotificacoesConfiguracaoActivity"
             android:label="@string/title_activity_notificacoes_configuracao"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".SobreActivity"
+            android:name=".Aplicativo.SobreActivity"
             android:label="@string/title_activity_sobre"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".TermoUsoActivity"
+            android:name=".Aplicativo.TermoUsoActivity"
             android:label="@string/title_activity_termo_uso"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>

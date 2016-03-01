@@ -1,4 +1,4 @@
-package libelulati.tripctrl;
+package libelulati.tripctrl.Aplicativo;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class CategoriaListActivity extends AppCompatActivity {
+import libelulati.tripctrl.R;
+
+public class TermoUsoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categoria_list);
+        setContentView(R.layout.activity_termo_uso);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

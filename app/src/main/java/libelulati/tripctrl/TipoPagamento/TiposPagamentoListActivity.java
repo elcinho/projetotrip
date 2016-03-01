@@ -1,4 +1,4 @@
-package libelulati.tripctrl;
+package libelulati.tripctrl.TipoPagamento;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class SobreActivity extends AppCompatActivity {
+import libelulati.tripctrl.R;
+
+public class TiposPagamentoListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sobre);
+        setContentView(R.layout.activity_tipos_pagamento_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

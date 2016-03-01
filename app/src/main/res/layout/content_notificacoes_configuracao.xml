@@ -8,6 +8,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_notificacoes_configuracao"
-    tools:context="libelulati.tripctrl.NotificacoesConfiguracaoActivity">
+    tools:context="libelulati.tripctrl.Notificacoes.NotificacoesConfiguracaoActivity">
 
 </RelativeLayout>
