@@ -7,7 +7,8 @@
     <dimen name="margin_top">15dp</dimen>
     <dimen name="margin_spinner">6dp</dimen>
     <dimen name="margin_pl">120dp</dimen>
-    <dimen name="margin_top_co">15dp</dimen>
+    <dimen name="margin_top_co">17dp</dimen>
+    <dimen name="margin_top_no">20dp</dimen>
 
     <dimen name="fonte_botoes">25dp</dimen>
 

@@ -46,7 +46,7 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
         TextView tx_co_itens;
 
         for (int i = 0; i < co_itens.size(); i++){
-            int item_id = i;
+            final int item_id = i + 1;
             String item = co_itens.get(i);
 
             LayoutInflater inflater = getLayoutInflater();
@@ -57,6 +57,13 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
 
             viewItens.setTag(item_id);
 
+            viewItens.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Visualizar(item_id);
+                }
+            });
+
             linearLayout_itens.addView(viewItens);
         }
     }
@@ -64,11 +71,9 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
     public void Visualizar(int id){
 
         switch (id){
-            case 0:
+            case 1:
                 Intent it_notificacoes = new Intent(context, NotificacoesConfiguracaoActivity.class);
                 startActivity(it_notificacoes);
-                break;
-            case 1:
                 break;
             case 2:
                 break;
@@ -81,6 +86,8 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
             case 6:
                 break;
             case 7:
+                break;
+            case 8:
                 break;
         }
     }
