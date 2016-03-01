@@ -92,18 +92,7 @@ public class PlanejamentosListActivity extends AppCompatActivity {
                 viewItens.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent it_pl_show = new Intent(context, PlanejamentoEditActivity.class);
-                        Bundle bdshow = new Bundle();
-
-                        bdshow.putInt("novo", 2);
-                        bdshow.putInt(Nomes.getID(), id_pl);
-                        bdshow.putInt(Nomes.getUsId(), id_usuario);
-                        bdshow.putInt(Nomes.getViId(), id_viagem);
-                        bdshow.putString(Nomes.getCaId(), planejamento.getCa_id());
-                        bdshow.putString(Nomes.getPlValorcat(), planejamento.getPl_valor());
-
-                        it_pl_show.putExtras(bdshow);
-                        startActivityForResult(it_pl_show, 1);
+                        Visualizar(id_pl);
                     }
                 });
 
@@ -123,6 +112,25 @@ public class PlanejamentosListActivity extends AppCompatActivity {
             linearLayout_itens.addView(nenhumregistro);
         }
     }
+
+    public void Visualizar(int id){
+        Planejamento_DAO planejamento_dao = new Planejamento_DAO(context);
+        Planejamento planejamento = planejamento_dao.buscarID(id);
+
+        Intent it_pl_show = new Intent(context, PlanejamentoEditActivity.class);
+        Bundle bdshow = new Bundle();
+
+        bdshow.putInt("novo", 2);
+        bdshow.putInt(Nomes.getID(), planejamento.getPl_id());
+        bdshow.putInt(Nomes.getUsId(), planejamento.getUs_id());
+        bdshow.putInt(Nomes.getViId(), planejamento.getVi_id());
+        bdshow.putString(Nomes.getCaId(), planejamento.getCa_id());
+        bdshow.putString(Nomes.getPlValorcat(), planejamento.getPl_valor());
+
+        it_pl_show.putExtras(bdshow);
+        startActivityForResult(it_pl_show, 1);
+    }
+
 
     public static String format(double x){
         return String.format("%.2f", x);
