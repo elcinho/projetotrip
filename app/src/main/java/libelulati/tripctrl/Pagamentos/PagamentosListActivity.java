@@ -74,7 +74,7 @@ public class PagamentosListActivity extends AppCompatActivity {
 
         if(pagamentos.size() > 0){
             for (final Pagamento pagamento : pagamentos){
-                id_pagamento = pagamento.getPa_id();
+                final int id_pl = pagamento.getPa_id();
                 String pa_descricao = pagamento.getPa_descricao();
                 String pa_tipopagamento = pagamento.getTp_id();
                 String pa_valor = pagamento.getPa_valor();
@@ -93,7 +93,7 @@ public class PagamentosListActivity extends AppCompatActivity {
                 tx_pa_valor.setText(pa_valor);
                 tx_pa_vencimento.setText(pa_vencimento);
 
-                viewItens.setTag(id_pagamento);
+                viewItens.setTag(id_pl);
 
                 viewItens.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -102,7 +102,7 @@ public class PagamentosListActivity extends AppCompatActivity {
                         Bundle bdshow = new Bundle();
 
                         bdshow.putInt("novo", 2);
-                        bdshow.putInt(Nomes.getID(), id_pagamento);
+                        bdshow.putInt(Nomes.getID(), id_pl);
                         bdshow.putInt(Nomes.getUsId(), id_usuario);
                         bdshow.putInt(Nomes.getViId(), id_viagem);
                         bdshow.putString(Nomes.getTpId(), pagamento.getTp_id());
@@ -116,7 +116,6 @@ public class PagamentosListActivity extends AppCompatActivity {
                 });
 
                 linearLayout_itens.addView(viewItens);
-
             }
         }
         else{

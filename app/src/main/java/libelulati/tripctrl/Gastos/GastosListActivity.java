@@ -80,7 +80,7 @@ public class GastosListActivity extends AppCompatActivity {
 
         if(gastos.size() > 0){
             for(final Gasto gasto : gastos){
-                id_gastos = gasto.getGa_id();
+                final int id_ga = gasto.getGa_id();
                 String ga_descricao = gasto.getGa_descricao();
                 String ga_valor = gasto.getGa_valor();
                 final String ga_categoria = gasto.getCa_id();
@@ -99,7 +99,7 @@ public class GastosListActivity extends AppCompatActivity {
                 tx_ga_valor.setText(ga_valor);
                 tx_ga_data.setText(ga_data);
 
-                viewItens.setTag(id_gastos);
+                viewItens.setTag(id_ga);
 
                 viewItens.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -108,7 +108,7 @@ public class GastosListActivity extends AppCompatActivity {
                         Bundle bdshow = new Bundle();
 
                         bdshow.putInt("novo", 2);
-                        bdshow.putInt(Nomes.getID(), id_gastos);
+                        bdshow.putInt(Nomes.getID(), id_ga);
                         bdshow.putInt(Nomes.getViId(), id_viagem);
                         bdshow.putInt(Nomes.getUsId(), id_usuario);
                         bdshow.putString(Nomes.getCaId(), gasto.getCa_id());
