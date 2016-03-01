@@ -74,7 +74,7 @@ public class PagamentosListActivity extends AppCompatActivity {
 
         if(pagamentos.size() > 0){
             for (final Pagamento pagamento : pagamentos){
-                final int id_pl = pagamento.getPa_id();
+                final int id_pa = pagamento.getPa_id();
                 String pa_descricao = pagamento.getPa_descricao();
                 String pa_tipopagamento = pagamento.getTp_id();
                 String pa_valor = pagamento.getPa_valor();
@@ -93,25 +93,12 @@ public class PagamentosListActivity extends AppCompatActivity {
                 tx_pa_valor.setText(pa_valor);
                 tx_pa_vencimento.setText(pa_vencimento);
 
-                viewItens.setTag(id_pl);
+                viewItens.setTag(id_pa);
 
                 viewItens.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent it_pa_show = new Intent(context, PagamentosEditActivity.class);
-                        Bundle bdshow = new Bundle();
-
-                        bdshow.putInt("novo", 2);
-                        bdshow.putInt(Nomes.getID(), id_pl);
-                        bdshow.putInt(Nomes.getUsId(), id_usuario);
-                        bdshow.putInt(Nomes.getViId(), id_viagem);
-                        bdshow.putString(Nomes.getTpId(), pagamento.getTp_id());
-                        bdshow.putString(Nomes.getPaDescricao(), pagamento.getPa_descricao());
-                        bdshow.putString(Nomes.getPaValor(), pagamento.getPa_valor());
-                        bdshow.putString(Nomes.getPaVencimento(), pagamento.getPa_dtvenc());
-
-                        it_pa_show.putExtras(bdshow);
-                        startActivityForResult(it_pa_show, 1);
+                        Visualizar(id_pa);
                     }
                 });
 
@@ -125,5 +112,25 @@ public class PagamentosListActivity extends AppCompatActivity {
 
             linearLayout_itens.addView(nenhumregistro);
         }
+    }
+
+    public void Visualizar(int id){
+        Pagamentos_DAO pagamentos_dao = new Pagamentos_DAO(context);
+        Pagamento pagamento = pagamentos_dao.buscarID(id);
+
+        Intent it_pa_show = new Intent(context, PagamentosEditActivity.class);
+        Bundle bdshow = new Bundle();
+
+        bdshow.putInt("novo", 2);
+        bdshow.putInt(Nomes.getID(), pagamento.getPa_id());
+        bdshow.putInt(Nomes.getUsId(), pagamento.getUs_id());
+        bdshow.putInt(Nomes.getViId(), pagamento.getVi_id());
+        bdshow.putString(Nomes.getTpId(), pagamento.getTp_id());
+        bdshow.putString(Nomes.getPaDescricao(), pagamento.getPa_descricao());
+        bdshow.putString(Nomes.getPaValor(), pagamento.getPa_valor());
+        bdshow.putString(Nomes.getPaVencimento(), pagamento.getPa_dtvenc());
+
+        it_pa_show.putExtras(bdshow);
+        startActivityForResult(it_pa_show, 1);
     }
 }
