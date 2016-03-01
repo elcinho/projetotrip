@@ -10,6 +10,8 @@ public class ComandosSql {
     private static final String INTEIRO = " INTEGER";
     private static final String INSERT_INTO = "INSERT INTO ";
     private static final String VALUES = " VALUES ";
+    private static final String UNIQUE = " UNIQUE ";
+    private static final String NOTNULL = " NOT NULL ";
 
     //TABELA USUARIOS
     private static final String CREATE_TABLE_USUARIOS = getCreateTable() + Nomes.getTabelaUsuarios() + "(" +
@@ -133,8 +135,6 @@ public class ComandosSql {
     private static final String ATUALIZAR_WHERE = "_id = ?";
 
     //GETTERS
-
-
     public static String getCreateTable() {
         return CREATE_TABLE;
     }
@@ -161,6 +161,14 @@ public class ComandosSql {
 
     public static String getVALUES() {
         return VALUES;
+    }
+
+    public static String getUNIQUE() {
+        return UNIQUE;
+    }
+
+    public static String getNOTNULL() {
+        return NOTNULL;
     }
 
     public static String getCreateTableUsuarios() {

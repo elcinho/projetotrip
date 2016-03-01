@@ -53,7 +53,6 @@ public class Gastos_DAO extends Dados{
                 String ga_valor = cursor.getString(cursor.getColumnIndex(Nomes.getGaValor()));
                 String ga_data = cursor.getString(cursor.getColumnIndex(Nomes.getGaData()));
 
-
                 Gasto gasto = new Gasto(ga_id, ga_descricao, ga_categoria, ga_valor, ga_data);
 
                 listarregistros.add(gasto);

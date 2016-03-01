@@ -3,7 +3,7 @@ package libelulati.tripctrl.Dados;
 public class Nomes {
     // NOME E VERSÃO DO BANCO DE DADOS
     private static final String NOME_BANCO = "tripctrl";
-    private static final int VERSAO = 1;
+    private static final int VERSAO = 2;
 
     // NOMES DAS TABELAS
     private static final String TABELA_CATEGORIAS = "categorias";

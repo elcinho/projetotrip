@@ -93,6 +93,8 @@ public class GastoEditActivity extends AppCompatActivity {
     public void Salvar(){
         Gasto gasto = new Gasto();
 
+        String teste = ed_gae_pagamento.getText().toString();
+
         gasto.setUs_id(id_usuario);
         gasto.setVi_id(id_viagem);
         gasto.setPa_id(ed_gae_pagamento.getText().toString());
@@ -143,7 +145,7 @@ public class GastoEditActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(ed_gae_categoria.getWindowToken(),
+                            .hideSoftInputFromWindow(ed_gae_pagamento.getWindowToken(),
                                     InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }

@@ -85,6 +85,8 @@ public class GastosListActivity extends AppCompatActivity {
                 String ga_valor = gasto.getGa_valor();
                 final String ga_categoria = gasto.getCa_id();
                 String ga_data = gasto.getGa_data();
+                String teste = gasto.getPa_id();
+
 
                 LayoutInflater inflater = getLayoutInflater();
                 viewItens = inflater.inflate(R.layout.view_list_gastos, null);
