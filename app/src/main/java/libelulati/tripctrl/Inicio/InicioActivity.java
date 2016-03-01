@@ -20,6 +20,7 @@ import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 import java.util.List;
 
+import libelulati.tripctrl.Configuracoes.ConfiguracoesListActivity;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Gastos.GastosListActivity;
 import libelulati.tripctrl.Pagamentos.PagamentosListActivity;
@@ -143,6 +144,7 @@ public class InicioActivity extends AppCompatActivity {
                 menuPrincipal.close(true);
             }
         });
+
         itemPagamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +156,14 @@ public class InicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ChamarListPlanejamento();
+                menuPrincipal.close(true);
+            }
+        });
+
+        itemConfiguracoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChamarListConfiguracoes();
                 menuPrincipal.close(true);
             }
         });
@@ -256,6 +266,11 @@ public class InicioActivity extends AppCompatActivity {
         it_planejamento.putExtras(bundle);
 
         startActivityForResult(it_planejamento, 1);
+    }
+
+    public void ChamarListConfiguracoes(){
+        Intent it_configuracoes = new Intent(context, ConfiguracoesListActivity.class);
+        startActivity(it_configuracoes);
     }
 
 

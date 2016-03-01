@@ -77,6 +77,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Planejamentos.PlanejamentosListActivity" />
         </activity>
+        <activity
+            android:name=".Configuracoes.ConfiguracoesListActivity"
+            android:label="@string/title_activity_configuracoes_list"
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Planejamentos.PlanejamentosListActivity" />
+        </activity>
     </application>
 
 </manifest>

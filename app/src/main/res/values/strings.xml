@@ -15,6 +15,8 @@
     <string name="title_activity_pagamentos_new">Novo Pagamento</string>
     <string name="title_activity_planejamento_edit">Editar Planejamento</string>
     <string name="title_activity_planejamentos_new">Novo Planejamento</string>
+    <string name="title_activity_configuracoes_list">Configurações</string>
+
 
 
 
@@ -60,6 +62,17 @@
     <string name="usarcodusuario">Usar meu código de usuario</string>
     <string name="valordisponivel">Valor disponível:</string>
     <string name="novoplanejamento">Novo Planejamento</string>
+
+    <!-- ITENS CONFIGURAÇÕES -->
+    <string name="co_perfil_usuario">Perfil de Usuário</string>
+    <string name="co_notificacoes">Notificações</string>
+    <string name="co_termo_uso">Termo de Uso</string>
+    <string name="co_categorias">Editar Categorias</string>
+    <string name="co_tipos_pagamento">Editar Tipos de Pagamento</string>
+    <string name="co_sobre">Sobre o aplicativo</string>
+    <string name="co_avalie">Avaliação e Feedback</string>
+    <string name="co_sair">Sair</string>
+
 
     <!-- CAMPOS -->
     <string name="codarea">Código de área / DDD</string>

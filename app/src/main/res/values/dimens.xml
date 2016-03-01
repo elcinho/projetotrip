@@ -12,6 +12,7 @@
 
     <dimen name="fonte_list_item">20dp</dimen>
     <dimen name="padding_list_itens">10dp</dimen>
+    <dimen name="padding_lis_horizontal">5dp</dimen>
 
     <dimen name="float_action_button_size">60dp</dimen>
     <dimen name="float_action_button_margin">16dp</dimen>
