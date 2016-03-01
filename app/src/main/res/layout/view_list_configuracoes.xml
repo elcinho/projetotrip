@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_lis_horizontal">
+    android:padding="@dimen/padding_list_itens">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tx_co_itens"
-        android:gravity="center_vertical"/>
+        android:gravity="center_vertical"
+        android:textSize="@dimen/fonte_list_item"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_divider"
+        android:background="@color/colorGrey"
+        android:layout_marginTop="@dimen/margin_top_co"/>
 
 </LinearLayout>

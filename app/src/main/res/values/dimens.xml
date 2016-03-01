@@ -7,12 +7,13 @@
     <dimen name="margin_top">15dp</dimen>
     <dimen name="margin_spinner">6dp</dimen>
     <dimen name="margin_pl">120dp</dimen>
+    <dimen name="margin_top_co">15dp</dimen>
 
     <dimen name="fonte_botoes">25dp</dimen>
 
     <dimen name="fonte_list_item">20dp</dimen>
     <dimen name="padding_list_itens">10dp</dimen>
-    <dimen name="padding_lis_horizontal">5dp</dimen>
+    <dimen name="padding_divider">1dp</dimen>
 
     <dimen name="float_action_button_size">60dp</dimen>
     <dimen name="float_action_button_margin">16dp</dimen>
