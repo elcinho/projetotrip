@@ -11,7 +11,6 @@ public class ComandosSql {
     private static final String INSERT_INTO = "INSERT INTO ";
     private static final String VALUES = " VALUES ";
     private static final String UNIQUE = " UNIQUE ";
-    private static final String NOTNULL = " NOT NULL ";
 
     //TABELA USUARIOS
     private static final String CREATE_TABLE_USUARIOS = getCreateTable() + Nomes.getTabelaUsuarios() + "(" +
@@ -19,14 +18,14 @@ public class ComandosSql {
             " " + Nomes.getUsUso() + getINTEIRO() + "," +
             " " + Nomes.getUsNome() + getTEXTO() + "," +
             " " + Nomes.getUsDtnasc() + getTEXTO() + "," +
-            " " + Nomes.getUsEmail() + getTEXTO() + "," +
+            " " + Nomes.getUsEmail() + getTEXTO() + getUNIQUE() + "," +
             " " + Nomes.getUsSenha() + getTEXTO() + ")";
 
     // TABELA CATEGORIAS
     private static final String CREATE_TABLE_CATEGORIAS = getCreateTable() + Nomes.getTabelaCategorias() + "(" +
             " " + Nomes.getID() + getPRIMARYKEY() + "," +
             " " + Nomes.getCaNome() + getTEXTO() + "," +
-            " " + Nomes.getUsId() + getINTEIRO() + ")";
+            " " + Nomes.getUsId() + getINTEIRO() + getUNIQUE() + ")";
 
 
     // TABELA TIPOS DE PAGAMENTO
@@ -165,10 +164,6 @@ public class ComandosSql {
 
     public static String getUNIQUE() {
         return UNIQUE;
-    }
-
-    public static String getNOTNULL() {
-        return NOTNULL;
     }
 
     public static String getCreateTableUsuarios() {
