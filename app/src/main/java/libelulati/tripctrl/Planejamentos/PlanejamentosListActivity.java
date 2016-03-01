@@ -3,13 +3,12 @@ package libelulati.tripctrl.Planejamentos;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 
 import java.util.List;
 
@@ -93,7 +92,7 @@ public class PlanejamentosListActivity extends AppCompatActivity {
                 viewItens.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent it_pl_show = new Intent(context, PagamentosEditActivity.class);
+                        Intent it_pl_show = new Intent(context, PlanejamentoEditActivity.class);
                         Bundle bdshow = new Bundle();
 
                         bdshow.putInt("novo", 2);
