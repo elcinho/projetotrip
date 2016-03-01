@@ -73,6 +73,14 @@
     <string name="co_avalie">Avaliação e Feedback</string>
     <string name="co_sair">Sair</string>
 
+    <!-- NOTIFICAÇÕES -->
+    <string name="ativar_notificacoes">Ativar Notificações</string>
+    <string name="notificacao_todas">Todas</string>
+    <string name="notificacao_viagem">Viagens</string>
+    <string name="notificacao_pagamentos">Pagamentos</string>
+    <string name="notificacao_planejamento">Planejamento</string>
+    <string name="notificacao_gasto">Gasto</string>
+
 
     <!-- CAMPOS -->
     <string name="codarea">Código de área / DDD</string>

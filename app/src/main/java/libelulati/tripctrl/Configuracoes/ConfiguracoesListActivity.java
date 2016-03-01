@@ -1,6 +1,7 @@
 package libelulati.tripctrl.Configuracoes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import libelulati.tripctrl.Inicio.InicioActivity;
+import libelulati.tripctrl.Notificacoes.NotificacoesConfiguracaoActivity;
 import libelulati.tripctrl.R;
 
 public class ConfiguracoesListActivity extends AppCompatActivity {
@@ -61,7 +63,25 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
 
     public void Visualizar(int id){
 
-
-
+        switch (id){
+            case 0:
+                Intent it_notificacoes = new Intent(context, NotificacoesConfiguracaoActivity.class);
+                startActivity(it_notificacoes);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+        }
     }
 }

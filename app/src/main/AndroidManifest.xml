@@ -84,37 +84,61 @@
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Planejamentos.PlanejamentosListActivity" />
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".Usuarios.UsuarioEditActivity"
             android:label="@string/title_activity_usuario_edit"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".Categorias.CategoriaListActivity"
             android:label="@string/title_activity_categoria_list"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".TipoPagamento.TiposPagamentoListActivity"
             android:label="@string/title_activity_tipos_pagamento_list"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".Notificacoes.NotificacoesConfiguracaoActivity"
             android:label="@string/title_activity_notificacoes_configuracao"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".Aplicativo.SobreActivity"
             android:label="@string/title_activity_sobre"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
         <activity
             android:name=".Aplicativo.TermoUsoActivity"
             android:label="@string/title_activity_termo_uso"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".Inicio.InicioActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inicio.InicioActivity" />
         </activity>
     </application>
 
