@@ -19,19 +19,20 @@ public class ComandosSql {
             " " + Nomes.getUsNome() + getTEXTO() + "," +
             " " + Nomes.getUsDtnasc() + getTEXTO() + "," +
             " " + Nomes.getUsEmail() + getTEXTO() + getUNIQUE() + "," +
-            " " + Nomes.getUsSenha() + getTEXTO() + ")";
+            " " + Nomes.getUsSenha() + getTEXTO() + "," +
+            " " + Nomes.getUsSemsenha() + getINTEIRO() + ")";
 
     // TABELA CATEGORIAS
     private static final String CREATE_TABLE_CATEGORIAS = getCreateTable() + Nomes.getTabelaCategorias() + "(" +
             " " + Nomes.getID() + getPRIMARYKEY() + "," +
-            " " + Nomes.getCaNome() + getTEXTO() + "," +
-            " " + Nomes.getUsId() + getINTEIRO() + getUNIQUE() + ")";
-
+            " " + Nomes.getCaNome() + getTEXTO() + getUNIQUE() + "," +
+            " " + Nomes.getUsId() + getINTEIRO() + ")";
 
     // TABELA TIPOS DE PAGAMENTO
     private static final String CREATE_TABLE_TIPOSPAGAMENTO = getCreateTable() + Nomes.getTabelaTipospagamento() + "(" +
             " " + Nomes.getID() + getPRIMARYKEY() + "," +
-            " " + Nomes.getTpNome() + getTEXTO() + ")";
+            " " + Nomes.getTpNome() + getTEXTO() + getUNIQUE() + "," +
+            " " + Nomes.getUsId() + getINTEIRO() + ")";
 
     // TABELA VIAGENS
     private static final String CREATE_TABLE_VIAGENS = getCreateTable() + Nomes.getTabelaViagens() + "(" +
@@ -71,6 +72,17 @@ public class ComandosSql {
             " " + Nomes.getGaData() + getTEXTO() + "," +
             " " + Nomes.getGaDescricao() + getTEXTO() + ")";
 
+    // TABELA CONFIGURAÇÃO DE NOTIFICAÇÕES
+    private static final String CREATE_TABLE_CNOTIFICACOES = getCreateTable() + Nomes.getTabelaCnotificacao() + "(" +
+            " " + Nomes.getID() + getPRIMARYKEY() + "," +
+            " " + Nomes.getUsId() + getINTEIRO() + "," +
+            " " + Nomes.getCnAtivar() + getINTEIRO() + "," +
+            " " + Nomes.getCnTodas() + getINTEIRO() + "," +
+            " " + Nomes.getCnViagens() + getINTEIRO() + "," +
+            " " + Nomes.getCnPagamento() + getINTEIRO() + "," +
+            " " + Nomes.getCnPlanejamento() + getINTEIRO() + "," +
+            " " + Nomes.getCnGastos() + getINTEIRO() + ")";
+
 
     // DROP TABLE
     private static final String DROP_TABLE_USUARIOS = getDropTable() + Nomes.getTabelaUsuarios();
@@ -80,6 +92,7 @@ public class ComandosSql {
     private static final String DROP_TABLE_PAGAMENTOS = getDropTable() + Nomes.getTabelaPagamentos();
     private static final String DROP_TABLE_PLANEJAMENTOS = getDropTable() + Nomes.getTabelaPlanejamentos();
     private static final String DROP_TABLE_GASTOS = getDropTable() + Nomes.getTabelaGastos();
+    private static final String DROP_TABLE_CNOTIFICACOES = getDropTable() + Nomes.getTabelaCnotificacao();
 
     // INSERT TABLE CATEGORIAS
     private static final String INSERT_CATEGORIAS_ALIMENTACAO = getInsertInto() + Nomes.getTabelaCategorias() + "(" +
@@ -103,10 +116,17 @@ public class ComandosSql {
     private static final String INSERT_TIPOSPAGAMENTO_MILHAS = getInsertInto() + Nomes.getTabelaTipospagamento() + "(" +
             " " + Nomes.getTpNome() + ")" + getVALUES() + "('Milhas')";
 
-
-
-    //SELECIONAR TODOS
-    private static final String SELECT_TIPOSPAGAMENTO = "SELECT * FROM " + Nomes.getTabelaTipospagamento();
+    //INSERT TABLE CNOTIFICACOES
+    private static final String INSERT_CNOTIFICACOES = getInsertInto() + Nomes.getTabelaCnotificacao() + "(" +
+            " " + Nomes.getUsId() + "," +
+            " " + Nomes.getCnAtivar() + "," +
+            " " + Nomes.getCnTodas() + "," +
+            " " + Nomes.getCnViagens() + "," +
+            " " + Nomes.getCnPagamento() + "," +
+            " " + Nomes.getCnPlanejamento() + "," +
+            " " + Nomes.getCnGastos() + ")" + getVALUES() + "(" +
+            " " + "Null, 1, 1, 1, 1, 1, 1" +
+            ")";
 
 
     //SELECIONAR TODOS POR USUÁRIO
@@ -114,13 +134,14 @@ public class ComandosSql {
     private static final String SELECT_CATEGORIAS_US = "SELECT * FROM " + Nomes.getTabelaCategorias() + " WHERE " + Nomes.getUsId() + " IS NULL OR " + Nomes.getUsId() + " = ";
     private static final String SELECT_PAGAMENTOS_US = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getUsId() + " = ";
     private static final String SELECT_PLANEJAMENTOS_US = "SELECT * FROM " + Nomes.getTabelaPlanejamentos() + " WHERE " + Nomes.getUsId() + " = ";
+    private static final String SELECT_TIPOSPAGAMENTO_US = "SELECT * FROM " + Nomes.getTabelaTipospagamento() + " WHERE " + Nomes.getUsId() + " IS NULL OR " + Nomes.getUsId() + " = ";
+    private static final String SELECT_CNOTIFICACOES_US = "SELECT * FROM " + Nomes.getTabelaCnotificacao() + " WHERE " + Nomes.getUsId() + " IS NULL OR " + Nomes.getUsId() + " = ";
 
 
     //SELECIONAR TODOS POR VIAGEM
     private static final String SELECT_GASTOS_VI = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getViId() + " = ";
     private static final String SELECT_PAGAMENTOS_VI = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getViId() + " = ";
     private static final String SELECT_PLANEJAMENTOS_VI = "SELECT * FROM " + Nomes.getTabelaPlanejamentos() + " WHERE " + Nomes.getViId() + " = ";
-
 
 
     //SELECIONAR TODOS POR ID
@@ -132,6 +153,7 @@ public class ComandosSql {
 
     //ATUALIZAÇÃO
     private static final String ATUALIZAR_WHERE = "_id = ?";
+
 
     //GETTERS
     public static String getCreateTable() {
@@ -194,6 +216,10 @@ public class ComandosSql {
         return CREATE_TABLE_GASTOS;
     }
 
+    public static String getCreateTableCnotificacoes() {
+        return CREATE_TABLE_CNOTIFICACOES;
+    }
+
     public static String getDropTableUsuarios() {
         return DROP_TABLE_USUARIOS;
     }
@@ -220,6 +246,10 @@ public class ComandosSql {
 
     public static String getDropTableGastos() {
         return DROP_TABLE_GASTOS;
+    }
+
+    public static String getDropTableCnotificacoes() {
+        return DROP_TABLE_CNOTIFICACOES;
     }
 
     public static String getInsertCategoriasAlimentacao() {
@@ -258,8 +288,8 @@ public class ComandosSql {
         return INSERT_TIPOSPAGAMENTO_MILHAS;
     }
 
-    public static String getSelectTipospagamento() {
-        return SELECT_TIPOSPAGAMENTO;
+    public static String getInsertCnotificacoes() {
+        return INSERT_CNOTIFICACOES;
     }
 
     public static String getSelectViagensUs() {
@@ -276,6 +306,14 @@ public class ComandosSql {
 
     public static String getSelectPlanejamentosUs() {
         return SELECT_PLANEJAMENTOS_US;
+    }
+
+    public static String getSelectTipospagamentoUs() {
+        return SELECT_TIPOSPAGAMENTO_US;
+    }
+
+    public static String getSelectCnotificacoesUs() {
+        return SELECT_CNOTIFICACOES_US;
     }
 
     public static String getSelectGastosVi() {
