@@ -125,7 +125,7 @@ public class ComandosSql {
             " " + Nomes.getCnPagamento() + "," +
             " " + Nomes.getCnPlanejamento() + "," +
             " " + Nomes.getCnGastos() + ")" + getVALUES() + "(" +
-            " " + "0, 1, 1, 1, 1, 1, 1" +
+            " " + "1, 1, 1, 1, 1, 1, 1" +
             ")";
 
 
