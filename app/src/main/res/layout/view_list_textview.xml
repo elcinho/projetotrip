@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_textview"
+    android:padding="@dimen/padding_list_itens">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="item"
+        android:id="@+id/tx_vw_textview"
+        android:textSize="@dimen/fonte_list_item"/>
+</LinearLayout>

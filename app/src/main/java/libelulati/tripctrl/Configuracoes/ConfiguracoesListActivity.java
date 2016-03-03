@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import libelulati.tripctrl.Categorias.CategoriaListActivity;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Notificacoes.NotificacoesConfiguracaoActivity;
 import libelulati.tripctrl.R;
@@ -78,6 +79,8 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
             case 2:
                 break;
             case 3:
+                Intent it_categorias = new Intent(context, CategoriaListActivity.class);
+                startActivity(it_categorias);
                 break;
             case 4:
                 break;

@@ -16,6 +16,12 @@
     <string name="title_activity_planejamento_edit">Editar Planejamento</string>
     <string name="title_activity_planejamentos_new">Novo Planejamento</string>
     <string name="title_activity_configuracoes_list">Configurações</string>
+    <string name="title_activity_usuario_edit">Usuário</string>
+    <string name="title_activity_categoria_list">Categorias</string>
+    <string name="title_activity_tipos_pagamento_list">Tipos de Pagamento</string>
+    <string name="title_activity_notificacoes_configuracao">Configurações de Notificação</string>
+    <string name="title_activity_sobre">Sobre</string>
+    <string name="title_activity_termo_uso">Termo de Uso e Privacidade</string>
 
 
 
@@ -62,6 +68,7 @@
     <string name="usarcodusuario">Usar meu código de usuario</string>
     <string name="valordisponivel">Valor disponível:</string>
     <string name="novoplanejamento">Novo Planejamento</string>
+    <string name="adicionar_categoria">Incluir categoria</string>
 
     <!-- ITENS CONFIGURAÇÕES -->
     <string name="co_perfil_usuario">Perfil de Usuário</string>
@@ -207,12 +214,8 @@
     <string name="erro_deletar_planejamento">O planejamento não pôde ser deletado.</string>
     <string name="erro_alterar_planejamento">O planejamento não foi alterado.</string>
     <string name="erro_excluir_planejamento">O planejamento não pôde ser excluído.</string>
-    <string name="title_activity_usuario_edit">Usuário</string>
-    <string name="title_activity_categoria_list">Categorias</string>
-    <string name="title_activity_tipos_pagamento_list">Tipos de Pagamento</string>
-    <string name="title_activity_notificacoes_configuracao">Configurações de Notificação</string>
-    <string name="title_activity_sobre">Sobre</string>
-    <string name="title_activity_termo_uso">Termo de Uso e Privacidade</string>
+    <string name="erro_categoria_duplicada">Já existe esta categoria.</string>
+    <string name="erro_tipopagamento_duplicado">Já existe este tipo de pagamento.</string>
 
 
 </resources>

@@ -10,8 +10,7 @@
         android:layout_height="match_parent"
         android:id="@+id/tx_co_itens"
         android:gravity="center_vertical"
-        android:textSize="@dimen/fonte_list_item"
-        />
+        android:textSize="@dimen/fonte_list_item" />
 
     <View
         android:layout_width="match_parent"

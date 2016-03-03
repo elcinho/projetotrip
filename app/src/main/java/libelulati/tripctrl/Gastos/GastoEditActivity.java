@@ -93,8 +93,6 @@ public class GastoEditActivity extends AppCompatActivity {
     public void Salvar(){
         Gasto gasto = new Gasto();
 
-        String teste = ed_gae_pagamento.getText().toString();
-
         gasto.setUs_id(id_usuario);
         gasto.setVi_id(id_viagem);
         gasto.setPa_id(ed_gae_pagamento.getText().toString());
