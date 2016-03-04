@@ -10,4 +10,43 @@
     tools:showIn="@layout/activity_tipos_pagamento_list"
     tools:context="libelulati.tripctrl.TipoPagamento.TiposPagamentoListActivity">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_tp_novo"
+        android:hint="@string/adicionar_categoria"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/iv_tp_novo"
+        android:layout_toStartOf="@+id/iv_tp_novo" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_tp_novo"
+        android:src="@drawable/ic_action_accept_ligth"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:id="@+id/vw_ca_dividir"
+        android:layout_height="@dimen/padding_divider"
+        android:background="@color/colorGrey"
+        android:layout_below="@id/ed_tp_novo"
+        android:layout_marginTop="@dimen/margin_top_co"/>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sc_tp_lista"
+        android:layout_below="@id/vw_ca_dividir">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/li_tp_lista"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
+
 </RelativeLayout>

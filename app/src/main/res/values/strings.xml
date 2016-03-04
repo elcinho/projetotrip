@@ -70,6 +70,7 @@
     <string name="novoplanejamento">Novo Planejamento</string>
     <string name="adicionar_categoria">Incluir categoria</string>
     <string name="editar">Editar</string>
+    <string name="adicionar_tipopagamento">Incluir tipo de pagamento</string>
 
     <!-- ITENS CONFIGURAÇÕES -->
     <string name="co_perfil_usuario">Perfil de Usuário</string>
@@ -188,6 +189,9 @@
     <string name="sucesso_excluir_planejamento">Planejamento deletado com sucesso.</string>
     <string name="sucesso_alterar_planejamento">Planejamento alterado com sucesso.</string>
     <string name="sucesso_excluir_categoria">Categoria deletada com sucesso.</string>
+    <string name="sucesso_excluir_tipopagamento">Tipo de pagamento deletado com sucesso.</string>
+    <string name="sucesso_criar_tipopagamento">Tipo de pagamento criado com sucesso.</string>
+
 
 
     <!-- MENSAGENS DE ERRO -->
@@ -220,6 +224,9 @@
     <string name="erro_tipopagamento_duplicado">Já existe este tipo de pagamento.</string>
     <string name="erro_alterar_categoria">A categoria não foi alterada.</string>
     <string name="erro_excluir_categoria">A categoria não pôde ser excluída.</string>
+    <string name="erro_alterar_tipopagamento">O tipo de pagamento não foi alterado.</string>
+    <string name="erro_excluir_tipopagamento">O tipo de pagamento não pôde ser excluído.</string>
+
 
 
 </resources>
