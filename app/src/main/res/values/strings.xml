@@ -69,6 +69,7 @@
     <string name="valordisponivel">Valor disponível:</string>
     <string name="novoplanejamento">Novo Planejamento</string>
     <string name="adicionar_categoria">Incluir categoria</string>
+    <string name="editar">Editar</string>
 
     <!-- ITENS CONFIGURAÇÕES -->
     <string name="co_perfil_usuario">Perfil de Usuário</string>
@@ -186,6 +187,7 @@
     <string name="sucesso_criar_planejamento">Planejamento criado com sucesso.</string>
     <string name="sucesso_excluir_planejamento">Planejamento deletado com sucesso.</string>
     <string name="sucesso_alterar_planejamento">Planejamento alterado com sucesso.</string>
+    <string name="sucesso_excluir_categoria">Categoria deletada com sucesso.</string>
 
 
     <!-- MENSAGENS DE ERRO -->
@@ -216,6 +218,8 @@
     <string name="erro_excluir_planejamento">O planejamento não pôde ser excluído.</string>
     <string name="erro_categoria_duplicada">Já existe esta categoria.</string>
     <string name="erro_tipopagamento_duplicado">Já existe este tipo de pagamento.</string>
+    <string name="erro_alterar_categoria">A categoria não foi alterada.</string>
+    <string name="erro_excluir_categoria">A categoria não pôde ser excluída.</string>
 
 
 </resources>
