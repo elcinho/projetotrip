@@ -129,9 +129,9 @@ public class Pagamentos_DAO extends Dados{
         return sucesso;
     }
 
-    public List sp_tipopagamentos (){
+    public List sp_tipopagamentos (int id_usuario){
         List<String> listartipospagamentos = new ArrayList<>();
-        String sql = ComandosSql.getSelectTipospagamento();
+        String sql = ComandosSql.getSelectTipospagamentoUs() + id_usuario;
 
         SQLiteDatabase db = getWritableDatabase();
 

@@ -20,8 +20,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="@dimen/fonte_list_item"
-        android:checked="true"/>
+        android:textSize="@dimen/fonte_list_item" />
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/padding_divider"
@@ -41,8 +40,7 @@
         android:layout_alignRight="@+id/vw_no_dividir"
         android:layout_alignEnd="@+id/vw_no_dividir"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:checked="true"/>
+        android:layout_alignParentStart="true" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -55,8 +53,7 @@
         android:layout_alignRight="@+id/vw_no_dividir"
         android:layout_alignEnd="@+id/vw_no_dividir"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:checked="true"/>
+        android:layout_alignParentStart="true" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -69,8 +66,7 @@
         android:layout_alignRight="@+id/vw_no_dividir"
         android:layout_alignEnd="@+id/vw_no_dividir"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:checked="true"/>
+        android:layout_alignParentStart="true" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -83,8 +79,7 @@
         android:layout_alignRight="@+id/vw_no_dividir"
         android:layout_alignEnd="@+id/vw_no_dividir"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:checked="true"/>
+        android:layout_alignParentStart="true" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -97,7 +92,6 @@
         android:layout_alignRight="@+id/vw_no_dividir"
         android:layout_alignEnd="@+id/vw_no_dividir"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:checked="true"/>
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

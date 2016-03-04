@@ -11,6 +11,12 @@ public class Categoria {
     public Categoria() {
     }
 
+    public Categoria(int ca_id, int us_id, String ca_nome) {
+        this.ca_id = ca_id;
+        this.us_id = us_id;
+        this.ca_nome = ca_nome;
+    }
+
     public int getCa_id() {
         return ca_id;
     }

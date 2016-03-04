@@ -73,7 +73,7 @@ public class PagamentosEditActivity extends AppCompatActivity {
 
         nulo = context.getResources().getString(R.string.encontrado_registro);
 
-        listatipopagamentos = new Pagamentos_DAO(context).sp_tipopagamentos();
+        listatipopagamentos = new Pagamentos_DAO(context).sp_tipopagamentos(id_usuario);
 
         switch (novo){
             case 1:

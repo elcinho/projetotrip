@@ -13,6 +13,7 @@ public class Nomes {
     private static final String TABELA_PLANEJAMENTOS = "planejamentos";
     private static final String TABELA_PAGAMENTOS = "pagamentos";
     private static final String TABELA_GASTOS = "gastos";
+    private static final String TABELA_CNOTIFICACAO = "cnotificacao";
 
     // CAMPO ID : CHAVE PRIMÁRIA DE TODAS AS TABELAS
     private static final String ID = "_id";
@@ -29,6 +30,7 @@ public class Nomes {
     private static final String US_SENHA = "us_senha";
     private static final String US_ID = "us_id";
     private static final String US_USO = "us_uso";
+    private static final String US_SEMSENHA = "us_semsenha";
 
 
     //CAMPOS DE TIPOS DE PAGAMENTO
@@ -59,6 +61,16 @@ public class Nomes {
     private static final String GA_ID = "ga_id";
     private static final String GA_DATA = "ga_data";
 
+    //CAMPOS DE CNOTIFICACAO
+    private static final String CN_ATIVAR = "cn_ativar";
+    private static final String CN_TODAS = "cn_todas";
+    private static final String CN_VIAGENS = "cn_viagens";
+    private static final String CN_PAGAMENTO = "cn_pagamento";
+    private static final String CN_PLANEJAMENTO = "cn_planejamento";
+    private static final String CN_GASTOS = "cn_gastos";
+
+
+    //GETTES
     public static String getNomeBanco() {
         return NOME_BANCO;
     }
@@ -95,6 +107,10 @@ public class Nomes {
         return TABELA_GASTOS;
     }
 
+    public static String getTabelaCnotificacao() {
+        return TABELA_CNOTIFICACAO;
+    }
+
     public static String getID() {
         return ID;
     }
@@ -129,6 +145,10 @@ public class Nomes {
 
     public static String getUsUso() {
         return US_USO;
+    }
+
+    public static String getUsSemsenha() {
+        return US_SEMSENHA;
     }
 
     public static String getTpNome() {
@@ -196,7 +216,30 @@ public class Nomes {
     }
 
     public static String getGaData() {
-
         return GA_DATA;
+    }
+
+    public static String getCnAtivar() {
+        return CN_ATIVAR;
+    }
+
+    public static String getCnTodas() {
+        return CN_TODAS;
+    }
+
+    public static String getCnViagens() {
+        return CN_VIAGENS;
+    }
+
+    public static String getCnPagamento() {
+        return CN_PAGAMENTO;
+    }
+
+    public static String getCnPlanejamento() {
+        return CN_PLANEJAMENTO;
+    }
+
+    public static String getCnGastos() {
+        return CN_GASTOS;
     }
 }
