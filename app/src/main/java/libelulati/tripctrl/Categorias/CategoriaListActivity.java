@@ -26,7 +26,7 @@ public class CategoriaListActivity extends AppCompatActivity {
     Context context;
     EditText ed_ca_novo, ed_di_editar;
     TextView tx_ca_nome;
-    ImageView ib_ca_novo;
+    ImageView iv_ca_novo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,8 @@ public class CategoriaListActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(ed_ca_novo.getWindowToken(), 0);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        ib_ca_novo = (ImageView) findViewById(R.id.iv_ca_novo);
-        ib_ca_novo.setOnClickListener(new View.OnClickListener() {
+        iv_ca_novo = (ImageView) findViewById(R.id.iv_ca_novo);
+        iv_ca_novo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Salvar();

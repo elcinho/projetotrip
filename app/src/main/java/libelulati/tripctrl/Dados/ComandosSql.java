@@ -149,6 +149,12 @@ public class ComandosSql {
     private static final String SELECT_ID_GASTO = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getID() + " = ";
     private static final String SELECT_ID_PAGAMENTO = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getID() + " = ";
     private static final String SELECT_ID_PLANEJAMENTO = "SELECT * FROM " + Nomes.getTabelaPlanejamentos() + " WHERE " + Nomes.getID() + " = ";
+    private static final String SELECT_ID_USUARIO = "SELECT * FROM " + Nomes.getTabelaUsuarios() + " WHERE " + Nomes.getID() + " = ";
+
+
+    //SELECIONAR POR CAMPO ESPECÍFICO
+    private static final String SELECT_EMAIL_USUARIO = "SELECT * FROM " + Nomes.getTabelaUsuarios() + " WHERE " + Nomes.getUsEmail() + " = ";
+
 
 
     //ATUALIZAÇÃO
@@ -342,6 +348,14 @@ public class ComandosSql {
 
     public static String getSelectIdPlanejamento() {
         return SELECT_ID_PLANEJAMENTO;
+    }
+
+    public static String getSelectIdUsuario() {
+        return SELECT_ID_USUARIO;
+    }
+
+    public static String getSelectEmailUsuario() {
+        return SELECT_EMAIL_USUARIO;
     }
 
     public static String getAtualizarWhere() {

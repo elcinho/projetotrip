@@ -71,6 +71,7 @@
     <string name="adicionar_categoria">Incluir categoria</string>
     <string name="editar">Editar</string>
     <string name="adicionar_tipopagamento">Incluir tipo de pagamento</string>
+    <string name="semsenha">Permitir entrar sem senha.</string>
 
     <!-- ITENS CONFIGURAÇÕES -->
     <string name="co_perfil_usuario">Perfil de Usuário</string>
