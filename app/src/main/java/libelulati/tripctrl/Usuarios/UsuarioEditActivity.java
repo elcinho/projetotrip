@@ -45,6 +45,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         ed_us_email = (EditText)findViewById(R.id.ed_us_email);
         ed_us_senha = (EditText)findViewById(R.id.ed_us_senha);
         ed_us_dtnasc = (EditText)findViewById(R.id.ed_us_dtnasc);
+        cb_us_semsenha = (CheckBox)findViewById(R.id.cb_us_semsenha);
 
         Intent it_us_novo = getIntent();
         Bundle bundle = it_us_novo.getExtras();
@@ -54,6 +55,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         ed_us_nome.setText(bundle.getString(Nomes.getUsNome()));
         ed_us_email.setText(bundle.getString(Nomes.getUsEmail()));
         ed_us_dtnasc.setText(bundle.getString(Nomes.getUsDtnasc()));
+        us_semsenha = bundle.getInt(Nomes.getUsSemsenha());
         if(us_semsenha == 0){
             cb_us_semsenha.setChecked(false);
         }

@@ -13,10 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import libelulati.tripctrl.Categorias.CategoriaListActivity;
+import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Notificacoes.NotificacoesConfiguracaoActivity;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.TipoPagamento.TiposPagamentoListActivity;
+import libelulati.tripctrl.Usuarios.Usuario;
+import libelulati.tripctrl.Usuarios.UsuarioEditActivity;
+import libelulati.tripctrl.Usuarios.Usuario_DAO;
 
 public class ConfiguracoesListActivity extends AppCompatActivity {
     int id_usuario = InicioActivity.getId_usuario();
@@ -78,6 +82,7 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
                 startActivity(it_notificacoes);
                 break;
             case 2:
+                Usuarios(id_usuario);
                 break;
             case 3:
                 Intent it_categorias = new Intent(context, CategoriaListActivity.class);
@@ -100,5 +105,23 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
+    }
+
+    public void Usuarios(int id){
+        Usuario_DAO usuario_dao = new Usuario_DAO(context);
+        Usuario usuario_id = usuario_dao.buscaId(id);
+
+        Intent it_us_show = new Intent(context, UsuarioEditActivity.class);
+        Bundle usshow = new Bundle();
+
+        usshow.putInt("novo", 2);
+        usshow.putInt(Nomes.getID(), usuario_id.getUs_id());
+        usshow.putInt(Nomes.getUsSemsenha(), usuario_id.getUs_semsenha());
+        usshow.putString(Nomes.getUsNome(), usuario_id.getUs_nome());
+        usshow.putString(Nomes.getUsEmail(), usuario_id.getUs_email());
+        usshow.putString(Nomes.getUsDtnasc(), usuario_id.getUs_dtnasc());
+
+        it_us_show.putExtras(usshow);
+        startActivityForResult(it_us_show, 1);
     }
 }
