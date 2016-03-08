@@ -8,8 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
+import libelulati.tripctrl.Usuarios.UsuarioEditActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,7 +53,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ExibirUsuarioNew(){
+        Intent it_novo_usuario = new Intent(MainActivity.this, UsuarioEditActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("novo", 1);
+        bundle.putInt(Nomes.getID(), 0);
+        bundle.putInt(Nomes.getUsSemsenha(), 0);
+        bundle.putString(Nomes.getUsNome(), null);
+        bundle.putString(Nomes.getUsEmail(), null);
+        bundle.putString(Nomes.getUsDtnasc(), null);
+        bundle.putString(Nomes.getUsSenha(), null);
 
+        it_novo_usuario.putExtras(bundle);
+        startActivityForResult(it_novo_usuario,1);
     }
-
 }
