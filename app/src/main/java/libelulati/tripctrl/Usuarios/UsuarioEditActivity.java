@@ -227,8 +227,9 @@ public class UsuarioEditActivity extends AppCompatActivity {
         return true;
     }
 
-    public void AlterarSenha(){
-
+    public void ExibirAlterarSenha(){
+        DialogFragment dialogFragment = new AlterarSenha(id_usuario);
+        dialogFragment.show(getSupportFragmentManager(), "alterarsenha");
     }
 
     @Override
@@ -270,7 +271,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
                 Atualizar();
                 break;
             case R.id.mn_us_alterarsenha:
-                AlterarSenha();
+                ExibirAlterarSenha();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
