@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import libelulati.tripctrl.Dados.Nomes;
@@ -30,6 +31,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
     int id_usuario = 0;
     int us_semsenha = 0;
     EditText ed_us_nome, ed_us_email, ed_us_dtnasc, ed_us_senha;
+    TextView tx_us_senha;
     CheckBox cb_us_semsenha;
     Context context;
 
@@ -46,6 +48,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         ed_us_senha = (EditText)findViewById(R.id.ed_us_senha);
         ed_us_dtnasc = (EditText)findViewById(R.id.ed_us_dtnasc);
         cb_us_semsenha = (CheckBox)findViewById(R.id.cb_us_semsenha);
+        tx_us_senha = (TextView)findViewById(R.id.tx_us_senha);
 
         Intent it_us_novo = getIntent();
         Bundle bundle = it_us_novo.getExtras();
@@ -56,12 +59,17 @@ public class UsuarioEditActivity extends AppCompatActivity {
         ed_us_email.setText(bundle.getString(Nomes.getUsEmail()));
         ed_us_dtnasc.setText(bundle.getString(Nomes.getUsDtnasc()));
         us_semsenha = bundle.getInt(Nomes.getUsSemsenha());
-        if(us_semsenha == 0){
-            cb_us_semsenha.setChecked(false);
-        }
-        else{
-            cb_us_semsenha.setChecked(true);
-        }
+
+        cb_us_semsenha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    us_semsenha = 1;
+                } else {
+                    us_semsenha = 0;
+                }
+            }
+        });
 
         switch (novo){
             case 1:
@@ -85,22 +93,13 @@ public class UsuarioEditActivity extends AppCompatActivity {
         usuario.setUs_email(ed_us_email.getText().toString());
         usuario.setUs_dtnasc(ed_us_dtnasc.getText().toString());
         usuario.setUs_senha(ed_us_senha.getText().toString());
-
-        cb_us_semsenha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    usuario.setUs_semsenha(1);
-                } else {
-                    usuario.setUs_semsenha(0);
-                }
-            }
-        });
+        usuario.setUs_semsenha(us_semsenha);
 
         if(IsValido()){
             boolean sucesso = new Usuario_DAO(context).criar(usuario);
             if(sucesso){
                 Toast.makeText(context, context.getResources().getString(R.string.sucesso_criar_usuario), Toast.LENGTH_LONG).show();
+                finish();
             }
             else{
                 Toast.makeText(context, context.getResources().getString(R.string.erro_criar_usuario), Toast.LENGTH_LONG).show();
@@ -146,7 +145,25 @@ public class UsuarioEditActivity extends AppCompatActivity {
         invalidateOptionsMenu();
 
         getSupportActionBar().setTitle(context.getResources().getString(R.string.title_activity_usuario_edit));
+
+        tx_us_senha.setVisibility(View.INVISIBLE);
         ed_us_senha.setVisibility(View.INVISIBLE);
+
+        if(us_semsenha == 0){
+            cb_us_semsenha.setChecked(false);
+        }
+        else{
+            cb_us_semsenha.setChecked(true);
+        }
+
+        ed_us_nome.setEnabled(false);
+        ed_us_email.setEnabled(false);
+        ed_us_dtnasc.setEnabled(false);
+        cb_us_semsenha.setEnabled(false);
+
+        ed_us_nome.setTextColor(context.getResources().getColor(R.color.colorBlack));
+        ed_us_email.setTextColor(context.getResources().getColor(R.color.colorBlack));
+        ed_us_dtnasc.setTextColor(context.getResources().getColor(R.color.colorBlack));
     }
 
     public void UsuarioEditar(){
@@ -156,6 +173,11 @@ public class UsuarioEditActivity extends AppCompatActivity {
 
         vis_menu = 3;
         invalidateOptionsMenu();
+
+        ed_us_nome.setEnabled(true);
+        ed_us_email.setEnabled(true);
+        ed_us_dtnasc.setEnabled(true);
+        cb_us_semsenha.setEnabled(true);
 
         ed_us_dtnasc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,22 +206,13 @@ public class UsuarioEditActivity extends AppCompatActivity {
         usuario.setUs_nome(ed_us_nome.getText().toString());
         usuario.setUs_email(ed_us_email.getText().toString());
         usuario.setUs_dtnasc(ed_us_dtnasc.getText().toString());
-
-        cb_us_semsenha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    usuario.setUs_semsenha(1);
-                } else {
-                    usuario.setUs_semsenha(0);
-                }
-            }
-        });
+        usuario.setUs_semsenha(us_semsenha);
 
         if(IsValido()){
             boolean sucesso = new Usuario_DAO(context).atualizar(usuario, id_usuario);
             if(sucesso){
                 Toast.makeText(context, context.getResources().getString(R.string.sucesso_alterar_usuario), Toast.LENGTH_LONG).show();
+                finish();
             }
             else{
                 Toast.makeText(context, context.getResources().getString(R.string.erro_alterar_usuario), Toast.LENGTH_LONG).show();
@@ -264,10 +277,4 @@ public class UsuarioEditActivity extends AppCompatActivity {
         }
         return true;
     }
-
-
-
-
-
-
 }
