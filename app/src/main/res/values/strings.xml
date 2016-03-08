@@ -16,7 +16,8 @@
     <string name="title_activity_planejamento_edit">Editar Planejamento</string>
     <string name="title_activity_planejamentos_new">Novo Planejamento</string>
     <string name="title_activity_configuracoes_list">Configurações</string>
-    <string name="title_activity_usuario_edit">Usuário</string>
+    <string name="title_activity_usuario_edit">Editar Usuário</string>
+    <string name="title_activity_usuario_novo">Novo Usuário</string>
     <string name="title_activity_categoria_list">Categorias</string>
     <string name="title_activity_tipos_pagamento_list">Tipos de Pagamento</string>
     <string name="title_activity_notificacoes_configuracao">Configurações de Notificação</string>
