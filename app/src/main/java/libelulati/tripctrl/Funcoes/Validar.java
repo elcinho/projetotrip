@@ -1,5 +1,7 @@
 package libelulati.tripctrl.Funcoes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -102,6 +104,28 @@ public class Validar {
             return true;
         }
     }
+
+    public static boolean ValidarTempoCodigo(String data) {
+        Date date = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String dataatual = formatador.format(date);
+        long tempo = 0;
+        try {
+            Date anterior = new Date(formatador.parse(data).getTime());
+            Date atual = new Date(formatador.parse(dataatual).getTime());
+            tempo = atual.getTime() - anterior.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return tempo <= 300000;
+    }
+
+    public static boolean ValidarCodigoAltSenha(String coddig, String codcad) {
+        return codcad.equals(coddig);
+    }
+
+
 
 
 

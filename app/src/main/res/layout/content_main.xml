@@ -26,4 +26,13 @@
         android:background="@color/colorAccent"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/fonte_botoes"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/esquecisenha"
+        android:id="@+id/tx_main_esquecisenha"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

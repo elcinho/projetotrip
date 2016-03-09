@@ -140,6 +140,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Inicio.InicioActivity" />
         </activity>
+        <activity
+            android:name=".Usuarios.EsqueciSenhaActivity"
+            android:label="@string/title_activity_esqueci_senha"
+            android:parentActivityName=".Main.MainActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

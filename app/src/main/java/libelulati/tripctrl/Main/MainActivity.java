@@ -7,15 +7,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
+import libelulati.tripctrl.Usuarios.EsqueciSenhaActivity;
 import libelulati.tripctrl.Usuarios.UsuarioEditActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     Button bt_main_entrar;
+    TextView tx_main_esquecisenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +26,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bt_main_entrar = (Button) findViewById(R.id.bt_main_entrar);
+        tx_main_esquecisenha = (TextView)findViewById(R.id.tx_main_esquecisenha);
         bt_main_entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent it_main_entrar = new Intent (MainActivity.this, InicioActivity.class);
                 startActivity(it_main_entrar);
+            }
+        });
+
+        tx_main_esquecisenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it_esqueci_senha = new Intent(MainActivity.this, EsqueciSenhaActivity.class);
+                startActivity(it_esqueci_senha);
             }
         });
     }
