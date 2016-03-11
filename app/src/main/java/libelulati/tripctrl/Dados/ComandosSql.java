@@ -128,6 +128,16 @@ public class ComandosSql {
             " " + "1, 1, 1, 1, 1, 1, 1" +
             ")";
 
+    //INSERT TABLE USUÁRIO
+    private static final String INSERT_USUARIO = getInsertInto() + Nomes.getTabelaUsuarios() + "(" +
+            " " + Nomes.getUsNome() + "," +
+            " " + Nomes.getUsEmail() +"," +
+            " " + Nomes.getUsDtnasc() + "," +
+            " " + Nomes.getUsSenha() + "," +
+            " " + Nomes.getUsSemsenha() + ")" + getVALUES() + "(" +
+            " " + "Desenvolvedor, desenvolvedor@libelulati.com, 06/10/2015, 102030, 0" +
+            " )";
+
 
     //SELECIONAR TODOS POR USUÁRIO
     private static final String SELECT_VIAGENS_US = "SELECT * FROM " + Nomes.getTabelaViagens() + " WHERE " + Nomes.getUsId() + " = ";
@@ -296,6 +306,10 @@ public class ComandosSql {
 
     public static String getInsertCnotificacoes() {
         return INSERT_CNOTIFICACOES;
+    }
+
+    public static String getInsertUsuario() {
+        return INSERT_USUARIO;
     }
 
     public static String getSelectViagensUs() {

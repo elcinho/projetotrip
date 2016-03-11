@@ -40,6 +40,9 @@ public class Dados extends SQLiteOpenHelper{
         //INSERIR DADOS CNOTIFICACOES
         db.execSQL(ComandosSql.getInsertCnotificacoes());
 
+        //INSERIR DADOS USUARIO
+        db.execSQL(ComandosSql.getInsertUsuario());
+
     }
 
     @Override
