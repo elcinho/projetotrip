@@ -23,7 +23,7 @@
     <string name="title_activity_notificacoes_configuracao">Configurações de Notificação</string>
     <string name="title_activity_sobre">Sobre</string>
     <string name="title_activity_termo_uso">Termo de Uso e Privacidade</string>
-
+    <string name="title_activity_esqueci_senha">Esqueci Senha</string>
 
 
 
@@ -230,7 +230,7 @@
     <string name="erro_alterar_tipopagamento">O tipo de pagamento não foi alterado.</string>
     <string name="erro_excluir_tipopagamento">O tipo de pagamento não pôde ser excluído.</string>
     <string name="erro_criar_tipopagamento">Ocorreu um erro ao criar o tipo de pagamento.</string>
-    <string name="title_activity_esqueci_senha">Esqueci Senha</string>
+    <string name="erro_atualizar_termouso">Não foi possível gravar, tente novamente.</string>
 
     <!-- TERMO DE USO -->
     <string name="termouso">1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum scelerisque tortor vel sollicitudin. Ut in ipsum at ex pulvinar pharetra ut ut quam. Nam mollis varius massa et dignissim. Nulla pretium ipsum eleifend volutpat pellentesque. Suspendisse aliquet vestibulum nunc, nec feugiat velit fermentum non. Aenean hendrerit magna nec sagittis faucibus. Vivamus tellus diam, laoreet lacinia lobortis ut, vestibulum eu ex. Duis magna ligula, porttitor vel bibendum id, vulputate vitae purus. Donec ullamcorper, turpis nec euismod tincidunt, ligula tortor gravida purus, eget blandit tellus eros quis nulla. Nulla id sodales dolor. Phasellus tempor tincidunt mollis. Nunc consectetur, orci at posuere vulputate, ex mauris malesuada erat, auctor dictum metus nunc id augue. Donec blandit nisi ut feugiat vehicula. Proin tellus ex, tincidunt eu volutpat eget, gravida ut orci. Morbi in dapibus felis. Mauris placerat odio eu elit venenatis, in euismod odio suscipit.

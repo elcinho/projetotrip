@@ -132,10 +132,20 @@ public class Usuario_DAO extends Dados{
         return usuario;
     }
 
+    public boolean alterarTermo(Usuario usuario, int id) {
 
+        ContentValues values = new ContentValues();
 
+        values.put(Nomes.getUsUso(), usuario.getUs_uso());
 
+        String where = ComandosSql.getAtualizarWhere();
+        String[] whereArgs = {Integer.toString(id)};
 
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        boolean sucesso = db.update(Nomes.getTabelaUsuarios(), values, where, whereArgs) > 0;
+        db.close();
 
+        return sucesso;
+    }
 }
