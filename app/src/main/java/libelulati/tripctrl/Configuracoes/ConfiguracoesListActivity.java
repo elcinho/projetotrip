@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import libelulati.tripctrl.Aplicativo.TermoUsoActivity;
 import libelulati.tripctrl.Categorias.CategoriaListActivity;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
@@ -42,7 +43,6 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
             co_itens.add(context.getResources().getString(R.string.co_categorias));
             co_itens.add(context.getResources().getString(R.string.co_tipos_pagamento));
             co_itens.add(context.getResources().getString(R.string.co_sobre));
-            co_itens.add(context.getResources().getString(R.string.co_avalie));
             co_itens.add(context.getResources().getString(R.string.co_termo_uso));
             co_itens.add(context.getResources().getString(R.string.co_sair));
         }
@@ -91,14 +91,14 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
             case 4:
                 break;
             case 5:
+                Intent it_termo = new Intent(context, TermoUsoActivity.class);
+                startActivity(it_termo);
                 break;
             case 6:
-                break;
-            case 7:
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                Intent it_sair = new Intent(Intent.ACTION_MAIN);
+                it_sair.addCategory(Intent.CATEGORY_HOME);
+                it_sair.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(it_sair);
                 break;
         }
     }
