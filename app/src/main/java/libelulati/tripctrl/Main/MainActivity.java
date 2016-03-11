@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
+    /*public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -77,5 +77,5 @@ public class MainActivity extends AppCompatActivity {
 
         it_novo_usuario.putExtras(bundle);
         startActivityForResult(it_novo_usuario,1);
-    }
+    }*/
 }

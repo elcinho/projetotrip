@@ -73,6 +73,7 @@
     <string name="editar">Editar</string>
     <string name="adicionar_tipopagamento">Incluir tipo de pagamento</string>
     <string name="semsenha">Permitir entrar sem senha.</string>
+    <string name="bemvindo">Bem vindo ao TripControl</string>
 
     <!-- ITENS CONFIGURAÇÕES -->
     <string name="co_perfil_usuario">Perfil de Usuário</string>
