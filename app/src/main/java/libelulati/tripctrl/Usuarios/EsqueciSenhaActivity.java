@@ -25,8 +25,8 @@ import libelulati.tripctrl.R;
 
 public class EsqueciSenhaActivity extends AppCompatActivity {
     final int[] usuarioid = {0};
-    RadioButton es_enviarsms, es_enviaremail, es_enviarcodusuario;
-    EditText es_telefone, es_email, es_codusuario, ns_senha;
+    RadioButton es_enviarsms, es_enviaremail;
+    EditText es_telefone, es_email;
     int envio = 0, usid = 0;
     Context context;
     String codigogerado, datasolicitacao;
@@ -38,11 +38,9 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
 
         es_enviarsms = (RadioButton) findViewById(R.id.rb_es_enviarsms);
         es_enviaremail = (RadioButton) findViewById(R.id.rb_es_enviaremail);
-        es_enviarcodusuario = (RadioButton) findViewById(R.id.rb_es_codusuario);
 
         es_telefone = (EditText) findViewById(R.id.ed_es_telefone);
         es_email = (EditText) findViewById(R.id.ed_es_email);
-        es_codusuario = (EditText) findViewById(R.id.ed_es_codusuario);
 
         es_email.requestFocus();
     }
@@ -73,7 +71,6 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
 
         es_email.clearFocus();
         es_telefone.clearFocus();
-        es_codusuario.clearFocus();
 
         switch (envio) {
             case 1:
@@ -99,9 +96,7 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                     envio = 1;
                     es_enviaremail.setChecked(true);
                     es_telefone.setVisibility(View.INVISIBLE);
-                    es_codusuario.setVisibility(View.INVISIBLE);
                     es_telefone.setText("");
-                    es_codusuario.setText("");
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(es_email.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     if (es_email.length() < 0) {
                         es_email.requestFocus();
@@ -113,28 +108,12 @@ public class EsqueciSenhaActivity extends AppCompatActivity {
                     envio = 2;
                     es_enviarsms.setChecked(true);
                     es_telefone.setVisibility(View.VISIBLE);
-                    es_codusuario.setVisibility(View.INVISIBLE);
-                    es_codusuario.setText("");
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(es_telefone.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     if (es_telefone.length() == 0) {
                         es_telefone.requestFocus();
                     }
                 }
                 break;
-            case R.id.rb_es_codusuario:
-                if (check) {
-                    envio = 3;
-                    es_enviarcodusuario.setChecked(true);
-                    es_telefone.setVisibility(View.INVISIBLE);
-                    es_codusuario.setVisibility(View.VISIBLE);
-                    es_codusuario.requestFocus();
-                    es_telefone.setText("");
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(es_codusuario.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                    if (es_codusuario.length() == 0) {
-                        es_codusuario.requestFocus();
-                    }
-                    break;
-                }
         }
     }
 

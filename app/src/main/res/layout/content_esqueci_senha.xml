@@ -75,14 +75,6 @@
             android:onClick="onRadioButtonClicked"
             android:text="@string/enviarsms" />
 
-        <RadioButton
-            android:id="@+id/rb_es_codusuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/codusuario" />
-
     </RadioGroup>
 
     <EditText
@@ -90,26 +82,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rg_es_gruposelecao"
-        android:layout_alignEnd="@+id/ed_es_codusuario"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ed_es_codusuario"
         android:layout_marginTop="20dp"
         android:hint="@string/telefone"
-        android:visibility="invisible" />
-
-    <EditText
-        android:id="@+id/ed_es_codusuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rg_es_gruposelecao"
-        android:layout_alignEnd="@+id/rg_es_gruposelecao"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:visibility="invisible"
         android:layout_alignRight="@+id/rg_es_gruposelecao"
-        android:layout_marginTop="20dp"
-        android:hint="@string/codusuario"
-        android:visibility="invisible" />
-
+        android:layout_alignEnd="@+id/rg_es_gruposelecao" />
 
 </RelativeLayout>
