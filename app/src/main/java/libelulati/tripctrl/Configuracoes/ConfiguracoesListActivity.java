@@ -39,7 +39,6 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
         List<String> co_itens = new ArrayList<>();
         if(co_itens.size() == 0){
             co_itens.add(context.getResources().getString(R.string.co_notificacoes));
-            co_itens.add(context.getResources().getString(R.string.co_perfil_usuario));
             co_itens.add(context.getResources().getString(R.string.co_categorias));
             co_itens.add(context.getResources().getString(R.string.co_tipos_pagamento));
             co_itens.add(context.getResources().getString(R.string.co_sobre));
@@ -82,23 +81,20 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
                 startActivity(it_notificacoes);
                 break;
             case 2:
-                Usuarios(id_usuario);
-                break;
-            case 3:
                 Intent it_categorias = new Intent(context, CategoriaListActivity.class);
                 startActivity(it_categorias);
                 break;
-            case 4:
+            case 3:
                 Intent it_tipopagamento = new Intent(context, TiposPagamentoListActivity.class);
                 startActivity(it_tipopagamento);
+                break;
+            case 4:
                 break;
             case 5:
                 break;
             case 6:
                 break;
             case 7:
-                break;
-            case 8:
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
