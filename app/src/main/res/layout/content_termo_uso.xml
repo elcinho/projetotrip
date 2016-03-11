@@ -9,4 +9,34 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_termo_uso" tools:context="libelulati.tripctrl.Aplicativo.TermoUsoActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tx_tu_termo_titulo"
+        android:text="@string/co_termo_uso"
+        android:textSize="@dimen/fonte_botoes"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tx_tu_termo"
+        android:maxLines="20"
+        android:gravity="fill_horizontal"
+        android:scrollbars="vertical"
+        android:text="@string/termouso"
+        android:textSize="16dp"
+        android:layout_below="@+id/tx_tu_termo_titulo"
+        android:layout_marginTop="5dp"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/check_termo"
+        android:id="@+id/cb_tu_check"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/tx_tu_termo"
+        android:layout_alignEnd="@+id/tx_tu_termo" />
+
 </RelativeLayout>
