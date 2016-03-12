@@ -20,7 +20,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tx_tu_termo"
-        android:maxLines="20"
+        android:maxLines="22"
         android:gravity="fill_horizontal"
         android:scrollbars="vertical"
         android:text="@string/termouso"

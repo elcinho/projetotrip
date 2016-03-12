@@ -6,9 +6,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import libelulati.tripctrl.R;
@@ -17,8 +19,9 @@ import libelulati.tripctrl.Usuarios.Usuario_DAO;
 
 public class TermoUsoActivity extends AppCompatActivity {
     int id_usuario = 1;
-    int us_uso = 0;
+    int us_uso;
     CheckBox cb_tu_termo;
+    TextView tx_tu_termo;
     Context context;
 
 
@@ -29,6 +32,18 @@ public class TermoUsoActivity extends AppCompatActivity {
 
         context = TermoUsoActivity.this;
         cb_tu_termo = (CheckBox)findViewById(R.id.cb_tu_check);
+        tx_tu_termo = (TextView)findViewById(R.id.tx_tu_termo);
+
+        tx_tu_termo.setMovementMethod(new ScrollingMovementMethod());
+
+        Usuario usuario = new Usuario_DAO(context).buscaId(id_usuario);
+        us_uso = usuario.getUs_uso();
+        if(us_uso == 0){
+            cb_tu_termo.setChecked(false);
+        }
+        else{
+            cb_tu_termo.setChecked(true);
+        }
 
         cb_tu_termo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

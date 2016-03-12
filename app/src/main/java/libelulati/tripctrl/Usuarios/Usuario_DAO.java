@@ -84,9 +84,11 @@ public class Usuario_DAO extends Dados{
             String email_us = cursor.getString(cursor.getColumnIndex(Nomes.getUsEmail()));
             String dtnasc_us = cursor.getString(cursor.getColumnIndex(Nomes.getUsDtnasc()));
             String senha_us = cursor.getString(cursor.getColumnIndex(Nomes.getUsSenha()));
+            int uso_us = Integer.parseInt(cursor.getString(cursor.getColumnIndex(Nomes.getUsUso())));
 
             usuario = new Usuario();
             usuario.setUs_id(id_us);
+            usuario.setUs_uso(uso_us);
             usuario.setUs_semsenha(semsenha_us);
             usuario.setUs_nome(nome_us);
             usuario.setUs_email(email_us);

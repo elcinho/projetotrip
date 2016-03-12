@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button bt_main_entrar;
     TextView tx_main_esquecisenha;
-    int id_usuario;
+    int id_usuario = 1;
     int us_uso = 0;
     Context context;
 

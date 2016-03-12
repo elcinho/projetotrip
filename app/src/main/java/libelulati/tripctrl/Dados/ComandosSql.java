@@ -135,7 +135,7 @@ public class ComandosSql {
             " " + Nomes.getUsDtnasc() + "," +
             " " + Nomes.getUsSenha() + "," +
             " " + Nomes.getUsSemsenha() + ")" + getVALUES() + "(" +
-            " " + "Desenvolvedor, desenvolvedor@libelulati.com, 06/10/2015, 102030, 0" +
+            " " + "'Desenvolvedor', 'desenvolvedor@libelulati.com', '06/10/2015', '102030', 0" +
             " )";
 
 
