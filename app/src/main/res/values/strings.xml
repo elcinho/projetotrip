@@ -85,6 +85,18 @@
     <string name="co_avalie">Avaliação e Feedback</string>
     <string name="co_sair">Sair</string>
 
+    <!-- ITENS SOBRE -->
+    <string name="so_versao">Versão: </string>
+    <string name="so_datainstalacao">Data de Instalação: </string>
+    <string name="so_desenvolvedor">Desenvolvido por: </string>
+    <string name="so_responsavel">Responsáveis pelo desenvolvimento: </string>
+    <string name="so_libelula">Libélula TI</string>
+    <string name="so_marcela">Marcela Melo</string>
+    <string name="so_elcio">Elcio Raimundo</string>
+    <string name="so_email">desenvolvimento@libelulati.com</string>
+    <string name="so_site">www.libelulati.com</string>
+
+
     <!-- NOTIFICAÇÕES -->
     <string name="ativar_notificacoes">Ativar Notificações</string>
     <string name="notificacao_todas">Todas</string>
@@ -108,6 +120,7 @@
     <string name="dtnasc">Data de Nascimento</string>
     <string name="dtvenc">Vencimento</string>
     <string name="email">E-mail</string>
+    <string name="site">Site</string>
     <string name="hospedagem">Hospedagem</string>
     <string name="lista">Nova Lista</string>
     <string name="localizacao">Localização</string>

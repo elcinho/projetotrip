@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import libelulati.tripctrl.Aplicativo.SobreActivity;
 import libelulati.tripctrl.Aplicativo.TermoUsoActivity;
 import libelulati.tripctrl.Categorias.CategoriaListActivity;
 import libelulati.tripctrl.Dados.Nomes;
@@ -89,6 +90,8 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
                 startActivity(it_tipopagamento);
                 break;
             case 4:
+                Intent it_sobre = new Intent(context, SobreActivity.class);
+                startActivity(it_sobre);
                 break;
             case 5:
                 Intent it_termo = new Intent(context, TermoUsoActivity.class);
