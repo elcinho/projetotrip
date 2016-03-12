@@ -1,6 +1,8 @@
 package libelulati.tripctrl.Aplicativo;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +21,8 @@ import libelulati.tripctrl.R;
 public class SobreActivity extends AppCompatActivity {
     Context context;
     TextView tx_so_versao;
+    String versao;
+    PackageInfo packageInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +30,18 @@ public class SobreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sobre);
 
         context = SobreActivity.this;
-
         tx_so_versao = (TextView)findViewById(R.id.tx_so_versao);
-        tx_so_versao.setText("1.0");
+
+        Versao();
+        tx_so_versao.setText(versao);
     }
 
+    public void Versao(){
+        try {
+            packageInfo = getPackageManager().getPackageInfo(getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        versao = packageInfo.versionName;
+    }
 }
