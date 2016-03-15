@@ -1,107 +1,52 @@
 package libelulati.tripctrl.Funcoes;
 
+import android.content.Context;
+import android.widget.EditText;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validar {
-    public static boolean ValidarNome(String nome){
-        int num = 0, seq = 0, esp = 0;
-        String espaco = " ";
-        String numeros = "0123456789";
+import libelulati.tripctrl.R;
 
-        if(nome.length() < 4)
-            return false;
-        else{
-            for(int i = 0; i < nome.length(); i++){
-                for(int j = 0; j < espaco.length(); j++){
-                    if(i == 0 || i == nome.length() - 1){
-                        if(nome.charAt(i) == espaco.charAt(j)){
-                            esp++;
-                        }
-                    }
-                }
-            }
-            for(int i = 0; i < nome.length(); i++){
-                for(int j = 0; j < numeros.length(); j++){
-                    if(nome.charAt(i) == numeros.charAt(j))
-                        num++;
-                }
-            }
-            for (int i = 0; i < nome.length() - 1; i++) {
-                if(nome.charAt(i) == nome.charAt(i+1))
-                    seq++;
-            }
-            return !(num > 0 || seq > 2);
-        }
+public class Validar {
+
+    Context context;
+
+    String caracMin = "abcdefghijklmnopqrstuvwxyz";
+    String caracMai = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    String numeros = "0123456789";
+    Character espaco = ' ';
+
+
+    public Validar(Context context) {
+        this.context = context;
     }
 
-    public static boolean ValidarEmail(int tamanho, String email) {
-        if (tamanho < 5) {
+    public boolean ValidarEmail(String email, EditText ed_email) {
+        if (email.length() < 5) {
             return false;
         } else {
             Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$");
             Matcher m = p.matcher(email);
-            return m.find();
+            boolean retorno = m.find();
+            if(retorno){
+                return true;
+            }
+            else {
+                ed_email.setError(context.getResources().getString(R.string.validar_email));
+                return false;
+            }
         }
     }
 
-    public static boolean ValidarUsuarioSenha (String email_dig, String senha_dig, String email_cad, String senha_cad){
+    public boolean ValidarUsuarioSenha (String email_dig, String senha_dig, String email_cad, String senha_cad){
         if(email_cad.equals(email_dig)){
             return senha_cad.equals(senha_dig);
         } else {
             return false;
-        }
-    }
-
-    public static boolean ValidarDataNascimento(Date data) {
-        Date atual = new Date();
-        long tempo = 0;
-        long limite = 471726000; //15 anos
-        int indicador = 0;
-
-        if (data.getTime() > atual.getTime()) {
-            indicador = 0;
-        } else {
-            tempo = (atual.getTime() - data.getTime()) / 1000;
-            if (tempo < limite) {
-                indicador = 0;
-            } else {
-                indicador = 1;
-            }
-        }
-        return indicador == 1;
-    }
-
-    public static boolean ValidarDataInicio(Date data){
-        Date atual = new Date();
-        if(atual.getTime() <= data.getTime()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public static boolean ValidarDataFim(Date inicio, Date fim){
-        if(inicio.getTime() < fim.getTime()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public static boolean ValidarValor(double valor){
-        double vmin = 0.99;
-        double vmax = 999999.99;
-        if(valor < vmin || valor > vmax){
-            return false;
-        }
-        else{
-            return true;
         }
     }
 
@@ -125,9 +70,94 @@ public class Validar {
         return codcad.equals(coddig);
     }
 
+    public boolean ValidarTexto(String texto, EditText ed_texto) {
+        int seq = 0;
+        if (texto.charAt(0) == espaco) {
+            ed_texto.setError(context.getResources().getString(R.string.validar_texto_espaco));
+            return false;
+        } else {
+            for (int i = 0; i < texto.length() - 1; i++) {
+                if(texto.charAt(i) == texto.charAt(i+1)){
+                    seq++;
+                }
+            }
+            if (seq > 3) {
+                ed_texto.setError(context.getResources().getString(R.string.validar_texto_sequencia));
+                return false;
+            } else {
+                if (texto.length() < 5) {
+                    ed_texto.setError(context.getResources().getString(R.string.validar_texto_tamanho));
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+    }
 
+    public  boolean ValidarDataInicio(String dtini, EditText ed_dtini){
+        Date atual = new Date();
+        boolean retorno = false;
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date data = (Date)formatador.parse(dtini);
+            if(atual.getTime() <= data.getTime()){
+                retorno =  true;
+            }
+            else{
+                ed_dtini.setError(context.getResources().getString(R.string.validar_datainicial));
+                retorno =  false;
+            }
 
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
+        return retorno;
+    }
 
+    public boolean ValidarDataFim(String dtini, String dtfim, EditText ed_dtfim){
+        boolean retorno = false;
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 
+        try {
+            Date inicio = (Date)formatador.parse(dtini);
+            Date fim = (Date)formatador.parse(dtfim);
+
+            if(inicio.getTime() < fim.getTime()){
+                retorno =  true;
+            }
+            else{
+                ed_dtfim.setError(context.getResources().getString(R.string.validar_datafinal));
+                retorno =  false;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return retorno;
+    }
+
+    public boolean ValidarValorTotal(String valorTotal, EditText ed_valorTotal){
+        double valor;
+        if(valorTotal.length() == 0){
+            valor = 0;
+        }
+        else {
+            valor = Double.parseDouble(valorTotal);
+        }
+        double vmin = 99.99;
+        double vmax = 999999.99;
+        if(valor == 0){
+            return true;
+        }
+        if(valor < vmin || valor > vmax){
+            ed_valorTotal.setError(context.getResources().getString(R.string.validar_valortotal));
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

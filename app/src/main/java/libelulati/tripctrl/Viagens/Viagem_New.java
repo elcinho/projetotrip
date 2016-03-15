@@ -2,29 +2,36 @@ package libelulati.tripctrl.Viagens;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
+import java.lang.reflect.Type;
+
 import libelulati.tripctrl.Funcoes.DatePicker;
+import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
 public class Viagem_New extends DialogFragment{
     EditText ed_dvi_nome, ed_dvi_dtinic, ed_dvi_dtfim, ed_dvi_valor;
-    boolean v_nome, v_dtini, v_dtfim, v_valor;
     Button positivo, negativo;
+    boolean v_nome, v_dtini, v_dtfim, v_valor;
     int id_usuario = InicioActivity.getId_usuario();
     View dialogview;
+    Validar validar;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -41,64 +48,57 @@ public class Viagem_New extends DialogFragment{
         ed_dvi_dtfim = (EditText)dialogview.findViewById(R.id.ed_dvi_dtfim);
         ed_dvi_valor = (EditText)dialogview.findViewById(R.id.ed_dvi_valor);
 
-        ed_dvi_nome.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        ed_dvi_dtinic.setInputType(InputType.TYPE_NULL);
+        ed_dvi_dtfim.setInputType(InputType.TYPE_NULL);
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                IsValido();
-            }
-        });
+        validar = new Validar(getActivity());
 
         ed_dvi_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
+                    v_nome = validar.ValidarTexto(ed_dvi_nome.getText().toString(), ed_dvi_nome);
+                    IsValido();
                 }
-            }
-        });
-
-        ed_dvi_dtinic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePicker(v, ed_dvi_dtinic);
             }
         });
 
         ed_dvi_dtinic.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus){}
-
-            }
-        });
-
-        ed_dvi_dtfim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                if (hasFocus){
+                    ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_dvi_dtinic.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    showDatePicker(v, ed_dvi_dtinic);
+                }
+                else{
+                    ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_dvi_dtinic.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    v_dtini = validar.ValidarDataInicio(ed_dvi_dtinic.getText().toString(), ed_dvi_dtinic);
+                    IsValido();
+                }
             }
         });
 
         ed_dvi_dtfim.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus){}
+                if (hasFocus) {
+                    ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_dvi_dtfim.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    showDatePicker(v, ed_dvi_dtfim);
+                }
+                else{
+                    ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_dvi_dtfim.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    v_dtfim = validar.ValidarDataFim(ed_dvi_dtinic.getText().toString(), ed_dvi_dtfim.getText().toString(), ed_dvi_dtfim);
+                    IsValido();
 
+                }
             }
         });
-        ed_dvi_dtfim.setOnClickListener(new View.OnClickListener() {
+
+        ed_dvi_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                showDatePicker(v, ed_dvi_dtfim);
+            public void onFocusChange(View v, boolean hasFocus) {
+                v_valor = validar.ValidarValorTotal(ed_dvi_valor.getText().toString(), ed_dvi_valor);
+                IsValido();
             }
         });
 
@@ -115,10 +115,10 @@ public class Viagem_New extends DialogFragment{
 
             @Override
             public void afterTextChanged(Editable s) {
+                v_valor = validar.ValidarValorTotal(ed_dvi_valor.getText().toString(), ed_dvi_valor);
                 IsValido();
             }
         });
-
 
         builder.setPositiveButton(getActivity().getResources().getString(R.string.salvar), new DialogInterface.OnClickListener() {
             @Override
@@ -184,11 +184,14 @@ public class Viagem_New extends DialogFragment{
         getActivity().overridePendingTransition(0, 0); reiniciar.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
     }
 
-
-
     public boolean IsValido(){
+        if(v_nome && v_dtini && v_dtfim && v_valor){
             positivo.setEnabled(true);
             positivo.setTextColor(getActivity().getResources().getColor(R.color.colorAccent));
             return true;
+        }
+        else {
+            return false;
+        }
     }
 }
