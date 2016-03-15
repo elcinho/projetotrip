@@ -15,15 +15,13 @@
         android:layout_height="wrap_content"
         android:text="@string/adicioneviagem"
         android:id="@+id/bt_ini_addviagem"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="47dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="93dp"
         android:background="@color/colorAccent"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/fonte_botoes"/>
+        android:textSize="@dimen/fonte_botoes"
+        android:layout_below="@+id/tx_ini_valorviagem"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,4 +40,13 @@
         android:text=" "
         android:id="@+id/tx_ini_valorviagem"
         android:layout_below="@+id/tx_ini_dataviagem"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_divider"
+        android:background="@color/colorGrey"
+        android:layout_marginTop="@dimen/margin_top_co"
+        android:layout_below="@+id/tx_ini_valorviagem"
+        android:id="@+id/vw_ini_linha01"/>
+
 </RelativeLayout>
