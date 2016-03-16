@@ -19,7 +19,7 @@ public class Validar {
     String caracMai = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     String numeros = "0123456789";
     Character espaco = ' ';
-
+    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 
     public Validar(Context context) {
         this.context = context;
@@ -98,7 +98,6 @@ public class Validar {
     public  boolean ValidarDataInicio(String dtini, EditText ed_dtini){
         Date atual = new Date();
         boolean retorno = false;
-        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date data = (Date)formatador.parse(dtini);
             if(atual.getTime() <= data.getTime()){
@@ -118,8 +117,6 @@ public class Validar {
 
     public boolean ValidarDataFim(String dtini, String dtfim, EditText ed_dtfim){
         boolean retorno = false;
-        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-
         try {
             Date inicio = (Date)formatador.parse(dtini);
             Date fim = (Date)formatador.parse(dtfim);
@@ -160,4 +157,28 @@ public class Validar {
             return true;
         }
     }
+
+    public boolean ValidarDataTransacao(String dataTransacao, String dataInicioViagem, String dataFimViagem, EditText ed_dataTransacao){
+        boolean retorno = false;
+        try {
+            Date transacao = (Date)formatador.parse(dataTransacao);
+            Date inicio = (Date)formatador.parse(dataInicioViagem);
+            Date fim = (Date)formatador.parse(dataFimViagem);
+
+            if(transacao.getTime() < inicio.getTime() || transacao.getTime() > fim.getTime() ){
+                retorno = false;
+                ed_dataTransacao.setError(context.getResources().getString(R.string.validar_datatransacao));
+            }
+            else {
+                retorno = true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+
+
+
 }
