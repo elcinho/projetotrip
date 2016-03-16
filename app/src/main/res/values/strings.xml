@@ -89,6 +89,10 @@
     <string name="notificacao_pagamentos">Pagamentos</string>
     <string name="notificacao_planejamento">Planejamento</string>
     <string name="notificacao_gasto">Gasto</string>
+    <string name="notificacao_viagem_50">Você atingiu 50% do total planejado da sua viagem</string>
+    <string name="notificacao_viagem_90">Você atingiu 90% do total planejado da sua viagem</string>
+    <string name="Notificaçao_categoria_50">Você atingiu 50% do total da sua categoria</string>
+    <string name="Notificaçao_categoria_90">Você atingiu 90% do total da sua categoria</string>
 
 
     <!-- CAMPOS -->
