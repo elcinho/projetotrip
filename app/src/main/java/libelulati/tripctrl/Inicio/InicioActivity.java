@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -27,7 +26,6 @@ import libelulati.tripctrl.Gastos.GastosListActivity;
 import libelulati.tripctrl.Pagamentos.PagamentosListActivity;
 import libelulati.tripctrl.Planejamentos.PlanejamentosListActivity;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.TesteGrafico;
 import libelulati.tripctrl.Viagens.Viagem;
 import libelulati.tripctrl.Viagens.Viagem_New;
 import libelulati.tripctrl.Viagens.Viagens_DAO;
@@ -181,17 +179,6 @@ public class InicioActivity extends AppCompatActivity {
                 ExibirViagemNew();
             }
         });
-
-        //TESTE GRAFICO
-        teste = (Button)findViewById(R.id.bt_teste);
-        teste.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(InicioActivity.this, TesteGrafico.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     @Override

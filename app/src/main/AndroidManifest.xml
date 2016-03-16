@@ -151,11 +151,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main.MainActivity" />
         </activity>
-        <activity
-            android:name=".TesteGrafico"
-            android:label="@string/title_activity_teste_grafico"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
     </application>
 
 </manifest>
