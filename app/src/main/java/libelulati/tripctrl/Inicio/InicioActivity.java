@@ -27,6 +27,7 @@ import libelulati.tripctrl.Gastos.GastosListActivity;
 import libelulati.tripctrl.Pagamentos.PagamentosListActivity;
 import libelulati.tripctrl.Planejamentos.PlanejamentosListActivity;
 import libelulati.tripctrl.R;
+import libelulati.tripctrl.TesteGrafico;
 import libelulati.tripctrl.Viagens.Viagem;
 import libelulati.tripctrl.Viagens.Viagem_New;
 import libelulati.tripctrl.Viagens.Viagens_DAO;
@@ -35,7 +36,7 @@ public class InicioActivity extends AppCompatActivity {
     static int id_usuario = 0;
     List<Viagem> viagens;
     Viagem viagem;
-    Button bt_ini_addviagem;
+    Button bt_ini_addviagem, teste;
     TextView tx_ini_dataviagem, tx_ini_valorviagem;
     Context context;
     String titulo;
@@ -178,6 +179,16 @@ public class InicioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ExibirViagemNew();
+            }
+        });
+
+        //TESTE GRAFICO
+        teste = (Button)findViewById(R.id.bt_teste);
+        teste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InicioActivity.this, TesteGrafico.class);
+                startActivity(intent);
             }
         });
 
