@@ -17,9 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidplot.pie.PieChart;
-import com.androidplot.pie.Segment;
-import com.androidplot.pie.SegmentFormatter;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
@@ -47,8 +44,6 @@ public class InicioActivity extends AppCompatActivity {
     View v_inicio, v_linha;
     ImageView fabIconNew;
 
-    PieChart gr_ini_icial;
-    Segment sg_totalviagem, sg_totalplanejamento, sg_totalgasto, sg_geral;
     double val_viagem, val_planejamento, val_gasto;
 
     @Override
@@ -58,7 +53,6 @@ public class InicioActivity extends AppCompatActivity {
         id_usuario = 1; // BUSCAR ID DO USUARIO LOGADO
         v_inicio = findViewById(R.id.rl_inicio);
         context = InicioActivity.this;
-        gr_ini_icial = (PieChart)findViewById(R.id.gr_ini_inicial);
         v_linha = findViewById(R.id.vw_ini_linha01);
 
         // MENU FLUTUANTE
@@ -229,7 +223,6 @@ public class InicioActivity extends AppCompatActivity {
         viagens = new Viagens_DAO(context).listar(id_usuario);
         if(viagens.size() > 0){
             bt_ini_addviagem.setVisibility(View.INVISIBLE);
-            gr_ini_icial.setVisibility(View.VISIBLE);
             tx_ini_dataviagem.setVisibility(View.VISIBLE);
             tx_ini_valorviagem.setVisibility(View.VISIBLE);
             id_viagem = viagens.size();
@@ -250,7 +243,6 @@ public class InicioActivity extends AppCompatActivity {
             exibir_menu = 0;
         }
         RecuperarTotais();
-        MontarGrafico();
     }
 
     public void AtualizarTotais(){
@@ -268,9 +260,8 @@ public class InicioActivity extends AppCompatActivity {
         }
         else{
             Totais_DAO totais_dao = new Totais_DAO(context);
-            Totais totais = new Totais();
-            totais.setTo_total(viagem.getVi_valor());
-            totais_dao.atualizar(totais, "viagem");
+            totalviagem.setTo_total(viagem.getVi_valor());
+            totais_dao.atualizar(totalviagem, "viagem");
         }
     }
 
@@ -310,6 +301,7 @@ public class InicioActivity extends AppCompatActivity {
         it_gastos.putExtras(bundle);
 
         startActivityForResult(it_gastos, 1);
+        finish();
     }
 
     public void ChamarListPagamento(){
@@ -320,6 +312,7 @@ public class InicioActivity extends AppCompatActivity {
         it_pagamento.putExtras(bundle);
 
         startActivityForResult(it_pagamento, 1);
+        finish();
     }
 
     public void ChamarListPlanejamento(){
@@ -330,51 +323,14 @@ public class InicioActivity extends AppCompatActivity {
         it_planejamento.putExtras(bundle);
 
         startActivityForResult(it_planejamento, 1);
+        finish();
     }
 
     public void ChamarListConfiguracoes(){
         Intent it_configuracoes = new Intent(context, ConfiguracoesListActivity.class);
         startActivity(it_configuracoes);
+        finish();
     }
-
-    public void MontarGrafico(){
-        double disponivel = val_planejamento - val_gasto;
-        sg_totalviagem = new Segment("Total disponível", val_viagem);
-        sg_totalgasto = new Segment("Gasto", val_gasto);
-        sg_totalplanejamento = new Segment("Disponível", disponivel);
-        sg_geral = new Segment("Não há dados", 100);
-
-        EmbossMaskFilter embossMaskFilter = new EmbossMaskFilter(new float[]{1,1,1}, 0.4f, 8.2f, 10);
-
-        SegmentFormatter sgf_geral = new SegmentFormatter();
-        sgf_geral.configure(context, R.xml.format_accent);
-        sgf_geral.getFillPaint().setMaskFilter(embossMaskFilter);
-
-        SegmentFormatter sgf_gasto = new SegmentFormatter();
-        sgf_gasto.configure(context, R.xml.format_00ff40);
-        sgf_gasto.getFillPaint().setMaskFilter(embossMaskFilter);
-
-        SegmentFormatter sgf_planejamento = new SegmentFormatter();
-        sgf_planejamento.configure(context, R.xml.format_ffbf00);
-        sgf_planejamento.getFillPaint().setMaskFilter(embossMaskFilter);
-
-        if(val_viagem == 0 && val_gasto == 0 && val_planejamento == 0){
-            gr_ini_icial.addSeries(sg_geral, sgf_geral);
-        }
-        else {
-            if(val_gasto == 0 && val_planejamento == 0){
-                gr_ini_icial.addSeries(sg_totalviagem, sgf_geral);
-            }
-            else{
-                gr_ini_icial.addSeries(sg_totalgasto, sgf_gasto);
-                gr_ini_icial.addSeries(sg_totalplanejamento, sgf_planejamento);
-            }
-        }
-
-        gr_ini_icial.getBorderPaint().setColor(Color.TRANSPARENT);
-        gr_ini_icial.getBackgroundPaint().setColor(Color.TRANSPARENT);
-    }
-
 
     public static int getId_usuario() {
         return id_usuario;

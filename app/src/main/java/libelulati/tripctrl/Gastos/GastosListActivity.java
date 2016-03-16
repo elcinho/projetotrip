@@ -142,9 +142,8 @@ public class GastosListActivity extends AppCompatActivity {
         }
         else{
             Totais_DAO totais_dao = new Totais_DAO(context);
-            Totais totais = new Totais();
-            totais.setTo_total(String.valueOf(ga_total));
-            totais_dao.atualizar(totais, "gasto");
+            totalgasto.setTo_total(String.valueOf(ga_total));
+            totais_dao.atualizar(totalgasto, "gasto");
         }
     }
 

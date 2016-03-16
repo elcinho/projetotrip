@@ -117,8 +117,8 @@ public class PlanejamentosListActivity extends AppCompatActivity {
     }
 
     public void AtualizarTotais(){
-        Totais totalgasto = new Totais_DAO(context).buscarNome("planejamento");
-        if(totalgasto == null){
+        Totais totalplanejamento = new Totais_DAO(context).buscarNome("planejamento");
+        if(totalplanejamento == null){
             Totais_DAO totais_dao = new Totais_DAO(context);
             Totais totais = new Totais();
             totais.setUs_id(id_usuario);
@@ -131,9 +131,8 @@ public class PlanejamentosListActivity extends AppCompatActivity {
         }
         else{
             Totais_DAO totais_dao = new Totais_DAO(context);
-            Totais totais = new Totais();
-            totais.setTo_total(String.valueOf(pl_total));
-            totais_dao.atualizar(totais, "planejamento");
+            totalplanejamento.setTo_total(String.valueOf(pl_total));
+            totais_dao.atualizar(totalplanejamento, "planejamento");
         }
     }
 

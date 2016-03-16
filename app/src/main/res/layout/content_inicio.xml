@@ -49,10 +49,4 @@
         android:layout_below="@+id/tx_ini_valorviagem"
         android:id="@+id/vw_ini_linha01"/>
 
-    <com.androidplot.pie.PieChart
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gr_ini_inicial"
-        android:visibility="invisible"/>
-
 </RelativeLayout>
