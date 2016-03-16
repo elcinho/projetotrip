@@ -83,6 +83,16 @@ public class ComandosSql {
             " " + Nomes.getCnPlanejamento() + getINTEIRO() + "," +
             " " + Nomes.getCnGastos() + getINTEIRO() + ")";
 
+    //TABELA TOTAIS
+    private static final String CREATE_TABLE_TOTAIS = getCreateTable() + Nomes.getTabelaTotais() + "(" +
+            " " + Nomes.getID() + getPRIMARYKEY() + "," +
+            " " + Nomes.getUsId() + getINTEIRO() + "," +
+            " " + Nomes.getViId() + getINTEIRO() + "," +
+            " " + Nomes.getToNome() + getTEXTO() + getUNIQUE() + "," +
+            " " + Nomes.getToTotal() + getTEXTO() + "," +
+            " " + Nomes.getToGasto() + getTEXTO() + "," +
+            " " + Nomes.getToPlanejamento() + getTEXTO() + ")";
+
 
     // DROP TABLE
     private static final String DROP_TABLE_USUARIOS = getDropTable() + Nomes.getTabelaUsuarios();
@@ -93,6 +103,7 @@ public class ComandosSql {
     private static final String DROP_TABLE_PLANEJAMENTOS = getDropTable() + Nomes.getTabelaPlanejamentos();
     private static final String DROP_TABLE_GASTOS = getDropTable() + Nomes.getTabelaGastos();
     private static final String DROP_TABLE_CNOTIFICACOES = getDropTable() + Nomes.getTabelaCnotificacao();
+    private static final String DROP_TABLE_TOTAIS = getDropTable() + Nomes.getTabelaTotais();
 
     // INSERT TABLE CATEGORIAS
     private static final String INSERT_CATEGORIAS_ALIMENTACAO = getInsertInto() + Nomes.getTabelaCategorias() + "(" +
@@ -130,12 +141,13 @@ public class ComandosSql {
 
     //INSERT TABLE USUÁRIO
     private static final String INSERT_USUARIO = getInsertInto() + Nomes.getTabelaUsuarios() + "(" +
+            " " + Nomes.getUsUso() + "," +
             " " + Nomes.getUsNome() + "," +
             " " + Nomes.getUsEmail() +"," +
             " " + Nomes.getUsDtnasc() + "," +
             " " + Nomes.getUsSenha() + "," +
             " " + Nomes.getUsSemsenha() + ")" + getVALUES() + "(" +
-            " " + "'Desenvolvedor', 'desenvolvedor@libelulati.com', '06/10/2015', '102030', 0" +
+            " " + "0, 'Desenvolvedor', 'desenvolvedor@libelulati.com', '06/10/2015', '102030', 0" +
             " )";
 
 
@@ -152,6 +164,7 @@ public class ComandosSql {
     private static final String SELECT_GASTOS_VI = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getViId() + " = ";
     private static final String SELECT_PAGAMENTOS_VI = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getViId() + " = ";
     private static final String SELECT_PLANEJAMENTOS_VI = "SELECT * FROM " + Nomes.getTabelaPlanejamentos() + " WHERE " + Nomes.getViId() + " = ";
+    private static final String SELECT_TOTAIS_VI = "SELECT * FROM " + Nomes.getTabelaTotais() + " WHER " + Nomes.getViId() + " = ";
 
 
     //SELECIONAR TODOS POR ID
@@ -164,7 +177,7 @@ public class ComandosSql {
 
     //SELECIONAR POR CAMPO ESPECÍFICO
     private static final String SELECT_EMAIL_USUARIO = "SELECT * FROM " + Nomes.getTabelaUsuarios() + " WHERE " + Nomes.getUsEmail() + " = ";
-
+    private static final String SELECT_NOME_TOTAIS = "SELECT * FROM " + Nomes.getTabelaTotais() + " WHERE " + Nomes.getToNome() + " = ";
 
 
     //ATUALIZAÇÃO
@@ -236,6 +249,10 @@ public class ComandosSql {
         return CREATE_TABLE_CNOTIFICACOES;
     }
 
+    public static String getCreateTableTotais() {
+        return CREATE_TABLE_TOTAIS;
+    }
+
     public static String getDropTableUsuarios() {
         return DROP_TABLE_USUARIOS;
     }
@@ -266,6 +283,10 @@ public class ComandosSql {
 
     public static String getDropTableCnotificacoes() {
         return DROP_TABLE_CNOTIFICACOES;
+    }
+
+    public static String getDropTableTotais() {
+        return DROP_TABLE_TOTAIS;
     }
 
     public static String getInsertCategoriasAlimentacao() {
@@ -348,6 +369,10 @@ public class ComandosSql {
         return SELECT_PLANEJAMENTOS_VI;
     }
 
+    public static String getSelectTotaisVi() {
+        return SELECT_TOTAIS_VI;
+    }
+
     public static String getSelectIdViagem() {
         return SELECT_ID_VIAGEM;
     }
@@ -370,6 +395,10 @@ public class ComandosSql {
 
     public static String getSelectEmailUsuario() {
         return SELECT_EMAIL_USUARIO;
+    }
+
+    public static String getSelectNomeTotais() {
+        return SELECT_NOME_TOTAIS;
     }
 
     public static String getAtualizarWhere() {

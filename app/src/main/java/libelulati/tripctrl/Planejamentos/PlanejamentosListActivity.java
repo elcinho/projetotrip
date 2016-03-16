@@ -14,6 +14,8 @@ import java.util.List;
 
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
+import libelulati.tripctrl.Inicio.Totais;
+import libelulati.tripctrl.Inicio.Totais_DAO;
 import libelulati.tripctrl.Pagamentos.PagamentosEditActivity;
 import libelulati.tripctrl.R;
 
@@ -102,6 +104,7 @@ public class PlanejamentosListActivity extends AppCompatActivity {
                 pl_total += dc_total;
 
                 tx_pl_total.setText(context.getResources().getString(R.string.total) + " " + context.getResources().getString(R.string.moeda) + " " + format(pl_total));
+                AtualizarTotais();
             }
         }
         else{
@@ -112,6 +115,28 @@ public class PlanejamentosListActivity extends AppCompatActivity {
             linearLayout_itens.addView(nenhumregistro);
         }
     }
+
+    public void AtualizarTotais(){
+        Totais totalgasto = new Totais_DAO(context).buscarNome("planejamento");
+        if(totalgasto == null){
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            Totais totais = new Totais();
+            totais.setUs_id(id_usuario);
+            totais.setVi_id(id_viagem);
+            totais.setTo_nome("planejamento");
+            totais.setTo_total(String.valueOf(pl_total));
+            totais.setTo_gasto(null);
+            totais.setTo_planejamento(null);
+            totais_dao.criar(totais);
+        }
+        else{
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            Totais totais = new Totais();
+            totais.setTo_total(String.valueOf(pl_total));
+            totais_dao.atualizar(totais, "planejamento");
+        }
+    }
+
 
     public void Visualizar(int id){
         Planejamento_DAO planejamento_dao = new Planejamento_DAO(context);
@@ -134,5 +159,9 @@ public class PlanejamentosListActivity extends AppCompatActivity {
 
     public static String format(double x){
         return String.format("%.2f", x);
+    }
+
+    public double getPl_total() {
+        return pl_total;
     }
 }

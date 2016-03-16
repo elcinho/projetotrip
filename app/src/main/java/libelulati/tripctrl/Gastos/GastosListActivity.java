@@ -8,13 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
+import libelulati.tripctrl.Inicio.Totais;
+import libelulati.tripctrl.Inicio.Totais_DAO;
 import libelulati.tripctrl.R;
 
 public class GastosListActivity extends AppCompatActivity {
@@ -114,6 +115,7 @@ public class GastosListActivity extends AppCompatActivity {
                 ga_total += dc_valor;
 
                 tx_ga_total.setText(context.getResources().getString(R.string.total) + " " + context.getResources().getString(R.string.moeda) + " " + format(ga_total));
+                AtualizarTotais();
             }
         }
         else{
@@ -124,6 +126,28 @@ public class GastosListActivity extends AppCompatActivity {
             linearLayout_itens.addView(nenhumregistro);
         }
     }
+
+    public void AtualizarTotais(){
+        Totais totalgasto = new Totais_DAO(context).buscarNome("gasto");
+        if(totalgasto == null){
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            Totais totais = new Totais();
+            totais.setUs_id(id_usuario);
+            totais.setVi_id(id_viagem);
+            totais.setTo_nome("gasto");
+            totais.setTo_total(String.valueOf(ga_total));
+            totais.setTo_gasto(null);
+            totais.setTo_planejamento(null);
+            totais_dao.criar(totais);
+        }
+        else{
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            Totais totais = new Totais();
+            totais.setTo_total(String.valueOf(ga_total));
+            totais_dao.atualizar(totais, "gasto");
+        }
+    }
+
 
     public void Visualizar(int id){
         Gastos_DAO gastos_dao = new Gastos_DAO(context);

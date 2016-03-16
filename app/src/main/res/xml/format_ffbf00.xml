@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config
+    fillPaint.color = "#ffbf00"
+    labelPaint.textSize = "@dimen/fonte_grafico" />

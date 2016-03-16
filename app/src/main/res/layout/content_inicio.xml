@@ -49,13 +49,10 @@
         android:layout_below="@+id/tx_ini_valorviagem"
         android:id="@+id/vw_ini_linha01"/>
 
-    <Button
+    <com.androidplot.pie.PieChart
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TESTAR GRAFICO"
-        android:id="@+id/bt_teste"
-        android:layout_below="@+id/bt_ini_addviagem"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp" />
+        android:id="@+id/gr_ini_inicial"
+        android:visibility="invisible"/>
 
 </RelativeLayout>
