@@ -17,9 +17,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import libelulati.tripctrl.Configuracoes.ConfiguracoesListActivity;
@@ -43,8 +49,8 @@ public class InicioActivity extends AppCompatActivity {
     int id_viagem, exibir_menu;
     View v_inicio, v_linha;
     ImageView fabIconNew;
-
-    double val_viagem, val_planejamento, val_gasto;
+    PieChart gr_ini_inicio;
+    float val_viagem, val_planejamento, val_gasto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,7 @@ public class InicioActivity extends AppCompatActivity {
         v_inicio = findViewById(R.id.rl_inicio);
         context = InicioActivity.this;
         v_linha = findViewById(R.id.vw_ini_linha01);
+        gr_ini_inicio = (PieChart)findViewById(R.id.gr_ini_inicio);
 
         // MENU FLUTUANTE
         int floatActionButtonSize = getResources().getDimensionPixelSize(R.dimen.float_action_button_size);
@@ -231,7 +238,7 @@ public class InicioActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(titulo);
             tx_ini_dataviagem.setText(context.getResources().getString(R.string.periodo
             ) + " " + viagem.getVi_dtinic() + " " + context.getResources().getString(R.string.a) + " " + viagem.getVi_dtfim());
-            tx_ini_valorviagem.setText(context.getResources().getString(R.string.valordisponivel)+ " " + context.getResources().getString(R.string.moeda) + " " + viagem.getVi_valor());
+            tx_ini_valorviagem.setText(context.getResources().getString(R.string.valordisponivel) + " " + context.getResources().getString(R.string.moeda) + " " + viagem.getVi_valor());
             exibir_menu = 1;
             AtualizarTotais();
         }
@@ -243,6 +250,7 @@ public class InicioActivity extends AppCompatActivity {
             exibir_menu = 0;
         }
         RecuperarTotais();
+        MontarGrafico();
     }
 
     public void AtualizarTotais(){
@@ -275,21 +283,21 @@ public class InicioActivity extends AppCompatActivity {
             val_viagem = 0;
         }
         else{
-            val_viagem = Double.parseDouble(totalviagem.getTo_total());
+            val_viagem = Float.parseFloat(totalviagem.getTo_total());
         }
 
         if(totalgasto == null){
             val_gasto = 0;
         }
         else{
-            val_gasto = Double.parseDouble(totalgasto.getTo_total());
+            val_gasto = Float.parseFloat(totalgasto.getTo_total());
         }
 
         if(totalplanejamento == null){
             val_planejamento = 0;
         }
         else{
-            val_planejamento = Double.parseDouble(totalplanejamento.getTo_total());
+            val_planejamento = Float.parseFloat(totalplanejamento.getTo_total());
         }
     }
 
@@ -332,8 +340,75 @@ public class InicioActivity extends AppCompatActivity {
         finish();
     }
 
+    //Gráfico
+    public void MontarGrafico(){
+        float pc_planejamento, pc_gastos;
+        pc_gastos = (val_gasto * 100)/val_planejamento;
+        pc_planejamento = 100 - pc_gastos;
+
+        ArrayList<Entry> entries = new ArrayList<>();
+        if(val_viagem == 0 && val_gasto == 0 && val_planejamento == 0){
+            gr_ini_inicio.setVisibility(View.INVISIBLE);
+        }
+        else{
+            if(val_gasto == 0 && val_planejamento == 0){
+                entries.add(new Entry(val_viagem, 0));
+            }
+            else {
+                if(val_gasto == 0){
+                    entries.add(new Entry(val_planejamento, 0));
+                }
+                else {
+                    if(val_planejamento == 0){
+                        entries.add(new Entry(val_gasto, 0));
+                    }
+                    else{
+                        entries.add(new Entry(val_gasto, 0));
+                        entries.add(new Entry(val_planejamento - val_gasto, 1));
+                    }
+                }
+            }
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+
+        ArrayList<String> labels = new ArrayList<String>();
+        if(val_viagem == 0 && val_gasto == 0 && val_planejamento == 0){
+            gr_ini_inicio.setVisibility(View.INVISIBLE);
+        }
+        else{
+            if(val_gasto == 0 && val_planejamento == 0){
+                labels.add(context.getResources().getString(R.string.viagem));
+            }
+            else {
+                if(val_gasto == 0){
+                    labels.add(context.getResources().getString(R.string.planejamento));
+                }
+                else {
+                    if(val_planejamento == 0){
+                        labels.add(context.getResources().getString(R.string.gasto));
+                    }
+                    else{
+                        labels.add(context.getResources().getString(R.string.gasto) + " - " + format(pc_gastos) + "%");
+                        labels.add(context.getResources().getString(R.string.planejamento) + " - " + format(pc_planejamento) + "%");
+                    }
+                }
+            }
+        }
+
+        PieData data = new PieData(labels, dataSet);
+        gr_ini_inicio.setData(data);
+
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+    }
+
     public static int getId_usuario() {
         return id_usuario;
     }
+
+    public static String format(float x){
+        return String.format("%.2f", x);
+    }
+
 
 }

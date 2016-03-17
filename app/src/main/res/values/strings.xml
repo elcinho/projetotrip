@@ -107,6 +107,7 @@
     <string name="tipopagamento">Tipo Pagamento</string>
     <string name="total">Total:</string>
     <string name="valor">Valor</string>
+    <string name="descricao_grafico">Planejamento X Gastos</string>
 
     <!-- TABELAS -->
     <string name="categoria">Categoria</string>
