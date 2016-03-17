@@ -16,7 +16,6 @@ import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Inicio.Totais;
 import libelulati.tripctrl.Inicio.Totais_DAO;
-import libelulati.tripctrl.Pagamentos.PagamentosEditActivity;
 import libelulati.tripctrl.R;
 
 public class PlanejamentosListActivity extends AppCompatActivity {
