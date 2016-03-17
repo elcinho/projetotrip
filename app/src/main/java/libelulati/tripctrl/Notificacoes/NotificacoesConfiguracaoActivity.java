@@ -2,11 +2,7 @@ package libelulati.tripctrl.Notificacoes;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
@@ -175,7 +171,7 @@ public class NotificacoesConfiguracaoActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public void Listar(){
+    public Cnotificacoes Listar(){
         List<Cnotificacoes> cnotificacoes = new Cnotificacoes_DAO(context).listar(id_usuario);
         for(final Cnotificacoes cnotificacao : cnotificacoes){
             id_cnotificacoes = cnotificacao.getCn_id();
@@ -228,6 +224,7 @@ public class NotificacoesConfiguracaoActivity extends AppCompatActivity {
                 sw_no_gasto.setChecked(true);
             }
         }
+        return null;
     }
 
     public void Atualizar(){

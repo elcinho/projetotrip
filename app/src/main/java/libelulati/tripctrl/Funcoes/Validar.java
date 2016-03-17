@@ -103,6 +103,33 @@ public class Validar {
         }
     }
 
+    public static boolean ValidarNotificacaoCinquentaPorcento (double Porcentagem){
+        double valorPl = 0;
+        double valorGA = 0;
+
+        Porcentagem = valorPl / valorGA;
+
+        if (Porcentagem >= 2 && Porcentagem < 9){
+
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public static boolean ValidarNotificacaoNoventaPorcento (double Porcentagem){
+        double valorPl = 0;
+        double valorGa = 0;
+
+        Porcentagem = valorPl / valorGa;
+
+        if (Porcentagem >=9 && Porcentagem < 10){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 
 

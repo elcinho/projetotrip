@@ -14,7 +14,6 @@ import java.util.List;
 
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
-import libelulati.tripctrl.Pagamentos.PagamentosEditActivity;
 import libelulati.tripctrl.R;
 
 public class PlanejamentosListActivity extends AppCompatActivity {

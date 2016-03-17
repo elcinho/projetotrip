@@ -24,8 +24,13 @@ public class MainActivity extends AppCompatActivity {
         bt_main_entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent it_main_entrar = new Intent (MainActivity.this, InicioActivity.class);
                 startActivity(it_main_entrar);
+
+
+
             }
         });
     }
@@ -53,5 +58,6 @@ public class MainActivity extends AppCompatActivity {
     public void ExibirUsuarioNew(){
 
     }
+
 
 }
