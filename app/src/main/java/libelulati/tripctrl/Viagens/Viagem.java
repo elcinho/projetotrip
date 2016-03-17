@@ -67,4 +67,6 @@ public class Viagem {
     public void setUs_id(int us_id) {
         this.us_id = us_id;
     }
+
+
 }

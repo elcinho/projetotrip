@@ -68,7 +68,7 @@ public class GastosListActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public void Listar(){
+    public double Listar(){
 
         LinearLayout linearLayout_itens = (LinearLayout)findViewById(R.id.li_ga_lista);
         linearLayout_itens.removeAllViews();
@@ -125,6 +125,7 @@ public class GastosListActivity extends AppCompatActivity {
 
             linearLayout_itens.addView(nenhumregistro);
         }
+        return 0;
     }
 
     public void AtualizarTotais(){
@@ -168,6 +169,12 @@ public class GastosListActivity extends AppCompatActivity {
         it_ga_show.putExtras(bdshow);
         startActivityForResult(it_ga_show, 1);
     }
+
+    public double getGa_valor_total() {
+        return ga_total;
+    }
+
+
 
     public static String format(double x){
         return String.format("%.2f", x);
