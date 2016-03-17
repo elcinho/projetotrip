@@ -178,14 +178,18 @@ public class GastoEditActivity extends AppCompatActivity {
         ed_gae_descricao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_categoria);
+                if (!hasFocus) {
+                    v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_categoria);
+                }
             }
         });
 
         ed_gae_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                v_valor = validar.ValidarValor(ed_gae_valor.getText().toString(), ed_gae_valor);
+                if (!hasFocus) {
+                    v_valor = validar.ValidarValor(ed_gae_valor.getText().toString(), ed_gae_valor);
+                }
             }
         });
     }
@@ -215,7 +219,6 @@ public class GastoEditActivity extends AppCompatActivity {
         ed_gae_descricao.setTextColor(context.getResources().getColor(R.color.colorBlack));
         ed_gae_data.setTextColor(context.getResources().getColor(R.color.colorBlack));
         ed_gae_valor.setTextColor(context.getResources().getColor(R.color.colorBlack));
-
     }
 
     public void GastoEditar(){
@@ -270,18 +273,20 @@ public class GastoEditActivity extends AppCompatActivity {
         ed_gae_descricao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_categoria);
+                if(!hasFocus){
+                    v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_categoria);
+                }
             }
         });
 
         ed_gae_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                v_valor = validar.ValidarValor(ed_gae_valor.getText().toString(), ed_gae_valor);
+                if(!hasFocus){
+                    v_valor = validar.ValidarValor(ed_gae_valor.getText().toString(), ed_gae_valor);
+                }
             }
         });
-
-        ed_gae_data.requestFocus();
     }
 
     public void Atualizar(){
