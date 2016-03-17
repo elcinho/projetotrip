@@ -178,6 +178,16 @@ public class Validar {
         return retorno;
     }
 
+    public boolean ValidarValor(String valor, EditText ed_valor){
+        if(valor.length() == 0){
+            ed_valor.setError(context.getResources().getString(R.string.validar_valor));
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
 
 
 

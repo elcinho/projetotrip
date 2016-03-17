@@ -174,6 +174,20 @@ public class GastoEditActivity extends AppCompatActivity {
                 }
             }
         });
+
+        ed_gae_descricao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_categoria);
+            }
+        });
+
+        ed_gae_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                v_valor = validar.ValidarValor(ed_gae_valor.getText().toString(), ed_gae_valor);
+            }
+        });
     }
 
     public void GastoShow(){
@@ -233,17 +247,37 @@ public class GastoEditActivity extends AppCompatActivity {
         meuSpinner.posicaoSelecionada(sp_gae_pagamento, ed_gae_pagamento.getText().toString());
         meuSpinner.selecionarItem(sp_gae_pagamento, ed_gae_pagamento);
 
+        ed_gae_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker(v, ed_gae_data);
+            }
+        });
+
         ed_gae_data.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_gae_data.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     showDatePicker(v, ed_gae_data);
-                }
-                else{
+                } else {
                     Viagem viagem = new Viagens_DAO(context).buscarID(id_viagem);
                     v_data = validar.ValidarDataTransacao(ed_gae_data.getText().toString(), viagem.getVi_dtinic(), viagem.getVi_dtfim(), ed_gae_data);
                 }
+            }
+        });
+
+        ed_gae_descricao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_categoria);
+            }
+        });
+
+        ed_gae_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                v_valor = validar.ValidarValor(ed_gae_valor.getText().toString(), ed_gae_valor);
             }
         });
 

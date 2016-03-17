@@ -137,6 +137,7 @@
     <string name="validar_datafinal">A data final deve ser posterior à data inicial.</string>
     <string name="validar_valortotal">O Valor deve ser nulo ou acima de 100.00.</string>
     <string name="validar_datatransacao">A data da transação deve estar compreendida no período da viagem.</string>
+    <string name="validar_valor">O valor não pode estar vazio.</string>
 
     <!-- NEGAÇÕES -->
     <string name="encontrado_registro">Nenhum registro encontrado.</string>
