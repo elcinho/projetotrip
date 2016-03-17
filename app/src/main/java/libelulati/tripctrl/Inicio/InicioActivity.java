@@ -398,6 +398,7 @@ public class InicioActivity extends AppCompatActivity {
 
         PieData data = new PieData(labels, dataSet);
         gr_ini_inicio.setData(data);
+        gr_ini_inicio.setBackgroundColor(Color.TRANSPARENT);
 
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
     }
@@ -409,6 +410,5 @@ public class InicioActivity extends AppCompatActivity {
     public static String format(float x){
         return String.format("%.2f", x);
     }
-
 
 }
