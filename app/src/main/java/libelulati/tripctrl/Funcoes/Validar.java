@@ -1,52 +1,48 @@
 package libelulati.tripctrl.Funcoes;
 
+import android.content.Context;
+import android.widget.EditText;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validar {
-    public static boolean ValidarNome(String nome){
-        int num = 0, seq = 0, esp = 0;
-        String espaco = " ";
-        String numeros = "0123456789";
+import libelulati.tripctrl.R;
 
-        if(nome.length() < 4)
-            return false;
-        else{
-            for(int i = 0; i < nome.length(); i++){
-                for(int j = 0; j < espaco.length(); j++){
-                    if(i == 0 || i == nome.length() - 1){
-                        if(nome.charAt(i) == espaco.charAt(j)){
-                            esp++;
-                        }
-                    }
-                }
-            }
-            for(int i = 0; i < nome.length(); i++){
-                for(int j = 0; j < numeros.length(); j++){
-                    if(nome.charAt(i) == numeros.charAt(j))
-                        num++;
-                }
-            }
-            for (int i = 0; i < nome.length() - 1; i++) {
-                if(nome.charAt(i) == nome.charAt(i+1))
-                    seq++;
-            }
-            return !(num > 0 || seq > 2);
-        }
+public class Validar {
+
+    Context context;
+
+    String caracMin = "abcdefghijklmnopqrstuvwxyz";
+    String caracMai = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    String numeros = "0123456789";
+    Character espaco = ' ';
+    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+
+    public Validar(Context context) {
+        this.context = context;
     }
 
-    public static boolean ValidarEmail(int tamanho, String email) {
-        if (tamanho < 5) {
+    public boolean ValidarEmail(String email, EditText ed_email) {
+        if (email.length() < 5) {
             return false;
         } else {
             Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$");
             Matcher m = p.matcher(email);
-            return m.find();
+            boolean retorno = m.find();
+            if(retorno){
+                return true;
+            }
+            else {
+                ed_email.setError(context.getResources().getString(R.string.validar_email));
+                return false;
+            }
         }
     }
 
-    public static boolean ValidarUsuarioSenha (String email_dig, String senha_dig, String email_cad, String senha_cad){
+    public boolean ValidarUsuarioSenha (String email_dig, String senha_dig, String email_cad, String senha_cad){
         if(email_cad.equals(email_dig)){
             return senha_cad.equals(senha_dig);
         } else {
@@ -54,51 +50,140 @@ public class Validar {
         }
     }
 
-    public static boolean ValidarDataNascimento(Date data) {
-        Date atual = new Date();
+    public static boolean ValidarTempoCodigo(String data) {
+        Date date = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String dataatual = formatador.format(date);
         long tempo = 0;
-        long limite = 471726000; //15 anos
-        int indicador = 0;
+        try {
+            Date anterior = new Date(formatador.parse(data).getTime());
+            Date atual = new Date(formatador.parse(dataatual).getTime());
+            tempo = atual.getTime() - anterior.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        if (data.getTime() > atual.getTime()) {
-            indicador = 0;
+        return tempo <= 300000;
+    }
+
+    public static boolean ValidarCodigoAltSenha(String coddig, String codcad) {
+        return codcad.equals(coddig);
+    }
+
+    public boolean ValidarTexto(String texto, EditText ed_texto) {
+        int seq = 0;
+        if (texto.charAt(0) == espaco) {
+            ed_texto.setError(context.getResources().getString(R.string.validar_texto_espaco));
+            return false;
         } else {
-            tempo = (atual.getTime() - data.getTime()) / 1000;
-            if (tempo < limite) {
-                indicador = 0;
+            for (int i = 0; i < texto.length() - 1; i++) {
+                if(texto.charAt(i) == texto.charAt(i+1)){
+                    seq++;
+                }
+            }
+            if (seq > 3) {
+                ed_texto.setError(context.getResources().getString(R.string.validar_texto_sequencia));
+                return false;
             } else {
-                indicador = 1;
+                if (texto.length() < 5) {
+                    ed_texto.setError(context.getResources().getString(R.string.validar_texto_tamanho));
+                    return false;
+                } else {
+                    return true;
+                }
             }
         }
-        return indicador == 1;
     }
 
-    public static boolean ValidarDataInicio(Date data){
+    public  boolean ValidarDataInicio(String dtini, EditText ed_dtini){
         Date atual = new Date();
-        if(atual.getTime() <= data.getTime()){
-            return true;
+        boolean retorno = false;
+        try {
+            Date data = (Date)formatador.parse(dtini);
+            if(atual.getTime() <= data.getTime()){
+                retorno =  true;
+            }
+            else{
+                ed_dtini.setError(context.getResources().getString(R.string.validar_datainicial));
+                retorno =  false;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        else{
-            return false;
-        }
+
+        return retorno;
     }
 
-    public static boolean ValidarDataFim(Date inicio, Date fim){
-        if(inicio.getTime() < fim.getTime()){
-            return true;
+    public boolean ValidarDataFim(String dtini, String dtfim, EditText ed_dtfim){
+        boolean retorno = false;
+        try {
+            Date inicio = (Date)formatador.parse(dtini);
+            Date fim = (Date)formatador.parse(dtfim);
+
+            if(inicio.getTime() < fim.getTime()){
+                retorno =  true;
+            }
+            else{
+                ed_dtfim.setError(context.getResources().getString(R.string.validar_datafinal));
+                retorno =  false;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        else{
-            return false;
-        }
+
+        return retorno;
     }
 
-    public static boolean ValidarValor(double valor){
-        double vmin = 0.99;
+    public boolean ValidarValorTotal(String valorTotal, EditText ed_valorTotal){
+        double valor;
+        if(valorTotal.length() == 0){
+            valor = 0;
+        }
+        else {
+            valor = Double.parseDouble(valorTotal);
+        }
+        double vmin = 99.99;
         double vmax = 999999.99;
+        if(valor == 0){
+            return true;
+        }
         if(valor < vmin || valor > vmax){
+            ed_valorTotal.setError(context.getResources().getString(R.string.validar_valortotal));
             return false;
         }
         else{
+            return true;
+        }
+    }
+
+    public boolean ValidarDataTransacao(String dataTransacao, String dataInicioViagem, String dataFimViagem, EditText ed_dataTransacao){
+        boolean retorno = false;
+        try {
+            Date transacao = (Date)formatador.parse(dataTransacao);
+            Date inicio = (Date)formatador.parse(dataInicioViagem);
+            Date fim = (Date)formatador.parse(dataFimViagem);
+
+            if(transacao.getTime() < inicio.getTime() || transacao.getTime() > fim.getTime() ){
+                retorno = false;
+                ed_dataTransacao.setError(context.getResources().getString(R.string.validar_datatransacao));
+            }
+            else {
+                retorno = true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public boolean ValidarValor(String valor, EditText ed_valor){
+        if(valor.length() == 0){
+            ed_valor.setError(context.getResources().getString(R.string.validar_valor));
+            return false;
+        }
+        else {
             return true;
         }
     }

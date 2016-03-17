@@ -23,6 +23,7 @@ public class Dados extends SQLiteOpenHelper{
         db.execSQL(ComandosSql.getCreateTablePlanejamentos());
         db.execSQL(ComandosSql.getCreateTableGastos());
         db.execSQL(ComandosSql.getCreateTableCnotificacoes());
+        db.execSQL(ComandosSql.getCreateTableTotais());
 
         //INSERIR DADOS CATEGORIAS
         db.execSQL(ComandosSql.getInsertCategoriasAlimentacao());
@@ -40,6 +41,9 @@ public class Dados extends SQLiteOpenHelper{
         //INSERIR DADOS CNOTIFICACOES
         db.execSQL(ComandosSql.getInsertCnotificacoes());
 
+        //INSERIR DADOS USUARIO
+        db.execSQL(ComandosSql.getInsertUsuario());
+
     }
 
     @Override
@@ -54,6 +58,7 @@ public class Dados extends SQLiteOpenHelper{
         db.execSQL(ComandosSql.getDropTableTipospagamento());
         db.execSQL(ComandosSql.getDropTableUsuarios());
         db.execSQL(ComandosSql.getDropTableCnotificacoes());
+        db.execSQL(ComandosSql.getDropTableTotais());
 
         onCreate(db);
     }
