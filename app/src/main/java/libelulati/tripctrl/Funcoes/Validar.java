@@ -195,8 +195,7 @@ public class Validar {
         String cat;
         int cont = 0;
         if(planejamentos.size() < 1){
-            ed_categoria.setError(context.getResources().getString(R.string.validar_categoria_nulo));
-            return false;
+            return true;
         }
         else{
             for(int i = 0; i < planejamentos.size(); i++){
