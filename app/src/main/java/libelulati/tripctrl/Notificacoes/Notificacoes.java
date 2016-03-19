@@ -33,7 +33,7 @@ public class Notificacoes extends Activity {
         builder.setTicker("R.string.viagem");
         builder.setContentText("R.string.notificacao_viagem_50");
         builder.setSmallIcon(R.drawable.trip_icon);
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.trip));
+        //builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.trip));
         builder.setContentIntent(p);
 
         Notification notification = builder.build();

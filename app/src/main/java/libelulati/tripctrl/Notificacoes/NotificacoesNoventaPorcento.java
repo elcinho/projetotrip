@@ -17,7 +17,7 @@ public class NotificacoesNoventaPorcento extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle(R.string.viagem);
-        builder.setMessage(R.string.Notificaçao_categoria_90);
+        //builder.setMessage(R.string.Notificaçao_categoria_90);
         builder.setPositiveButton(R.string.opcao_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int arg1) {
