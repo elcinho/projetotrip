@@ -57,6 +57,7 @@ public class Totais_DAO extends Dados{
         return totais;
     }
 
+
     public List<Totais> listar(int viagem){
         List<Totais> listarregistros = new ArrayList<Totais>();
         String sql = ComandosSql.getSelectTotaisVi() + viagem;
