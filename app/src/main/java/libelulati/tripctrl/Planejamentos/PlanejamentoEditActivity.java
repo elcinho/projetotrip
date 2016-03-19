@@ -22,6 +22,8 @@ import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
+import libelulati.tripctrl.Inicio.Totais;
+import libelulati.tripctrl.Inicio.Totais_DAO;
 import libelulati.tripctrl.R;
 
 public class PlanejamentoEditActivity extends AppCompatActivity {
@@ -83,6 +85,7 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
             boolean sucesso = new Planejamento_DAO(context).criar(planejamento);
             if(sucesso){
                 Toast.makeText(context, context.getResources().getString(R.string.sucesso_criar_planejamento), Toast.LENGTH_LONG).show();
+                AtualizarTotaisCategoria();
             }
             else{
                 Toast.makeText(context, context.getResources().getString(R.string.erro_criar_planejamento), Toast.LENGTH_LONG).show();
@@ -115,7 +118,7 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         ed_ple_categoria.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
+                if (!hasFocus) {
                 }
             }
         });
@@ -123,7 +126,7 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         ed_ple_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
+                if (!hasFocus) {
                     v_valor = validar.ValidarValor(ed_ple_valor.getText().toString(), ed_ple_valor);
                 }
             }
@@ -182,6 +185,7 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
 
             if(sucesso){
                 Toast.makeText(context, context.getResources().getString(R.string.sucesso_alterar_planejamento), Toast.LENGTH_LONG).show();
+                AtualizarTotaisCategoria();
                 finish();
             }
             else {
@@ -207,6 +211,7 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Planejamento_DAO planejamento_dao = new Planejamento_DAO(context);
+                AtualizarDeleteCategoria(del_id);
                 boolean sucesso = planejamento_dao.deletar(del_id);
                 if (sucesso) {
                     Toast.makeText(context, context.getResources().getString(R.string.sucesso_excluir_gasto), Toast.LENGTH_LONG).show();
@@ -229,6 +234,54 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         confirme = builder.create();
         confirme.show();
     }
+
+    public void AtualizarTotaisCategoria(){
+        String cat = ed_ple_categoria.getText().toString();
+        String valor = ed_ple_valor.getText().toString();
+
+        Totais totalcat = new Totais_DAO(context).buscarNome(cat);
+        if(totalcat == null){
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            Totais totais = new Totais();
+            totais.setUs_id(id_usuario);
+            totais.setVi_id(id_viagem);
+            totais.setTo_nome(cat);
+            totais.setTo_total(null);
+            totais.setTo_gasto(null);
+            totais.setTo_planejamento(valor);
+            totais_dao.criar(totais);
+        }
+        else{
+            double ca_valor = 0;
+            String valorTot = totalcat.getTo_planejamento();
+            if(valorTot == null){
+                valorTot = "0";
+            }
+            ca_valor = Double.parseDouble(valorTot) + Double.parseDouble(valor);
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            totalcat.setTo_planejamento(String.valueOf(ca_valor));
+            totais_dao.atualizar(totalcat, cat);
+        }
+    }
+
+    public void AtualizarDeleteCategoria(int id){
+        double ca_valor = 0;
+        String cat = null, valor = null;
+        Planejamento del_planejamento = new Planejamento_DAO(context).buscarID(id);
+        if(del_planejamento != null){
+            cat = del_planejamento.getCa_id();
+            valor = del_planejamento.getPl_valor();
+        }
+
+        Totais totalcat = new Totais_DAO(context).buscarNome(cat);
+        String valorTot = totalcat.getTo_planejamento();
+        ca_valor = Double.parseDouble(valorTot) - Double.parseDouble(valor);
+        Totais_DAO totais_dao = new Totais_DAO(context);
+        totalcat.setTo_gasto(String.valueOf(ca_valor));
+        totais_dao.atualizar(totalcat, cat);
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

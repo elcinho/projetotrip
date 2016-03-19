@@ -28,6 +28,8 @@ import libelulati.tripctrl.Funcoes.DatePicker;
 import libelulati.tripctrl.Funcoes.MeuSpinner;
 import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
+import libelulati.tripctrl.Inicio.Totais;
+import libelulati.tripctrl.Inicio.Totais_DAO;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.Viagens.Viagem;
 import libelulati.tripctrl.Viagens.Viagens_DAO;
@@ -114,6 +116,7 @@ public class GastoEditActivity extends AppCompatActivity {
 
             if(sucesso){
                 Toast.makeText(context, context.getResources().getString(R.string.sucesso_criar_gasto), Toast.LENGTH_LONG).show();
+                AtualizarTotaisCategoria();
             }
             else{
                 Toast.makeText(context, context.getResources().getString(R.string.erro_criar_gasto), Toast.LENGTH_LONG).show();
@@ -273,7 +276,7 @@ public class GastoEditActivity extends AppCompatActivity {
         ed_gae_descricao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
+                if (!hasFocus) {
                     v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_categoria);
                 }
             }
@@ -282,7 +285,7 @@ public class GastoEditActivity extends AppCompatActivity {
         ed_gae_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
+                if (!hasFocus) {
                     v_valor = validar.ValidarValor(ed_gae_valor.getText().toString(), ed_gae_valor);
                 }
             }
@@ -302,9 +305,9 @@ public class GastoEditActivity extends AppCompatActivity {
 
         if(IsValido()){
             boolean sucesso = new Gastos_DAO(context).atualizar(gasto, id_gasto);
-
             if(sucesso){
                 Toast.makeText(context, context.getResources().getString(R.string.sucesso_atualizar_gasto), Toast.LENGTH_LONG).show();
+                AtualizarTotaisCategoria();
                 finish();
             }
             else {
@@ -330,6 +333,7 @@ public class GastoEditActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Gastos_DAO gastos_dao = new Gastos_DAO(context);
+                AtualizarDeleteCategoria(del_id);
                 boolean sucesso = gastos_dao.deletar(del_id);
                 if (sucesso) {
                     Toast.makeText(context, context.getResources().getString(R.string.sucesso_excluir_gasto), Toast.LENGTH_LONG).show();
@@ -360,6 +364,52 @@ public class GastoEditActivity extends AppCompatActivity {
         else {
             return false;
         }
+    }
+
+    public void AtualizarTotaisCategoria(){
+        String cat = ed_gae_categoria.getText().toString();
+        String valor = ed_gae_valor.getText().toString();
+
+        Totais totalcat = new Totais_DAO(context).buscarNome(cat);
+        if(totalcat == null){
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            Totais totais = new Totais();
+            totais.setUs_id(id_usuario);
+            totais.setVi_id(id_viagem);
+            totais.setTo_nome(cat);
+            totais.setTo_total(null);
+            totais.setTo_gasto(valor);
+            totais.setTo_planejamento(null);
+            totais_dao.criar(totais);
+        }
+        else{
+            double ca_valor = 0;
+            String valorTot = totalcat.getTo_gasto();
+            if(valorTot == null){
+                valorTot = "0";
+            }
+            ca_valor = Double.parseDouble(valorTot) + Double.parseDouble(valor);
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            totalcat.setTo_gasto(String.valueOf(ca_valor));
+            totais_dao.atualizar(totalcat, cat);
+        }
+    }
+
+    public void AtualizarDeleteCategoria(int id){
+        double ca_valor = 0;
+        String cat = null, valor = null;
+        Gasto del_gasto = new Gastos_DAO(context).buscarID(id);
+        if(del_gasto != null){
+             cat = del_gasto.getCa_id();
+             valor = del_gasto.getGa_valor();
+        }
+
+        Totais totalcat = new Totais_DAO(context).buscarNome(cat);
+            String valorTot = totalcat.getTo_gasto();
+            ca_valor = Double.parseDouble(valorTot) - Double.parseDouble(valor);
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            totalcat.setTo_gasto(String.valueOf(ca_valor));
+            totais_dao.atualizar(totalcat, cat);
     }
 
     @Override
