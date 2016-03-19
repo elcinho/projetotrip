@@ -6,9 +6,12 @@ import android.widget.EditText;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import libelulati.tripctrl.Categorias.Categoria;
+import libelulati.tripctrl.Planejamentos.Planejamento;
 import libelulati.tripctrl.R;
 
 public class Validar {
@@ -188,13 +191,38 @@ public class Validar {
         }
     }
 
-    public static boolean ValidarNotificacaoCinquentaPorcento (double Porcentagem){
+    public boolean ValidarCategoria(List<Planejamento> planejamentos, String categoria, EditText ed_categoria){
+        String cat;
+        int cont = 0;
+        if(planejamentos.size() < 1){
+            ed_categoria.setError(context.getResources().getString(R.string.validar_categoria_nulo));
+            return false;
+        }
+        else{
+            for(int i = 0; i < planejamentos.size(); i++){
+                cat = planejamentos.get(i).getCa_id();
+                if(cat.equals(categoria)){
+                    cont ++;
+                }
+            }
+        }
+        if(cont != 0){
+            ed_categoria.setError(context.getResources().getString(R.string.validar_categoria_existente));
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
+    public static boolean ValidarNotificacaoCinquentaPorcento (double porcentagem){
         double valorPl = 0;
         double valorGA = 0;
 
-        Porcentagem = valorPl / valorGA;
+        porcentagem = valorPl / valorGA;
 
-        if (Porcentagem >= 2 && Porcentagem < 9){
+        if (porcentagem >= 2 && porcentagem < 9){
 
             return true;
         }else {
@@ -202,13 +230,13 @@ public class Validar {
         }
     }
 
-    public static boolean ValidarNotificacaoNoventaPorcento (double Porcentagem){
+    public static boolean ValidarNotificacaoNoventaPorcento (double porcentagem){
         double valorPl = 0;
         double valorGa = 0;
 
-        Porcentagem = valorPl / valorGa;
+        porcentagem = valorPl / valorGa;
 
-        if (Porcentagem >=9 && Porcentagem < 10){
+        if (porcentagem >=9 && porcentagem < 10){
             return true;
         }
         else{

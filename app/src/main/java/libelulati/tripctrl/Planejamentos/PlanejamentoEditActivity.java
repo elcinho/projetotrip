@@ -20,6 +20,7 @@ import java.util.List;
 
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Funcoes.MeuSpinner;
+import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
@@ -33,6 +34,8 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
     Context context;
     List<String> listarcategorias;
     MeuSpinner meuSpinner = new MeuSpinner();
+    boolean v_categoria, v_valor;
+    Validar validar;
 
 
     @Override
@@ -41,6 +44,7 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_planejamento_edit);
 
         context = PlanejamentoEditActivity.this;
+        validar = new Validar(context);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -102,9 +106,25 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(ed_ple_categoria.getWindowToken(),
-                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_ple_categoria.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+            }
+        });
+
+        final List<Planejamento> planejamentos = new Planejamento_DAO(context).listar(id_viagem);
+        ed_ple_categoria.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                }
+            }
+        });
+
+        ed_ple_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    v_valor = validar.ValidarValor(ed_ple_valor.getText().toString(), ed_ple_valor);
                 }
             }
         });
@@ -258,6 +278,15 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
     }
 
     public boolean IsValido(){
-        return true;
+        final List<Planejamento> planejamentos = new Planejamento_DAO(context).listar(id_viagem);
+        v_categoria = validar.ValidarCategoria(planejamentos, ed_ple_categoria.getText().toString(), ed_ple_categoria);
+        v_valor = validar.ValidarValor(ed_ple_valor.getText().toString(), ed_ple_valor);
+
+        if(v_categoria && v_valor){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

@@ -139,6 +139,8 @@
     <string name="validar_valortotal">O Valor deve ser nulo ou acima de 100.00.</string>
     <string name="validar_datatransacao">A data da transação deve estar compreendida no período da viagem.</string>
     <string name="validar_valor">O valor não pode estar vazio.</string>
+    <string name="validar_categoria_nulo">Escolha uma categoria.</string>
+    <string name="validar_categoria_existente">Está categoria já foi inserida.</string>
 
     <!-- NEGAÇÕES -->
     <string name="encontrado_registro">Nenhum registro encontrado.</string>

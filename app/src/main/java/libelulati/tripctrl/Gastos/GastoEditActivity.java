@@ -179,7 +179,7 @@ public class GastoEditActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_categoria);
+                    v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_descricao);
                 }
             }
         });
