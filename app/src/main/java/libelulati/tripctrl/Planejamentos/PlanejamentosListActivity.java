@@ -135,7 +135,6 @@ public class PlanejamentosListActivity extends AppCompatActivity {
         }
     }
 
-
     public void Visualizar(int id){
         Planejamento_DAO planejamento_dao = new Planejamento_DAO(context);
         Planejamento planejamento = planejamento_dao.buscarID(id);
@@ -157,9 +156,5 @@ public class PlanejamentosListActivity extends AppCompatActivity {
 
     public static String format(double x){
         return String.format("%.2f", x);
-    }
-
-    public double getPl_total() {
-        return pl_total;
     }
 }

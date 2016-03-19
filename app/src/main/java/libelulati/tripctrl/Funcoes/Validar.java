@@ -103,7 +103,7 @@ public class Validar {
         boolean retorno = false;
         try {
             Date data = (Date)formatador.parse(dtini);
-            if(atual.getTime() <= data.getTime()){
+            if(atual.getTime() <= data.getTime() + 1){
                 retorno =  true;
             }
             else{
