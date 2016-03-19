@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import libelulati.tripctrl.Categorias.Categoria;
+import libelulati.tripctrl.Categorias.Categorias_DAO;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Inicio.Totais;
@@ -116,6 +118,7 @@ public class GastosListActivity extends AppCompatActivity {
 
                 tx_ga_total.setText(context.getResources().getString(R.string.total) + " " + context.getResources().getString(R.string.moeda) + " " + format(ga_total));
                 AtualizarTotais();
+                TotalizarCategoria();
             }
         }
         else{
@@ -148,6 +151,33 @@ public class GastosListActivity extends AppCompatActivity {
         }
     }
 
+    public void TotalizarCategoria(){
+        List<Gasto> tc_gastos = new Gastos_DAO(context).listar(id_viagem);
+        if(tc_gastos.size() != 0){
+            for(int i = 0; i < tc_gastos.size(); i++){
+                String cat = tc_gastos.get(i).getCa_id();
+                Totais totalcategoria = new Totais_DAO(context).buscarNome(cat);
+                if(totalcategoria != null){
+                    String tg = totalcategoria.getTo_gasto();
+                    String tp = totalcategoria.getTo_planejamento();
+                    double totalgasto = 0, totalplanejamento = 0;
+
+                    if(tg != null){
+                        totalgasto = Double.parseDouble(tg);
+                    }
+                    if(tp != null){
+                        totalplanejamento = Double.parseDouble(tp);
+                    }
+
+                    double total = totalplanejamento - totalgasto;
+
+                    Totais_DAO totais_dao = new Totais_DAO(context);
+                    totalcategoria.setTo_total(String.valueOf(total));
+                    totais_dao.atualizar(totalcategoria, cat);
+                }
+            }
+        }
+    }
 
     public void Visualizar(int id){
         Gastos_DAO gastos_dao = new Gastos_DAO(context);
@@ -169,12 +199,6 @@ public class GastosListActivity extends AppCompatActivity {
         it_ga_show.putExtras(bdshow);
         startActivityForResult(it_ga_show, 1);
     }
-
-    public double getGa_valor_total() {
-        return ga_total;
-    }
-
-
 
     public static String format(double x){
         return String.format("%.2f", x);
