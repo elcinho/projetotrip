@@ -1,29 +1,20 @@
 package libelulati.tripctrl.Notificacoes;
 
-
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import java.util.Calendar;
-
-import libelulati.tripctrl.Dados.Nomes;
-import libelulati.tripctrl.Gastos.Gastos_DAO;
 import libelulati.tripctrl.Inicio.InicioActivity;
-import libelulati.tripctrl.Inicio.Totais_DAO;
-import libelulati.tripctrl.Planejamentos.Planejamento_DAO;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.Viagens.Viagens_DAO;
+
 
 
 public class NotificacoesPagamento extends BroadcastReceiver{
@@ -62,8 +53,6 @@ public class NotificacoesPagamento extends BroadcastReceiver{
 
                     }
                 }
-
-
 }
 
 

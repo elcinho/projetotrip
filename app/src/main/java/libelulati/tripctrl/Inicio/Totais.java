@@ -1,6 +1,6 @@
 package libelulati.tripctrl.Inicio;
 
-public class Totais {
+public class Totais  {
     private int to_id;
     private int us_id;
     private int vi_id;

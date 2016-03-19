@@ -2,6 +2,7 @@ package libelulati.tripctrl.Inicio;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -34,11 +35,13 @@ import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import libelulati.tripctrl.Configuracoes.ConfiguracoesListActivity;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Gastos.GastosListActivity;
+import libelulati.tripctrl.Gastos.Gastos_DAO;
 import libelulati.tripctrl.Notificacoes.Notificacoes;
 import libelulati.tripctrl.Pagamentos.PagamentosListActivity;
 import libelulati.tripctrl.Planejamentos.Planejamento;
@@ -53,6 +56,7 @@ public class InicioActivity extends AppCompatActivity {
     static int id_usuario = 0;
     List<Viagem> viagens;
     List<Planejamento> planejamentos;
+    List<Totais> totais;
     Viagem viagem;
     Button bt_ini_addviagem, teste;
     TextView tx_ini_dataviagem, tx_ini_valorviagem;
@@ -63,6 +67,7 @@ public class InicioActivity extends AppCompatActivity {
     ImageView fabIconNew;
     PieChart gr_ini_inicio;
     float val_viagem, val_planejamento, val_gasto;
+    Totais total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,8 +209,20 @@ public class InicioActivity extends AppCompatActivity {
             }
         });
 
-       // ExibirNotificacao();
+        ExibirNotificacao();
+        ExibirNotificaçãoExterna();
 
+
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+
+        Intent intent = new Intent("ALARME_DISPARADO");
+        PendingIntent p = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        AlarmManager alarme = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarme.cancel(p);
     }
 
     @Override
@@ -241,9 +258,22 @@ public class InicioActivity extends AppCompatActivity {
         viagemnew.show(getSupportFragmentManager(), "viagemnew");
     }
 
-   // public void ExibirNotificacao() {
+    public void ExibirNotificaçãoExterna(){
+        Intent intent = new Intent("ALARME_DISPARADO");
+        PendingIntent p = PendingIntent.getBroadcast(this, 0, intent, 0);
 
-   // }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.add(Calendar.SECOND, 3);
+
+        AlarmManager alarme = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarme.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), p);
+
+    }
+
+    public void ExibirNotificacao() {
+ }
 
 
 
