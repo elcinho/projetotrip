@@ -2,12 +2,20 @@ package libelulati.tripctrl.Inicio;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.EmbossMaskFilter;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +39,10 @@ import java.util.List;
 import libelulati.tripctrl.Configuracoes.ConfiguracoesListActivity;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Gastos.GastosListActivity;
+import libelulati.tripctrl.Notificacoes.Notificacoes;
 import libelulati.tripctrl.Pagamentos.PagamentosListActivity;
+import libelulati.tripctrl.Planejamentos.Planejamento;
+import libelulati.tripctrl.Planejamentos.Planejamento_DAO;
 import libelulati.tripctrl.Planejamentos.PlanejamentosListActivity;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.Viagens.Viagem;
@@ -41,6 +52,7 @@ import libelulati.tripctrl.Viagens.Viagens_DAO;
 public class InicioActivity extends AppCompatActivity {
     static int id_usuario = 0;
     List<Viagem> viagens;
+    List<Planejamento> planejamentos;
     Viagem viagem;
     Button bt_ini_addviagem, teste;
     TextView tx_ini_dataviagem, tx_ini_valorviagem;
@@ -191,6 +203,9 @@ public class InicioActivity extends AppCompatActivity {
                 ExibirViagemNew();
             }
         });
+
+       // ExibirNotificacao();
+
     }
 
     @Override
@@ -225,6 +240,13 @@ public class InicioActivity extends AppCompatActivity {
         DialogFragment viagemnew = new Viagem_New();
         viagemnew.show(getSupportFragmentManager(), "viagemnew");
     }
+
+   // public void ExibirNotificacao() {
+
+   // }
+
+
+
 
     public void Iniciar(){
         viagens = new Viagens_DAO(context).listar(id_usuario);

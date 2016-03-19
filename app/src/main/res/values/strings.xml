@@ -230,7 +230,32 @@
     <string name="erro_excluir_categoria">A categoria não pôde ser excluída.</string>
     <string name="erro_alterar_tipopagamento">O tipo de pagamento não foi alterado.</string>
     <string name="erro_excluir_tipopagamento">O tipo de pagamento não pôde ser excluído.</string>
-
+    <string name="bemvindo" />
+    <string name="so_versao" />
+    <string name="so_desenvolvedor" />
+    <string name="so_libelula" />
+    <string name="so_responsavel" />
+    <string name="so_marcela" />
+    <string name="so_elcio" />
+    <string name="so_email" />
+    <string name="site" />
+    <string name="so_site" />
+    <string name="termouso" />
+    <string name="check_termo" />
+    <string name="semsenha" />
+    <string name="title_activity_esqueci_senha" />
+    <string name="erro_atualizar_termouso" />
+    <string name="validar_texto_espaco" />
+    <string name="validar_texto_sequencia" />
+    <string name="validar_texto_tamanho" />
+    <string name="validar_datainicial" />
+    <string name="validar_datafinal" />
+    <string name="validar_valortotal" />
+    <string name="validar_datatransacao" />
+    <string name="validar_categoria_nulo" />
+    <string name="validar_categoria_existente" />
+    <string name="erro_criar_tipopagamento" />
+    <string name="title_activity_usuario_novo" />
 
 
 </resources>
