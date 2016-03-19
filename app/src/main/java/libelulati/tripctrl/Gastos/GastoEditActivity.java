@@ -26,8 +26,11 @@ import java.util.List;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Funcoes.DatePicker;
 import libelulati.tripctrl.Funcoes.MeuSpinner;
+import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
+import libelulati.tripctrl.Viagens.Viagem;
+import libelulati.tripctrl.Viagens.Viagens_DAO;
 
 public class GastoEditActivity extends AppCompatActivity {
     int novo = 0;
@@ -40,6 +43,8 @@ public class GastoEditActivity extends AppCompatActivity {
     List<String> listacategorias, listapagamentos;
     MeuSpinner meuSpinner = new MeuSpinner();
     String nulo;
+    boolean v_data, v_descricao, v_valor;
+    Validar validar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,7 @@ public class GastoEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gasto_edit);
 
         context = GastoEditActivity.this;
+        validar = new Validar(context);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -69,6 +75,8 @@ public class GastoEditActivity extends AppCompatActivity {
         ed_gae_data.setText(bundle.getString(Nomes.getGaData()));
         ed_gae_pagamento.setText(bundle.getString(Nomes.getPaId()));
         ed_gae_valor.setText(bundle.getString(Nomes.getGaValor()));
+
+        ed_gae_data.setInputType(InputType.TYPE_NULL);
 
         nulo = context.getResources().getString(R.string.encontrado_registro);
 
@@ -142,9 +150,7 @@ public class GastoEditActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(ed_gae_pagamento.getWindowToken(),
-                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_gae_pagamento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
         });
@@ -160,9 +166,29 @@ public class GastoEditActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(ed_gae_data.getWindowToken(),
-                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_gae_data.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    showDatePicker(v, ed_gae_data);
+                } else {
+                    Viagem viagem = new Viagens_DAO(context).buscarID(id_viagem);
+                    v_data = validar.ValidarDataTransacao(ed_gae_data.getText().toString(), viagem.getVi_dtinic(), viagem.getVi_dtfim(), ed_gae_data);
+                }
+            }
+        });
+
+        ed_gae_descricao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_descricao);
+                }
+            }
+        });
+
+        ed_gae_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    v_valor = validar.ValidarValor(ed_gae_valor.getText().toString(), ed_gae_valor);
                 }
             }
         });
@@ -193,7 +219,6 @@ public class GastoEditActivity extends AppCompatActivity {
         ed_gae_descricao.setTextColor(context.getResources().getColor(R.color.colorBlack));
         ed_gae_data.setTextColor(context.getResources().getColor(R.color.colorBlack));
         ed_gae_valor.setTextColor(context.getResources().getColor(R.color.colorBlack));
-
     }
 
     public void GastoEditar(){
@@ -236,14 +261,32 @@ public class GastoEditActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(ed_gae_data.getWindowToken(),
-                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_gae_data.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    showDatePicker(v, ed_gae_data);
+                } else {
+                    Viagem viagem = new Viagens_DAO(context).buscarID(id_viagem);
+                    v_data = validar.ValidarDataTransacao(ed_gae_data.getText().toString(), viagem.getVi_dtinic(), viagem.getVi_dtfim(), ed_gae_data);
                 }
             }
         });
 
-        ed_gae_data.requestFocus();
+        ed_gae_descricao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    v_descricao = validar.ValidarTexto(ed_gae_descricao.getText().toString(), ed_gae_categoria);
+                }
+            }
+        });
+
+        ed_gae_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    v_valor = validar.ValidarValor(ed_gae_valor.getText().toString(), ed_gae_valor);
+                }
+            }
+        });
     }
 
     public void Atualizar(){
@@ -311,7 +354,12 @@ public class GastoEditActivity extends AppCompatActivity {
     }
 
     public boolean IsValido(){
-        return true;
+        if(v_data && v_descricao && v_valor){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override

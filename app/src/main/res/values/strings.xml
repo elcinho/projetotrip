@@ -230,6 +230,7 @@
     <string name="erro_excluir_categoria">A categoria não pôde ser excluída.</string>
     <string name="erro_alterar_tipopagamento">O tipo de pagamento não foi alterado.</string>
     <string name="erro_excluir_tipopagamento">O tipo de pagamento não pôde ser excluído.</string>
-    <string name="erro_criar_tipopagamento">Ocorreu um erro ao criar o tipo de pagamento.</string>
+
+
 
 </resources>

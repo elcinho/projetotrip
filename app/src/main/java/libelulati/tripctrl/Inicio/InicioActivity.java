@@ -2,18 +2,12 @@ package libelulati.tripctrl.Inicio;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
+import android.graphics.Color;
+import android.graphics.EmbossMaskFilter;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,23 +17,21 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
-import libelulati.tripctrl.Categorias.Categoria;
 import libelulati.tripctrl.Configuracoes.ConfiguracoesListActivity;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Gastos.GastosListActivity;
-import libelulati.tripctrl.Notificacoes.Cnotificacoes;
-import libelulati.tripctrl.Notificacoes.NotificacoesConfiguracaoActivity;
 import libelulati.tripctrl.Pagamentos.PagamentosListActivity;
-import libelulati.tripctrl.Planejamentos.Planejamento;
-import libelulati.tripctrl.Planejamentos.Planejamento_DAO;
 import libelulati.tripctrl.Planejamentos.PlanejamentosListActivity;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.Viagens.Viagem;
@@ -49,23 +41,16 @@ import libelulati.tripctrl.Viagens.Viagens_DAO;
 public class InicioActivity extends AppCompatActivity {
     static int id_usuario = 0;
     List<Viagem> viagens;
-    List<Planejamento> planejamentos;
-    //List<Categoria> categorias;
     Viagem viagem;
-    Planejamento planejamento;
-    Button bt_ini_addviagem;
+    Button bt_ini_addviagem, teste;
     TextView tx_ini_dataviagem, tx_ini_valorviagem;
     Context context;
     String titulo;
     int id_viagem, exibir_menu;
-    View v_inicio;
+    View v_inicio, v_linha;
     ImageView fabIconNew;
-    //boolean validar_notificacoes;
-    //Cnotificacoes cnotificacoes;
-    //NotificacoesConfiguracaoActivity notificacoesConfiguracaoActivity;
-
-
-
+    PieChart gr_ini_inicio;
+    float val_viagem, val_planejamento, val_gasto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +59,8 @@ public class InicioActivity extends AppCompatActivity {
         id_usuario = 1; // BUSCAR ID DO USUARIO LOGADO
         v_inicio = findViewById(R.id.rl_inicio);
         context = InicioActivity.this;
-
+        v_linha = findViewById(R.id.vw_ini_linha01);
+        gr_ini_inicio = (PieChart)findViewById(R.id.gr_ini_inicio);
 
         // MENU FLUTUANTE
         int floatActionButtonSize = getResources().getDimensionPixelSize(R.dimen.float_action_button_size);
@@ -86,20 +72,16 @@ public class InicioActivity extends AppCompatActivity {
         int subActionButtonContentSize = getResources().getDimensionPixelSize(R.dimen.sub_action_button_content_size);
         int subActionButtonContentMargin = getResources().getDimensionPixelOffset(R.dimen.sub_action_button_content_margin);
 
-
-        //Configuraçao Notificaçao
-
-
         fabIconNew = new ImageView(this);
         fabIconNew.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_new));
 
-        FloatingActionButton.LayoutParams newParams = new FloatingActionButton.LayoutParams(floatActionButtonSize, floatActionButtonSize);
+        com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.LayoutParams newParams = new com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.LayoutParams(floatActionButtonSize, floatActionButtonSize);
         newParams.setMargins(floatActionButtonMargin, floatActionButtonMargin, floatActionButtonMargin, floatActionButtonMargin);
 
-        FloatingActionButton.LayoutParams newIconParams = new FloatingActionButton.LayoutParams(floatActionButtonContentSize, floatActionButtonContentSize);
+        com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.LayoutParams newIconParams = new com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.LayoutParams(floatActionButtonContentSize, floatActionButtonContentSize);
         newIconParams.setMargins(floatActionButtonContentMargin, floatActionButtonContentMargin, floatActionButtonContentMargin, floatActionButtonContentMargin);
 
-        final FloatingActionButton fab_novo = new FloatingActionButton.Builder(this)
+        final com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton fab_novo = new com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.Builder(this)
                 .setContentView(fabIconNew, newIconParams)
                 .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_pink))
                 .setLayoutParams(newParams)
@@ -160,7 +142,6 @@ public class InicioActivity extends AppCompatActivity {
             }
         });
 
-
         v_inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,18 +183,14 @@ public class InicioActivity extends AppCompatActivity {
         // FIM MENU FLUTUANTE
 
         bt_ini_addviagem = (Button) findViewById(R.id.bt_ini_addviagem);
-        tx_ini_dataviagem = (TextView) findViewById(R.id.tx_ini_dataviagem);
-        tx_ini_valorviagem = (TextView) findViewById(R.id.tx_ini_valorviagem);
+        tx_ini_dataviagem = (TextView)findViewById(R.id.tx_ini_dataviagem);
+        tx_ini_valorviagem = (TextView)findViewById(R.id.tx_ini_valorviagem);
         bt_ini_addviagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ExibirViagemNew();
             }
         });
-
-        NotificarCategoria();
-
-
     }
 
     @Override
@@ -222,17 +199,14 @@ public class InicioActivity extends AppCompatActivity {
         super.onResume();
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        if (exibir_menu == 1)
+        if(exibir_menu == 1)
             getMenuInflater().inflate(R.menu.inicio_menu, menu);
-        return (true);
+            return (true);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -244,104 +218,17 @@ public class InicioActivity extends AppCompatActivity {
                 ExibirViagemNew();
                 break;
         }
-        return true;
+            return true;
     }
 
-
-
-
-    public void NotificarCategoria() {
-        viagens =  new Viagens_DAO(context).listar(id_usuario);
-        viagem = new Viagens_DAO(context).buscarID(id_usuario);
-        int Valor_vi = Integer.parseInt(viagem.getVi_valor());
-        planejamento = new Planejamento_DAO(context).buscarID(id_usuario);
-        int Valor_planejado = Integer.parseInt(planejamento.getPl_valor());
-        double Porcentagem = 0;
-        Porcentagem = Valor_vi / Valor_planejado;
-       // planejamentos = new Planejamento_DAO(context).listar(id_usuario);
-
-
-        //if(viagens.size() > 0) {
-            //if (planejamentos.size() > 0) {
-                if (Porcentagem > 1.1 && Porcentagem <= 2) {
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-                    builder.setTicker("Viagem");
-                    builder.setContentText("Você atingiu 50% do planejado da sua viajem!");
-                    builder.setSmallIcon(R.drawable.trip_icon);
-                    builder.setContentIntent(p);
-                    NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
-                    String[] msg = new String[]{"Você Atingiu 50% do total", "planejado da sua viagem!"};
-                    for (int i = 0; i < msg.length; i++) {
-                        style.addLine(msg[i]);
-                    }
-                    builder.setStyle(style);
-
-                    Notification notification = builder.build();
-                    notification.vibrate = new long[]{150, 300, 150, 600};
-                    notification.flags = Notification.FLAG_AUTO_CANCEL;
-                    notificationManager.notify(R.drawable.trip_icon, notification);
-
-                    try {
-                        Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                        Ringtone toque = RingtoneManager.getRingtone(this, som);
-                        toque.play();
-
-                    } catch (Exception e) {
-
-                    }
-                }
-
-                if (Porcentagem > 0 && Porcentagem <= 1.1) {
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
-
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-                    builder.setTicker(context.getResources().getString(R.string.viagem));
-                    builder.setContentText(context.getResources().getString(R.string.notificacao_gasto));
-                    builder.setSmallIcon(R.drawable.trip_icon);
-                    builder.setContentIntent(p);
-                    NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
-                    String[] msg = new String[]{"Você Atingiu 90% do total", "planejado da sua viagem!"};
-                    for (int i = 0; i < msg.length; i++) {
-                        style.addLine(msg[i]);
-                    }
-                    builder.setStyle(style);
-
-                    Notification notification = builder.build();
-                    notification.vibrate = new long[]{150, 300, 150, 600};
-                    notification.flags = Notification.FLAG_AUTO_CANCEL;
-                    notificationManager.notify(R.drawable.trip_icon, notification);
-
-                    try {
-                        Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                        Ringtone toque = RingtoneManager.getRingtone(this, som);
-                        toque.play();
-
-                    } catch (Exception e) {
-
-                    }
-                }
-
-           // }
-
-       // }
-    }
-
-
-    public void NotificarPlanejado(){
-
-    }
-
-    public void ExibirViagemNew() {
+    public void ExibirViagemNew(){
         DialogFragment viagemnew = new Viagem_New();
         viagemnew.show(getSupportFragmentManager(), "viagemnew");
     }
 
-    public void Iniciar() {
+    public void Iniciar(){
         viagens = new Viagens_DAO(context).listar(id_usuario);
-        if (viagens.size() > 0) {
+        if(viagens.size() > 0){
             bt_ini_addviagem.setVisibility(View.INVISIBLE);
             tx_ini_dataviagem.setVisibility(View.VISIBLE);
             tx_ini_valorviagem.setVisibility(View.VISIBLE);
@@ -353,15 +240,68 @@ public class InicioActivity extends AppCompatActivity {
             ) + " " + viagem.getVi_dtinic() + " " + context.getResources().getString(R.string.a) + " " + viagem.getVi_dtfim());
             tx_ini_valorviagem.setText(context.getResources().getString(R.string.valordisponivel) + " " + context.getResources().getString(R.string.moeda) + " " + viagem.getVi_valor());
             exibir_menu = 1;
-        } else {
+            AtualizarTotais();
+        }
+        else{
             bt_ini_addviagem.setVisibility(View.VISIBLE);
+            v_linha.setVisibility(View.INVISIBLE);
             tx_ini_dataviagem.setVisibility(View.INVISIBLE);
             tx_ini_valorviagem.setVisibility(View.INVISIBLE);
             exibir_menu = 0;
         }
+        RecuperarTotais();
+        MontarGrafico();
     }
 
-    public void ChamarListGasto() {
+    public void AtualizarTotais(){
+        Totais totalviagem = new Totais_DAO(context).buscarNome("viagem");
+        if(totalviagem == null){
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            Totais totais = new Totais();
+            totais.setUs_id(id_usuario);
+            totais.setVi_id(id_viagem);
+            totais.setTo_nome("viagem");
+            totais.setTo_total(viagem.getVi_valor());
+            totais.setTo_gasto(null);
+            totais.setTo_planejamento(null);
+            totais_dao.criar(totais);
+        }
+        else{
+            Totais_DAO totais_dao = new Totais_DAO(context);
+            totalviagem.setTo_total(viagem.getVi_valor());
+            totais_dao.atualizar(totalviagem, "viagem");
+        }
+    }
+
+    public void RecuperarTotais(){
+        Totais_DAO totais_dao = new Totais_DAO(context);
+        Totais totalviagem = totais_dao.buscarNome("viagem");
+        Totais totalgasto = totais_dao.buscarNome("gasto");
+        Totais totalplanejamento = totais_dao.buscarNome("planejamento");
+
+        if(totalviagem == null){
+            val_viagem = 0;
+        }
+        else{
+            val_viagem = Float.parseFloat(totalviagem.getTo_total());
+        }
+
+        if(totalgasto == null){
+            val_gasto = 0;
+        }
+        else{
+            val_gasto = Float.parseFloat(totalgasto.getTo_total());
+        }
+
+        if(totalplanejamento == null){
+            val_planejamento = 0;
+        }
+        else{
+            val_planejamento = Float.parseFloat(totalplanejamento.getTo_total());
+        }
+    }
+
+    public void ChamarListGasto(){
         Intent it_gastos = new Intent(context, GastosListActivity.class);
         Bundle bundle = new Bundle();
 
@@ -369,9 +309,10 @@ public class InicioActivity extends AppCompatActivity {
         it_gastos.putExtras(bundle);
 
         startActivityForResult(it_gastos, 1);
+        finish();
     }
 
-    public void ChamarListPagamento() {
+    public void ChamarListPagamento(){
         Intent it_pagamento = new Intent(context, PagamentosListActivity.class);
         Bundle bundle = new Bundle();
 
@@ -379,9 +320,10 @@ public class InicioActivity extends AppCompatActivity {
         it_pagamento.putExtras(bundle);
 
         startActivityForResult(it_pagamento, 1);
+        finish();
     }
 
-    public void ChamarListPlanejamento() {
+    public void ChamarListPlanejamento(){
         Intent it_planejamento = new Intent(context, PlanejamentosListActivity.class);
         Bundle bundle = new Bundle();
 
@@ -389,16 +331,84 @@ public class InicioActivity extends AppCompatActivity {
         it_planejamento.putExtras(bundle);
 
         startActivityForResult(it_planejamento, 1);
+        finish();
     }
 
-    public void ChamarListConfiguracoes() {
+    public void ChamarListConfiguracoes(){
         Intent it_configuracoes = new Intent(context, ConfiguracoesListActivity.class);
         startActivity(it_configuracoes);
+        finish();
     }
 
+    //Gráfico
+    public void MontarGrafico(){
+        float pc_planejamento, pc_gastos;
+        pc_gastos = (val_gasto * 100)/val_planejamento;
+        pc_planejamento = 100 - pc_gastos;
+
+        ArrayList<Entry> entries = new ArrayList<>();
+        if(val_viagem == 0 && val_gasto == 0 && val_planejamento == 0){
+            gr_ini_inicio.setVisibility(View.INVISIBLE);
+        }
+        else{
+            if(val_gasto == 0 && val_planejamento == 0){
+                entries.add(new Entry(val_viagem, 0));
+            }
+            else {
+                if(val_gasto == 0){
+                    entries.add(new Entry(val_planejamento, 0));
+                }
+                else {
+                    if(val_planejamento == 0){
+                        entries.add(new Entry(val_gasto, 0));
+                    }
+                    else{
+                        entries.add(new Entry(val_gasto, 0));
+                        entries.add(new Entry(val_planejamento - val_gasto, 1));
+                    }
+                }
+            }
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+
+        ArrayList<String> labels = new ArrayList<String>();
+        if(val_viagem == 0 && val_gasto == 0 && val_planejamento == 0){
+            gr_ini_inicio.setVisibility(View.INVISIBLE);
+        }
+        else{
+            if(val_gasto == 0 && val_planejamento == 0){
+                labels.add(context.getResources().getString(R.string.viagem));
+            }
+            else {
+                if(val_gasto == 0){
+                    labels.add(context.getResources().getString(R.string.planejamento));
+                }
+                else {
+                    if(val_planejamento == 0){
+                        labels.add(context.getResources().getString(R.string.gasto));
+                    }
+                    else{
+                        labels.add(context.getResources().getString(R.string.gasto) + " - " + format(pc_gastos) + "%");
+                        labels.add(context.getResources().getString(R.string.planejamento) + " - " + format(pc_planejamento) + "%");
+                    }
+                }
+            }
+        }
+
+        PieData data = new PieData(labels, dataSet);
+        gr_ini_inicio.setData(data);
+        gr_ini_inicio.setBackgroundColor(Color.TRANSPARENT);
+
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+    }
 
     public static int getId_usuario() {
         return id_usuario;
     }
-}
 
+    public static String format(float x){
+        return String.format("%.2f", x);
+    }
+
+}

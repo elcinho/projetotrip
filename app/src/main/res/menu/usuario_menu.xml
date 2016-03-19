@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/mn_us_salvar"
+        android:icon="@drawable/ic_action_accept"
+        android:orderInCategory="1"
+        android:title="@string/salvar"
+        app:showAsAction="always"/>
+    <item android:id="@+id/mn_us_alterarsenha"
+        android:icon="@drawable/ic_action_accounts"
+        android:orderInCategory="2"
+        android:title="@string/alterarsenha"
+        app:showAsAction="never"/>
+</menu>

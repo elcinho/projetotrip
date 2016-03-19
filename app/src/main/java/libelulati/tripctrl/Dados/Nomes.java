@@ -14,6 +14,7 @@ public class Nomes {
     private static final String TABELA_PAGAMENTOS = "pagamentos";
     private static final String TABELA_GASTOS = "gastos";
     private static final String TABELA_CNOTIFICACAO = "cnotificacao";
+    private static final String TABELA_TOTAIS = "totais";
 
     // CAMPO ID : CHAVE PRIMÁRIA DE TODAS AS TABELAS
     private static final String ID = "_id";
@@ -32,11 +33,9 @@ public class Nomes {
     private static final String US_USO = "us_uso";
     private static final String US_SEMSENHA = "us_semsenha";
 
-
     //CAMPOS DE TIPOS DE PAGAMENTO
     private static final String TP_NOME = "tp_nome";
     private static final String TP_ID = "tp_id";
-
 
     //CAMPOS DE VIAGENS
     private static final String VI_NOME = "vi_nome";
@@ -68,6 +67,13 @@ public class Nomes {
     private static final String CN_PAGAMENTO = "cn_pagamento";
     private static final String CN_PLANEJAMENTO = "cn_planejamento";
     private static final String CN_GASTOS = "cn_gastos";
+
+    //CAMPOS DE TOTAIS
+    private static final String TO_ID = "to_id";
+    private static final String TO_NOME = "to_nome";
+    private static final String TO_TOTAL = "to_total";
+    private static final String TO_GASTO = "to_gasto";
+    private static final String TO_PLANEJAMENTO = "to_planejamento";
 
 
     //GETTES
@@ -109,6 +115,10 @@ public class Nomes {
 
     public static String getTabelaCnotificacao() {
         return TABELA_CNOTIFICACAO;
+    }
+
+    public static String getTabelaTotais() {
+        return TABELA_TOTAIS;
     }
 
     public static String getID() {
@@ -241,5 +251,25 @@ public class Nomes {
 
     public static String getCnGastos() {
         return CN_GASTOS;
+    }
+
+    public static String getToId() {
+        return TO_ID;
+    }
+
+    public static String getToNome() {
+        return TO_NOME;
+    }
+
+    public static String getToTotal() {
+        return TO_TOTAL;
+    }
+
+    public static String getToGasto() {
+        return TO_GASTO;
+    }
+
+    public static String getToPlanejamento() {
+        return TO_PLANEJAMENTO;
     }
 }

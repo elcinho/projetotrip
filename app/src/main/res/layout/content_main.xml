@@ -12,18 +12,54 @@
     tools:context="libelulati.tripctrl.Main.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_main_logo"
+        android:src="@drawable/logo_temporaria"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/bemvindo"
+        android:id="@+id/tx_main_titulo"
+        android:textSize="@dimen/fonte_botoes"
+        android:gravity="center_horizontal"
+        android:layout_alignBottom="@+id/iv_main_logo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/iv_main_logo"
+        android:layout_alignEnd="@+id/iv_main_logo" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/entrar"
         android:id="@+id/bt_main_entrar"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="123dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:background="@color/colorAccent"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/fonte_botoes"/>
+        android:textSize="@dimen/fonte_botoes"
+        android:layout_above="@+id/tx_main_esquecisenha"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/tx_main_esquecisenha"
+        android:layout_alignEnd="@+id/tx_main_esquecisenha" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/esquecisenha"
+        android:id="@+id/tx_main_esquecisenha"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible"/>
+
+
+
+
 </RelativeLayout>

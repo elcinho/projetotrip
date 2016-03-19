@@ -29,5 +29,7 @@
     <dimen name="float_menu_radius">230dp</dimen>
     <dimen name="float_menu_angulo">45dp</dimen>
 
+    <dimen name="fonte_grafico">15dp</dimen>
+
 
 </resources>

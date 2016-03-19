@@ -16,7 +16,6 @@ import libelulati.tripctrl.Categorias.CategoriaListActivity;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Notificacoes.NotificacoesConfiguracaoActivity;
 import libelulati.tripctrl.R;
-import libelulati.tripctrl.TipoPagamento.TiposPagamentoListActivity;
 
 public class ConfiguracoesListActivity extends AppCompatActivity {
     int id_usuario = InicioActivity.getId_usuario();
@@ -84,8 +83,6 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
                 startActivity(it_categorias);
                 break;
             case 4:
-                Intent it_tipopagamento = new Intent(context, TiposPagamentoListActivity.class);
-                startActivity(it_tipopagamento);
                 break;
             case 5:
                 break;

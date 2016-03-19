@@ -9,4 +9,156 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_sobre" tools:context="libelulati.tripctrl.Aplicativo.SobreActivity">
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/so_versao"
+        android:id="@+id/tx_so_versao_tt"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="texto"
+        android:id="@+id/tx_so_versao"
+        android:layout_alignTop="@+id/tx_so_versao_tt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_divider"
+        android:background="@color/colorGrey"
+        android:layout_marginTop="@dimen/margin_top_co"
+        android:layout_below="@+id/tx_so_versao"
+        android:id="@+id/vw_so_linha01"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/so_desenvolvedor"
+        android:id="@+id/tx_so_desenvolvedor_tt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_below="@+id/vw_so_linha01" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/so_libelula"
+        android:id="@+id/tx_so_desenvolvedor"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_below="@+id/vw_so_linha01" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_divider"
+        android:background="@color/colorGrey"
+        android:layout_marginTop="@dimen/margin_top_co"
+        android:layout_below="@+id/tx_so_desenvolvedor"
+        android:id="@+id/vw_so_linha02"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/so_responsavel"
+        android:id="@+id/tx_so_responsaveis_tt"
+        android:layout_below="@+id/vw_so_linha02"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/so_marcela"
+        android:id="@+id/tx_so_responsavel_mm"
+        android:layout_below="@+id/tx_so_responsaveis_tt"
+        android:layout_toRightOf="@+id/tx_so_email_tt"
+        android:layout_toEndOf="@+id/tx_so_email_tt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/so_elcio"
+        android:id="@+id/tx_responsavel_er"
+        android:layout_below="@+id/tx_so_responsavel_mm"
+        android:layout_alignLeft="@+id/tx_so_responsavel_mm"
+        android:layout_alignStart="@+id/tx_so_responsavel_mm" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_divider"
+        android:background="@color/colorGrey"
+        android:layout_marginTop="@dimen/margin_top_co"
+        android:layout_below="@+id/tx_responsavel_er"
+        android:id="@+id/vw_so_linha03"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/email"
+        android:id="@+id/tx_so_email_tt"
+        android:layout_below="@+id/vw_so_linha03"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/margin_top"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/so_email"
+        android:id="@+id/tx_so_email"
+        android:layout_below="@+id/vw_so_linha03"
+        android:layout_toRightOf="@+id/tx_so_versao_tt"
+        android:layout_toEndOf="@+id/tx_so_versao_tt"
+        android:layout_marginTop="20dp"
+        android:autoLink="email"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_divider"
+        android:background="@color/colorGrey"
+        android:layout_marginTop="@dimen/margin_top_co"
+        android:layout_below="@+id/tx_so_email"
+        android:id="@+id/vw_so_linha04"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/site"
+        android:id="@+id/tx_so_site_tt"
+        android:layout_below="@+id/vw_so_linha04"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/margin_top"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/so_site"
+        android:id="@+id/tx_so_site"
+        android:layout_alignBottom="@+id/tx_so_site_tt"
+        android:layout_toRightOf="@+id/tx_so_email_tt"
+        android:layout_toEndOf="@+id/tx_so_email_tt"
+        android:autoLink="web"/>
+
 </RelativeLayout>
