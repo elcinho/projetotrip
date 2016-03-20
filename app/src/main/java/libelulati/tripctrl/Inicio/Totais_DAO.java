@@ -94,6 +94,8 @@ public class Totais_DAO extends Dados{
         cursor.close();
         db.close();
 
+        //teste
+
         return listarregistros;
     }
 
