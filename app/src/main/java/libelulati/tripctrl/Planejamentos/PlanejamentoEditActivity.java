@@ -277,10 +277,9 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         String valorTot = totalcat.getTo_planejamento();
         ca_valor = Double.parseDouble(valorTot) - Double.parseDouble(valor);
         Totais_DAO totais_dao = new Totais_DAO(context);
-        totalcat.setTo_gasto(String.valueOf(ca_valor));
+        totalcat.setTo_planejamento(String.valueOf(ca_valor));
         totais_dao.atualizar(totalcat, cat);
     }
-
 
 
     @Override

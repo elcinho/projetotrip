@@ -70,6 +70,17 @@
     <string name="co_termo_uso">Termo de Uso</string>
     <string name="co_tipos_pagamento">Editar Tipos de Pagamento</string>
 
+    <!-- ITENS RELATORIOS -->
+    <string name="re_gastoxplanejado">Planejado X Gastos</string>
+    <string name="re_gastoxplanejado_categoria">Planejado X Gastos por Categoria</string>
+    <string name="re_planejado_categoria">Planejamento por Categoria</string>
+    <string name="re_gasto_categoria">Despesa por Categoria</string>
+    <string name="re_ainda_posso_gastar">Ainda posso gastar</string>
+    <string name="re_naoencontrado">Nenhum relatório pode ser exibido.</string>
+    <string name="re_valorPlanejado">Valor Planejado</string>
+    <string name="re_valorGasto">Valor Gasto</string>
+
+
     <!-- ITENS SOBRE -->
     <string name="so_desenvolvedor">Desenvolvido por: </string>
     <string name="so_elcio">Elcio Raimundo</string>
@@ -112,7 +123,7 @@
     <string name="tipopagamento">Tipo Pagamento</string>
     <string name="total">Total:</string>
     <string name="valor">Valor</string>
-    <string name="descricao_grafico">Planejamento X Gastos</string>
+    <string name="planejado">Planejado</string>
 
     <!-- TABELAS -->
     <string name="categoria">Categoria</string>
@@ -214,5 +225,6 @@
         4Sed congue diam fermentum, pulvinar sem eget, suscipit lorem. Integer elementum velit et neque cursus imperdiet. Nulla et nibh et enim eleifend pulvinar et at nulla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam ante ex, finibus vel feugiat ac, convallis ac magna. Praesent auctor sit amet justo vel pellentesque. Suspendisse potenti. Aliquam ultricies congue tortor id blandit. In molestie vehicula sollicitudin. Donec bibendum, nisi at dictum accumsan, libero elit maximus lacus, eget finibus quam dolor vitae risus. Proin non velit in sapien condimentum cursus. Phasellus vulputate eget mi et aliquam. Vivamus non sem ac elit tempus aliquam. Aliquam et dolor ac arcu venenatis tincidunt. Phasellus in posuere erat, vel commodo arcu.
         5Aenean elementum ultrices vulputate. Morbi nec viverra quam. Nunc quis consequat est. Nulla turpis enim, efficitur id pellentesque id, accumsan sed sapien. Nam non odio eu quam posuere suscipit ac ac diam. Suspendisse condimentum ex sit amet ex porttitor, malesuada vehicula est bibendum. Vivamus velit velit, commodo quis sapien eu, maximus placerat odio. Cras eget nulla in quam viverra maximus pharetra quis sapien.</string>
     <string name="check_termo">Li e concordo com o termo de uso acima.</string>
+    <string name="title_activity_relatorio">Relatório</string>
 
 </resources>

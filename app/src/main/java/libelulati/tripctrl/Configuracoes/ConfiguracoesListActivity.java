@@ -25,7 +25,6 @@ import libelulati.tripctrl.Usuarios.UsuarioEditActivity;
 import libelulati.tripctrl.Usuarios.Usuario_DAO;
 
 public class ConfiguracoesListActivity extends AppCompatActivity {
-    int id_usuario = InicioActivity.getId_usuario();
     Context context;
 
     @Override

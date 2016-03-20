@@ -10,4 +10,16 @@
     tools:showIn="@layout/activity_relatorios_list"
     tools:context="libelulati.tripctrl.Relatorios.RelatoriosListActivity">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sc_re_lista">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/li_re_lista"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
