@@ -48,6 +48,7 @@ import libelulati.tripctrl.Planejamentos.Planejamento;
 import libelulati.tripctrl.Planejamentos.Planejamento_DAO;
 import libelulati.tripctrl.Planejamentos.PlanejamentosListActivity;
 import libelulati.tripctrl.R;
+import libelulati.tripctrl.Relatorios.RelatoriosListActivity;
 import libelulati.tripctrl.Viagens.Viagem;
 import libelulati.tripctrl.Viagens.Viagem_New;
 import libelulati.tripctrl.Viagens.Viagens_DAO;
@@ -55,19 +56,17 @@ import libelulati.tripctrl.Viagens.Viagens_DAO;
 public class InicioActivity extends AppCompatActivity {
     static int id_usuario = 0;
     List<Viagem> viagens;
-    List<Planejamento> planejamentos; // PORQUE INICIALIZOU ESSAS LISTAS ATOA? SABIA QUE ISSO CONSOME MEMÓRIA DO APP?
-    List<Totais> totais; // PORQUE INICIALIZOU ESSAS LISTAS ATOA? SABIA QUE ISSO CONSOME MEMÓRIA DO APP?
     Viagem viagem;
     Button bt_ini_addviagem;
     TextView tx_ini_dataviagem, tx_ini_valorviagem;
     Context context;
     String titulo;
-    int id_viagem, exibir_menu;
+    static int id_viagem;
+    int exibir_menu;
     View v_inicio, v_linha;
     ImageView fabIconNew;
     PieChart gr_ini_inicio;
     float val_viagem, val_planejamento, val_gasto;
-    Totais total;  // PORQUE INICIALIZOU ESSE OBJETO ATOA? SABIA QUE ISSO CONSOME MEMÓRIA DO APP?
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -408,7 +407,9 @@ public class InicioActivity extends AppCompatActivity {
     }
 
     public void ChamarListRelatorios(){
-
+        Intent it_relatorios = new Intent(context, RelatoriosListActivity.class);
+        startActivity(it_relatorios);
+        finish();
     }
 
     //Gráfico
@@ -461,7 +462,7 @@ public class InicioActivity extends AppCompatActivity {
                     }
                     else{
                         labels.add(context.getResources().getString(R.string.gasto) + " - " + format(pc_gastos) + "%");
-                        labels.add(context.getResources().getString(R.string.planejamento) + " - " + format(pc_planejamento) + "%");
+                        labels.add(context.getResources().getString(R.string.planejado) + " - " + format(pc_planejamento) + "%");
                     }
                 }
             }
@@ -471,11 +472,21 @@ public class InicioActivity extends AppCompatActivity {
         gr_ini_inicio.setData(data);
         gr_ini_inicio.setBackgroundColor(Color.TRANSPARENT);
 
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        ArrayList<Integer> cores = new ArrayList<Integer>();
+        if(cores.size() == 0){
+            cores.add(context.getResources().getColor(R.color.colorRed));
+            cores.add(context.getResources().getColor(R.color.colorGreen));
+        }
+
+        dataSet.setColors(cores);
     }
 
     public static int getId_usuario() {
         return id_usuario;
+    }
+
+    public static int getId_viagem() {
+        return id_viagem;
     }
 
     public static String format(float x){
