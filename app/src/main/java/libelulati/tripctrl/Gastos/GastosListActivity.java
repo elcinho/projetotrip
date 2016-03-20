@@ -204,20 +204,3 @@ public class GastosListActivity extends AppCompatActivity {
         return String.format("%.2f", x);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

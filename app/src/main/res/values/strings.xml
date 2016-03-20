@@ -2,45 +2,56 @@
     <!-- NOME APP -->
     <string name="app_name">Trip Control</string>
 
+
     <!-- TITULOS ACTIVITYS -->
     <string name="title_activity_configuracoes">Configurações</string>
-    <string name="title_activity_categoria_list">Categorias</string>
-    <string name="title_activity_configuracoes_list">Configurações</string>
-    <string name="title_activity_esqueci_senha">Esqueci Senha</string>
     <string name="title_activity_gasto_edit">Editar Gasto</string>
     <string name="title_activity_gasto_new">Novo Gasto</string>
     <string name="title_activity_gastos_list">Gastos</string>
     <string name="title_activity_inicio">Início</string>
-    <string name="title_activity_notificacoes_configuracao">Configurações de Notificação</string>
-    <string name="title_activity_pagamentos_edit">Editar Pagamento</string>
     <string name="title_activity_pagamentos_list">Pagamentos</string>
+    <string name="title_activity_planejamentos_list">Planejamentos</string>
+    <string name="title_activity_pagamentos_edit">Editar Pagamento</string>
     <string name="title_activity_pagamentos_new">Novo Pagamento</string>
     <string name="title_activity_planejamento_edit">Editar Planejamento</string>
-    <string name="title_activity_planejamentos_list">Planejamentos</string>
     <string name="title_activity_planejamentos_new">Novo Planejamento</string>
+    <string name="title_activity_configuracoes_list">Configurações</string>
+    <string name="title_activity_usuario_edit">Usuário</string>
+    <string name="title_activity_categoria_list">Categorias</string>
+    <string name="title_activity_tipos_pagamento_list">Tipos de Pagamento</string>
+    <string name="title_activity_notificacoes_configuracao">Configurações de Notificação</string>
     <string name="title_activity_sobre">Sobre</string>
     <string name="title_activity_termo_uso">Termo de Uso e Privacidade</string>
-    <string name="title_activity_tipos_pagamento_list">Tipos de Pagamento</string>
-    <string name="title_activity_usuario_edit">Editar Usuário</string>
-    <string name="title_activity_usuario_novo">Novo Usuário</string>
+
+
+
 
     <!-- MENUS -->
     <string name="atualizar">Atualizar</string>
+    <string name="buscar">Buscar</string>
+    <string name="categorias">Categorias</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="editarusuario">Editar Usuário</string>
     <string name="enviar">Enviar</string>
+    <string name="exportar">Exportar</string>
+    <string name="gastos">Gastos</string>
+    <string name="inserir_gastos">Inserir Gastos</string>
+    <string name="inserir_metodopagamento">Inserir Método de Pagamento</string>
+    <string name="inserir_planejamento">Inserir Planejamento</string>
+    <string name="metodospagamento">Métodos de Pagamento</string>
+    <string name="planejamentos">Planejamentos</string>
     <string name="salvar">Salvar</string>
+    <string name="viagens">Viagens</string>
     <string name="voltar">Voltar</string>
+
 
     <!-- BOTÕES, LINKS E TÍTULOS -->
     <string name="a">a</string>
-    <string name="adicionar_categoria">Incluir categoria</string>
-    <string name="adicionar_tipopagamento">Incluir tipo de pagamento</string>
     <string name="adicioneviagem">Adicione uma viagem para começar</string>
     <string name="alterarsenha">Alterar senha</string>
-    <string name="bemvindo">Bem vindo ao TripControl</string>
     <string name="cadastrar">Cadastrar</string>
     <string name="codigoconfirmacao">Código de confirmação</string>
     <string name="codigoconfirme">Informe o código recebido para alterar sua senha.</string>
-    <string name="editar">Editar</string>
     <string name="entrar">Entrar</string>
     <string name="enviaremail">Enviar um email</string>
     <string name="enviarsms">Enviar um SMS</string>
@@ -51,44 +62,43 @@
     <string name="logo">Logomarca</string>
     <string name="moeda">R$</string>
     <string name="novaviagem">Nova viagem</string>
-    <string name="novoplanejamento">Novo Planejamento</string>
     <string name="novousuario">Novo usuário</string>
     <string name="periodo">Período:</string>
     <string name="selecioneopcao">Selecione uma opção abaixo para redefinir sua senha:</string>
-    <string name="semsenha">Permitir entrar sem senha.</string>
     <string name="usarcodusuario">Usar meu código de usuario</string>
     <string name="valordisponivel">Valor disponível:</string>
+    <string name="novoplanejamento">Novo Planejamento</string>
+    <string name="adicionar_categoria">Incluir categoria</string>
+    <string name="editar">Editar</string>
+    <string name="adicionar_tipopagamento">Incluir tipo de pagamento</string>
 
     <!-- ITENS CONFIGURAÇÕES -->
     <string name="co_perfil_usuario">Perfil de Usuário</string>
-    <string name="co_avalie">Avaliação e Feedback</string>
-    <string name="co_categorias">Editar Categorias</string>
     <string name="co_notificacoes">Notificações</string>
-    <string name="co_sair">Sair</string>
-    <string name="co_sobre">Sobre o aplicativo</string>
     <string name="co_termo_uso">Termo de Uso</string>
+    <string name="co_categorias">Editar Categorias</string>
     <string name="co_tipos_pagamento">Editar Tipos de Pagamento</string>
-
-    <!-- ITENS SOBRE -->
-    <string name="so_desenvolvedor">Desenvolvido por: </string>
-    <string name="so_elcio">Elcio Raimundo</string>
-    <string name="so_email">desenvolvimento@libelulati.com</string>
-    <string name="so_libelula">Libélula TI</string>
-    <string name="so_marcela">Marcela Melo</string>
-    <string name="so_responsavel">Responsáveis pelo desenvolvimento: </string>
-    <string name="so_site">www.libelulati.com</string>
-    <string name="so_versao">Versão: </string>
+    <string name="co_sobre">Sobre o aplicativo</string>
+    <string name="co_avalie">Avaliação e Feedback</string>
+    <string name="co_sair">Sair</string>
 
     <!-- NOTIFICAÇÕES -->
     <string name="ativar_notificacoes">Ativar Notificações</string>
-    <string name="notificacao_gasto">Gasto</string>
-    <string name="notificacao_pagamentos">Pagamentos</string>
-    <string name="notificacao_planejamento">Planejamento</string>
     <string name="notificacao_todas">Todas</string>
     <string name="notificacao_viagem">Viagens</string>
+    <string name="notificacao_pagamentos">Pagamentos</string>
+    <string name="notificacao_planejamento">Planejamento</string>
+    <string name="notificacao_gasto">Gasto</string>
+    <string name="notificacao_viagem_50">Você atingiu 50% do total planejado da sua viagem</string>
+    <string name="notificacao_viagem_90">Você atingiu 90% do total planejado da sua viagem</string>
+    <string name="Notificaçao_categoria_50">Você atingiu 50% do total da sua categoria</string>
+    <string name="Notificaçao_categoria_90">Você atingiu 90% do total da sua categoria</string>
+
 
     <!-- CAMPOS -->
+    <string name="codarea">Código de área / DDD</string>
     <string name="codigosenha">Código</string>
+    <string name="codusuario">Código de usuário</string>
     <string name="confirmesenha">Confirme a senha</string>
     <string name="data">Data</string>
     <string name="descricao">Descrição</string>
@@ -99,15 +109,21 @@
     <string name="dtnasc">Data de Nascimento</string>
     <string name="dtvenc">Vencimento</string>
     <string name="email">E-mail</string>
-    <string name="formapagamento">Forma de pagamento</string>
+    <string name="hospedagem">Hospedagem</string>
+    <string name="lista">Nova Lista</string>
+    <string name="localizacao">Localização</string>
     <string name="nome">Nome</string>
+    <string name="formapagamento">Forma de pagamento</string>
+    <string name="relatorios">Relatórios</string>
+    <string name="selecioneviagem">Selecione uma Viagem</string>
     <string name="senha">Senha</string>
-    <string name="site">Site</string>
     <string name="telefone">Telefone</string>
+    <string name="tipohospedagem">Tipo de hospedagem</string>
     <string name="tipopagamento">Tipo Pagamento</string>
-    <string name="total">Total:</string>
+    <string name="tipotransporte">Tipo de transporte</string>
+    <string name="transporte">Transporte</string>
     <string name="valor">Valor</string>
-    <string name="descricao_grafico">Planejamento X Gastos</string>
+    <string name="total">Total:</string>
 
     <!-- TABELAS -->
     <string name="categoria">Categoria</string>
@@ -129,18 +145,24 @@
     <string name="opcao_visualizar">Visualizar</string>
 
     <!-- VALIDAÇÃO DE CAMPOS -->
-    <string name="validar_texto_tamanho">Insira mais que 5 caracteres.</string>
-    <string name="validar_texto_espaco">Não é permitido iniciar o texto com espaços em branco.</string>
-    <string name="validar_texto_sequencia">Não é permitido inserir sequências de caracteres.</string>
-    <string name="validar_codigoSenha">Código Inválido.</string>
-    <string name="validar_email">O e-mail informado é inválido.</string>
-    <string name="validar_datainicial">A data inicial deve ser posterior à data atual.</string>
-    <string name="validar_datafinal">A data final deve ser posterior à data inicial.</string>
-    <string name="validar_valortotal">O Valor deve ser nulo ou acima de 100.00.</string>
-    <string name="validar_datatransacao">A data da transação deve estar compreendida no período da viagem.</string>
-    <string name="validar_valor">O valor não pode estar vazio.</string>
-    <string name="validar_categoria_nulo">Escolha uma categoria.</string>
-    <string name="validar_categoria_existente">Está categoria já foi inserida.</string>
+    <string name="nulo_email">O e-mail não pode ser nulo.</string>
+    <string name="validar_campo_vazio">O campo não pode ser vazio.</string>
+    <string name="validar_categoria">A categoria precisa ter o mínimo de 5 caracteres não numéricos.</string>
+    <string name="validar_codarea">O código de área deve possuir mais de 2 caracteres numéricos.</string>
+    <string name="validar_codigoSenha">O código digitado não corresponde ao enviado. Tente novamente.</string>
+    <string name="validar_codigoUsuario">O código de usuário digitado não é válido.</string>
+    <string name="validar_confirmesenha">As senhas digitadas não são iguais.</string>
+    <string name="validar_detalhe">O campo precisa ter o mínimo de 5 caracteres não numéricos.</string>
+    <string name="validar_dtfim">A data final não pode ser anterior à data inicial.</string>
+    <string name="validar_dtinicio">A data inicial não pode ser anterior à data atual.</string>
+    <string name="validar_dtnasc">A idade não pode ser menor que 15 anos.</string>
+    <string name="validar_dtvenc">A data de vencimento não pode ser anterior à data atual.</string>
+    <string name="validar_email">O e-mail digitado não é válido.</string>
+    <string name="validar_lista">A lista precisa ter o mínimo de 5 caracteres não numéricos.</string>
+    <string name="validar_nome">O nome precisa ter o mínimo de 5 caracteres não numéricos.</string>
+    <string name="validar_senha">A senha precisa ter entre 6 e 10 caracteres. Pelo menos um número, um caracter maíusculo e um caracter minúsculo.</string>
+    <string name="validar_telefone">O telefone digitado não é válido.</string>
+    <string name="validar_valor">O Valor deve ser maior que 0.99.</string>
 
     <!-- NEGAÇÕES -->
     <string name="encontrado_registro">Nenhum registro encontrado.</string>
@@ -149,66 +171,91 @@
     <string name="expirado_codigo">O código enviado expirou. Solicite um novo para prosseguir.</string>
 
     <!-- CONFIRMAÇÕES -->
-    <string name="sucesso_alterar_pagamento">Pagamento alterado com sucesso.</string>
-    <string name="sucesso_alterar_planejamento">Planejamento alterado com sucesso.</string>
+    <string name="sucesso_alterar_metodopagamento">O método de pagamento foi alterado com sucesso.</string>
     <string name="sucesso_alterar_senha">A senha foi alterada com sucesso.</string>
     <string name="sucesso_alterar_usuario">O usuário foi alterado com sucesso.</string>
     <string name="sucesso_alterar_viagem">A viagem foi alterada com sucesso.</string>
-    <string name="sucesso_atualizar_gasto">Despesa atualizada com sucesso.</string>
     <string name="sucesso_criar_categoria">Categoria criada com sucesso.</string>
-    <string name="sucesso_criar_gasto">Despesa inserida com sucesso.</string>
-    <string name="sucesso_criar_pagamento">Pagamento criado com sucesso.</string>
-    <string name="sucesso_criar_planejamento">Planejamento criado com sucesso.</string>
-    <string name="sucesso_criar_tipopagamento">Tipo de pagamento criado com sucesso.</string>
+    <string name="sucesso_criar_lista">Lista criada com sucesso.</string>
+    <string name="sucesso_criar_metodopagamento">Método de pagamento criado com sucesso.</string>
     <string name="sucesso_criar_usuario">Usuário criado com sucesso.</string>
     <string name="sucesso_criar_viagem">Viagem criada com sucesso.</string>
     <string name="sucesso_enviar_codigoSenha">Código de confirmação enviado com sucesso.</string>
-    <string name="sucesso_excluir_categoria">Categoria deletada com sucesso.</string>
-    <string name="sucesso_excluir_gasto">Despesa deletada com sucesso.</string>
-    <string name="sucesso_excluir_pagamento">Pagamento deletado com sucesso.</string>
-    <string name="sucesso_excluir_planejamento">Planejamento deletado com sucesso.</string>
-    <string name="sucesso_excluir_tipopagamento">Tipo de pagamento deletado com sucesso.</string>
+    <string name="sucesso_excluir_metodopagamento">Método de pagamento deletado com sucesso.</string>
     <string name="sucesso_excluir_viagem">Viagem deletada com sucesso.</string>
+    <string name="sucesso_criar_gasto">Despesa inserida com sucesso.</string>
+    <string name="sucesso_atualizar_gasto">Despesa atualizada com sucesso.</string>
+    <string name="sucesso_excluir_gasto">Despesa deletada com sucesso.</string>
+    <string name="sucesso_criar_pagamento">Pagamento criado com sucesso.</string>
+    <string name="sucesso_excluir_pagamento">Pagamento deletado com sucesso.</string>
+    <string name="sucesso_alterar_pagamento">Pagamento alterado com sucesso.</string>
+    <string name="sucesso_criar_planejamento">Planejamento criado com sucesso.</string>
+    <string name="sucesso_excluir_planejamento">Planejamento deletado com sucesso.</string>
+    <string name="sucesso_alterar_planejamento">Planejamento alterado com sucesso.</string>
+    <string name="sucesso_excluir_categoria">Categoria deletada com sucesso.</string>
+    <string name="sucesso_excluir_tipopagamento">Tipo de pagamento deletado com sucesso.</string>
+    <string name="sucesso_criar_tipopagamento">Tipo de pagamento criado com sucesso.</string>
+
+
 
     <!-- MENSAGENS DE ERRO -->
-    <string name="erro_alterar_categoria">A categoria não foi alterada.</string>
-    <string name="erro_alterar_pagamento">O pagamento não foi alterado.</string>
-    <string name="erro_alterar_planejamento">O planejamento não foi alterado.</string>
+    <string name="erro_alterar_metodopagamento">Os dados do método de pagamento não foram alterados.</string>
     <string name="erro_alterar_senha">A senha não foi alterada. Tente novamente.</string>
-    <string name="erro_alterar_tipopagamento">O tipo de pagamento não foi alterado.</string>
     <string name="erro_alterar_usuario">Os dados do usuário não foram alterados.</string>
     <string name="erro_alterar_viagem">Os dados da viagem não foram alterados.</string>
-    <string name="erro_atualizar_gasto">A despesa não foi alterada.</string>
-    <string name="erro_atualizar_termouso">Não foi possível gravar, tente novamente.</string>
     <string name="erro_autenticar">Usuário ou senha inválidos. Tente novamente.</string>
-    <string name="erro_categoria_duplicada">Já existe esta categoria.</string>
     <string name="erro_criar_categoria">Ocorreu um erro ao criar a categoria.</string>
-    <string name="erro_criar_gasto">Ocorreu um erro ao inserir a despesa.</string>
     <string name="erro_criar_lista">Ocorreu um erro ao criar a lista.</string>
-    <string name="erro_criar_pagamento">Ocorreu um erro ao inserir o pagamento.</string>
-    <string name="erro_criar_planejamento">Ocorreu um erro ao inserir o planejamento.</string>
-    <string name="erro_criar_tipopagamento">Ocorreu um erro ao criar o tipo de pagamento.</string>
+    <string name="erro_criar_metodopagamento">Ocorreu um erro ao criar o método de pagamento.</string>
     <string name="erro_criar_usuario">Ocorreu um erro ao criar usuário.</string>
     <string name="erro_criar_viagem">Ocorreu um erro ao criar a viagem.</string>
-    <string name="erro_deletar_pagamento">O pagamento não pôde ser deletado.</string>
-    <string name="erro_deletar_planejamento">O planejamento não pôde ser deletado.</string>
-    <string name="erro_excluir_categoria">A categoria não pôde ser excluída.</string>
-    <string name="erro_excluir_gasto">A despesa não pôde ser excluída.</string>
-    <string name="erro_excluir_pagamento">O pagamento não pôde ser excluído.</string>
-    <string name="erro_excluir_planejamento">O planejamento não pôde ser excluído.</string>
-    <string name="erro_excluir_tipopagamento">O tipo de pagamento não pôde ser excluído.</string>
+    <string name="erro_excluir_metodopagamento">O método de pagamento não pôde ser deletado.</string>
     <string name="erro_excluir_viagem">A viagem não pôde ser deletada.</string>
     <string name="erro_gerar_codigo">Erro ao gerar o código de confirmação. A senha não será alterada.</string>
-    <string name="erro_tipopagamento_duplicado">Já existe este tipo de pagamento.</string>
     <string name="erro_validar_campos">Existem campos que não foram validados. Verifique os dados e tente novamente.</string>
+    <string name="erro_criar_gasto">Ocorreu um erro ao inserir a despesa.</string>
+    <string name="erro_atualizar_gasto">A despesa não foi alterada.</string>
+    <string name="erro_excluir_gasto">A despesa não pôde ser excluída.</string>
+    <string name="erro_criar_pagamento">Ocorreu um erro ao inserir o pagamento.</string>
+    <string name="erro_deletar_pagamento">O pagamento não pôde ser deletado.</string>
+    <string name="erro_alterar_pagamento">O pagamento não foi alterado.</string>
+    <string name="erro_excluir_pagamento">O pagamento não pôde ser excluído.</string>
+    <string name="erro_criar_planejamento">Ocorreu um erro ao inserir o planejamento.</string>
+    <string name="erro_deletar_planejamento">O planejamento não pôde ser deletado.</string>
+    <string name="erro_alterar_planejamento">O planejamento não foi alterado.</string>
+    <string name="erro_excluir_planejamento">O planejamento não pôde ser excluído.</string>
+    <string name="erro_categoria_duplicada">Já existe esta categoria.</string>
+    <string name="erro_tipopagamento_duplicado">Já existe este tipo de pagamento.</string>
+    <string name="erro_alterar_categoria">A categoria não foi alterada.</string>
+    <string name="erro_excluir_categoria">A categoria não pôde ser excluída.</string>
+    <string name="erro_alterar_tipopagamento">O tipo de pagamento não foi alterado.</string>
+    <string name="erro_excluir_tipopagamento">O tipo de pagamento não pôde ser excluído.</string>
+    <string name="bemvindo" />
+    <string name="so_versao" />
+    <string name="so_desenvolvedor" />
+    <string name="so_libelula" />
+    <string name="so_responsavel" />
+    <string name="so_marcela" />
+    <string name="so_elcio" />
+    <string name="so_email" />
+    <string name="site" />
+    <string name="so_site" />
+    <string name="termouso" />
+    <string name="check_termo" />
+    <string name="semsenha" />
+    <string name="title_activity_esqueci_senha" />
+    <string name="erro_atualizar_termouso" />
+    <string name="validar_texto_espaco" />
+    <string name="validar_texto_sequencia" />
+    <string name="validar_texto_tamanho" />
+    <string name="validar_datainicial" />
+    <string name="validar_datafinal" />
+    <string name="validar_valortotal" />
+    <string name="validar_datatransacao" />
+    <string name="validar_categoria_nulo" />
+    <string name="validar_categoria_existente" />
+    <string name="erro_criar_tipopagamento" />
+    <string name="title_activity_usuario_novo" />
 
-    <!-- TERMO DE USO -->
-    <string name="termouso">1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum scelerisque tortor vel sollicitudin. Ut in ipsum at ex pulvinar pharetra ut ut quam. Nam mollis varius massa et dignissim. Nulla pretium ipsum eleifend volutpat pellentesque. Suspendisse aliquet vestibulum nunc, nec feugiat velit fermentum non. Aenean hendrerit magna nec sagittis faucibus. Vivamus tellus diam, laoreet lacinia lobortis ut, vestibulum eu ex. Duis magna ligula, porttitor vel bibendum id, vulputate vitae purus. Donec ullamcorper, turpis nec euismod tincidunt, ligula tortor gravida purus, eget blandit tellus eros quis nulla. Nulla id sodales dolor. Phasellus tempor tincidunt mollis. Nunc consectetur, orci at posuere vulputate, ex mauris malesuada erat, auctor dictum metus nunc id augue. Donec blandit nisi ut feugiat vehicula. Proin tellus ex, tincidunt eu volutpat eget, gravida ut orci. Morbi in dapibus felis. Mauris placerat odio eu elit venenatis, in euismod odio suscipit.
-        2Sed eget nulla facilisis massa suscipit sagittis sit amet aliquet elit. Praesent ultricies lacinia vestibulum. Suspendisse malesuada aliquet facilisis. Pellentesque dui nulla, venenatis at vehicula et, finibus at eros. Fusce et lorem vestibulum nunc tempor ultricies. Nunc fringilla erat nulla, nec tristique elit elementum vel. Ut feugiat varius sapien, quis malesuada libero varius eu. Suspendisse potenti.
-        3Sed molestie et turpis at posuere. Duis congue neque ac tincidunt porta. Phasellus maximus dolor orci, quis vestibulum nunc imperdiet ac. Pellentesque nisi tortor, finibus eget quam ut, condimentum suscipit enim. Curabitur dui velit, pharetra hendrerit massa vel, tempus semper leo. Nunc molestie mauris et tempus porta. Integer eu rhoncus neque, a tempor diam. Ut maximus arcu elit, condimentum pretium odio tristique non. Donec a tempus erat. Pellentesque molestie imperdiet turpis sit amet mattis. Curabitur at neque diam.
-        4Sed congue diam fermentum, pulvinar sem eget, suscipit lorem. Integer elementum velit et neque cursus imperdiet. Nulla et nibh et enim eleifend pulvinar et at nulla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam ante ex, finibus vel feugiat ac, convallis ac magna. Praesent auctor sit amet justo vel pellentesque. Suspendisse potenti. Aliquam ultricies congue tortor id blandit. In molestie vehicula sollicitudin. Donec bibendum, nisi at dictum accumsan, libero elit maximus lacus, eget finibus quam dolor vitae risus. Proin non velit in sapien condimentum cursus. Phasellus vulputate eget mi et aliquam. Vivamus non sem ac elit tempus aliquam. Aliquam et dolor ac arcu venenatis tincidunt. Phasellus in posuere erat, vel commodo arcu.
-        5Aenean elementum ultrices vulputate. Morbi nec viverra quam. Nunc quis consequat est. Nulla turpis enim, efficitur id pellentesque id, accumsan sed sapien. Nam non odio eu quam posuere suscipit ac ac diam. Suspendisse condimentum ex sit amet ex porttitor, malesuada vehicula est bibendum. Vivamus velit velit, commodo quis sapien eu, maximus placerat odio. Cras eget nulla in quam viverra maximus pharetra quis sapien.</string>
-    <string name="check_termo">Li e concordo com o termo de uso acima.</string>
-    <string name="title_activity_teste_grafico">TesteGrafico</string>
 
 </resources>
