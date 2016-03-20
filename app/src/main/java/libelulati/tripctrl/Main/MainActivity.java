@@ -21,56 +21,7 @@ import libelulati.tripctrl.Usuarios.Usuario_DAO;
 
 public class MainActivity extends AppCompatActivity {
 
-   /* Button bt_main_entrar;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        bt_main_entrar = (Button) findViewById(R.id.bt_main_entrar);
-        bt_main_entrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent it_main_entrar = new Intent (MainActivity.this, InicioActivity.class);
-                startActivity(it_main_entrar);
-
-
-
-            }
-        });
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return (true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.mn_main_novousuario:
-                ExibirUsuarioNew();
-                break;
-        }
-        return true;
-    }
-
-    public void ExibirUsuarioNew(){
-
-    }*/
-
-
-
-   Button bt_main_entrar;
-    TextView tx_main_esquecisenha;
+    Button bt_main_entrar;
     int id_usuario = 1;
     int us_uso = 0;
     Context context;
@@ -83,27 +34,17 @@ public class MainActivity extends AppCompatActivity {
         context = MainActivity.this;
 
         bt_main_entrar = (Button) findViewById(R.id.bt_main_entrar);
-        tx_main_esquecisenha = (TextView)findViewById(R.id.tx_main_esquecisenha);
         bt_main_entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BuscarUsuario();
-                if(us_uso == 0){
+                if (us_uso == 0) {
                     Intent it_main_termouso = new Intent(context, TermoUsoActivity.class);
                     startActivity(it_main_termouso);
-                }
-                else {
+                } else {
                     Intent it_main_entrar = new Intent(MainActivity.this, InicioActivity.class);
                     startActivity(it_main_entrar);
                 }
-            }
-        });
-
-        tx_main_esquecisenha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it_esqueci_senha = new Intent(MainActivity.this, EsqueciSenhaActivity.class);
-                startActivity(it_esqueci_senha);
             }
         });
     }
