@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void BuscarUsuario(){
         Usuario usuario = new Usuario_DAO(context).buscaId(id_usuario);
-        us_uso = usuario.getUs_uso();
+        if(usuario != null){
+            us_uso = usuario.getUs_uso();
+        }
     }
 
     /*public boolean onCreateOptionsMenu(Menu menu) {

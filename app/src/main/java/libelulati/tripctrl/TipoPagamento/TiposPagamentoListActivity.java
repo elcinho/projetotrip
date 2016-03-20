@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
@@ -29,6 +30,8 @@ public class TiposPagamentoListActivity extends AppCompatActivity {
     EditText ed_tp_novo, ed_di_editar;
     TextView tx_tp_nome;
     ImageView iv_tp_novo;
+    boolean v_tipopagameto;
+    Validar validar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class TiposPagamentoListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tipos_pagamento_list);
 
         context = TiposPagamentoListActivity.this;
+
+        validar = new Validar(context);
 
         ed_tp_novo = (EditText) findViewById(R.id.ed_tp_novo);
 
@@ -47,6 +52,8 @@ public class TiposPagamentoListActivity extends AppCompatActivity {
         iv_tp_novo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<TipoPagamento> tpPags = new TipoPagamento_DAO(context).listar(id_usuario);
+                v_tipopagameto = validar.ValidarTipoPagamento(tpPags,ed_tp_novo.getText().toString(), ed_tp_novo);
                 Salvar();
             }
         });
@@ -143,7 +150,6 @@ public class TiposPagamentoListActivity extends AppCompatActivity {
                         }
                     });
                 }
-
                 linearLayout_itens.addView(viewItens);
             }
         }
@@ -213,6 +219,11 @@ public class TiposPagamentoListActivity extends AppCompatActivity {
     }
 
     public boolean IsValido(){
-        return true;
+        if(v_tipopagameto){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

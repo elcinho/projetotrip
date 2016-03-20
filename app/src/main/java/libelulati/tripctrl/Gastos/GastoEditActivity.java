@@ -85,6 +85,9 @@ public class GastoEditActivity extends AppCompatActivity {
         listacategorias = new Gastos_DAO(context).sp_categorias(id_usuario);
         listapagamentos = new Gastos_DAO(context).sp_pagamentos(id_viagem, nulo);
 
+        ed_gae_categoria.setInputType(InputType.TYPE_NULL);
+        ed_gae_pagamento.setInputType(InputType.TYPE_NULL);
+
         switch (novo){
             case 1:
                 GastoNovo();
@@ -102,6 +105,12 @@ public class GastoEditActivity extends AppCompatActivity {
 
     public void Salvar(){
         Gasto gasto = new Gasto();
+
+        ed_gae_data.clearFocus();
+        ed_gae_categoria.clearFocus();
+        ed_gae_descricao.clearFocus();
+        ed_gae_valor.clearFocus();
+        ed_gae_pagamento.clearFocus();
 
         gasto.setUs_id(id_usuario);
         gasto.setVi_id(id_viagem);
@@ -294,6 +303,12 @@ public class GastoEditActivity extends AppCompatActivity {
 
     public void Atualizar(){
         Gasto gasto = new Gasto();
+
+        ed_gae_data.clearFocus();
+        ed_gae_categoria.clearFocus();
+        ed_gae_descricao.clearFocus();
+        ed_gae_valor.clearFocus();
+        ed_gae_pagamento.clearFocus();
 
         gasto.setUs_id(id_usuario);
         gasto.setVi_id(id_viagem);
