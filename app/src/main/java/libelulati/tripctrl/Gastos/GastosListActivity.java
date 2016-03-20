@@ -70,7 +70,7 @@ public class GastosListActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public double Listar(){
+    public void Listar(){
 
         LinearLayout linearLayout_itens = (LinearLayout)findViewById(R.id.li_ga_lista);
         linearLayout_itens.removeAllViews();
@@ -128,7 +128,6 @@ public class GastosListActivity extends AppCompatActivity {
 
             linearLayout_itens.addView(nenhumregistro);
         }
-        return 0;
     }
 
     public void AtualizarTotais(){

@@ -55,10 +55,10 @@ import libelulati.tripctrl.Viagens.Viagens_DAO;
 public class InicioActivity extends AppCompatActivity {
     static int id_usuario = 0;
     List<Viagem> viagens;
-    List<Planejamento> planejamentos;
-    List<Totais> totais;
+    List<Planejamento> planejamentos; // PORQUE INICIALIZOU ESSAS LISTAS ATOA? SABIA QUE ISSO CONSOME MEMÓRIA DO APP?
+    List<Totais> totais; // PORQUE INICIALIZOU ESSAS LISTAS ATOA? SABIA QUE ISSO CONSOME MEMÓRIA DO APP?
     Viagem viagem;
-    Button bt_ini_addviagem, teste;
+    Button bt_ini_addviagem;
     TextView tx_ini_dataviagem, tx_ini_valorviagem;
     Context context;
     String titulo;
@@ -67,7 +67,7 @@ public class InicioActivity extends AppCompatActivity {
     ImageView fabIconNew;
     PieChart gr_ini_inicio;
     float val_viagem, val_planejamento, val_gasto;
-    Totais total;
+    Totais total;  // PORQUE INICIALIZOU ESSE OBJETO ATOA? SABIA QUE ISSO CONSOME MEMÓRIA DO APP?
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,25 +116,30 @@ public class InicioActivity extends AppCompatActivity {
         ImageView itemGasto = new ImageView(this);
         ImageView itemPlanejamento = new ImageView(this);
         ImageView itemPagamento = new ImageView(this);
+        ImageView itemRelatorio = new ImageView(this);
         ImageView itemConfiguracoes = new ImageView(this);
 
         itemGasto.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_attach_money));
         itemPlanejamento.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_assignment));
         itemPagamento.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_payment));
+        itemRelatorio.setImageDrawable(getResources().getDrawable(R.drawable.ic_insert_chart_black_24dp));
         itemConfiguracoes.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_settings));
 
         final FloatingActionMenu menuPrincipal = new FloatingActionMenu.Builder(this)
                 .addSubActionView(itensMenu.setContentView(itemConfiguracoes)
                         .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_blue))
                         .build())
+                .addSubActionView(itensMenu.setContentView(itemRelatorio)
+                        .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_yellow))
+                        .build())
                 .addSubActionView(itensMenu.setContentView(itemPagamento)
-                        .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_orange))
+                        .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_violet))
                         .build())
                 .addSubActionView(itensMenu.setContentView(itemPlanejamento)
                         .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_green))
                         .build())
                 .addSubActionView(itensMenu.setContentView(itemGasto)
-                        .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_violet))
+                        .setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_orange))
                         .build())
                 .setRadius(getResources().getDimensionPixelSize(R.dimen.float_menu_radius))
                 .attachTo(fab_novo).build();
@@ -142,6 +147,7 @@ public class InicioActivity extends AppCompatActivity {
         menuPrincipal.setStateChangeListener(new FloatingActionMenu.MenuStateChangeListener() {
             @Override
             public void onMenuOpened(FloatingActionMenu floatingActionMenu) {
+                gr_ini_inicio.setVisibility(View.INVISIBLE);
                 v_inicio.setBackgroundColor(context.getResources().getColor(R.color.colorBlack));
                 fabIconNew.setRotation(0);
                 PropertyValuesHolder propertyValuesHolder = PropertyValuesHolder.ofFloat(View.ROTATION, 45);
@@ -151,6 +157,7 @@ public class InicioActivity extends AppCompatActivity {
 
             @Override
             public void onMenuClosed(FloatingActionMenu floatingActionMenu) {
+                gr_ini_inicio.setVisibility(View.VISIBLE);
                 v_inicio.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
                 fabIconNew.setRotation(getResources().getDimensionPixelSize(R.dimen.float_menu_angulo));
                 PropertyValuesHolder propertyValuesHolder = PropertyValuesHolder.ofFloat(View.ROTATION, 0);
@@ -189,6 +196,14 @@ public class InicioActivity extends AppCompatActivity {
             }
         });
 
+        itemRelatorio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChamarListRelatorios();
+                menuPrincipal.close(true);
+            }
+        });
+
         itemConfiguracoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,13 +226,11 @@ public class InicioActivity extends AppCompatActivity {
 
         ExibirNotificacao();
         ExibirNotificaçãoExterna();
-
-
     }
+
     @Override
     public void onDestroy(){
         super.onDestroy();
-
         Intent intent = new Intent("ALARME_DISPARADO");
         PendingIntent p = PendingIntent.getBroadcast(this, 0, intent, 0);
 
@@ -258,7 +271,9 @@ public class InicioActivity extends AppCompatActivity {
         viagemnew.show(getSupportFragmentManager(), "viagemnew");
     }
 
+    //Notificações
     public void ExibirNotificaçãoExterna(){
+
         Intent intent = new Intent("ALARME_DISPARADO");
         PendingIntent p = PendingIntent.getBroadcast(this, 0, intent, 0);
 
@@ -273,10 +288,10 @@ public class InicioActivity extends AppCompatActivity {
     }
 
     public void ExibirNotificacao() {
+
  }
 
-
-
+    //Fim Notificações
 
     public void Iniciar(){
         viagens = new Viagens_DAO(context).listar(id_usuario);
@@ -390,6 +405,10 @@ public class InicioActivity extends AppCompatActivity {
         Intent it_configuracoes = new Intent(context, ConfiguracoesListActivity.class);
         startActivity(it_configuracoes);
         finish();
+    }
+
+    public void ChamarListRelatorios(){
+
     }
 
     //Gráfico
