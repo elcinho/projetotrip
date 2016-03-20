@@ -161,7 +161,7 @@
                 android:value=".Main.MainActivity" />
         </activity>
         <activity
-            android:name=".RelatorioActivity"
+            android:name=".Relatorios.RelatorioActivity"
             android:label="@string/title_activity_relatorio"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" >

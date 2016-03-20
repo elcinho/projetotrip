@@ -1,16 +1,12 @@
-package libelulati.tripctrl;
+package libelulati.tripctrl.Relatorios;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -31,6 +27,7 @@ import libelulati.tripctrl.Categorias.Categorias_DAO;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Inicio.Totais;
 import libelulati.tripctrl.Inicio.Totais_DAO;
+import libelulati.tripctrl.R;
 
 public class RelatorioActivity extends AppCompatActivity {
     Context context;
