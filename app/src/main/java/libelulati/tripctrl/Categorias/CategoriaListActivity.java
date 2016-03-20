@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
 
@@ -27,6 +28,8 @@ public class CategoriaListActivity extends AppCompatActivity {
     EditText ed_ca_novo, ed_di_editar;
     TextView tx_ca_nome;
     ImageView iv_ca_novo;
+    boolean v_categoria;
+    Validar validar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class CategoriaListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_categoria_list);
 
         context = CategoriaListActivity.this;
+
+        validar = new Validar(context);
 
         ed_ca_novo = (EditText) findViewById(R.id.ed_ca_novo);
 
@@ -45,10 +50,11 @@ public class CategoriaListActivity extends AppCompatActivity {
         iv_ca_novo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<Categoria> cats = new Categorias_DAO(context).listar(id_usuario);
+                v_categoria = validar.ValidarCategorias(cats, ed_ca_novo.getText().toString(), ed_ca_novo);
                 Salvar();
             }
         });
-
     }
 
     @Override
@@ -213,6 +219,11 @@ public class CategoriaListActivity extends AppCompatActivity {
     }
 
     public boolean IsValido(){
-        return true;
+        if(v_categoria){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

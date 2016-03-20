@@ -271,7 +271,7 @@ public class InicioActivity extends AppCompatActivity {
     }
 
     //Notificações
-    public void ExibirNotificaçãoExterna(){
+  public void ExibirNotificaçãoExterna(){
 
         Intent intent = new Intent("ALARME_DISPARADO");
         PendingIntent p = PendingIntent.getBroadcast(this, 0, intent, 0);
@@ -289,7 +289,6 @@ public class InicioActivity extends AppCompatActivity {
     public void ExibirNotificacao() {
 
  }
-
     //Fim Notificações
 
     public void Iniciar(){

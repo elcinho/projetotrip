@@ -25,6 +25,7 @@ import java.util.List;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Funcoes.DatePicker;
 import libelulati.tripctrl.Funcoes.MeuSpinner;
+import libelulati.tripctrl.Funcoes.Validar;
 import libelulati.tripctrl.Gastos.Gastos_DAO;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.R;
@@ -41,6 +42,8 @@ public class PagamentosEditActivity extends AppCompatActivity {
     List<String> listatipopagamentos;
     MeuSpinner meuSpinner = new MeuSpinner();
     String nulo;
+    boolean v_descricao = false, v_vencimento = false, v_valor = false;
+    Validar validar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class PagamentosEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pagamentos_edit);
 
         context = PagamentosEditActivity.this;
+
+        validar = new Validar(context);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -97,9 +102,7 @@ public class PagamentosEditActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(ed_pae_tipopagamento.getWindowToken(),
-                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_pae_tipopagamento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
         });
@@ -115,10 +118,27 @@ public class PagamentosEditActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(ed_pae_vencimento.getWindowToken(),
-                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_pae_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    showDatePicker(v, ed_pae_vencimento);
+                } else {
+                    v_vencimento = validar.ValidarDataInicio(ed_pae_vencimento.getText().toString(), ed_pae_vencimento);
                 }
+            }
+        });
+
+        ed_pae_descricao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    v_descricao = validar.ValidarTexto(ed_pae_descricao.getText().toString(), ed_pae_descricao);
+                }
+            }
+        });
+
+        ed_pae_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                v_valor = validar.ValidarValor(ed_pae_valor.getText().toString(), ed_pae_valor);
             }
         });
     }
@@ -143,7 +163,7 @@ public class PagamentosEditActivity extends AppCompatActivity {
         ed_pae_tipopagamento.setTextColor(context.getResources().getColor(R.color.colorBlack));
     }
 
-    public void PagamentoEditar(){
+    public void PagamentoEditar() {
 
         vis_menu = 3;
         invalidateOptionsMenu();
@@ -169,14 +189,29 @@ public class PagamentosEditActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(ed_pae_vencimento.getWindowToken(),
-                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ed_pae_vencimento.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    showDatePicker(v, ed_pae_vencimento);
+                } else {
+                    v_vencimento = validar.ValidarDataInicio(ed_pae_vencimento.getText().toString(), ed_pae_vencimento);
                 }
             }
         });
 
-        ed_pae_descricao.requestFocus();
+        ed_pae_descricao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    v_descricao = validar.ValidarTexto(ed_pae_descricao.getText().toString(), ed_pae_descricao);
+                }
+            }
+        });
+
+        ed_pae_valor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                v_valor = validar.ValidarValor(ed_pae_valor.getText().toString(), ed_pae_valor);
+            }
+        });
     }
 
     public void showDatePicker(View view, EditText ed_data){
@@ -272,7 +307,12 @@ public class PagamentosEditActivity extends AppCompatActivity {
     }
 
     public boolean IsValido(){
-        return true;
+        if(v_descricao && v_valor && v_vencimento){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     @Override

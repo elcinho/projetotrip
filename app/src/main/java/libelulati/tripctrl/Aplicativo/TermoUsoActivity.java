@@ -37,7 +37,9 @@ public class TermoUsoActivity extends AppCompatActivity {
         tx_tu_termo.setMovementMethod(new ScrollingMovementMethod());
 
         Usuario usuario = new Usuario_DAO(context).buscaId(id_usuario);
-        us_uso = usuario.getUs_uso();
+        if(usuario != null){
+            us_uso = usuario.getUs_uso();
+        }
         if(us_uso == 0){
             cb_tu_termo.setChecked(false);
         }

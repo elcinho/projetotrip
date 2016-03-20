@@ -147,16 +147,19 @@
     <!-- VALIDAÇÃO DE CAMPOS -->
     <string name="validar_texto_tamanho">Insira mais que 5 caracteres.</string>
     <string name="validar_texto_espaco">Não é permitido iniciar o texto com espaços em branco.</string>
+    <string name="validar_texto_nulo">O campo não pode ficar vazio.</string>
     <string name="validar_texto_sequencia">Não é permitido inserir sequências de caracteres.</string>
     <string name="validar_codigoSenha">Código Inválido.</string>
     <string name="validar_email">O e-mail informado é inválido.</string>
-    <string name="validar_datainicial">A data inicial deve ser posterior à data atual.</string>
-    <string name="validar_datafinal">A data final deve ser posterior à data inicial.</string>
+    <string name="validar_datainicial">A data deve ser posterior à data atual.</string>
+    <string name="validar_datafinal">A data deve ser posterior à data inicial.</string>
     <string name="validar_valortotal">O Valor deve ser nulo ou acima de 100.00.</string>
     <string name="validar_datatransacao">A data da transação deve estar compreendida no período da viagem.</string>
     <string name="validar_valor">O valor não pode estar vazio.</string>
     <string name="validar_categoria_nulo">Escolha uma categoria.</string>
     <string name="validar_categoria_existente">Está categoria já foi inserida.</string>
+    <string name="validar_valor_planejamento">O valor não pode ultrapassar o valor da viagem.</string>
+
 
     <!-- NEGAÇÕES -->
     <string name="encontrado_registro">Nenhum registro encontrado.</string>

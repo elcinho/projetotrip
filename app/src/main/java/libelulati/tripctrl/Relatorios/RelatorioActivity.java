@@ -144,8 +144,8 @@ public class RelatorioActivity extends AppCompatActivity {
     }
 
     public void RelatorioPlanejamentoXGastoCategoria(){
-        float val_planejamento = 0, val_gasto = 0, val_total = 0;
-        int indice = 0;
+        float val_planejamento = 0, val_gasto = 0;
+        int indice = 0, cont = 0;
 
         List<Categoria> categorias = new Categorias_DAO(context).listar(idusuario);
         List<Totais> totais = new Totais_DAO(context).listar(idviagem);
@@ -157,9 +157,19 @@ public class RelatorioActivity extends AppCompatActivity {
         for(int i = 0; i < categorias.size(); i++){
             for(int j = 0; j < totais.size(); j++){
                 if(categorias.get(i).getCa_nome().equals(totais.get(j).getTo_nome())){
-                    val_planejamento = Float.parseFloat(totais.get(j).getTo_planejamento());
-                    val_gasto = Float.parseFloat(totais.get(j).getTo_gasto());
-                    val_total += (val_planejamento - val_gasto);
+                    cont++;
+                    if(totais.get(j).getTo_planejamento() == null){
+                        val_planejamento = 0;
+                    }
+                    else{
+                        val_planejamento = Float.parseFloat(totais.get(j).getTo_planejamento());
+                    }
+                    if(totais.get(j).getTo_gasto() == null){
+                        val_gasto = 0;
+                    }
+                    else{
+                        val_gasto = Float.parseFloat(totais.get(j).getTo_gasto());
+                    }
                     labels.add(categorias.get(i).getCa_nome());
                     entries_pl.add(new BarEntry(val_planejamento, indice));
                     entries_ga.add(new BarEntry(val_gasto, indice));
@@ -178,7 +188,7 @@ public class RelatorioActivity extends AppCompatActivity {
             cor_ga.add(context.getResources().getColor(R.color.colorRed));
         }
 
-        if(val_total != 0){
+        if(cont != 0){
             barChart.setVisibility(View.VISIBLE);
             gr_titulo.setText(context.getResources().getString(R.string.re_gastoxplanejado_categoria));
 
@@ -204,8 +214,8 @@ public class RelatorioActivity extends AppCompatActivity {
     }
 
     public void RelatorioPlanejamentoCategoria(){
-        float val_planejamento = 0, val_total = 0;
-        int indice = 0;
+        float val_planejamento = 0;
+        int indice = 0, cont = 0;
 
         List<Categoria> categorias = new Categorias_DAO(context).listar(idusuario);
         List<Totais> totais = new Totais_DAO(context).listar(idviagem);
@@ -216,8 +226,13 @@ public class RelatorioActivity extends AppCompatActivity {
         for(int i = 0; i < categorias.size(); i++){
             for(int j = 0; j < totais.size(); j++){
                 if(categorias.get(i).getCa_nome().equals(totais.get(j).getTo_nome())){
-                    val_planejamento = Float.parseFloat(totais.get(j).getTo_planejamento());
-                    val_total += val_planejamento;
+                    cont++;
+                    if(totais.get(j).getTo_planejamento() == null){
+                        val_planejamento = 0;
+                    }
+                    else{
+                        val_planejamento = Float.parseFloat(totais.get(j).getTo_planejamento());
+                    }
                     labels.add(categorias.get(i).getCa_nome());
                     entries.add(new BarEntry(val_planejamento, indice));
                     indice++;
@@ -230,7 +245,7 @@ public class RelatorioActivity extends AppCompatActivity {
             cores.add(context.getResources().getColor(R.color.colorGreen));
         }
 
-        if(val_total != 0){
+        if(cont != 0){
             barChart.setVisibility(View.VISIBLE);
             gr_titulo.setText(context.getResources().getString(R.string.re_planejado_categoria));
 
@@ -249,8 +264,8 @@ public class RelatorioActivity extends AppCompatActivity {
     }
 
     public void RelatorioGastoCategoria(){
-        float val_gasto = 0, val_total = 0;
-        int indice = 0;
+        float val_gasto = 0;
+        int indice = 0, cont = 0;
 
         List<Categoria> categorias = new Categorias_DAO(context).listar(idusuario);
         List<Totais> totais = new Totais_DAO(context).listar(idviagem);
@@ -261,8 +276,13 @@ public class RelatorioActivity extends AppCompatActivity {
         for(int i = 0; i < categorias.size(); i++){
             for(int j = 0; j < totais.size(); j++){
                 if(categorias.get(i).getCa_nome().equals(totais.get(j).getTo_nome())){
-                    val_gasto = Float.parseFloat(totais.get(j).getTo_gasto());
-                    val_total += val_gasto;
+                    cont++;
+                    if(totais.get(j).getTo_gasto() == null){
+                        val_gasto = 0;
+                    }
+                    else{
+                        val_gasto = Float.parseFloat(totais.get(j).getTo_gasto());
+                    }
                     labels.add(categorias.get(i).getCa_nome());
                     entries.add(new BarEntry(val_gasto, indice));
                     indice++;
@@ -275,7 +295,7 @@ public class RelatorioActivity extends AppCompatActivity {
             cores.add(context.getResources().getColor(R.color.colorRed));
         }
 
-        if(val_total != 0){
+        if(cont != 0){
             barChart.setVisibility(View.VISIBLE);
             gr_titulo.setText(context.getResources().getString(R.string.re_gasto_categoria));
 
