@@ -98,10 +98,16 @@
     <string name="notificacao_planejamento">Planejamento</string>
     <string name="notificacao_todas">Todas</string>
     <string name="notificacao_viagem">Viagens</string>
-    <string name="notificacao_viagem_50">Você atingiu 50% do total planejado da sua viagem</string>
-    <string name="notificacao_viagem_90">Você atingiu 90% do total planejado da sua viagem</string>
-    <string name="Notificaçao_categoria_50">Você atingiu 50% do total da sua categoria</string>
-    <string name="Notificaçao_categoria_90">Você atingiu 90% do total da sua categoria</string>
+    <string name="notificacao_viagem_50_planejado1">Você atingiu 50% do total </string>
+    <string name="notificacao_viagem_50_planejado2">Planejado da sua viagem</string>
+    <string name="notificacao_viagem_90_planejado1">Você atingiu 90% do total</string>
+    <string name="notificacao_viagem_90_planejado2">planejado da sua viagem</string>
+    <string name="notificacao_viagem_50_total1">Você atingiu 50% do total</string>
+    <string name="notificacao_viagem_50_total2">da sua viagem</string>
+    <string name="notificacao_viagem_90_total1">Você atingiu 90% do total</string>
+    <string name="notificacao_viagem_90_total2">da sua viagem</string>
+    <string name="notificacao_vencimento">Amanha vence a primeira parcela do parcelamento da sua viagem</string>
+    <string name="notificacao_vencimento2">parcelamento da sua viagem</string>
 
     <!-- CAMPOS -->
     <string name="codigosenha">Código</string>

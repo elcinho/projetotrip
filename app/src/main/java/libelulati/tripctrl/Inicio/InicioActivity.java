@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -42,6 +43,7 @@ import libelulati.tripctrl.Configuracoes.ConfiguracoesListActivity;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Gastos.GastosListActivity;
 import libelulati.tripctrl.Gastos.Gastos_DAO;
+import libelulati.tripctrl.Notificacoes.AlarmBroadcastReceiver;
 import libelulati.tripctrl.Notificacoes.Notificacoes;
 import libelulati.tripctrl.Pagamentos.PagamentosListActivity;
 import libelulati.tripctrl.Planejamentos.Planejamento;
@@ -227,15 +229,7 @@ public class InicioActivity extends AppCompatActivity {
         ExibirNotificaçãoExterna();
     }
 
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        Intent intent = new Intent("ALARME_DISPARADO");
-        PendingIntent p = PendingIntent.getBroadcast(this, 0, intent, 0);
 
-        AlarmManager alarme = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarme.cancel(p);
-    }
 
     @Override
     public void onResume() {
@@ -273,22 +267,23 @@ public class InicioActivity extends AppCompatActivity {
     //Notificações
   public void ExibirNotificaçãoExterna(){
 
-        Intent intent = new Intent("ALARME_DISPARADO");
-        PendingIntent p = PendingIntent.getBroadcast(this, 0, intent, 0);
-
-
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.add(Calendar.SECOND, 3);
 
-        AlarmManager alarme = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarme.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), p);
+      Intent myIntent = new Intent(InicioActivity.this, AlarmBroadcastReceiver.class);
+      PendingIntent pendingIntent = PendingIntent.getBroadcast(InicioActivity.this, 0, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-    }
+      AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+      alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+  }
+
 
     public void ExibirNotificacao() {
 
- }
+    }
+
+
     //Fim Notificações
 
     public void Iniciar(){
