@@ -171,7 +171,7 @@ public class NotificacoesConfiguracaoActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public Cnotificacoes Listar(){
+    public void Listar(){
         List<Cnotificacoes> cnotificacoes = new Cnotificacoes_DAO(context).listar(id_usuario);
         for(final Cnotificacoes cnotificacao : cnotificacoes){
             id_cnotificacoes = cnotificacao.getCn_id();
@@ -224,7 +224,6 @@ public class NotificacoesConfiguracaoActivity extends AppCompatActivity {
                 sw_no_gasto.setChecked(true);
             }
         }
-        return null;
     }
 
     public void Atualizar(){

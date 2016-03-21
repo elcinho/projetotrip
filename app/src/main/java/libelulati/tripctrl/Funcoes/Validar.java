@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 import libelulati.tripctrl.Categorias.Categoria;
 import libelulati.tripctrl.Planejamentos.Planejamento;
 import libelulati.tripctrl.R;
+import libelulati.tripctrl.TipoPagamento.TipoPagamento;
+import libelulati.tripctrl.Viagens.Viagem;
 
 public class Validar {
 
@@ -75,24 +77,30 @@ public class Validar {
 
     public boolean ValidarTexto(String texto, EditText ed_texto) {
         int seq = 0;
-        if (texto.charAt(0) == espaco) {
-            ed_texto.setError(context.getResources().getString(R.string.validar_texto_espaco));
+        if(texto.length() == 0){
+            ed_texto.setError(context.getResources().getString(R.string.validar_texto_nulo));
             return false;
-        } else {
-            for (int i = 0; i < texto.length() - 1; i++) {
-                if(texto.charAt(i) == texto.charAt(i+1)){
-                    seq++;
-                }
-            }
-            if (seq > 3) {
-                ed_texto.setError(context.getResources().getString(R.string.validar_texto_sequencia));
+        }
+        else{
+            if (texto.charAt(0) == espaco) {
+                ed_texto.setError(context.getResources().getString(R.string.validar_texto_espaco));
                 return false;
             } else {
-                if (texto.length() < 5) {
-                    ed_texto.setError(context.getResources().getString(R.string.validar_texto_tamanho));
+                for (int i = 0; i < texto.length() - 1; i++) {
+                    if(texto.charAt(i) == texto.charAt(i+1)){
+                        seq++;
+                    }
+                }
+                if (seq > 3) {
+                    ed_texto.setError(context.getResources().getString(R.string.validar_texto_sequencia));
                     return false;
                 } else {
-                    return true;
+                    if (texto.length() < 5) {
+                        ed_texto.setError(context.getResources().getString(R.string.validar_texto_tamanho));
+                        return false;
+                    } else {
+                        return true;
+                    }
                 }
             }
         }
@@ -214,6 +222,75 @@ public class Validar {
         }
     }
 
+    public boolean ValidarCategorias(List<Categoria> categorias, String categoria, EditText ed_categoria){
+        String cat;
+        int cont = 0;
+        if(categorias.size() < 1){
+            return true;
+        }
+        else{
+            for(int i = 0; i < categorias.size(); i++){
+                cat = categorias.get(i).getCa_nome();
+                if(cat.equals(categoria)){
+                    cont ++;
+                }
+            }
+        }
+        if(cont !=0){
+            ed_categoria.setError(context.getResources().getString(R.string.validar_categoria_existente));
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean ValidarTipoPagamento(List<TipoPagamento> tipoPagamentos, String tipopagamento, EditText ed_tipopagamento){
+        String cat;
+        int cont = 0;
+        if(tipoPagamentos.size() < 1){
+            return true;
+        }
+        else{
+            for(int i = 0; i < tipoPagamentos.size(); i++){
+                cat = tipoPagamentos.get(i).getTp_nome();
+                if(cat.equals(tipopagamento)){
+                    cont ++;
+                }
+            }
+        }
+        if(cont !=0){
+            ed_tipopagamento.setError(context.getResources().getString(R.string.validar_categoria_existente));
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean ValidarValorPlanejamento(List<Planejamento> planejamentos, Viagem viagem, String valor, EditText ed_valor){
+        double pl_valor = 0;
+        double vi_valor = Double.parseDouble(viagem.getVi_valor());
+        if(valor.length() == 0 ){
+            ed_valor.setError(context.getResources().getString(R.string.validar_valortotal));
+            return false;
+        }
+        else {
+            if (vi_valor != 0) {
+                for (int i = 0; i < planejamentos.size(); i++) {
+                    pl_valor += Double.parseDouble(planejamentos.get(i).getPl_valor());
+                }
+                if (pl_valor > vi_valor) {
+                    ed_valor.setError(context.getResources().getString(R.string.validar_valor_planejamento));
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+    }
 
     public static boolean ValidarNotificacaoCinquentaPorcento (double porcentagem){
         double valorPl = 0;
@@ -242,7 +319,5 @@ public class Validar {
             return false;
         }
     }
-
-
 
 }

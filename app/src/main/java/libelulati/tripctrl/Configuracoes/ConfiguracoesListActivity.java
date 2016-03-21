@@ -12,13 +12,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import libelulati.tripctrl.Aplicativo.SobreActivity;
+import libelulati.tripctrl.Aplicativo.TermoUsoActivity;
 import libelulati.tripctrl.Categorias.CategoriaListActivity;
+import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Notificacoes.NotificacoesConfiguracaoActivity;
 import libelulati.tripctrl.R;
+import libelulati.tripctrl.TipoPagamento.TiposPagamentoListActivity;
+import libelulati.tripctrl.Usuarios.Usuario;
+import libelulati.tripctrl.Usuarios.UsuarioEditActivity;
+import libelulati.tripctrl.Usuarios.Usuario_DAO;
 
 public class ConfiguracoesListActivity extends AppCompatActivity {
-    int id_usuario = InicioActivity.getId_usuario();
     Context context;
 
     @Override
@@ -34,11 +40,9 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
         List<String> co_itens = new ArrayList<>();
         if(co_itens.size() == 0){
             co_itens.add(context.getResources().getString(R.string.co_notificacoes));
-            co_itens.add(context.getResources().getString(R.string.co_perfil_usuario));
             co_itens.add(context.getResources().getString(R.string.co_categorias));
             co_itens.add(context.getResources().getString(R.string.co_tipos_pagamento));
             co_itens.add(context.getResources().getString(R.string.co_sobre));
-            co_itens.add(context.getResources().getString(R.string.co_avalie));
             co_itens.add(context.getResources().getString(R.string.co_termo_uso));
             co_itens.add(context.getResources().getString(R.string.co_sair));
         }
@@ -77,25 +81,45 @@ public class ConfiguracoesListActivity extends AppCompatActivity {
                 startActivity(it_notificacoes);
                 break;
             case 2:
-                break;
-            case 3:
                 Intent it_categorias = new Intent(context, CategoriaListActivity.class);
                 startActivity(it_categorias);
                 break;
+            case 3:
+                Intent it_tipopagamento = new Intent(context, TiposPagamentoListActivity.class);
+                startActivity(it_tipopagamento);
+                break;
             case 4:
+                Intent it_sobre = new Intent(context, SobreActivity.class);
+                startActivity(it_sobre);
                 break;
             case 5:
+                Intent it_termo = new Intent(context, TermoUsoActivity.class);
+                startActivity(it_termo);
                 break;
             case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                Intent it_sair = new Intent(Intent.ACTION_MAIN);
+                it_sair.addCategory(Intent.CATEGORY_HOME);
+                it_sair.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(it_sair);
                 break;
         }
+    }
+
+    public void Usuarios(int id){
+        Usuario_DAO usuario_dao = new Usuario_DAO(context);
+        Usuario usuario_id = usuario_dao.buscaId(id);
+
+        Intent it_us_show = new Intent(context, UsuarioEditActivity.class);
+        Bundle usshow = new Bundle();
+
+        usshow.putInt("novo", 2);
+        usshow.putInt(Nomes.getID(), usuario_id.getUs_id());
+        usshow.putInt(Nomes.getUsSemsenha(), usuario_id.getUs_semsenha());
+        usshow.putString(Nomes.getUsNome(), usuario_id.getUs_nome());
+        usshow.putString(Nomes.getUsEmail(), usuario_id.getUs_email());
+        usshow.putString(Nomes.getUsDtnasc(), usuario_id.getUs_dtnasc());
+
+        it_us_show.putExtras(usshow);
+        startActivityForResult(it_us_show, 1);
     }
 }

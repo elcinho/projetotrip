@@ -58,16 +58,6 @@ public class Totais_DAO extends Dados{
         return totais;
     }
 
-    public List<Totais> BuscarGasto(){
-
-        String sql = ComandosSql.getSelectGastosVi();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(sql, null);
-
-        return null;
-    }
-
-
     public List<Totais> listar(int viagem){
         List<Totais> listarregistros = new ArrayList<Totais>();
         String sql = ComandosSql.getSelectTotaisVi() + viagem;

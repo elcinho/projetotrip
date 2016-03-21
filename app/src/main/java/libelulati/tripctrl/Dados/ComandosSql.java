@@ -164,7 +164,7 @@ public class ComandosSql {
     private static final String SELECT_GASTOS_VI = "SELECT * FROM " + Nomes.getTabelaGastos() + " WHERE " + Nomes.getViId() + " = ";
     private static final String SELECT_PAGAMENTOS_VI = "SELECT * FROM " + Nomes.getTabelaPagamentos() + " WHERE " + Nomes.getViId() + " = ";
     private static final String SELECT_PLANEJAMENTOS_VI = "SELECT * FROM " + Nomes.getTabelaPlanejamentos() + " WHERE " + Nomes.getViId() + " = ";
-    private static final String SELECT_TOTAIS_VI = "SELECT * FROM " + Nomes.getTabelaTotais() + " WHER " + Nomes.getViId() + " = ";
+    private static final String SELECT_TOTAIS_VI = "SELECT * FROM " + Nomes.getTabelaTotais() + " WHERE " + Nomes.getViId() + " = ";
 
 
     //SELECIONAR TODOS POR ID

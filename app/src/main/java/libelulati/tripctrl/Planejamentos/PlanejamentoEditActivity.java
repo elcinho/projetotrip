@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,8 @@ import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Inicio.Totais;
 import libelulati.tripctrl.Inicio.Totais_DAO;
 import libelulati.tripctrl.R;
+import libelulati.tripctrl.Viagens.Viagem;
+import libelulati.tripctrl.Viagens.Viagens_DAO;
 
 public class PlanejamentoEditActivity extends AppCompatActivity {
     int novo = 0;
@@ -54,6 +57,8 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         ed_ple_valor = (EditText) findViewById(R.id.ed_ple_valor);
         sp_ple_categoria = (Spinner)findViewById(R.id.sp_ple_categoria);
 
+        ed_ple_categoria.setInputType(InputType.TYPE_NULL);
+
         Intent it_pl_novo = getIntent();
         Bundle bundle = it_pl_novo.getExtras();
 
@@ -81,6 +86,10 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         planejamento.setVi_id(id_viagem);
         planejamento.setCa_id(ed_ple_categoria.getText().toString());
         planejamento.setPl_valor(ed_ple_valor.getText().toString());
+
+        ed_ple_categoria.clearFocus();
+        ed_ple_valor.clearFocus();
+
         if(IsValido()){
             boolean sucesso = new Planejamento_DAO(context).criar(planejamento);
             if(sucesso){
@@ -180,6 +189,9 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         planejamento.setCa_id(ed_ple_categoria.getText().toString());
         planejamento.setPl_valor(ed_ple_valor.getText().toString());
 
+        ed_ple_categoria.clearFocus();
+        ed_ple_valor.clearFocus();
+
         if(IsValido()){
             boolean sucesso = new Planejamento_DAO(context).atualizar(planejamento, id_planejamento);
 
@@ -277,10 +289,9 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         String valorTot = totalcat.getTo_planejamento();
         ca_valor = Double.parseDouble(valorTot) - Double.parseDouble(valor);
         Totais_DAO totais_dao = new Totais_DAO(context);
-        totalcat.setTo_gasto(String.valueOf(ca_valor));
+        totalcat.setTo_planejamento(String.valueOf(ca_valor));
         totais_dao.atualizar(totalcat, cat);
     }
-
 
 
     @Override
@@ -332,9 +343,9 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
 
     public boolean IsValido(){
         final List<Planejamento> planejamentos = new Planejamento_DAO(context).listar(id_viagem);
+        Viagem viagem = new Viagens_DAO(context).buscarID(id_viagem);
         v_categoria = validar.ValidarCategoria(planejamentos, ed_ple_categoria.getText().toString(), ed_ple_categoria);
-        v_valor = validar.ValidarValor(ed_ple_valor.getText().toString(), ed_ple_valor);
-
+        v_valor = validar.ValidarValorPlanejamento(planejamentos,viagem, ed_ple_valor.getText().toString(), ed_ple_valor);
         if(v_categoria && v_valor){
             return true;
         }
