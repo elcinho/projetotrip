@@ -3,20 +3,14 @@ package libelulati.tripctrl.Inicio;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.EmbossMaskFilter;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
+
+
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,16 +19,16 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -42,12 +36,10 @@ import java.util.List;
 import libelulati.tripctrl.Configuracoes.ConfiguracoesListActivity;
 import libelulati.tripctrl.Dados.Nomes;
 import libelulati.tripctrl.Gastos.GastosListActivity;
-import libelulati.tripctrl.Gastos.Gastos_DAO;
-import libelulati.tripctrl.Notificacoes.AlarmBroadcastReceiver;
+import libelulati.tripctrl.Notificacoes.Cnotificacoes;
 import libelulati.tripctrl.Notificacoes.Notificacoes;
+import libelulati.tripctrl.Notificacoes.NotificarBroadcast;
 import libelulati.tripctrl.Pagamentos.PagamentosListActivity;
-import libelulati.tripctrl.Planejamentos.Planejamento;
-import libelulati.tripctrl.Planejamentos.Planejamento_DAO;
 import libelulati.tripctrl.Planejamentos.PlanejamentosListActivity;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.Relatorios.RelatoriosListActivity;
@@ -59,16 +51,19 @@ public class InicioActivity extends AppCompatActivity {
     static int id_usuario = 0;
     List<Viagem> viagens;
     Viagem viagem;
+    Cnotificacoes cnotificacoes;
     Button bt_ini_addviagem;
     TextView tx_ini_dataviagem, tx_ini_valorviagem;
     Context context;
     String titulo;
     static int id_viagem;
-    int exibir_menu;
+    int exibir_menu ,cn_pagamento;
     View v_inicio, v_linha;
     ImageView fabIconNew;
     PieChart gr_ini_inicio;
     float val_viagem, val_planejamento, val_gasto;
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,8 +220,9 @@ public class InicioActivity extends AppCompatActivity {
             }
         });
 
-        ExibirNotificacao();
+
         ExibirNotificaçãoExterna();
+        ExibirNotificacao();
     }
 
 
@@ -266,25 +262,40 @@ public class InicioActivity extends AppCompatActivity {
 
     //Notificações
   public void ExibirNotificaçãoExterna(){
+      cn_pagamento = cnotificacoes.getCn_pagamentos();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.add(Calendar.SECOND, 3);
 
-      Intent myIntent = new Intent(InicioActivity.this, AlarmBroadcastReceiver.class);
-      PendingIntent pendingIntent = PendingIntent.getBroadcast(InicioActivity.this, 0, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+      if(cn_pagamento == 1) {
+          Calendar calendar = Calendar.getInstance();
+          calendar.setTimeInMillis(System.currentTimeMillis());
+          calendar.add(Calendar.SECOND, 3);
 
-      AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-      alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+          Intent myIntent = new Intent(InicioActivity.this, NotificarBroadcast.class);
+          PendingIntent pendingIntent = PendingIntent.getBroadcast(InicioActivity.this, 0, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+          AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+          alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+      }
   }
 
 
     public void ExibirNotificacao() {
 
+        Notificacoes notificacoes = new Notificacoes();
+
+        notificacoes.NotificarGasto50();
+
+        notificacoes.NotificarGasto90();
+
+        notificacoes.NotificarPlanejado50();
+
+        notificacoes.NotificarPlanejado90();
+
+
+
     }
 
-
-    //Fim Notificações
+   //Fim Notificações
 
     public void Iniciar(){
         viagens = new Viagens_DAO(context).listar(id_usuario);

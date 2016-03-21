@@ -9,14 +9,10 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
 
-import libelulati.tripctrl.Configuracoes.ConfiguracoesListActivity;
-import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Main.MainActivity;
 import libelulati.tripctrl.R;
 
-/**
- * Created by 01543558 on 21/03/16.
- */
+
 public class NotificarPagamentoAlarme extends Service {
     Context context;
 
@@ -34,7 +30,7 @@ public class NotificarPagamentoAlarme extends Service {
 
     public  void generarNotificacion (){
 
-        Intent intent =  new  Intent( this.getApplicationContext(), InicioActivity.class );
+        Intent intent =  new  Intent( this.getApplicationContext(), MainActivity.class );
 
         NotificationCompat.Builder builder =new  NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.trip_icon);

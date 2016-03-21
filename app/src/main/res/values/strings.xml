@@ -108,6 +108,7 @@
     <string name="notificacao_viagem_90_total2">da sua viagem</string>
     <string name="notificacao_vencimento">Amanha vence a primeira parcela do parcelamento da sua viagem</string>
     <string name="notificacao_vencimento2">parcelamento da sua viagem</string>
+    <string name="notificacao_inicio_viagem">Você tem uma viagem programada para amanha!</string>
 
     <!-- CAMPOS -->
     <string name="codigosenha">Código</string>
