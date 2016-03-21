@@ -22,9 +22,6 @@ import libelulati.tripctrl.R;
 
 public class Notificacoes extends Activity {
     Context context;
-    int id_usuario = InicioActivity.getId_usuario();
-    int id_viagem = InicioActivity.getId_viagem();
-    ;
     String Planejamento = "planejamento";
     String Gasto = "gasto";
     String Viagem = "viagem";
@@ -49,7 +46,6 @@ public class Notificacoes extends Activity {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
             builder.setTicker(context.getResources().getString(R.string.viagem));
-            // builder.setContentText(context.getResources().getString(R.string.notificacao_viagem_50));
             builder.setSmallIcon(R.drawable.trip_icon);
             builder.setContentIntent(p);
 
@@ -91,9 +87,7 @@ public class Notificacoes extends Activity {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
             builder.setTicker(context.getResources().getString(R.string.viagem));
-           // builder.setContentText(context.getResources().getString(R.string.notificacao_viagem_90));
             builder.setSmallIcon(R.drawable.trip_icon);
-            builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_temporaria));
             builder.setContentIntent(p);
 
             NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
@@ -117,8 +111,6 @@ public class Notificacoes extends Activity {
             } catch (Exception e) {
 
             }
-        } else {
-            Toast.makeText(this, "ixxi nao deu 90% se fudeu denovo kkk", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -138,9 +130,7 @@ public class Notificacoes extends Activity {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
             builder.setTicker(context.getResources().getString(R.string.viagem));
-          //  builder.setContentText(context.getResources().getString(R.string.notificacao_planejamento));
             builder.setSmallIcon(R.drawable.trip_icon);
-            builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_temporaria));
             builder.setContentIntent(p);
 
             NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
@@ -163,8 +153,6 @@ public class Notificacoes extends Activity {
             } catch (Exception e) {
 
             }
-        } else {
-            Toast.makeText(this, "ixiii algo errado se vira e resolve ", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -184,9 +172,7 @@ public class Notificacoes extends Activity {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
             builder.setTicker(context.getResources().getString(R.string.viagem));
-            //builder.setContentText(context.getResources().getString(R.string.notificacao_planejamento));
             builder.setSmallIcon(R.drawable.trip_icon);
-            builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_temporaria));
             builder.setContentIntent(p);
 
             NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
@@ -209,8 +195,6 @@ public class Notificacoes extends Activity {
             } catch (Exception e) {
 
             }
-        } else {
-            Toast.makeText(this, "ixiii algo errado se vira e resolve ", Toast.LENGTH_SHORT).show();
         }
     }
 
