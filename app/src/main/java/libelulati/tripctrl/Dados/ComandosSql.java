@@ -88,7 +88,7 @@ public class ComandosSql {
             " " + Nomes.getID() + getPRIMARYKEY() + "," +
             " " + Nomes.getUsId() + getINTEIRO() + "," +
             " " + Nomes.getViId() + getINTEIRO() + "," +
-            " " + Nomes.getToNome() + getTEXTO() + getUNIQUE() + "," +
+            " " + Nomes.getToNome() + getTEXTO() + "," +
             " " + Nomes.getToTotal() + getTEXTO() + "," +
             " " + Nomes.getToGasto() + getTEXTO() + "," +
             " " + Nomes.getToPlanejamento() + getTEXTO() + ")";

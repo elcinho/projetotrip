@@ -34,6 +34,7 @@ public class Notificacoes extends Activity {
     float Valor_viagem = 0;
     Date Data_viagem;
     int cn_gasto , cn_planejamento,cn_viagem;
+    int id_viagem = InicioActivity.getId_viagem();
     SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
 
 
@@ -41,8 +42,8 @@ public class Notificacoes extends Activity {
         cn_planejamento = cnotificacoes.getCn_planejamentos();
 
         Totais_DAO totais_dao = new Totais_DAO(context);
-        Totais TotalPlanejado = totais_dao.buscarNome(Planejamento);
-        Totais TotalGasto = totais_dao.buscarNome(Gasto);
+        Totais TotalPlanejado = totais_dao.buscarNome(Planejamento, id_viagem);
+        Totais TotalGasto = totais_dao.buscarNome(Gasto, id_viagem);
 
         Valor_planejado = Float.parseFloat(TotalPlanejado.getTo_total());
         Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
@@ -84,8 +85,8 @@ public class Notificacoes extends Activity {
     public void NotificarPlanejado90() {
         cn_planejamento = cnotificacoes.getCn_planejamentos();
         Totais_DAO totais_dao = new Totais_DAO(context);
-        Totais TotalPlanejado = totais_dao.buscarNome(Planejamento);
-        Totais TotalGasto = totais_dao.buscarNome(Gasto);
+        Totais TotalPlanejado = totais_dao.buscarNome(Planejamento,id_viagem);
+        Totais TotalGasto = totais_dao.buscarNome(Gasto, id_viagem);
 
         Valor_planejado = Float.parseFloat(TotalPlanejado.getTo_total());
         Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
@@ -132,8 +133,8 @@ public class Notificacoes extends Activity {
     public void NotificarGasto50() {
         cn_gasto = cnotificacoes.getCn_gastos();
         Totais_DAO totais_dao = new Totais_DAO(context);
-        Totais TotalGasto = totais_dao.buscarNome(Gasto);
-        Totais TotalVigem = totais_dao.buscarNome(Viagem);
+        Totais TotalGasto = totais_dao.buscarNome(Gasto, id_viagem);
+        Totais TotalVigem = totais_dao.buscarNome(Viagem,id_viagem);
 
         Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
         Valor_viagem = Float.parseFloat(TotalVigem.getTo_total());
@@ -177,8 +178,8 @@ public class Notificacoes extends Activity {
     public void NotificarGasto90() {
         cn_gasto = cnotificacoes.getCn_gastos();
         Totais_DAO totais_dao = new Totais_DAO(context);
-        Totais TotalGasto = totais_dao.buscarNome(Gasto);
-        Totais TotalVigem = totais_dao.buscarNome(Viagem);
+        Totais TotalGasto = totais_dao.buscarNome(Gasto, id_viagem);
+        Totais TotalVigem = totais_dao.buscarNome(Viagem, id_viagem);
 
         Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
         Valor_viagem = Float.parseFloat(TotalVigem.getTo_total());

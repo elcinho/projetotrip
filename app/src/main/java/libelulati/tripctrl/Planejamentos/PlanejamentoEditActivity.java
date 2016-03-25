@@ -251,7 +251,7 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
         String cat = ed_ple_categoria.getText().toString();
         String valor = ed_ple_valor.getText().toString();
 
-        Totais totalcat = new Totais_DAO(context).buscarNome(cat);
+        Totais totalcat = new Totais_DAO(context).buscarNome(cat, id_viagem);
         if(totalcat == null){
             Totais_DAO totais_dao = new Totais_DAO(context);
             Totais totais = new Totais();
@@ -285,7 +285,7 @@ public class PlanejamentoEditActivity extends AppCompatActivity {
             valor = del_planejamento.getPl_valor();
         }
 
-        Totais totalcat = new Totais_DAO(context).buscarNome(cat);
+        Totais totalcat = new Totais_DAO(context).buscarNome(cat, id_viagem);
         String valorTot = totalcat.getTo_planejamento();
         ca_valor = Double.parseDouble(valorTot) - Double.parseDouble(valor);
         Totais_DAO totais_dao = new Totais_DAO(context);
