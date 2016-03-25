@@ -6,195 +6,152 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
-import android.view.View;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import libelulati.tripctrl.Dados.Nomes;
-import libelulati.tripctrl.Gastos.Gasto;
-import libelulati.tripctrl.Gastos.Gastos_DAO;
 import libelulati.tripctrl.Inicio.InicioActivity;
 import libelulati.tripctrl.Inicio.Totais;
 import libelulati.tripctrl.Inicio.Totais_DAO;
-import libelulati.tripctrl.Planejamentos.Planejamento;
-import libelulati.tripctrl.Planejamentos.Planejamento_DAO;
 import libelulati.tripctrl.R;
 import libelulati.tripctrl.Viagens.Viagem;
-import libelulati.tripctrl.Viagens.Viagens_DAO;
 
 
 public class Notificacoes extends Activity {
-    static int id_usuario = 0; //Integer.parseInt(Nomes.getID());
-    private Context context;
-    List<Viagem> viagens;
-    List<Planejamento> planejamentos;
-    List<Gasto> gastos;
-    List<Totais>totais;
+    Context context;
+    Cnotificacoes cnotificacoes;
     Viagem viagem;
-    Planejamento planejamento;
-    Gasto gasto;
-    Totais total;
-    int id_viagem;
-    double porcentagem, valor_vi, valor_gasto, Valor_planejado;
+    String Planejamento = "planejamento";
+    String Gasto = "gasto";
+    String Viagem = "viagem";
+    float Valor_planejado = 0;
+    float Valor_gasto = 0;
+    float Porcentagem = 0;
+    float Valor_viagem = 0;
+    Date Data_viagem;
+    int cn_gasto , cn_planejamento,cn_viagem;
+    SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
 
 
-    public void NotificarGastoViagem50Porcento(){
-        id_usuario = 1;
-        viagens = new Viagens_DAO(context).listar(id_usuario);
-        planejamentos = new Planejamento_DAO(context).listar(id_usuario);
-        gastos = new Gastos_DAO(context).listar(id_usuario);
-        total = new Totais_DAO(context).buscarNome(Nomes.getToNome());
-        valor_vi = Double.parseDouble(viagem.getVi_valor());
-        valor_gasto = Double.parseDouble(total.getTo_gasto());
-        Valor_planejado = Double.parseDouble(planejamento.getPl_valor());
+    public void NotificarPlanejado50() {
+        cn_planejamento = cnotificacoes.getCn_planejamentos();
 
+        Totais_DAO totais_dao = new Totais_DAO(context);
+        Totais TotalPlanejado = totais_dao.buscarNome(Planejamento);
+        Totais TotalGasto = totais_dao.buscarNome(Gasto);
 
-        if (viagens.size() > 0) {
-            if (planejamentos.size() > 0) {
-                if (gastos.size() > 0) {
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
+        Valor_planejado = Float.parseFloat(TotalPlanejado.getTo_total());
+        Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
+        Porcentagem = (Valor_planejado / Valor_gasto);
 
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-                    builder.setTicker(context.getResources().getString(R.string.viagem));
-                    builder.setContentText(context.getResources().getString(R.string.notificacao_viagem_50));
-                    builder.setSmallIcon(R.drawable.trip_icon);
-                  //  builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_temporaria));
-                    builder.setContentIntent(p);
-
-                    Notification notification = builder.build();
-                    notification.vibrate = new long[]{150, 300, 150, 600};
-                    notification.flags = Notification.FLAG_AUTO_CANCEL;
-                    notificationManager.notify(R.drawable.trip_icon, notification);
-
-                    try {
-                        Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                        Ringtone toque = RingtoneManager.getRingtone(this, som);
-                        toque.play();
-
-                    } catch (Exception e) {
-
-                    }
-                }
-            }
-        }
-
-    }
-
-    public void NotificarGasto90Porcento(){
-        id_usuario = 1;
-        viagens = new Viagens_DAO(context).listar(id_usuario);
-        planejamentos = new Planejamento_DAO(context).listar(id_usuario);
-        gastos = new Gastos_DAO(context).listar(id_usuario);
-        total = new Totais_DAO(context).buscarNome(Nomes.getToNome());
-        valor_vi = Double.parseDouble(viagem.getVi_valor());
-        valor_gasto = Double.parseDouble(total.getTo_gasto());
-        Valor_planejado = Double.parseDouble(planejamento.getPl_valor());
-
-
-        if (viagens.size() > 0) {
-            if (planejamentos.size() > 0) {
-                if (gastos.size() > 0) {
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
-
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-                    builder.setTicker(context.getResources().getString(R.string.viagem));
-                    builder.setContentText(context.getResources().getString(R.string.notificacao_viagem_90));
-                    builder.setSmallIcon(R.drawable.trip_icon);
-                    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_temporaria));
-                    builder.setContentIntent(p);
-
-
-                    Notification notification = builder.build();
-                    notification.vibrate = new long[]{150, 300, 150, 600};
-                    notification.flags = Notification.FLAG_AUTO_CANCEL;
-                    notificationManager.notify(R.drawable.trip_icon, notification);
-
-                    try {
-                        Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                        Ringtone toque = RingtoneManager.getRingtone(this, som);
-                        toque.play();
-
-                    } catch (Exception e) {
-
-                    }
-                }
-            }
-        }
-
-    }
-
-    public void NotificarPlanejamentoCinquentaPorcento() {
-        id_usuario = 1;
-        viagens = new Viagens_DAO(context).listar(id_usuario);
-        planejamentos = new Planejamento_DAO(context).listar(id_usuario);
-        gastos = new Gastos_DAO(context).listar(id_usuario);
-        total = new Totais_DAO(context).buscarNome(Nomes.getToNome());
-        valor_vi = Double.parseDouble(viagem.getVi_valor());
-        valor_gasto = Double.parseDouble(total.getTo_gasto());
-        Valor_planejado = Double.parseDouble(planejamento.getPl_valor());
-
-        if (viagens.size() > 0) {
-            if (planejamentos.size() > 0) {
-                if (gastos.size() > 0) {
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
-
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-                    builder.setTicker(context.getResources().getString(R.string.viagem));
-                    builder.setContentText(context.getResources().getString(R.string.notificacao_planejamento));
-                    builder.setSmallIcon(R.drawable.trip_icon);
-                    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_temporaria));
-                    builder.setContentIntent(p);
-
-                    NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
-                    String[] msg = new String[]{context.getResources().getString(R.string.notificacao_planejamento), context.getResources().getString(R.string.viagem)};
-                    for (int i = 0; i < msg.length; i++) {
-                        style.addLine(msg[i]);
-                    }
-                    builder.setStyle(style);
-
-                    Notification notification = builder.build();
-                    notification.vibrate = new long[]{150, 300, 150, 600};
-                    notification.flags = Notification.FLAG_AUTO_CANCEL;
-                    notificationManager.notify(R.drawable.trip_icon, notification);
-
-                    try {
-                        Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                        Ringtone toque = RingtoneManager.getRingtone(this, som);
-                        toque.play();
-
-                    } catch (Exception e) {
-
-                    }
-                }
-            }
-        }
-    }
-
-    public void NotificarPlanejamentoNoventaPorcento() {
-
-        if (viagens.size() > 0) {
-            if (planejamentos.size() > 0) {
+        if(cn_gasto == 1) {
+            if (Porcentagem > 1.1 && Porcentagem < 2) {
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(context.getApplicationContext());
                 builder.setTicker(context.getResources().getString(R.string.viagem));
-                builder.setContentText(context.getResources().getString(R.string.notificacao_planejamento));
                 builder.setSmallIcon(R.drawable.trip_icon);
-                builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_temporaria));
                 builder.setContentIntent(p);
 
                 NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
-                String[] msg = new String[]{"Você Atingiu 50% do total", "planejado da sua viagem!"};
+                String[] msg = new String[]{context.getResources().getString(R.string.notificacao_viagem_50_planejado1), context.getResources().getString(R.string.notificacao_viagem_50_planejado2)};
+                for (int i = 0; i < msg.length; i++) {
+                    style.addLine(msg[i]);
+                }
+                builder.setStyle(style);
+
+                Notification notification = builder.build();
+                notification.vibrate = new long[]{150, 300, 150, 600};
+                notification.flags = Notification.FLAG_AUTO_CANCEL;
+                notificationManager.notify(R.drawable.trip_icon, notification);
+
+                try {
+                    Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    Ringtone toque = RingtoneManager.getRingtone(this, som);
+                    toque.play();
+
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    public void NotificarPlanejado90() {
+        cn_planejamento = cnotificacoes.getCn_planejamentos();
+        Totais_DAO totais_dao = new Totais_DAO(context);
+        Totais TotalPlanejado = totais_dao.buscarNome(Planejamento);
+        Totais TotalGasto = totais_dao.buscarNome(Gasto);
+
+        Valor_planejado = Float.parseFloat(TotalPlanejado.getTo_total());
+        Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
+
+        Porcentagem = (Valor_planejado / Valor_gasto);
+        if(cn_planejamento == 1) {
+
+
+            if (Porcentagem > 0 && Porcentagem <= 1.1) {
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setTicker(context.getResources().getString(R.string.viagem));
+                builder.setSmallIcon(R.drawable.trip_icon);
+                builder.setContentIntent(p);
+
+                NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
+                String[] msg = new String[]{context.getResources().getString(R.string.notificacao_viagem_90_planejado1), context.getResources().getString(R.string.notificacao_viagem_90_planejado2)};
+                for (int i = 0; i < msg.length; i++) {
+                    style.addLine(msg[i]);
+                }
+                builder.setStyle(style);
+
+
+                Notification notification = builder.build();
+                notification.vibrate = new long[]{150, 300, 150, 600};
+                notification.flags = Notification.FLAG_AUTO_CANCEL;
+                notificationManager.notify(R.drawable.trip_icon, notification);
+
+                try {
+                    Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    Ringtone toque = RingtoneManager.getRingtone(this, som);
+                    toque.play();
+
+                } catch (Exception e) {
+
+                }
+            }
+        }
+
+    }
+
+    public void NotificarGasto50() {
+        cn_gasto = cnotificacoes.getCn_gastos();
+        Totais_DAO totais_dao = new Totais_DAO(context);
+        Totais TotalGasto = totais_dao.buscarNome(Gasto);
+        Totais TotalVigem = totais_dao.buscarNome(Viagem);
+
+        Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
+        Valor_viagem = Float.parseFloat(TotalVigem.getTo_total());
+
+        Porcentagem = (Valor_viagem / Valor_gasto);
+
+        if(cn_gasto == 1) {
+            if (Porcentagem > 1.1 && Porcentagem < 2) {
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setTicker(context.getResources().getString(R.string.viagem));
+                builder.setSmallIcon(R.drawable.trip_icon);
+                builder.setContentIntent(p);
+
+                NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
+                String[] msg = new String[]{context.getResources().getString(R.string.notificacao_viagem_50_total1), context.getResources().getString(R.string.notificacao_viagem_50_total2)};
                 for (int i = 0; i < msg.length; i++) {
                     style.addLine(msg[i]);
                 }
@@ -215,14 +172,87 @@ public class Notificacoes extends Activity {
                 }
             }
         }
-
     }
 
-    public void NotificacaoVencimento(){
+    public void NotificarGasto90() {
+        cn_gasto = cnotificacoes.getCn_gastos();
+        Totais_DAO totais_dao = new Totais_DAO(context);
+        Totais TotalGasto = totais_dao.buscarNome(Gasto);
+        Totais TotalVigem = totais_dao.buscarNome(Viagem);
 
+        Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
+        Valor_viagem = Float.parseFloat(TotalVigem.getTo_total());
 
+        Porcentagem = (Valor_viagem / Valor_gasto);
+        if(cn_gasto ==1){
+            if (Porcentagem > 0 && Porcentagem < 1.1) {
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setTicker(context.getResources().getString(R.string.viagem));
+                builder.setSmallIcon(R.drawable.trip_icon);
+                builder.setContentIntent(p);
+
+                NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
+                String[] msg = new String[]{context.getResources().getString(R.string.notificacao_viagem_90_total1), context.getResources().getString(R.string.notificacao_viagem_90_total2)};
+                for (int i = 0; i < msg.length; i++) {
+                    style.addLine(msg[i]);
+                }
+                builder.setStyle(style);
+
+                Notification notification = builder.build();
+                notification.vibrate = new long[]{150, 300, 150, 600};
+                notification.flags = Notification.FLAG_AUTO_CANCEL;
+                notificationManager.notify(R.drawable.trip_icon, notification);
+
+                try {
+                    Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    Ringtone toque = RingtoneManager.getRingtone(this, som);
+                    toque.play();
+
+                } catch (Exception e) {
+
+                }
+            }
+        }
     }
 
+    public void NotificarViagem(){
+        cn_viagem = cnotificacoes.getCn_viagens();
+        //Data_viagem = (Date) formata.parse(Nomes.getViDtini());
+        NotificacoesConfiguracaoActivity notificacoesConfiguracaoActivity = new NotificacoesConfiguracaoActivity();
 
+
+        if(cn_viagem ==1) {
+        //    if (!(Data_viagem == (Data_viagem - 1))) {
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setTicker(context.getResources().getString(R.string.viagem));
+                builder.setContentText(context.getResources().getString(R.string.notificacao_inicio_viagem));
+                builder.setSmallIcon(R.drawable.trip_icon);
+                builder.setContentIntent(p);
+
+                Notification notification = builder.build();
+                notification.vibrate = new long[]{150, 300, 150, 600};
+                notification.flags = Notification.FLAG_AUTO_CANCEL;
+                notificationManager.notify(R.drawable.trip_icon, notification);
+
+                try {
+                    Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    Ringtone toque = RingtoneManager.getRingtone(this, som);
+                    toque.play();
+
+                } catch (Exception e) {
+                }
+
+
+
+            }
+        //}
+    }
 
 }
+
