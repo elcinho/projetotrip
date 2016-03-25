@@ -131,7 +131,7 @@ public class GastosListActivity extends AppCompatActivity {
     }
 
     public void AtualizarTotais(){
-        Totais totalgasto = new Totais_DAO(context).buscarNome("gasto");
+        Totais totalgasto = new Totais_DAO(context).buscarNome("gasto", id_viagem);
         if(totalgasto == null){
             Totais_DAO totais_dao = new Totais_DAO(context);
             Totais totais = new Totais();
@@ -155,7 +155,7 @@ public class GastosListActivity extends AppCompatActivity {
         if(tc_gastos.size() != 0){
             for(int i = 0; i < tc_gastos.size(); i++){
                 String cat = tc_gastos.get(i).getCa_id();
-                Totais totalcategoria = new Totais_DAO(context).buscarNome(cat);
+                Totais totalcategoria = new Totais_DAO(context).buscarNome(cat, id_viagem);
                 if(totalcategoria != null){
                     String tg = totalcategoria.getTo_gasto();
                     String tp = totalcategoria.getTo_planejamento();

@@ -85,8 +85,8 @@ public class RelatorioActivity extends AppCompatActivity {
         float val_planejado = 0, val_gasto = 0, porc_planejado = 0, porc_gasto = 0;
 
         Totais_DAO totais_dao = new Totais_DAO(context);
-        Totais totalplanejado = totais_dao.buscarNome(planejamento);
-        Totais totalgasto = totais_dao.buscarNome(gasto);
+        Totais totalplanejado = totais_dao.buscarNome(planejamento, idviagem);
+        Totais totalgasto = totais_dao.buscarNome(gasto, idviagem);
 
         if(totalplanejado != null){
             val_planejado = Float.parseFloat(totalplanejado.getTo_total());

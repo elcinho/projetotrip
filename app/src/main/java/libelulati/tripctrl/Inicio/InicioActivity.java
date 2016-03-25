@@ -63,6 +63,7 @@ public class InicioActivity extends AppCompatActivity {
     PieChart gr_ini_inicio;
     float val_viagem, val_planejamento, val_gasto;
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    ImageView itemGasto, itemPlanejamento, itemPagamento, itemRelatorio, itemConfiguracoes;
 
 
     @Override
@@ -109,11 +110,11 @@ public class InicioActivity extends AppCompatActivity {
         SubActionButton.Builder itensMenu = new SubActionButton.Builder(this);
         itensMenu.setLayoutParams(subNewParams);
 
-        ImageView itemGasto = new ImageView(this);
-        ImageView itemPlanejamento = new ImageView(this);
-        ImageView itemPagamento = new ImageView(this);
-        ImageView itemRelatorio = new ImageView(this);
-        ImageView itemConfiguracoes = new ImageView(this);
+        itemGasto = new ImageView(this);
+        itemPlanejamento = new ImageView(this);
+        itemPagamento = new ImageView(this);
+        itemRelatorio = new ImageView(this);
+        itemConfiguracoes = new ImageView(this);
 
         itemGasto.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_attach_money));
         itemPlanejamento.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_assignment));
@@ -263,8 +264,6 @@ public class InicioActivity extends AppCompatActivity {
     //Notificações
   public void ExibirNotificaçãoExterna(){
       cn_pagamento = cnotificacoes.getCn_pagamentos();
-
-
       if(cn_pagamento == 1) {
           Calendar calendar = Calendar.getInstance();
           calendar.setTimeInMillis(System.currentTimeMillis());
@@ -303,6 +302,10 @@ public class InicioActivity extends AppCompatActivity {
             bt_ini_addviagem.setVisibility(View.INVISIBLE);
             tx_ini_dataviagem.setVisibility(View.VISIBLE);
             tx_ini_valorviagem.setVisibility(View.VISIBLE);
+            itemGasto.setEnabled(true);
+            itemPlanejamento.setEnabled(true);
+            itemPagamento.setEnabled(true);
+            itemRelatorio.setEnabled(true);
             id_viagem = viagens.size();
             viagem = new Viagens_DAO(context).buscarID(id_viagem);
             titulo = viagem.getVi_nome();
@@ -315,6 +318,10 @@ public class InicioActivity extends AppCompatActivity {
         }
         else{
             bt_ini_addviagem.setVisibility(View.VISIBLE);
+            itemGasto.setEnabled(false);
+            itemPlanejamento.setEnabled(false);
+            itemPagamento.setEnabled(false);
+            itemRelatorio.setEnabled(false);
             v_linha.setVisibility(View.INVISIBLE);
             tx_ini_dataviagem.setVisibility(View.INVISIBLE);
             tx_ini_valorviagem.setVisibility(View.INVISIBLE);
@@ -325,7 +332,7 @@ public class InicioActivity extends AppCompatActivity {
     }
 
     public void AtualizarTotais(){
-        Totais totalviagem = new Totais_DAO(context).buscarNome("viagem");
+        Totais totalviagem = new Totais_DAO(context).buscarNome("viagem", id_viagem);
         if(totalviagem == null){
             Totais_DAO totais_dao = new Totais_DAO(context);
             Totais totais = new Totais();
@@ -346,9 +353,9 @@ public class InicioActivity extends AppCompatActivity {
 
     public void RecuperarTotais(){
         Totais_DAO totais_dao = new Totais_DAO(context);
-        Totais totalviagem = totais_dao.buscarNome("viagem");
-        Totais totalgasto = totais_dao.buscarNome("gasto");
-        Totais totalplanejamento = totais_dao.buscarNome("planejamento");
+        Totais totalviagem = totais_dao.buscarNome("viagem", id_viagem);
+        Totais totalgasto = totais_dao.buscarNome("gasto", id_viagem);
+        Totais totalplanejamento = totais_dao.buscarNome("planejamento", id_viagem);
 
         if(totalviagem == null){
             val_viagem = 0;

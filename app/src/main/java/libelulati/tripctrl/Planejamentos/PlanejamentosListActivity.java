@@ -116,7 +116,7 @@ public class PlanejamentosListActivity extends AppCompatActivity {
     }
 
     public void AtualizarTotais(){
-        Totais totalplanejamento = new Totais_DAO(context).buscarNome("planejamento");
+        Totais totalplanejamento = new Totais_DAO(context).buscarNome("planejamento", id_viagem);
         if(totalplanejamento == null){
             Totais_DAO totais_dao = new Totais_DAO(context);
             Totais totais = new Totais();

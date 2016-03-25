@@ -33,10 +33,10 @@ public class Totais_DAO extends Dados{
         db.close();
     }
 
-    public Totais buscarNome(String nome){
+    public Totais buscarNome(String nome, int id_viagem){
         Totais totais = null;
 
-        String sql = ComandosSql.getSelectNomeTotais() + "'" + nome + "'";
+        String sql = ComandosSql.getSelectNomeTotais() + "'" + nome + "' AND " + Nomes.getViId() + " = " + id_viagem;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
 
