@@ -3,6 +3,7 @@ package libelulati.tripctrl.Inicio;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -222,8 +223,11 @@ public class InicioActivity extends AppCompatActivity {
         });
 
 
-        ExibirNotificaçãoExterna();
+       // ExibirNotificaçãoExterna();
         ExibirNotificacao();
+
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.cancel(R.drawable.trip_icon);
     }
 
 
@@ -277,21 +281,25 @@ public class InicioActivity extends AppCompatActivity {
       }
   }
 
-
     public void ExibirNotificacao() {
 
         Notificacoes notificacoes = new Notificacoes();
 
-        notificacoes.NotificarGasto50();
+        if (notificacoes != null) {
+            notificacoes.NotificarGasto50();
+        }
 
-        notificacoes.NotificarGasto90();
+        if(notificacoes != null) {
+            notificacoes.NotificarGasto90();
+        }
 
-        notificacoes.NotificarPlanejado50();
+        if(notificacoes != null) {
+            notificacoes.NotificarPlanejado50();
+        }
 
-        notificacoes.NotificarPlanejado90();
-
-
-
+        if (notificacoes != null) {
+            notificacoes.NotificarPlanejado90();
+        }
     }
 
    //Fim Notificações

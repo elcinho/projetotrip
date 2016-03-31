@@ -24,40 +24,48 @@ import libelulati.tripctrl.Viagens.Viagem;
 public class Notificacoes extends Activity {
     Context context;
     Cnotificacoes cnotificacoes;
-    Viagem viagem;
-    String Planejamento = "planejamento";
-    String Gasto = "gasto";
-    String Viagem = "viagem";
+
     float Valor_planejado = 0;
     float Valor_gasto = 0;
     float Porcentagem = 0;
     float Valor_viagem = 0;
-    Date Data_viagem;
     int cn_gasto , cn_planejamento,cn_viagem;
     int id_viagem = InicioActivity.getId_viagem();
     SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
 
 
     public void NotificarPlanejado50() {
-        cn_planejamento = cnotificacoes.getCn_planejamentos();
+        int id = (int) System.currentTimeMillis();
+        String Planejamento = "planejamento";
+        String Gasto = "gasto";
 
         Totais_DAO totais_dao = new Totais_DAO(context);
         Totais TotalPlanejado = totais_dao.buscarNome(Planejamento, id_viagem);
         Totais TotalGasto = totais_dao.buscarNome(Gasto, id_viagem);
 
-        Valor_planejado = Float.parseFloat(TotalPlanejado.getTo_total());
-        Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
-        Porcentagem = (Valor_planejado / Valor_gasto);
+        if(TotalPlanejado != null) {
+            Valor_planejado = Float.parseFloat(TotalPlanejado.getTo_planejamento());
+        }
+        if(TotalGasto != null) {
+            Valor_gasto = Float.parseFloat(TotalGasto.getTo_gasto());
+        }
 
-        if(cn_gasto == 1) {
+
+            Porcentagem = (Valor_planejado / Valor_gasto);
+
+
+       // if(cn_gasto == 1) {
             if (Porcentagem > 1.1 && Porcentagem < 2) {
-                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
+                Intent notificarIntent = new Intent(getApplicationContext(), InicioActivity.class);
+                notificarIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(context.getApplicationContext());
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, id, notificarIntent, PendingIntent.FLAG_UPDATE_CURRENT );
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
                 builder.setTicker(context.getResources().getString(R.string.viagem));
                 builder.setSmallIcon(R.drawable.trip_icon);
-                builder.setContentIntent(p);
+                builder.setContentIntent(pendingIntent);
 
                 NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
                 String[] msg = new String[]{context.getResources().getString(R.string.notificacao_viagem_50_planejado1), context.getResources().getString(R.string.notificacao_viagem_50_planejado2)};
@@ -79,30 +87,43 @@ public class Notificacoes extends Activity {
                 } catch (Exception e) {
                 }
             }
-        }
+        //}
     }
 
     public void NotificarPlanejado90() {
-        cn_planejamento = cnotificacoes.getCn_planejamentos();
+        //cn_planejamento = cnotificacoes.getCn_planejamentos();
+        int id = (int) System.currentTimeMillis();
+        String Planejamento = "planejamento";
+        String Gasto = "gasto";
+
+
         Totais_DAO totais_dao = new Totais_DAO(context);
         Totais TotalPlanejado = totais_dao.buscarNome(Planejamento,id_viagem);
         Totais TotalGasto = totais_dao.buscarNome(Gasto, id_viagem);
 
-        Valor_planejado = Float.parseFloat(TotalPlanejado.getTo_total());
-        Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
+
+        if(TotalPlanejado != null) {
+            Valor_planejado = Float.parseFloat(TotalPlanejado.getTo_planejamento());
+        }
+
+        if(TotalGasto != null) {
+            Valor_gasto = Float.parseFloat(TotalGasto.getTo_gasto());
+        }
+
 
         Porcentagem = (Valor_planejado / Valor_gasto);
-        if(cn_planejamento == 1) {
-
-
+        //if(cn_planejamento == 1) {
             if (Porcentagem > 0 && Porcentagem <= 1.1) {
+                Intent notificarIntent = new Intent(getApplicationContext(), InicioActivity.class);
+                notificarIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, id, notificarIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
                 builder.setTicker(context.getResources().getString(R.string.viagem));
                 builder.setSmallIcon(R.drawable.trip_icon);
-                builder.setContentIntent(p);
+                builder.setContentIntent(pendingIntent);
 
                 NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
                 String[] msg = new String[]{context.getResources().getString(R.string.notificacao_viagem_90_planejado1), context.getResources().getString(R.string.notificacao_viagem_90_planejado2)};
@@ -125,31 +146,45 @@ public class Notificacoes extends Activity {
                 } catch (Exception e) {
 
                 }
-            }
+          //  }
         }
 
     }
 
     public void NotificarGasto50() {
-        cn_gasto = cnotificacoes.getCn_gastos();
+       // cn_gasto = cnotificacoes.getCn_gastos();
+        int id =  ( int )  System . currentTimeMillis ();
+        String Gasto = "gasto";
+        String Viagem = "viagem";
+
+
         Totais_DAO totais_dao = new Totais_DAO(context);
         Totais TotalGasto = totais_dao.buscarNome(Gasto, id_viagem);
         Totais TotalVigem = totais_dao.buscarNome(Viagem,id_viagem);
 
-        Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
-        Valor_viagem = Float.parseFloat(TotalVigem.getTo_total());
+        if(TotalGasto != null) {
+            Valor_gasto = Float.parseFloat(TotalGasto.getTo_gasto());
+        }
+
+        if (TotalVigem != null) {
+            Valor_viagem = Float.parseFloat(TotalVigem.getTo_total());
+        }
+
 
         Porcentagem = (Valor_viagem / Valor_gasto);
 
-        if(cn_gasto == 1) {
+      //  if(cn_gasto == 1) {
             if (Porcentagem > 1.1 && Porcentagem < 2) {
+                Intent notificarIntent = new Intent(getApplicationContext(), InicioActivity.class);
+                notificarIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, id, notificarIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
                 builder.setTicker(context.getResources().getString(R.string.viagem));
                 builder.setSmallIcon(R.drawable.trip_icon);
-                builder.setContentIntent(p);
+                builder.setContentIntent(pendingIntent);
 
                 NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
                 String[] msg = new String[]{context.getResources().getString(R.string.notificacao_viagem_50_total1), context.getResources().getString(R.string.notificacao_viagem_50_total2)};
@@ -172,28 +207,40 @@ public class Notificacoes extends Activity {
 
                 }
             }
-        }
+      //  }
     }
 
     public void NotificarGasto90() {
-        cn_gasto = cnotificacoes.getCn_gastos();
+        //cn_gasto = cnotificacoes.getCn_gastos();
+        int id = (int) System.currentTimeMillis();
+        String Gasto = "gasto";
+        String Viagem = "viagem";
+
         Totais_DAO totais_dao = new Totais_DAO(context);
         Totais TotalGasto = totais_dao.buscarNome(Gasto, id_viagem);
         Totais TotalVigem = totais_dao.buscarNome(Viagem, id_viagem);
 
-        Valor_gasto = Float.parseFloat(TotalGasto.getTo_total());
-        Valor_viagem = Float.parseFloat(TotalVigem.getTo_total());
+        if(TotalGasto != null) {
+            Valor_gasto = Float.parseFloat(TotalGasto.getTo_gasto());
+        }
+
+        if(TotalVigem != null) {
+            Valor_viagem = Float.parseFloat(TotalVigem.getTo_total());
+        }
 
         Porcentagem = (Valor_viagem / Valor_gasto);
-        if(cn_gasto ==1){
+        //if(cn_gasto ==1){
             if (Porcentagem > 0 && Porcentagem < 1.1) {
+                Intent notificatIntent = new Intent(getApplicationContext(), InicioActivity.class);
+                notificatIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                PendingIntent p = PendingIntent.getActivity(this, 0, new Intent(this, InicioActivity.class), 0);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, id , notificatIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
                 builder.setTicker(context.getResources().getString(R.string.viagem));
                 builder.setSmallIcon(R.drawable.trip_icon);
-                builder.setContentIntent(p);
+                builder.setContentIntent(pendingIntent);
 
                 NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
                 String[] msg = new String[]{context.getResources().getString(R.string.notificacao_viagem_90_total1), context.getResources().getString(R.string.notificacao_viagem_90_total2)};
@@ -215,11 +262,11 @@ public class Notificacoes extends Activity {
                 } catch (Exception e) {
 
                 }
-            }
+          //  }
         }
     }
 
-    public void NotificarViagem(){
+    private void NotificarViagem(){
         cn_viagem = cnotificacoes.getCn_viagens();
         //Data_viagem = (Date) formata.parse(Nomes.getViDtini());
         NotificacoesConfiguracaoActivity notificacoesConfiguracaoActivity = new NotificacoesConfiguracaoActivity();
