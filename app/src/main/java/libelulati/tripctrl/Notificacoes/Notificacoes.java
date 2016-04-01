@@ -235,7 +235,8 @@ public class Notificacoes extends Activity {
                 notificatIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, id , notificatIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //
+              PendingIntent pendingIntent = PendingIntent.getActivity(this, id , notificatIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
                 builder.setTicker(context.getResources().getString(R.string.viagem));
