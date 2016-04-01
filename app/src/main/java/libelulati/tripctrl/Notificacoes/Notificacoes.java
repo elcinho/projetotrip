@@ -248,7 +248,7 @@ public class Notificacoes extends Activity {
                     style.addLine(msg[i]);
                 }
                 builder.setStyle(style);
-
+//
                 Notification notification = builder.build();
                 notification.vibrate = new long[]{150, 300, 150, 600};
                 notification.flags = Notification.FLAG_AUTO_CANCEL;
